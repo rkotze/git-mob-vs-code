@@ -1,0 +1,48 @@
+{
+  "name": "git-mob",
+  "displayName": "vs-code-mob",
+  "description": "A cross-platform command-line tool for social coding. Includes co-authors in commits when pair/mob programming.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.29.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:gitmob.sayHello",
+    "onView:gitMobCoAuthors"
+  ],
+  "main": "./extension",
+  "contributes": {
+    "commands": [
+      {
+        "command": "gitmob.sayHello",
+        "title": "Hello World"
+      },
+      {
+        "command": "gitmob.reveal",
+        "title": "Test View: Reveal"
+      }
+    ],
+    "views": {
+      "scm": [
+        {
+          "id": "gitMobCoAuthors",
+          "name": "Git Co-authors"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "test": "node ./node_modules/vscode/bin/test"
+  },
+  "devDependencies": {
+    "typescript": "^2.6.1",
+    "vscode": "^1.1.21",
+    "eslint": "^4.11.0",
+    "@types/node": "^8.10.25",
+    "@types/mocha": "^2.2.42"
+  }
+}
