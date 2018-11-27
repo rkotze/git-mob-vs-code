@@ -23,8 +23,40 @@
       {
         "command": "gitmob.reveal",
         "title": "Test View: Reveal"
+      },
+      {
+        "command": "gitmob.addCoAuthor",
+        "title": "Add co-author",
+        "category": "Git",
+        "icon": {
+          "light": "resources/icons/light/stage.svg",
+          "dark": "resources/icons/dark/stage.svg"
+        }
+      },
+      {
+        "command": "gitmob.removeCoAuthor",
+        "title": "Remove co-author",
+        "category": "Git",
+        "icon": {
+          "light": "resources/icons/light/unstage.svg",
+          "dark": "resources/icons/dark/unstage.svg"
+        }
       }
     ],
+    "menus": {
+      "view/item/context": [
+        {
+          "command": "gitmob.addCoAuthor",
+          "when": "viewItem == add-author",
+          "group": "inline"
+        },
+        {
+          "command": "gitmob.removeCoAuthor",
+          "when": "viewItem == remove-author",
+          "group": "inline"
+        }
+      ]
+    },
     "views": {
       "scm": [
         {

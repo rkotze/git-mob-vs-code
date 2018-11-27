@@ -2,39 +2,56 @@ const vscode = require("vscode");
 
 class GitMob {
   constructor(context) {
-    vscode.window.registerTreeDataProvider(
-      "gitMobCoAuthors",
-      aNodeWithIdTreeDataProvider()
+    const coAuthorProvider = new CoAuthorProvider();
+    vscode.window.registerTreeDataProvider("gitMobCoAuthors", coAuthorProvider);
+
+    let disposable = vscode.commands.registerCommand(
+      "gitmob.addCoAuthor",
+      function(author) {
+        coAuthorProvider.addCoAuthor(author);
+        vscode.window.showInformationMessage(`Added author ${author.key}`);
+      }
     );
+
+    context.subscriptions.push(disposable);
   }
 }
 exports.GitMob = GitMob;
 
-function aNodeWithIdTreeDataProvider() {
-  return {
-    getChildren: element => {
-      console.log("element: ", element);
+let coAuthors = [
+  {
+    key: "Richard",
+    selected: false
+  },
+  {
+    key: "Dennis",
+    selected: false
+  }
+];
 
-      return [
-        {
-          key: "Richard"
-        },
-        {
-          key: "Dennis"
-        }
-      ];
-    },
-    getTreeItem: element => {
-      const treeItem = getTreeItem(element.key);
-      treeItem.id = element.key;
-      return treeItem;
-    }
-  };
-}
+class CoAuthorProvider {
+  constructor() {
+    this._onDidChangeTreeData = new vscode.EventEmitter();
+    this.onDidChangeTreeData = this._onDidChangeTreeData.event;
+  }
 
-function getTreeItem(key) {
-  return {
-    label: key,
-    tooltip: `Tooltip for ${key}`
-  };
+  getChildren() {
+    return coAuthors;
+  }
+
+  getTreeItem(element) {
+    return {
+      label: element.key,
+      tooltip: `Tooltip for ${element.key}`,
+      contextValue: element.selected ? "remove-author" : "add-author"
+    };
+  }
+
+  addCoAuthor(author) {
+    coAuthors = coAuthors.map(coAuthor => {
+      if (author && author.key == coAuthor.key) coAuthor.selected = true;
+      return coAuthor;
+    });
+    this._onDidChangeTreeData.fire();
+  }
 }

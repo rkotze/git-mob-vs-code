@@ -17,12 +17,12 @@ function activate(context) {
       rep[0].inputBox.value = "Co-authors";
     });
   }
-  new GitMob(vscode.workspace.rootPath);
+  new GitMob(context);
   let disposable = vscode.commands.registerCommand(
     "gitmob.sayHello",
     function() {
       // The code you place here will be executed every time your command is executed
-
+      console.log("args", arguments);
       // Display a message box to the user
       vscode.window.showInformationMessage("Hello World!");
     }
