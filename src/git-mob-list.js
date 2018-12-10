@@ -1,4 +1,6 @@
+const os = require("os");
 const vscode = require("vscode");
+const { mob, config } = require("./commands");
 
 class GitMob {
   constructor(context) {
@@ -18,16 +20,28 @@ class GitMob {
 }
 exports.GitMob = GitMob;
 
-let coAuthors = [
-  {
-    key: "Richard",
-    selected: false
-  },
-  {
-    key: "Dennis",
-    selected: false
+function createAuthor(stdoutFormat) {
+  const regexList = /^([a-z]{1,4})\s(.+)\s<(.+)/;
+  let list = stdoutFormat.match(regexList);
+  if (list && list.length === 4) {
+    const [, commandKey, name, email] = list;
+    return author(name, email, false, commandKey);
   }
-];
+
+  const regexCurrent = /(.+)\s<(.+)/;
+  list = stdoutFormat.match(regexCurrent);
+  const [, name, email] = list;
+  return author(name, email, true);
+}
+
+function author(name, email, selected = false, commandKey = "") {
+  return {
+    key: name,
+    email,
+    selected,
+    commandKey
+  };
+}
 
 class CoAuthorProvider {
   constructor() {
@@ -36,7 +50,11 @@ class CoAuthorProvider {
   }
 
   getChildren() {
-    return coAuthors;
+    const a = vscode.workspace.rootPath;
+    const currentMob = mob.current(a).split(">");
+    const result = currentMob.map(author => createAuthor(author));
+
+    return result;
   }
 
   getTreeItem(element) {
