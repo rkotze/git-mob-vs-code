@@ -33,6 +33,11 @@ function current(cwd) {
   return format(processMob.stdout.trim());
 }
 
+function listAll(cwd) {
+  const processMob = silentRun(`git mob --list`, cwd);
+  return format(processMob.stdout.trim());
+}
+
 function format(stdout) {
   return stdout.replace(/\r?\n|\r|>$/g, "");
 }
@@ -54,6 +59,7 @@ module.exports = {
     has
   },
   mob: {
-    current
+    current,
+    listAll
   }
 };
