@@ -63,12 +63,6 @@
           "id": "gitMobCoAuthors",
           "name": "Git Co-authors"
         }
-      ],
-      "scm/gitMobCoAuthors": [
-        {
-          "id": "gitMobCoAuthorsSelected",
-          "name": "Selected"
-        }
       ]
     }
   },
