@@ -39,7 +39,7 @@ function listAll(cwd) {
 }
 
 function format(stdout) {
-  return stdout.replace(/\r?\n|\r|>$/g, "");
+  return stdout.replace(/\r|<|>/g, "");
 }
 
 /**

@@ -21,14 +21,14 @@ class GitMob {
 exports.GitMob = GitMob;
 
 function createAuthor(stdoutFormat) {
-  const regexList = /^([a-z]{1,4})\s(.+)\s<(.+)/;
+  const regexList = /^([a-z]{1,3})\s(.+)\s([a-zA-Z0-9_\-\.]+@[a-zA-Z0-9_\-\.]+\.[a-zA-Z]{2,5})/;
   let list = stdoutFormat.match(regexList);
   if (list && list.length === 4) {
     const [, commandKey, name, email] = list;
     return author(name, email, false, commandKey);
   }
 
-  const regexCurrent = /(.+)\s<(.+)/;
+  const regexCurrent = /(.+)\s([a-zA-Z0-9_\-\.]+@[a-zA-Z0-9_\-\.]+\.[a-zA-Z]{2,5})/;
   list = stdoutFormat.match(regexCurrent);
   const [, name, email] = list;
   return author(name, email, true);
@@ -58,19 +58,14 @@ class CoAuthorProvider {
   getChildren(element = {}) {
     if (element.key === "Selected") {
       const a = vscode.workspace.rootPath;
-      const currentMob = mob.current(a).split(">");
+      const currentMob = mob.current(a).split("\n");
       return currentMob.map(author => createAuthor(author));
     }
 
     if (element.key === "Unselected") {
-      return [
-        {
-          key: "dennis",
-          email: "fake@dennis.com",
-          selected: false,
-          commandKey: ""
-        }
-      ];
+      const a = vscode.workspace.rootPath;
+      const other = mob.listAll(a).split("\n");
+      return other.map(author => createAuthor(author));
     }
 
     return [
@@ -87,7 +82,6 @@ class CoAuthorProvider {
 
   getTreeItem(element) {
     return {
-      id: element.key,
       label: element.key,
       tooltip: `Tooltip for ${element.key}`,
       contextValue: element.selected ? "remove-author" : "add-author",
