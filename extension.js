@@ -1,5 +1,6 @@
 const vscode = require("vscode");
 const { GitMob } = require("./src/git-mob-list");
+const { TestView } = require("./src/test-view");
 
 function activate(context) {
   new GitMob(context);
