@@ -43,25 +43,57 @@ function author(name, email, selected = false, commandKey = "") {
   };
 }
 
+function Groups() {
+  return {
+    key: "Selected"
+  };
+}
+
 class CoAuthorProvider {
   constructor() {
     this._onDidChangeTreeData = new vscode.EventEmitter();
     this.onDidChangeTreeData = this._onDidChangeTreeData.event;
   }
 
-  getChildren() {
-    const a = vscode.workspace.rootPath;
-    const currentMob = mob.current(a).split(">");
-    const result = currentMob.map(author => createAuthor(author));
+  getChildren(element = {}) {
+    if (element.key === "Selected") {
+      const a = vscode.workspace.rootPath;
+      const currentMob = mob.current(a).split(">");
+      return currentMob.map(author => createAuthor(author));
+    }
 
-    return result;
+    if (element.key === "Unselected") {
+      return [
+        {
+          key: "dennis",
+          email: "fake@dennis.com",
+          selected: false,
+          commandKey: ""
+        }
+      ];
+    }
+
+    return [
+      {
+        key: "Selected",
+        expand: true
+      },
+      {
+        key: "Unselected",
+        expand: true
+      }
+    ];
   }
 
   getTreeItem(element) {
     return {
+      id: element.key,
       label: element.key,
       tooltip: `Tooltip for ${element.key}`,
-      contextValue: element.selected ? "remove-author" : "add-author"
+      contextValue: element.selected ? "remove-author" : "add-author",
+      collapsibleState: element.expand
+        ? vscode.TreeItemCollapsibleState.Expanded
+        : vscode.TreeItemCollapsibleState.None
     };
   }
 
