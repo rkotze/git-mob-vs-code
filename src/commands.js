@@ -1,3 +1,4 @@
+const vscode = require("vscode");
 const { spawnSync } = require("child_process");
 
 /**
@@ -16,8 +17,12 @@ const { spawnSync } = require("child_process");
  * @param {string} command The command to execute
  * @returns {ChildProcess.SpawnResult} object from child_process.spawnSync
  */
-function silentRun(command, cwd) {
-  return spawnSync(command, { encoding: "utf8", shell: true, cwd });
+function silentRun(command) {
+  return spawnSync(command, {
+    encoding: "utf8",
+    shell: true,
+    cwd: vscode.workspace.rootPath
+  });
 }
 
 function get(key) {
@@ -28,13 +33,13 @@ function has(key) {
   return silentRun(`git config ${key}`).status === 0;
 }
 
-function current(cwd) {
-  const processMob = silentRun(`git mob`, cwd);
+function current() {
+  const processMob = silentRun(`git mob`);
   return format(processMob.stdout.trim());
 }
 
-function listAll(cwd) {
-  const processMob = silentRun(`git mob --list`, cwd);
+function listAll() {
+  const processMob = silentRun(`git mob --list`);
   return format(processMob.stdout.trim());
 }
 

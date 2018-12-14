@@ -1,6 +1,5 @@
-const os = require("os");
 const vscode = require("vscode");
-const { mob, config } = require("./commands");
+const { MobAuthors } = require("./mob-authors");
 
 class GitMob {
   constructor(context) {
@@ -20,55 +19,30 @@ class GitMob {
 }
 exports.GitMob = GitMob;
 
-function createAuthor(stdoutFormat) {
-  const regexList = /^([a-z]{1,3})\s(.+)\s([a-zA-Z0-9_\-\.]+@[a-zA-Z0-9_\-\.]+\.[a-zA-Z]{2,5})/;
-  let list = stdoutFormat.match(regexList);
-  if (list && list.length === 4) {
-    const [, commandKey, name, email] = list;
-    return author(name, email, false, commandKey);
-  }
-
-  const regexCurrent = /(.+)\s([a-zA-Z0-9_\-\.]+@[a-zA-Z0-9_\-\.]+\.[a-zA-Z]{2,5})/;
-  list = stdoutFormat.match(regexCurrent);
-  const [, name, email] = list;
-  return author(name, email, true);
-}
-
-function author(name, email, selected = false, commandKey = "") {
-  return {
-    key: name,
-    email,
-    selected,
-    commandKey
-  };
-}
-
-function Groups() {
-  return {
-    key: "Selected"
-  };
-}
-
 class CoAuthorProvider {
   constructor() {
     this._onDidChangeTreeData = new vscode.EventEmitter();
     this.onDidChangeTreeData = this._onDidChangeTreeData.event;
+    this.mobAuthors = new MobAuthors();
   }
 
   getChildren(element = {}) {
+    const current = this.mobAuthors.listCurrent;
+    const allAuthors = this.mobAuthors.listAll;
     if (element.key === "Selected") {
-      const a = vscode.workspace.rootPath;
-      const currentMob = mob.current(a).split("\n");
-      return currentMob.map(author => createAuthor(author));
+      return current;
     }
 
     if (element.key === "Unselected") {
-      const a = vscode.workspace.rootPath;
-      const other = mob.listAll(a).split("\n");
-      return other.map(author => createAuthor(author));
+      const setAllAuthor = new Set(allAuthors);
+      current.forEach(function(author) {
+        setAllAuthor.delete(author);
+      });
+      return Array.from(setAllAuthor);
     }
 
     return [
+      this.mobAuthors.author,
       {
         key: "Selected",
         expand: true
