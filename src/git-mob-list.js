@@ -1,5 +1,6 @@
 const vscode = require("vscode");
 const { MobAuthors } = require("./mob-authors");
+const { TreeNode } = require("./tree-node");
 
 class GitMob {
   constructor(context) {
@@ -43,26 +44,13 @@ class CoAuthorProvider {
 
     return [
       this.mobAuthors.author,
-      {
-        key: "Selected",
-        expand: true
-      },
-      {
-        key: "Unselected",
-        expand: true
-      }
+      new TreeNode("Selected"),
+      new TreeNode("Unselected")
     ];
   }
 
   getTreeItem(element) {
-    return {
-      label: element.key,
-      tooltip: `Tooltip for ${element.key}`,
-      contextValue: element.selected ? "remove-author" : "add-author",
-      collapsibleState: element.expand
-        ? vscode.TreeItemCollapsibleState.Expanded
-        : vscode.TreeItemCollapsibleState.None
-    };
+    return element.getTreeItem();
   }
 
   addCoAuthor(author) {
