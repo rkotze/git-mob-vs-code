@@ -17,15 +17,22 @@ class GitMob {
       });
     };
 
-    let disposable = vscode.commands.registerCommand(
+    let disposableAddCoAuthor = vscode.commands.registerCommand(
       "gitmob.addCoAuthor",
       function(author) {
-        coAuthorProvider.addCoAuthor(author);
-        vscode.window.showInformationMessage(`Added author ${author.key}`);
+        coAuthorProvider.toggleCoAuthor(author, true);
       }
     );
 
-    context.subscriptions.push(disposable);
+    context.subscriptions.push(disposableAddCoAuthor);
+
+    let disposableRemoveCoAuthor = vscode.commands.registerCommand(
+      "gitmob.removeCoAuthor",
+      function(author) {
+        coAuthorProvider.toggleCoAuthor(author, false);
+      }
+    );
+    context.subscriptions.push(disposableRemoveCoAuthor);
   }
 }
 exports.GitMob = GitMob;
@@ -39,17 +46,16 @@ class CoAuthorProvider {
   }
 
   getChildren(element = {}) {
-    const current = this.mobAuthors.listCurrent;
     const allAuthors = this.mobAuthors.listAll;
     if (element.key === "Selected") {
-      return current;
+      return this.mobAuthors.listCurrent;
     }
 
     if (element.key === "Unselected") {
       const setAllAuthor = new Set(allAuthors);
-      current.forEach(function(author) {
-        setAllAuthor.delete(author);
-      });
+      for (let author of setAllAuthor) {
+        if (author.selected) setAllAuthor.delete(author);
+      }
       return Array.from(setAllAuthor);
     }
 
@@ -71,11 +77,13 @@ class CoAuthorProvider {
     return element.getTreeItem();
   }
 
-  addCoAuthor(author) {
-    coAuthors = coAuthors.map(coAuthor => {
-      if (author && author.key == coAuthor.key) coAuthor.selected = true;
-      return coAuthor;
+  toggleCoAuthor(author, selected) {
+    this.mobAuthors.listAll.forEach(coAuthor => {
+      if (author && author.email == coAuthor.email)
+        coAuthor.selected = selected;
     });
+
+    this.mobAuthors.setCurrent(author, selected);
     this._onDidChangeTreeData.fire();
   }
 }

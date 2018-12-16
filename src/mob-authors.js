@@ -4,6 +4,7 @@ const { TreeNode } = require("./tree-node");
 
 let author = null;
 let allAuthors = null;
+let setMob = null;
 
 class MobAuthors {
   get author() {
@@ -17,11 +18,42 @@ class MobAuthors {
   }
 
   get listCurrent() {
+    if (setMob !== null) {
+      const newMob = setMob;
+      setMob = null;
+      return newMob;
+    }
+
     const currentMob = mob.current();
 
     return this.listAll.reduce((acc, author) => {
       if (currentMob.includes(author.email)) {
         author.selected = true;
+        return [...acc, author];
+      }
+
+      return acc;
+    }, []);
+  }
+
+  setCurrent(author, selected) {
+    // const commandKeys = this.listAll.reduce((acc, author) => {
+    //   if (author.selected) return [...acc, author.commandKey];
+    //   return acc;
+    // }, []);
+
+    const commandKeys = [];
+
+    this.listAll.forEach(coAuthor => {
+      if (author && author.email == coAuthor.email)
+        coAuthor.selected = selected;
+      if (coAuthor.selected) commandKeys.push(coAuthor.commandKey);
+    });
+
+    const currentMob = mob.setCurrent(commandKeys.join(" "));
+
+    setMob = this.listAll.reduce((acc, author) => {
+      if (currentMob.includes(author.email)) {
         return [...acc, author];
       }
 

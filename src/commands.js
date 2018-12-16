@@ -33,6 +33,11 @@ function has(key) {
   return silentRun(`git config ${key}`).status === 0;
 }
 
+function setCurrent(mobList) {
+  const processMob = silentRun(`git mob ${mobList}`);
+  return format(processMob.stdout.trim());
+}
+
 function current() {
   const processMob = silentRun(`git mob`);
   return format(processMob.stdout.trim());
@@ -65,6 +70,7 @@ module.exports = {
   },
   mob: {
     current,
+    setCurrent,
     listAll
   }
 };
