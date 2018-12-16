@@ -5,7 +5,17 @@ const { TreeNode } = require("./tree-node");
 class GitMob {
   constructor(context) {
     const coAuthorProvider = new CoAuthorProvider();
-    vscode.window.registerTreeDataProvider("gitMobCoAuthors", coAuthorProvider);
+    const mobList = vscode.window.createTreeView("gitMobCoAuthors", {
+      treeDataProvider: coAuthorProvider
+    });
+
+    coAuthorProvider.loaded = function() {
+      mobList.onDidChangeVisibility(function({ visible }) {
+        if (visible) {
+          coAuthorProvider._onDidChangeTreeData.fire();
+        }
+      });
+    };
 
     let disposable = vscode.commands.registerCommand(
       "gitmob.addCoAuthor",
@@ -25,6 +35,7 @@ class CoAuthorProvider {
     this._onDidChangeTreeData = new vscode.EventEmitter();
     this.onDidChangeTreeData = this._onDidChangeTreeData.event;
     this.mobAuthors = new MobAuthors();
+    this._notLoaded = true;
   }
 
   getChildren(element = {}) {
@@ -50,6 +61,13 @@ class CoAuthorProvider {
   }
 
   getTreeItem(element) {
+    if (
+      element.email === this.mobAuthors.lastCoAuthor.email &&
+      this._notLoaded
+    ) {
+      this.loaded();
+      this._notLoaded = false;
+    }
     return element.getTreeItem();
   }
 

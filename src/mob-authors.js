@@ -40,6 +40,10 @@ class MobAuthors {
     return allAuthors;
   }
 
+  get lastCoAuthor() {
+    return this.listAll[this.listAll.length - 1];
+  }
+
   removeAuthor(authorList) {
     return authorList.filter(author => author.email !== this.author.email);
   }
@@ -56,7 +60,7 @@ class Author extends TreeNode {
   getTreeItem() {
     return {
       label: this.key,
-      toolTip: `Email: ${this.email}`,
+      tooltip: `Email: ${this.email}`,
       contextValue: ""
     };
   }
@@ -82,13 +86,6 @@ class CoAuthor extends Author {
 function createAuthor(stdoutFormat) {
   const regexList = /^([a-z]{1,3})\s(.+)\s([a-zA-Z0-9_\-\.]+@[a-zA-Z0-9_\-\.]+\.[a-zA-Z]{2,5})/;
   let list = stdoutFormat.match(regexList);
-  if (list && list.length === 4) {
-    const [, commandKey, name, email] = list;
-    return new CoAuthor(name, email, false, commandKey);
-  }
-
-  const regexCurrent = /(.+)\s([a-zA-Z0-9_\-\.]+@[a-zA-Z0-9_\-\.]+\.[a-zA-Z]{2,5})/;
-  list = stdoutFormat.match(regexCurrent);
-  const [, name, email] = list;
-  return new CoAuthor(name, email, true);
+  const [, commandKey, name, email] = list;
+  return new CoAuthor(name, email, false, commandKey);
 }
