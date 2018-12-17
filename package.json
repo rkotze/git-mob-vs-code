@@ -17,14 +17,6 @@
   "contributes": {
     "commands": [
       {
-        "command": "gitmob.sayHello",
-        "title": "Hello World"
-      },
-      {
-        "command": "gitmob.reveal",
-        "title": "Test View: Reveal"
-      },
-      {
         "command": "gitmob.addCoAuthor",
         "title": "Add co-author",
         "category": "Git",

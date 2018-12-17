@@ -2,40 +2,39 @@ const vscode = require("vscode");
 const { MobAuthors } = require("./mob-authors");
 const { TreeNode } = require("./tree-node");
 
-class GitMob {
-  constructor(context) {
-    const coAuthorProvider = new CoAuthorProvider();
-    const mobList = vscode.window.createTreeView("gitMobCoAuthors", {
-      treeDataProvider: coAuthorProvider
+function setupGitMob(context) {
+  const coAuthorProvider = new CoAuthorProvider();
+  const mobList = vscode.window.createTreeView("gitMobCoAuthors", {
+    treeDataProvider: coAuthorProvider
+  });
+
+  coAuthorProvider.loaded = function() {
+    mobList.onDidChangeVisibility(function({ visible }) {
+      if (visible) {
+        coAuthorProvider._onDidChangeTreeData.fire();
+      }
     });
+  };
 
-    coAuthorProvider.loaded = function() {
-      mobList.onDidChangeVisibility(function({ visible }) {
-        if (visible) {
-          coAuthorProvider._onDidChangeTreeData.fire();
-        }
-      });
-    };
+  let disposableAddCoAuthor = vscode.commands.registerCommand(
+    "gitmob.addCoAuthor",
+    function(author) {
+      coAuthorProvider.toggleCoAuthor(author, true);
+    }
+  );
 
-    let disposableAddCoAuthor = vscode.commands.registerCommand(
-      "gitmob.addCoAuthor",
-      function(author) {
-        coAuthorProvider.toggleCoAuthor(author, true);
-      }
-    );
+  context.subscriptions.push(disposableAddCoAuthor);
 
-    context.subscriptions.push(disposableAddCoAuthor);
-
-    let disposableRemoveCoAuthor = vscode.commands.registerCommand(
-      "gitmob.removeCoAuthor",
-      function(author) {
-        coAuthorProvider.toggleCoAuthor(author, false);
-      }
-    );
-    context.subscriptions.push(disposableRemoveCoAuthor);
-  }
+  let disposableRemoveCoAuthor = vscode.commands.registerCommand(
+    "gitmob.removeCoAuthor",
+    function(author) {
+      coAuthorProvider.toggleCoAuthor(author, false);
+    }
+  );
+  context.subscriptions.push(disposableRemoveCoAuthor);
 }
-exports.GitMob = GitMob;
+
+exports.setupGitMob = setupGitMob;
 
 class CoAuthorProvider {
   constructor() {

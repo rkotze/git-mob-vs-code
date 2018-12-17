@@ -1,20 +1,9 @@
-const vscode = require("vscode");
-const { GitMob } = require("./src/git-mob-list");
-const { TestView } = require("./src/test-view");
+const { setupGitMob } = require("./src/git-mob-list");
+// const vscode = require("vscode");
+// const { TestView } = require("./src/test-view");
 
 function activate(context) {
-  new GitMob(context);
-  let disposable = vscode.commands.registerCommand(
-    "gitmob.sayHello",
-    function() {
-      // The code you place here will be executed every time your command is executed
-      console.log("args", arguments);
-      // Display a message box to the user
-      vscode.window.showInformationMessage("Hello World!");
-    }
-  );
-
-  context.subscriptions.push(disposable);
+  setupGitMob(context);
 }
 exports.activate = activate;
 

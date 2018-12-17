@@ -37,11 +37,6 @@ class MobAuthors {
   }
 
   setCurrent(author, selected) {
-    // const commandKeys = this.listAll.reduce((acc, author) => {
-    //   if (author.selected) return [...acc, author.commandKey];
-    //   return acc;
-    // }, []);
-
     const commandKeys = [];
 
     this.listAll.forEach(coAuthor => {
