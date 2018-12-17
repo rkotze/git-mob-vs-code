@@ -19,9 +19,9 @@ class MobAuthors {
 
   get listCurrent() {
     if (setMob !== null) {
-      const newMob = setMob;
+      const tempMob = setMob;
       setMob = null;
-      return newMob;
+      return tempMob;
     }
 
     const currentMob = mob.current();
@@ -47,13 +47,7 @@ class MobAuthors {
 
     const currentMob = mob.setCurrent(commandKeys.join(" "));
 
-    setMob = this.listAll.reduce((acc, author) => {
-      if (currentMob.includes(author.email)) {
-        return [...acc, author];
-      }
-
-      return acc;
-    }, []);
+    setMob = this.listAll.filter(author => currentMob.includes(author.email));
   }
 
   get listAll() {
