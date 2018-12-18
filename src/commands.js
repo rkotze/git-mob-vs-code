@@ -34,7 +34,11 @@ function has(key) {
 }
 
 function setCurrent(mobList) {
-  const processMob = silentRun(`git mob ${mobList}`);
+  let processMob;
+  if (mobList.length > 0)
+    processMob = silentRun(`git mob ${mobList.join(" ")}`);
+  else processMob = silentRun(`git solo`);
+
   return format(processMob.stdout.trim());
 }
 
