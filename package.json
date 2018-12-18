@@ -10,7 +10,6 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:gitmob.sayHello",
     "onView:gitMobCoAuthors"
   ],
   "main": "./extension",
