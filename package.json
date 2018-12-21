@@ -14,6 +14,10 @@
     "color": "#8647ae",
     "theme": "dark"
   },
+  "author": {
+    "name": "Richard Kotze",
+    "email": "richkotze@outlook.com"
+  },
   "activationEvents": [
     "onView:gitMobCoAuthors"
   ],
@@ -64,7 +68,7 @@
       "scm": [
         {
           "id": "gitMobCoAuthors",
-          "name": "Git Co-authors"
+          "name": "Git Mob Co-authors"
         }
       ]
     }
