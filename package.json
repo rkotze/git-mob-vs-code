@@ -24,7 +24,7 @@
     "email": "richkotze@outlook.com"
   },
   "activationEvents": [
-    "onView:gitMobCoAuthors"
+    "onView:gitmob.CoAuthorsView"
   ],
   "main": "./extension",
   "keywords": [
@@ -72,7 +72,7 @@
     "views": {
       "scm": [
         {
-          "id": "gitMobCoAuthors",
+          "id": "gitmob.CoAuthorsView",
           "name": "Git Mob Co-authors"
         }
       ]

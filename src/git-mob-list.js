@@ -4,7 +4,7 @@ const { TreeNode } = require("./tree-node");
 
 function setupGitMob(context) {
   const coAuthorProvider = new CoAuthorProvider();
-  const mobList = vscode.window.createTreeView("gitMobCoAuthors", {
+  const mobList = vscode.window.createTreeView("gitmob.CoAuthorsView", {
     treeDataProvider: coAuthorProvider
   });
 

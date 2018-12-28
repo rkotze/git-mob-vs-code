@@ -25,8 +25,18 @@ function silentRun(command) {
   });
 }
 
+function handleResponse(query) {
+  const response = silentRun(query);
+  if (response.status !== 0) {
+    vscode.window.showErrorMessage("GitMob error: " + response.stderr.trim());
+    return "";
+  }
+
+  return response.stdout.trim();
+}
+
 function get(key) {
-  return silentRun(`git config --get ${key}`).stdout.trim();
+  return handleResponse(`git config --get ${key}`);
 }
 
 function has(key) {
@@ -36,20 +46,18 @@ function has(key) {
 function setCurrent(mobList) {
   let processMob;
   if (mobList.length > 0)
-    processMob = silentRun(`git mob ${mobList.join(" ")}`);
-  else processMob = silentRun(`git solo`);
+    processMob = handleResponse(`git mob ${mobList.join(" ")}`);
+  else processMob = handleResponse(`git solo`);
 
-  return format(processMob.stdout.trim());
+  return format(processMob);
 }
 
 function current() {
-  const processMob = silentRun(`git mob`);
-  return format(processMob.stdout.trim());
+  return format(handleResponse(`git mob`));
 }
 
 function listAll() {
-  const processMob = silentRun(`git mob --list`);
-  return format(processMob.stdout.trim());
+  return format(handleResponse(`git mob --list`));
 }
 
 function format(stdout) {
