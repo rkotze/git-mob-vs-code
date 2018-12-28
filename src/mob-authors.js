@@ -45,9 +45,13 @@ class MobAuthors {
       if (coAuthor.selected) commandKeys.push(coAuthor.commandKey);
     });
 
-    const currentMob = mob.setCurrent(commandKeys);
-
-    setMob = this.listAll.filter(author => currentMob.includes(author.email));
+    if (commandKeys.length > 0) {
+      const currentMob = mob.setCurrent(commandKeys);
+      setMob = this.listAll.filter(author => currentMob.includes(author.email));
+    } else {
+      mob.solo();
+      setMob = [];
+    }
   }
 
   get listAll() {

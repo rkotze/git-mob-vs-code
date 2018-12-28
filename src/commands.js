@@ -44,12 +44,11 @@ function has(key) {
 }
 
 function setCurrent(mobList) {
-  let processMob;
-  if (mobList.length > 0)
-    processMob = handleResponse(`git mob ${mobList.join(" ")}`);
-  else processMob = handleResponse(`git solo`);
+  return format(handleResponse(`git mob ${mobList.join(" ")}`));
+}
 
-  return format(processMob);
+function solo() {
+  return format(handleResponse(`git solo`));
 }
 
 function current() {
@@ -83,6 +82,7 @@ module.exports = {
   mob: {
     current,
     setCurrent,
-    listAll
+    listAll,
+    solo
   }
 };
