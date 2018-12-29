@@ -82,11 +82,6 @@ class CoAuthorProvider {
   }
 
   toggleCoAuthor(author, selected) {
-    this.mobAuthors.listAll.forEach(coAuthor => {
-      if (author && author.email == coAuthor.email)
-        coAuthor.selected = selected;
-    });
-
     this.mobAuthors.setCurrent(author, selected);
     this._onDidChangeTreeData.fire();
   }

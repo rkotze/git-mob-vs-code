@@ -32,6 +32,8 @@ class MobAuthors {
         return [...acc, author];
       }
 
+      author.selected = false;
+
       return acc;
     }, []);
   }
