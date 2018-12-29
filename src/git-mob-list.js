@@ -1,4 +1,5 @@
 const vscode = require("vscode");
+const { updateSCMInput } = require("./update-scm-input");
 const { MobAuthors } = require("./mob-authors");
 const { TreeNode } = require("./tree-node");
 
@@ -15,6 +16,10 @@ function setupGitMob(context) {
       }
     });
   };
+
+  coAuthorProvider.onDidChangeTreeData(function() {
+    updateSCMInput(coAuthorProvider.mobAuthors.listAll);
+  });
 
   let disposableAddCoAuthor = vscode.commands.registerCommand(
     "gitmob.addCoAuthor",

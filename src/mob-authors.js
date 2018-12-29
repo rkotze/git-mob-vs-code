@@ -106,6 +106,10 @@ class CoAuthor extends Author {
       collapsibleState: vscode.TreeItemCollapsibleState.None
     };
   }
+
+  format() {
+    return `Co-authored-by: ${this.key} <${this.email}>`;
+  }
 }
 
 function createAuthor(stdoutFormat) {
