@@ -11,15 +11,17 @@ function setupGitMob(context) {
 
   coAuthorProvider.loaded = function() {
     mobList.onDidChangeVisibility(function({ visible }) {
-      if (visible) {
-        coAuthorProvider._onDidChangeTreeData.fire();
-      }
+      visible && coAuthorProvider.reloadData();
     });
   };
 
-  coAuthorProvider.onDidChangeTreeData(function() {
-    updateSCMInput(coAuthorProvider.mobAuthors.listAll);
+  vscode.window.onDidChangeWindowState(function({ focused }) {
+    focused && coAuthorProvider.reloadData();
   });
+
+  coAuthorProvider.onUpdated = function() {
+    updateSCMInput(coAuthorProvider.mobAuthors.listAll);
+  };
 
   let disposableAddCoAuthor = vscode.commands.registerCommand(
     "gitmob.addCoAuthor",
@@ -78,11 +80,22 @@ class CoAuthorProvider {
       this.loaded();
       this._notLoaded = false;
     }
+
+    if (
+      element.email === this.mobAuthors.lastCoAuthor.email &&
+      !this._notLoaded
+    ) {
+      this.onUpdated();
+    }
     return element.getTreeItem();
   }
 
   toggleCoAuthor(author, selected) {
     this.mobAuthors.setCurrent(author, selected);
+    this.reloadData();
+  }
+
+  reloadData() {
     this._onDidChangeTreeData.fire();
   }
 }
