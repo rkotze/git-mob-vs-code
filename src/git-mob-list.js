@@ -16,7 +16,7 @@ function setupGitMob(context) {
   };
 
   vscode.window.onDidChangeWindowState(function({ focused }) {
-    focused && coAuthorProvider.reloadData();
+    focused && mobList.visible && coAuthorProvider.reloadData();
   });
 
   coAuthorProvider.onUpdated = function() {
