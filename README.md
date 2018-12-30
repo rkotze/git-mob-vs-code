@@ -2,7 +2,7 @@
 
 > Provides a **UI** for the command-line application [Git Mob](https://github.com/findmypast-oss/git-mob)
 
-![Git Mob in action](https://user-images.githubusercontent.com/10452163/50549695-a4eb0880-0c59-11e9-92d2-c71dc496566b.gif)
+![Git Mob in action](https://user-images.githubusercontent.com/10452163/50549725-4c683b00-0c5a-11e9-8a09-bad3b0435ed2.gif)
 
 Includes co-authors in commits when you collaborate on code. Use when pairing with a buddy or mobbing with your team.
 
