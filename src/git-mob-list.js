@@ -4,7 +4,7 @@ const { MobAuthors } = require("./mob-authors");
 const { TreeNode } = require("./tree-node");
 
 function setupGitMob(context) {
-  const coAuthorProvider = new CoAuthorProvider();
+  const coAuthorProvider = new CoAuthorProvider(context);
   const mobList = vscode.window.createTreeView("gitmob.CoAuthorsView", {
     treeDataProvider: coAuthorProvider
   });
@@ -44,11 +44,12 @@ function setupGitMob(context) {
 exports.setupGitMob = setupGitMob;
 
 class CoAuthorProvider {
-  constructor() {
+  constructor(context) {
     this._onDidChangeTreeData = new vscode.EventEmitter();
     this.onDidChangeTreeData = this._onDidChangeTreeData.event;
     this.mobAuthors = new MobAuthors();
     this._notLoaded = true;
+    this.context = context;
   }
 
   getChildren(element = {}) {
@@ -87,7 +88,11 @@ class CoAuthorProvider {
     ) {
       this.onUpdated();
     }
-    return element.getTreeItem();
+    return element.getTreeItem({
+      iconPath: this.context.asAbsolutePath(
+        "resources/icons/git-mob-single.svg"
+      )
+    });
   }
 
   toggleCoAuthor(author, selected) {

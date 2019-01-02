@@ -100,12 +100,13 @@ class CoAuthor extends Author {
     this.commandKey = commandKey;
   }
 
-  getTreeItem() {
+  getTreeItem({ iconPath = null }) {
     return {
       label: this.key,
       tooltip: `Email: ${this.email}`,
       contextValue: this.selected ? "remove-author" : "add-author",
-      collapsibleState: vscode.TreeItemCollapsibleState.None
+      collapsibleState: vscode.TreeItemCollapsibleState.None,
+      iconPath: iconPath
     };
   }
 
