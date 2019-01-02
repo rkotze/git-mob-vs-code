@@ -1,7 +1,7 @@
 {
   "name": "git-mob",
   "displayName": "Git Mob - Co-authors in commits",
-  "description": "A cross-platform command-line tool for social coding. Includes co-authors in commits when pair/mob programming.",
+  "description": "Co-author commits when pair/mob programming.",
   "version": "0.1.1",
   "publisher": "RichardKotze",
   "engines": {
