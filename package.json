@@ -24,7 +24,8 @@
     "email": "richkotze@outlook.com"
   },
   "activationEvents": [
-    "onView:gitmob.CoAuthorsView"
+    "onView:gitmob.CoAuthorsView",
+    "onCommand:gitmob.openGitCoauthor"
   ],
   "main": "./extension",
   "keywords": [
@@ -37,9 +38,14 @@
   "contributes": {
     "commands": [
       {
+        "command": "gitmob.openGitCoauthor",
+        "title": "Open Git Co-author",
+        "category": "Git Mob"
+      },
+      {
         "command": "gitmob.addCoAuthor",
         "title": "Add co-author",
-        "category": "Git",
+        "category": "Git Mob",
         "icon": {
           "light": "resources/icons/light/stage.svg",
           "dark": "resources/icons/dark/stage.svg"
@@ -48,7 +54,7 @@
       {
         "command": "gitmob.removeCoAuthor",
         "title": "Remove co-author",
-        "category": "Git",
+        "category": "Git Mob",
         "icon": {
           "light": "resources/icons/light/unstage.svg",
           "dark": "resources/icons/dark/unstage.svg"
