@@ -15,3 +15,7 @@ Read our blog post to find out why git-mob exists: http://tech.findmypast.com/co
 `npm i -g git-mob` (Please follow the setup instructions here)
 
 Must use git-mob version `0.3.0` or higher.
+
+### Credits
+
+<img src="https://raw.githubusercontent.com/rkotze/git-mob-vs-code/master/resources/icons/user.svg" /> Made by <a href="https://www.flaticon.com/authors/smashicons" target="_blank" title="Smashicons">Smashicons</a>

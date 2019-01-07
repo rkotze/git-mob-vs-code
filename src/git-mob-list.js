@@ -9,8 +9,6 @@ function setupGitMob(context) {
     treeDataProvider: coAuthorProvider
   });
 
-  // mobList.contextValue = "coAuthors";
-
   coAuthorProvider.loaded = function() {
     mobList.onDidChangeVisibility(function({ visible }) {
       visible && coAuthorProvider.reloadData();
@@ -52,7 +50,6 @@ class CoAuthorProvider {
     this.mobAuthors = new MobAuthors();
     this._notLoaded = true;
     this.context = context;
-    this.contextValue = "coAuthors";
   }
 
   getChildren(element = {}) {
@@ -92,9 +89,7 @@ class CoAuthorProvider {
       this.onUpdated();
     }
     return element.getTreeItem({
-      iconPath: this.context.asAbsolutePath(
-        "resources/icons/git-mob-single.svg"
-      )
+      iconPath: this.context.asAbsolutePath("resources/icons/user.svg")
     });
   }
 
