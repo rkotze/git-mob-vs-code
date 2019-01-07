@@ -39,8 +39,12 @@
     "commands": [
       {
         "command": "gitmob.openGitCoauthor",
-        "title": "Open Git Co-author",
-        "category": "Git Mob"
+        "title": "Open git-coauthor file",
+        "category": "Git Mob",
+        "icon": {
+          "light": "resources/icons/light/open-file.svg",
+          "dark": "resources/icons/dark/open-file.svg"
+        }
       },
       {
         "command": "gitmob.addCoAuthor",
@@ -62,6 +66,12 @@
       }
     ],
     "menus": {
+      "view/title": [
+        {
+          "command": "gitmob.openGitCoauthor",
+          "group": "navigation"
+        }
+      ],
       "view/item/context": [
         {
           "command": "gitmob.addCoAuthor",
