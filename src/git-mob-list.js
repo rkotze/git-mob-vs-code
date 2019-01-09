@@ -2,6 +2,7 @@ const vscode = require("vscode");
 const { updateSCMInput } = require("./update-scm-input");
 const { MobAuthors } = require("./mob-authors");
 const { TreeNode } = require("./tree-node");
+const { mob } = require("./commands");
 
 function setupGitMob(context) {
   const coAuthorProvider = new CoAuthorProvider(context);
@@ -39,6 +40,15 @@ function setupGitMob(context) {
     }
   );
   context.subscriptions.push(disposableRemoveCoAuthor);
+
+  let disposableSolo = vscode.commands.registerCommand(
+    "gitmob.solo",
+    function() {
+      mob.solo();
+      coAuthorProvider.reloadData();
+    }
+  );
+  context.subscriptions.push(disposableSolo);
 }
 
 exports.setupGitMob = setupGitMob;
@@ -68,7 +78,7 @@ class CoAuthorProvider {
 
     return [
       this.mobAuthors.author,
-      new TreeNode("Selected"),
+      new TreeNode("Selected", "selected"),
       new TreeNode("Unselected")
     ];
   }

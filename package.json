@@ -63,6 +63,15 @@
           "light": "resources/icons/light/unstage.svg",
           "dark": "resources/icons/dark/unstage.svg"
         }
+      },
+      {
+        "command": "gitmob.solo",
+        "title": "Solo: remove selected co-authors",
+        "category": "Git Mob",
+        "icon": {
+          "light": "resources/icons/light/unstage.svg",
+          "dark": "resources/icons/dark/unstage.svg"
+        }
       }
     ],
     "menus": {
@@ -81,6 +90,11 @@
         {
           "command": "gitmob.removeCoAuthor",
           "when": "viewItem == remove-author",
+          "group": "inline"
+        },
+        {
+          "command": "gitmob.solo",
+          "when": "viewItem == selected",
           "group": "inline"
         }
       ]

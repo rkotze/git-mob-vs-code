@@ -1,14 +1,16 @@
 const vscode = require("vscode");
 
 class TreeNode {
-  constructor(name) {
+  constructor(name, contextValue = "") {
     this.key = name;
+    this.contextValue = contextValue;
   }
 
-  getTreeItem(expand) {
+  getTreeItem() {
     return {
       label: this.key,
-      collapsibleState: vscode.TreeItemCollapsibleState.Expanded
+      collapsibleState: vscode.TreeItemCollapsibleState.Expanded,
+      contextValue: this.contextValue
     };
   }
 }
