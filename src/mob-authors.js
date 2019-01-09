@@ -84,11 +84,12 @@ class Author extends TreeNode {
     this.email = email;
   }
 
-  getTreeItem() {
+  getTreeItem({ iconPath = null }) {
     return {
       label: this.key,
       tooltip: `Email: ${this.email}`,
-      contextValue: ""
+      contextValue: "",
+      iconPath: iconPath
     };
   }
 }
