@@ -1,7 +1,12 @@
 # Change Log
-All notable changes to the "git-mob" extension will be documented in this file.
+
+## [0.1.1]
+
+### Features
+
+- Query installed Git Mob terminal app to find co-authors status for commit
+- Add and remove co-authors for commit messages
+- Supports adding co-authors to SCM input box or via git `prepare-commit-message` hook
+- Changing co-authors in the terminal is reflected in the UI when returning to VS code
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
-
-## [Unreleased]
-- Initial release
