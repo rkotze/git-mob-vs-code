@@ -1,5 +1,9 @@
 # Change Log
 
+## [0.2.0]
+
+- Open the `.git-coauthors` file from SCM Git Mob title view
+
 ## [0.1.1]
 
 ### Features
