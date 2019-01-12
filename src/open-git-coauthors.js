@@ -10,6 +10,12 @@ function openGitCoAuthor(context) {
       const { showTextDocument } = vscode.window;
 
       try {
+        // When doc is saved
+        // const saveDocumentEvent = vscode.workspace.onDidSaveTextDocument(function(textDocument) {
+        //   console.log(textDocument.textFile);
+        // });
+        // saveDocumentEvent.dispose();
+
         const pathToCoauthors = vscode.Uri.file(
           path
             .join(os.homedir(), ".git-coauthors")
