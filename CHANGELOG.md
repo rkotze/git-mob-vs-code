@@ -2,7 +2,11 @@
 
 ## [0.2.0]
 
-- Open the `.git-coauthors` file from SCM Git Mob title view
+### Features
+
+- Open the `.git-coauthors` file from Git Mob title bar
+- Can action git solo from the "Selected" group
+- Icon added to Author and Co-Author items
 
 ## [0.1.1]
 
