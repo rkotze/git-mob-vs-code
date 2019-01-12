@@ -2,7 +2,7 @@
   "name": "git-mob",
   "displayName": "Git Mob - Co-authors in commits",
   "description": "Co-author commits when pair/mob programming. UI for Git Mob command-line.",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "publisher": "RichardKotze",
   "engines": {
     "vscode": "^1.29.0"
@@ -39,7 +39,7 @@
     "commands": [
       {
         "command": "gitmob.openGitCoauthor",
-        "title": "Open git-coauthor file",
+        "title": "Open git-coauthors file",
         "category": "Git Mob",
         "icon": {
           "light": "resources/icons/light/open-file.svg",

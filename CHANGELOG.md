@@ -1,16 +1,18 @@
 # Change Log
 
-## [0.2.0]
+Follows [Semantic Versioning](https://semver.org/).
 
-### Features
+## [0.2.0] -- 2019-01-12
+
+### Added
 
 - Open the `.git-coauthors` file from Git Mob title bar
 - Can action git solo from the "Selected" group
 - Icon added to Author and Co-Author items
 
-## [0.1.1]
+## [0.1.1] -- 2018-12-30
 
-### Features
+### Added
 
 - Query installed Git Mob terminal app to find co-authors status for commit
 - Add and remove co-authors for commit messages
