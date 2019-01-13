@@ -2,7 +2,7 @@ const os = require("os");
 const path = require("path");
 const vscode = require("vscode");
 
-function openGitCoAuthor(context) {
+function openGitCoAuthor({ coAuthorProvider }) {
   let openFile = vscode.commands.registerCommand(
     "gitmob.openGitCoauthor",
     async function() {
@@ -10,12 +10,6 @@ function openGitCoAuthor(context) {
       const { showTextDocument } = vscode.window;
 
       try {
-        // When doc is saved
-        // const saveDocumentEvent = vscode.workspace.onDidSaveTextDocument(function(textDocument) {
-        //   console.log(textDocument.textFile);
-        // });
-        // saveDocumentEvent.dispose();
-
         const pathToCoauthors = vscode.Uri.file(
           path
             .join(os.homedir(), ".git-coauthors")
@@ -29,7 +23,7 @@ function openGitCoAuthor(context) {
     }
   );
 
-  context.subscriptions.push(openFile);
+  coAuthorProvider.context.subscriptions.push(openFile);
 }
 
 exports.openGitCoAuthor = openGitCoAuthor;

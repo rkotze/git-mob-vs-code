@@ -4,6 +4,8 @@ const { MobAuthors } = require("./mob-authors");
 const { TreeNode } = require("./tree-node");
 const { mob } = require("./commands");
 const { reloadCommand } = require("./commands/reload");
+const { openGitCoAuthor } = require("./commands/open-git-coauthors");
+const { reloadOnSave } = require("./reload-on-save");
 
 function setupGitMob(context) {
   const coAuthorProvider = new CoAuthorProvider(context);
@@ -12,6 +14,9 @@ function setupGitMob(context) {
   });
 
   reloadCommand({ coAuthorProvider });
+  openGitCoAuthor({ coAuthorProvider });
+  const { onDidSaveTextDocument } = vscode.workspace;
+  onDidSaveTextDocument(reloadOnSave(coAuthorProvider));
 
   coAuthorProvider.loaded = function() {
     mobList.onDidChangeVisibility(function({ visible }) {
