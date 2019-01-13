@@ -23,6 +23,9 @@
     "name": "Richard Kotze",
     "email": "richkotze@outlook.com"
   },
+  "extensionDependencies": [
+    "vscode.git"
+  ],
   "activationEvents": [
     "onView:gitmob.CoAuthorsView",
     "onCommand:gitmob.openGitCoauthor"
