@@ -28,7 +28,8 @@
   ],
   "activationEvents": [
     "onView:gitmob.CoAuthorsView",
-    "onCommand:gitmob.openGitCoauthor"
+    "onCommand:gitmob.openGitCoauthor",
+    "onCommand:gitmob.reload"
   ],
   "main": "./extension",
   "keywords": [
@@ -47,6 +48,15 @@
         "icon": {
           "light": "resources/icons/light/open-file.svg",
           "dark": "resources/icons/dark/open-file.svg"
+        }
+      },
+      {
+        "command": "gitmob.reload",
+        "title": "Reload Git Mob view",
+        "category": "Git Mob",
+        "icon": {
+          "light": "resources/icons/light/refresh.svg",
+          "dark": "resources/icons/dark/refresh.svg"
         }
       },
       {
@@ -81,6 +91,10 @@
       "view/title": [
         {
           "command": "gitmob.openGitCoauthor",
+          "group": "navigation"
+        },
+        {
+          "command": "gitmob.reload",
           "group": "navigation"
         }
       ],

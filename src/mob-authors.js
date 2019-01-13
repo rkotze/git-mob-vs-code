@@ -69,6 +69,12 @@ class MobAuthors {
   get lastCoAuthor() {
     return this.listAll[this.listAll.length - 1];
   }
+
+  reset() {
+    allAuthors = null;
+    author = null;
+    setMob = null;
+  }
 }
 
 exports.MobAuthors = MobAuthors;

@@ -3,12 +3,15 @@ const { updateSCMInput } = require("./update-scm-input");
 const { MobAuthors } = require("./mob-authors");
 const { TreeNode } = require("./tree-node");
 const { mob } = require("./commands");
+const { reloadCommand } = require("./commands/reload");
 
 function setupGitMob(context) {
   const coAuthorProvider = new CoAuthorProvider(context);
   const mobList = vscode.window.createTreeView("gitmob.CoAuthorsView", {
     treeDataProvider: coAuthorProvider
   });
+
+  reloadCommand({ coAuthorProvider });
 
   coAuthorProvider.loaded = function() {
     mobList.onDidChangeVisibility(function({ visible }) {
