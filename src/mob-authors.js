@@ -58,21 +58,16 @@ class MobAuthors {
 
   get listAll() {
     if (allAuthors === null) {
-      const other = mob
+      allAuthors = mob
         .listAll()
         .split("\n")
         .map(author => createAuthor(author));
-      allAuthors = this.removeAuthor(other);
     }
     return allAuthors;
   }
 
   get lastCoAuthor() {
     return this.listAll[this.listAll.length - 1];
-  }
-
-  removeAuthor(authorList) {
-    return authorList.filter(author => author.email !== this.author.email);
   }
 }
 
