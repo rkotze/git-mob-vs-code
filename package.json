@@ -91,10 +91,12 @@
       "view/title": [
         {
           "command": "gitmob.openGitCoauthor",
+          "when": "view == gitmob.CoAuthorsView",
           "group": "navigation"
         },
         {
           "command": "gitmob.reload",
+          "when": "view == gitmob.CoAuthorsView",
           "group": "navigation"
         }
       ],
