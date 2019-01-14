@@ -15,8 +15,7 @@ function setupGitMob(context) {
 
   reloadCommand({ coAuthorProvider });
   openGitCoAuthor({ coAuthorProvider });
-  const { onDidSaveTextDocument } = vscode.workspace;
-  onDidSaveTextDocument(reloadOnSave(coAuthorProvider));
+  reloadOnSave(coAuthorProvider);
 
   coAuthorProvider.loaded = function() {
     mobList.onDidChangeVisibility(function({ visible }) {

@@ -15,7 +15,8 @@ const window = {
 
 const workspace = {
   getConfiguration: jest.fn(),
-  workspaceFolders: []
+  workspaceFolders: [],
+  onDidSaveTextDocument: jest.fn()
 };
 
 const OverviewRulerLane = {
@@ -53,4 +54,4 @@ const vscode = {
   commands
 };
 
-exports = vscode;
+module.exports = vscode;
