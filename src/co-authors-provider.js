@@ -27,8 +27,8 @@ class CoAuthorProvider {
 
     return [
       this.mobAuthors.author,
-      new TreeNode("Selected", "selected"),
-      new TreeNode("Unselected")
+      new TreeNode("Selected", "selected", "selected.svg"),
+      new TreeNode("Unselected", "unselected", "unselected.svg")
     ];
   }
 
@@ -47,9 +47,8 @@ class CoAuthorProvider {
     ) {
       this.onUpdated();
     }
-    return element.getTreeItem({
-      iconPath: this.context.asAbsolutePath("resources/icons/user.svg")
-    });
+
+    return element.getTreeItem({ context: this.context });
   }
 
   toggleCoAuthor(author, selected) {

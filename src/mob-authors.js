@@ -85,12 +85,12 @@ class Author extends TreeNode {
     this.email = email;
   }
 
-  getTreeItem({ iconPath = null }) {
+  getTreeItem({ context }) {
     return {
       label: this.key,
       tooltip: `Email: ${this.email}`,
       contextValue: "",
-      iconPath: iconPath
+      iconPath: context.asAbsolutePath("resources/icons/user.svg")
     };
   }
 }
@@ -102,13 +102,13 @@ class CoAuthor extends Author {
     this.commandKey = commandKey;
   }
 
-  getTreeItem({ iconPath = null }) {
+  getTreeItem({ context }) {
     return {
       label: this.key,
       tooltip: `Email: ${this.email}`,
       contextValue: this.selected ? "remove-author" : "add-author",
       collapsibleState: vscode.TreeItemCollapsibleState.None,
-      iconPath: iconPath
+      iconPath: context.asAbsolutePath("resources/icons/user.svg")
     };
   }
 
