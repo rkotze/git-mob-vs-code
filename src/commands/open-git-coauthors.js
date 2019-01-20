@@ -1,6 +1,5 @@
-const os = require("os");
-const path = require("path");
 const vscode = require("vscode");
+const { coAuthorsFile } = require("../git-mob-coauthors-file");
 
 function openGitCoAuthor({ coAuthorProvider }) {
   let openFile = vscode.commands.registerCommand(
@@ -10,11 +9,7 @@ function openGitCoAuthor({ coAuthorProvider }) {
       const { showTextDocument } = vscode.window;
 
       try {
-        const pathToCoauthors = vscode.Uri.file(
-          path
-            .join(os.homedir(), ".git-coauthors")
-            .replace(/^[a-z]:[\\]|[\/]/gi, "")
-        );
+        const pathToCoauthors = vscode.Uri.file(coAuthorsFile.path);
         const doc = await openTextDocument(pathToCoauthors);
         showTextDocument(doc);
       } catch (err) {
