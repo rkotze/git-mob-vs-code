@@ -1,4 +1,4 @@
-const { setupGitMob } = require("./src/git-mob-list");
+const { setupGitMob } = require("./src/setup-git-mob");
 
 function activate(context) {
   setupGitMob(context);
