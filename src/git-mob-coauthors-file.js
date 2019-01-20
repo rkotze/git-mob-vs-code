@@ -5,7 +5,7 @@ const coAuthorsFile = {
   get path() {
     return path
       .join(os.homedir(), ".git-coauthors")
-      .replace(/^[a-z]:[\\]|[\/]/gi, "");
+      .replace(/^([a-z]:[\\]|[\/])/gi, "");
   }
 };
 
