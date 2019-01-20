@@ -2,6 +2,19 @@
 
 Follows [Semantic Versioning](https://semver.org/).
 
+## [0.3.0] -- 2019-01-20
+
+## Added
+
+- Add reload action for when `.git-coauthors` changes
+- Change `.git-coauthors` in VS Code and the Git Mob UI list will update
+- UI updated to include icons for selected and unselected co-authors
+
+## Fixed
+
+- On Mac opening the `.git-coauthors` file failed
+- Attached the open `.git-coauthors` button on other extension title bars
+
 ## [0.2.0] -- 2019-01-12
 
 ### Added
