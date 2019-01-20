@@ -2,10 +2,10 @@ const vscode = require("vscode");
 const { updateSCMInput } = require("./update-scm-input");
 const { MobAuthors } = require("./mob-authors");
 const { TreeNode } = require("./tree-node");
-const { mob } = require("./commands");
+const { reloadOnSave } = require("./reload-on-save");
 const { reloadCommand } = require("./commands/reload");
 const { openGitCoAuthor } = require("./commands/open-git-coauthors");
-const { reloadOnSave } = require("./reload-on-save");
+const { soloCommand } = require("./commands/solo");
 
 function setupGitMob(context) {
   const coAuthorProvider = new CoAuthorProvider(context);
@@ -15,6 +15,7 @@ function setupGitMob(context) {
 
   reloadCommand({ coAuthorProvider });
   openGitCoAuthor({ coAuthorProvider });
+  soloCommand({ coAuthorProvider });
   reloadOnSave(coAuthorProvider);
 
   coAuthorProvider.loaded = function() {
@@ -46,16 +47,8 @@ function setupGitMob(context) {
       coAuthorProvider.toggleCoAuthor(author, false);
     }
   );
-  context.subscriptions.push(disposableRemoveCoAuthor);
 
-  let disposableSolo = vscode.commands.registerCommand(
-    "gitmob.solo",
-    function() {
-      mob.solo();
-      coAuthorProvider.reloadData();
-    }
-  );
-  context.subscriptions.push(disposableSolo);
+  context.subscriptions.push(disposableRemoveCoAuthor);
 }
 
 exports.setupGitMob = setupGitMob;
