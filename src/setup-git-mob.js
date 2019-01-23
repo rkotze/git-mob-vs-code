@@ -5,6 +5,7 @@ const { reloadOnSave } = require("./reload-on-save");
 const { reloadCommand } = require("./commands/reload");
 const { openGitCoAuthor } = require("./commands/open-git-coauthors");
 const { soloCommand } = require("./commands/solo");
+const { useTemplateCommand } = require("./commands/uses-template");
 const { setContextPrepareMessage } = require("./prepareCommitMsgFile");
 
 function setupGitMob(context) {
@@ -16,6 +17,7 @@ function setupGitMob(context) {
   reloadCommand({ coAuthorProvider });
   openGitCoAuthor({ coAuthorProvider });
   soloCommand({ coAuthorProvider });
+  useTemplateCommand({ context });
   reloadOnSave(coAuthorProvider);
 
   setContextPrepareMessage();
