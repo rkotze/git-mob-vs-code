@@ -1,9 +1,10 @@
 const os = require("os");
 const path = require("path");
+const { GIT_COAUTHORS_FILE } = require("./constants");
 
 const coAuthorsFile = {
   get file() {
-    return ".git-coauthors";
+    return GIT_COAUTHORS_FILE;
   },
 
   get path() {
