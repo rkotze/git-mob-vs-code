@@ -5,6 +5,7 @@ const { reloadOnSave } = require("./reload-on-save");
 const { reloadCommand } = require("./commands/reload");
 const { openGitCoAuthor } = require("./commands/open-git-coauthors");
 const { soloCommand } = require("./commands/solo");
+const { setContextPrepareMessage } = require("./prepareCommitMsgFile");
 
 function setupGitMob(context) {
   const coAuthorProvider = new CoAuthorProvider(context);
@@ -16,6 +17,8 @@ function setupGitMob(context) {
   openGitCoAuthor({ coAuthorProvider });
   soloCommand({ coAuthorProvider });
   reloadOnSave(coAuthorProvider);
+
+  setContextPrepareMessage();
 
   coAuthorProvider.loaded = function() {
     mobList.onDidChangeVisibility(function({ visible }) {

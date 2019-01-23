@@ -11,4 +11,13 @@ function hasPrepareCommitMsgTemplate() {
   return fs.existsSync(hookPath);
 }
 
+function setContextPrepareMessage() {
+  vscode.commands.executeCommand(
+    "setContext",
+    "gitmob.prepareMessageHook",
+    hasPrepareCommitMsgTemplate()
+  );
+}
+
 exports.hasPrepareCommitMsgTemplate = hasPrepareCommitMsgTemplate;
+exports.setContextPrepareMessage = setContextPrepareMessage;
