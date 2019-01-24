@@ -42,15 +42,6 @@
   "contributes": {
     "commands": [
       {
-        "command": "gitmob.useTemplate",
-        "title": "Using .git-template",
-        "category": "Git Mob",
-        "icon": {
-          "light": "resources/icons/template.svg",
-          "dark": "resources/icons/template.svg"
-        }
-      },
-      {
         "command": "gitmob.openGitCoauthor",
         "title": "Open git-coauthors file",
         "category": "Git Mob",
@@ -106,11 +97,6 @@
         {
           "command": "gitmob.reload",
           "when": "view == gitmob.CoAuthorsView",
-          "group": "navigation"
-        },
-        {
-          "command": "gitmob.useTemplate",
-          "when": "gitmob.prepareMessageHook == false",
           "group": "navigation"
         }
       ],
