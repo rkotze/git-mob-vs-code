@@ -128,7 +128,8 @@
   "scripts": {
     "postinstall": "node ./node_modules/vscode/bin/install",
     "test": "jest",
-    "ui-test": "node ./node_modules/vscode/bin/test"
+    "ui-test": "node ./node_modules/vscode/bin/test",
+    "preversion": "npm test"
   },
   "devDependencies": {
     "eslint": "^4.11.0",
