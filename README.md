@@ -31,4 +31,5 @@ Please add your co-authors to the `.git-coauthors` files in your user folder.
 - Manage your co-authors in `.git-coauthors` file
 - Solo remove all co-authors from current commit
 - Reload Git Mob and auto reload when updating `.git-coauthors` file in VS Code
-- If you change co-authors in terminal it will update in VS Code
+- Status bar shows if using `template file` or `prepare-commit-msg` hook
+- If you change co-authors in **command line** it will update in VS Code

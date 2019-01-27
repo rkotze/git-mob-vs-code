@@ -2,6 +2,17 @@
 
 Follows [Semantic Versioning](https://semver.org/).
 
+## [0.4.0] -- 2019-01-27
+
+### Added
+
+- Show if using git-template or prepare-commit-msg hook in the status bar (see issue [#2](https://github.com/rkotze/git-mob-vs-code/issues/2))
+
+### Fixed
+
+- Git Mob will not run if a git repo is not open (see issue [#8](https://github.com/rkotze/git-mob-vs-code/issues/8))
+- Entering text into SCM input box removed when added on refocusing of vs code (see issue [#12](https://github.com/rkotze/git-mob-vs-code/issues/12))
+
 ## [0.3.0] -- 2019-01-20
 
 ### Added
