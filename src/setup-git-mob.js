@@ -26,6 +26,7 @@ function setupGitMob(context) {
       visible && coAuthorProvider.reloadData();
       visible && checkStatus();
     });
+    vscode.commands.executeCommand("setContext", "gitmob.loaded", true);
   };
 
   vscode.window.onDidChangeWindowState(function({ focused }) {
