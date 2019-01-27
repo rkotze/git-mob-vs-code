@@ -27,9 +27,7 @@
     "vscode.git"
   ],
   "activationEvents": [
-    "onView:gitmob.CoAuthorsView",
-    "onCommand:gitmob.openGitCoauthor",
-    "onCommand:gitmob.reload"
+    "*"
   ],
   "main": "./extension",
   "keywords": [
