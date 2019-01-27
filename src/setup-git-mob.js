@@ -6,54 +6,57 @@ const { reloadCommand } = require("./commands/reload");
 const { openGitCoAuthor } = require("./commands/open-git-coauthors");
 const { soloCommand } = require("./commands/solo");
 const { gitMobHookStatus } = require("./status-bar/git-mob-hook-status");
+const { isGitRepository } = require("./git/is-git-repository");
 
 function setupGitMob(context) {
-  const coAuthorProvider = new CoAuthorProvider(context);
-  const mobList = vscode.window.createTreeView("gitmob.CoAuthorsView", {
-    treeDataProvider: coAuthorProvider
-  });
-
-  reloadCommand({ coAuthorProvider });
-  openGitCoAuthor({ coAuthorProvider });
-  soloCommand({ coAuthorProvider });
-  reloadOnSave(coAuthorProvider);
-
-  const checkStatus = gitMobHookStatus({ context });
-  checkStatus();
-
-  coAuthorProvider.loaded = function() {
-    mobList.onDidChangeVisibility(function({ visible }) {
-      visible && coAuthorProvider.reloadData();
-      visible && checkStatus();
+  if (isGitRepository()) {
+    const coAuthorProvider = new CoAuthorProvider(context);
+    const mobList = vscode.window.createTreeView("gitmob.CoAuthorsView", {
+      treeDataProvider: coAuthorProvider
     });
-    vscode.commands.executeCommand("setContext", "gitmob.loaded", true);
-  };
 
-  vscode.window.onDidChangeWindowState(function({ focused }) {
-    focused && mobList.visible && coAuthorProvider.reloadData();
-  });
+    reloadCommand({ coAuthorProvider });
+    openGitCoAuthor({ coAuthorProvider });
+    soloCommand({ coAuthorProvider });
+    reloadOnSave(coAuthorProvider);
 
-  coAuthorProvider.onUpdated = function() {
-    updateSCMInput(coAuthorProvider.mobAuthors.listAll);
-  };
+    const checkStatus = gitMobHookStatus({ context });
+    checkStatus();
 
-  let disposableAddCoAuthor = vscode.commands.registerCommand(
-    "gitmob.addCoAuthor",
-    function(author) {
-      coAuthorProvider.toggleCoAuthor(author, true);
-    }
-  );
+    coAuthorProvider.loaded = function() {
+      mobList.onDidChangeVisibility(function({ visible }) {
+        visible && coAuthorProvider.reloadData();
+        visible && checkStatus();
+      });
+      vscode.commands.executeCommand("setContext", "gitmob.loaded", true);
+    };
 
-  context.subscriptions.push(disposableAddCoAuthor);
+    vscode.window.onDidChangeWindowState(function({ focused }) {
+      focused && mobList.visible && coAuthorProvider.reloadData();
+    });
 
-  let disposableRemoveCoAuthor = vscode.commands.registerCommand(
-    "gitmob.removeCoAuthor",
-    function(author) {
-      coAuthorProvider.toggleCoAuthor(author, false);
-    }
-  );
+    coAuthorProvider.onUpdated = function() {
+      updateSCMInput(coAuthorProvider.mobAuthors.listAll);
+    };
 
-  context.subscriptions.push(disposableRemoveCoAuthor);
+    let disposableAddCoAuthor = vscode.commands.registerCommand(
+      "gitmob.addCoAuthor",
+      function(author) {
+        coAuthorProvider.toggleCoAuthor(author, true);
+      }
+    );
+
+    context.subscriptions.push(disposableAddCoAuthor);
+
+    let disposableRemoveCoAuthor = vscode.commands.registerCommand(
+      "gitmob.removeCoAuthor",
+      function(author) {
+        coAuthorProvider.toggleCoAuthor(author, false);
+      }
+    );
+
+    context.subscriptions.push(disposableRemoveCoAuthor);
+  }
 }
 
 exports.setupGitMob = setupGitMob;
