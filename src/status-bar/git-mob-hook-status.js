@@ -1,5 +1,5 @@
 const vscode = require("vscode");
-const { hasPrepareCommitMsgTemplate } = require("./../prepareCommitMsgFile");
+const { hasPrepareCommitMsgTemplate } = require("../prepare-commit-msg-file");
 
 function gitMobHookStatus({ context }) {
   const myStatusBarItem = vscode.window.createStatusBarItem(

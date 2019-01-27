@@ -1,6 +1,6 @@
 const os = require("os");
 const vscode = require("vscode");
-const { hasPrepareCommitMsgTemplate } = require("./prepareCommitMsgFile");
+const { hasPrepareCommitMsgTemplate } = require("./prepare-commit-msg-file");
 
 exports.updateSCMInput = function updateSCMInput(coAuthors) {
   const gitExt = vscode.extensions.getExtension("vscode.git");

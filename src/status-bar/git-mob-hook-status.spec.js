@@ -1,7 +1,7 @@
-const { hasPrepareCommitMsgTemplate } = require("./../prepareCommitMsgFile");
+const { hasPrepareCommitMsgTemplate } = require("../prepare-commit-msg-file");
 const { gitMobHookStatus } = require("./git-mob-hook-status");
 
-jest.mock("./../prepareCommitMsgFile");
+jest.mock("./../prepare-commit-msg-file");
 
 describe("Hook or temaplate status", function() {
   let mockContext;
