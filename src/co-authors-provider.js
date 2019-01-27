@@ -4,10 +4,11 @@ const { TreeNode } = require("./tree-node");
 
 class CoAuthorProvider {
   constructor(context) {
+    this._notLoaded = true;
+    this._selected = [];
     this._onDidChangeTreeData = new vscode.EventEmitter();
     this.onDidChangeTreeData = this._onDidChangeTreeData.event;
     this.mobAuthors = new MobAuthors();
-    this._notLoaded = true;
     this.context = context;
   }
 
@@ -43,9 +44,9 @@ class CoAuthorProvider {
 
     if (
       element.email === this.mobAuthors.lastCoAuthor.email &&
-      !this._notLoaded
+      this._changed()
     ) {
-      this.onUpdated();
+      this.onChanged();
     }
 
     return element.getTreeItem({ context: this.context });
@@ -54,6 +55,18 @@ class CoAuthorProvider {
   toggleCoAuthor(author, selected) {
     this.mobAuthors.setCurrent(author, selected);
     this.reloadData();
+  }
+
+  _changed() {
+    const currentSelected = this.mobAuthors.listAll.filter(
+      coAuthors => coAuthors.selected
+    );
+
+    const isDiff = this._selected.length !== currentSelected.length;
+
+    this._selected = currentSelected;
+
+    return isDiff;
   }
 
   reloadData() {

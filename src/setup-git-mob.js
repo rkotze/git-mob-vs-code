@@ -35,7 +35,7 @@ function setupGitMob(context) {
       focused && mobList.visible && coAuthorProvider.reloadData();
     });
 
-    coAuthorProvider.onUpdated = function() {
+    coAuthorProvider.onChanged = function() {
       updateSCMInput(coAuthorProvider.mobAuthors.listAll);
     };
 
