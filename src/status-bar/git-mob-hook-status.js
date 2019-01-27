@@ -14,8 +14,8 @@ function gitMobHookStatus({ context }) {
       myStatusBarItem.text = "$(zap) Git Mob";
       myStatusBarItem.tooltip = "Using prepare-commit-msg hook";
     }
-    context.subscriptions.push(myStatusBarItem);
     myStatusBarItem.show();
+    return myStatusBarItem;
   };
 }
 
