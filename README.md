@@ -15,14 +15,18 @@ Read our blog post to find out why git-mob exists: http://tech.findmypast.com/co
 
 ## Setup
 
-**In Beta** -> _it might break and not all features are available yet_
+NPM `git-mob` will be installed globally with this extension.
 
-`npm i -g git-mob` (Please follow the setup instructions here)
+If not installed run this: `npm i -g git-mob` (Please follow the setup instructions on git-mob)
 
-Must use `git-mob` version `0.3.0` or higher.
+Please use latest version of `git-mob`.
 
-Please add your co-authors to the `.git-coauthors` files in your user folder.
+### Add co-authors
+
+Add your co-authors to the `.git-coauthors` files in your user folder.
 (`ctrl+shift+p` -> "Open .git-coauthors file")
+
+![open_coauthors](https://user-images.githubusercontent.com/10452163/52169086-b167f280-272a-11e9-947d-0e00df3eefa4.png)
 
 ## Features
 
