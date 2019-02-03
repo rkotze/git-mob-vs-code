@@ -55,4 +55,10 @@ describe("Extract repository authors", function() {
       new RepoAuthor(0, "Ric<C4><8D>rd Kotze", "rkotze@email.com", "rkem")
     ]);
   });
+
+  it("fails to match author pattern in list", function() {
+    const listOfAuthorsString = `33 Richard Kotze <rkotze.email.com>`;
+    const listOfAuthors = createRepoAuthorList(listOfAuthorsString);
+    expect(listOfAuthors).toEqual([expect.any(Error)]);
+  });
 });
