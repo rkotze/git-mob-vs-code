@@ -23,7 +23,7 @@ function createRepoAuthorList(stringOfAuthors) {
 }
 
 function createRepoAuthor(authorString, index) {
-  const regexList = /^\d+\s(.+)\s<([a-zA-Z0-9_\-\.]+@[a-zA-Z0-9_\-\.]+\.[a-zA-Z]{2,5})>/;
+  const regexList = /^\d+\s(.+)\s<([a-zA-Z0-9_\-\.\+]+@[a-zA-Z0-9_\-\.]+\.[a-zA-Z]{2,5})>/;
   const [, name, email] = authorString.match(regexList);
   return new RepoAuthor(index, name, email, genKey(name, email));
 }
