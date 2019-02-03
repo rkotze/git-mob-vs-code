@@ -47,4 +47,12 @@ describe("Extract repository authors", function() {
       new RepoAuthor(0, "Richard Kotze", "rkotze@email.com", "rkem")
     ]);
   });
+
+  it("author has special characters in name", function() {
+    const listOfAuthorsString = `33 Ric<C4><8D>rd Kotze <rkotze@email.com>`;
+    const listOfAuthors = createRepoAuthorList(listOfAuthorsString);
+    expect(listOfAuthors).toEqual([
+      new RepoAuthor(0, "Ric<C4><8D>rd Kotze", "rkotze@email.com", "rkem")
+    ]);
+  });
 });
