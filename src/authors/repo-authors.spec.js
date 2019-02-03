@@ -8,8 +8,8 @@ describe("Extract repository authors", function() {
     }53 Tony Stark <tony@stark.com>`;
     const listOfAuthors = createRepoAuthorList(listOfAuthorsString);
     expect(listOfAuthors).toEqual([
-      new RepoAuthor("Richard Kotze", "rkotze@email.com"),
-      new RepoAuthor("Tony Stark", "tony@stark.com")
+      new RepoAuthor(0, "Richard Kotze", "rkotze@email.com", "rkem"),
+      new RepoAuthor(1, "Tony Stark", "tony@stark.com", "tsst")
     ]);
   });
 });
