@@ -5,6 +5,7 @@ const { reloadOnSave } = require("./reload-on-save");
 const { reloadCommand } = require("./commands/reload");
 const { openGitCoAuthor } = require("./commands/open-git-coauthors");
 const { soloCommand } = require("./commands/solo");
+const { addCoAuthor, removeCoAuthor } = require("./commands/co-author-actions");
 const { gitMobHookStatus } = require("./status-bar/git-mob-hook-status");
 const { isGitRepository } = require("./git/is-git-repository");
 
@@ -16,6 +17,8 @@ function setupGitMob(context) {
     });
 
     reloadCommand({ coAuthorProvider });
+    addCoAuthor({ coAuthorProvider });
+    removeCoAuthor({ coAuthorProvider });
     openGitCoAuthor({ coAuthorProvider });
     soloCommand({ coAuthorProvider });
     reloadOnSave(coAuthorProvider);
@@ -38,24 +41,6 @@ function setupGitMob(context) {
     coAuthorProvider.onChanged = function() {
       updateSCMInput(coAuthorProvider.mobAuthors.listAll);
     };
-
-    let disposableAddCoAuthor = vscode.commands.registerCommand(
-      "gitmob.addCoAuthor",
-      function(author) {
-        coAuthorProvider.toggleCoAuthor(author, true);
-      }
-    );
-
-    context.subscriptions.push(disposableAddCoAuthor);
-
-    let disposableRemoveCoAuthor = vscode.commands.registerCommand(
-      "gitmob.removeCoAuthor",
-      function(author) {
-        coAuthorProvider.toggleCoAuthor(author, false);
-      }
-    );
-
-    context.subscriptions.push(disposableRemoveCoAuthor);
   }
 }
 
