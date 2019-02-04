@@ -6,6 +6,7 @@
 
 1. [Setup](#setup)
 1. [Features](#features)
+1. [Contributing](https://github.com/rkotze/git-mob-vs-code/blob/master/CONTRIBUTING.md)
 
 Includes co-authors in commits when you collaborate on code. Use when pairing with a buddy or mobbing with your team.
 
