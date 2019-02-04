@@ -18,15 +18,23 @@ const { spawnSync } = require("child_process");
  * @returns {ChildProcess.SpawnResult} object from child_process.spawnSync
  */
 function silentRun(command) {
-  return spawnSync(command, {
+  return spawnSync(command,{
     encoding: "utf8",
     shell: true,
     cwd: vscode.workspace.rootPath
   });
 }
 
-function handleResponse(query) {
-  const response = silentRun(query);
+function silentRunWithArgs(command, args) {
+  return spawnSync(command, args,{
+    encoding: "utf8",
+    shell: true,
+    cwd: vscode.workspace.rootPath
+  });
+}
+
+function handleResponse(query, args) {
+  const response = args ? silentRunWithArgs(query, args) : silentRun(query);
   if (response.status !== 0) {
     vscode.window.showErrorMessage("GitMob error: " + response.stderr.trim());
     return "";
@@ -41,6 +49,10 @@ function get(key) {
 
 function has(key) {
   return silentRun(`git config ${key}`).status === 0;
+}
+
+function getRepoAuthors(){
+  return handleResponse(`git shortlog -sen --since="10 weeks"`);
 }
 
 function setCurrent(mobList) {
@@ -84,5 +96,6 @@ module.exports = {
     setCurrent,
     listAll,
     solo
-  }
+  },
+  getRepoAuthors
 };

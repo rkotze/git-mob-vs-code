@@ -26,10 +26,15 @@ class CoAuthorProvider {
       return Array.from(setAllAuthor);
     }
 
+    if (element.key === "More Authors") {
+      return this.mobAuthors.repoAuthors;
+    }
+
     return [
       this.mobAuthors.author,
       new TreeNode("Selected", "selected", "selected.svg"),
-      new TreeNode("Unselected", "unselected", "unselected.svg")
+      new TreeNode("Unselected", "unselected", "unselected.svg"),
+      new TreeNode("More Authors", "more-authors")
     ];
   }
 

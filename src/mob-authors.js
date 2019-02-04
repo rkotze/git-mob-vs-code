@@ -1,5 +1,6 @@
 const vscode = require("vscode");
-const { mob, config } = require("./git/commands");
+const { mob, config, getRepoAuthors } = require("./git/commands");
+const { createRepoAuthorList } = require("./authors/repo-authors");
 const { TreeNode } = require("./tree-node");
 
 let author = null;
@@ -68,6 +69,12 @@ class MobAuthors {
 
   get lastCoAuthor() {
     return this.listAll[this.listAll.length - 1];
+  }
+
+  get repoAuthors() {
+    const authorStr = getRepoAuthors();
+    const authorList = createRepoAuthorList(authorStr);
+    return authorList;
   }
 
   reset() {
