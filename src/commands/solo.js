@@ -1,5 +1,5 @@
 const vscode = require("vscode");
-const { mob } = require("../commands");
+const { mob } = require("../git/commands");
 
 function soloCommand({ coAuthorProvider }) {
   let disposableSolo = vscode.commands.registerCommand(

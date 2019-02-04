@@ -1,5 +1,5 @@
 const vscode = require("vscode");
-const { mob, config } = require("./commands");
+const { mob, config } = require("./git/commands");
 const { TreeNode } = require("./tree-node");
 
 let author = null;

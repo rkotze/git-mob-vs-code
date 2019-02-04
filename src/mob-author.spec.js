@@ -1,7 +1,7 @@
-const commands = require("./commands");
+const commands = require("./git/commands");
 const { MobAuthors } = require("./mob-authors");
 
-jest.mock("./commands");
+jest.mock("./git/commands");
 
 test("Creates a co author", () => {
   commands.mob.listAll.mockReturnValue(
