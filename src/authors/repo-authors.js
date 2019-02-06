@@ -18,13 +18,13 @@ class RepoAuthor extends TreeNode {
 }
 
 function createRepoAuthorList(stringOfAuthors) {
-  const splitEndOfLine = stringOfAuthors.split(os.EOL);
+  const splitEndOfLine = stringOfAuthors.split("\n");
   return splitEndOfLine.map(createRepoAuthor);
 }
 
 function createRepoAuthor(authorString, index) {
   try {
-    const regexList = /^\d+\s(.+)\s<([a-zA-Z0-9_\-\.\+]+@[a-zA-Z0-9_\-\.]+\.[a-zA-Z]{2,5})>/;
+    const regexList = /\s\d+\t(.+)\s<([a-zA-Z0-9_\-\.\+]+@[a-zA-Z0-9_\-\.]+\.[a-zA-Z]{2,5})>/;
     const [, name, email] = authorString.match(regexList);
     return new RepoAuthor(index, name, email, genKey(name, email));
   } catch (err) {

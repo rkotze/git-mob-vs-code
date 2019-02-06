@@ -27,7 +27,7 @@ class CoAuthorProvider {
     }
 
     if (element.key === "More Authors") {
-      return this.mobAuthors.repoAuthors;
+      return this.mobAuthors.repoAuthorList();
     }
 
     return [

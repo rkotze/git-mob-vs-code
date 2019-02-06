@@ -1,5 +1,6 @@
+const { spawnSync, exec } = require("child_process");
+const { promisify } = require('util');
 const vscode = require("vscode");
-const { spawnSync } = require("child_process");
 
 /**
  * @typedef {Object} ChildProcess.SpawnResult
@@ -25,16 +26,29 @@ function silentRun(command) {
   });
 }
 
-function silentRunWithArgs(command, args) {
-  return spawnSync(command, args,{
-    encoding: "utf8",
-    shell: true,
-    cwd: vscode.workspace.rootPath
-  });
+/**
+ * Runs the given command in a shell.
+ * @param {string} command The command to execute
+ * @returns {Promise} 
+ */
+async function silentExec(command) {
+  const execAsync = promisify(exec);
+  try {
+    const response = await execAsync(command, {
+      encoding: "utf8",
+      shell: true,
+      cwd: vscode.workspace.rootPath
+    });
+
+    return response.stdout;
+  } catch(err) {
+    vscode.window.showErrorMessage("GitMob error: " + err.message);
+    return "";
+  }
 }
 
-function handleResponse(query, args) {
-  const response = args ? silentRunWithArgs(query, args) : silentRun(query);
+function handleResponse(query) {
+  const response = silentRun(query);
   if (response.status !== 0) {
     vscode.window.showErrorMessage("GitMob error: " + response.stderr.trim());
     return "";
@@ -51,8 +65,8 @@ function has(key) {
   return silentRun(`git config ${key}`).status === 0;
 }
 
-function getRepoAuthors(){
-  return handleResponse(`git shortlog -sen --since="10 weeks"`);
+async function getRepoAuthors(){
+  return silentExec(`git shortlog -sen HEAD`);// 'git log --pretty="%an <%ae>"');
 }
 
 function setCurrent(mobList) {

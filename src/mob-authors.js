@@ -71,8 +71,8 @@ class MobAuthors {
     return this.listAll[this.listAll.length - 1];
   }
 
-  get repoAuthors() {
-    const authorStr = getRepoAuthors();
+  async repoAuthorList() {
+    const authorStr = await getRepoAuthors();
     const authorList = createRepoAuthorList(authorStr);
     return authorList;
   }
