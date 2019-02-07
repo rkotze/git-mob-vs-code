@@ -34,7 +34,7 @@ class CoAuthorProvider {
       this.mobAuthors.author,
       new TreeNode("Selected", "selected", "selected.svg"),
       new TreeNode("Unselected", "unselected", "unselected.svg"),
-      new TreeNode("More Authors", "more-authors")
+      new TreeNode("More Authors", "more-authors", "more.svg", false)
     ];
   }
 

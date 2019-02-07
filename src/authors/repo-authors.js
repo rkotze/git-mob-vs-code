@@ -9,10 +9,13 @@ class RepoAuthor extends TreeNode {
     this.commandKey = commandKey;
   }
 
-  getTreeItem() {
+  getTreeItem({ context }) {
     return {
-      label: `${this.name} ${this.email}`,
-      collapsibleState: vscode.TreeItemCollapsibleState.collapsibleState
+      label: `${this.name} <${this.email}>`,
+      tooltip: `${this.name} <${this.email}>`,
+      contextValue: "add-repo-author",
+      collapsibleState: vscode.TreeItemCollapsibleState.None,
+      iconPath: context.asAbsolutePath("resources/icons/user.svg")
     };
   }
 }
