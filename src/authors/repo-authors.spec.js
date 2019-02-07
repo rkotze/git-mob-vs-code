@@ -3,7 +3,7 @@ const { RepoAuthor, createRepoAuthorList } = require("./repo-authors");
 
 describe("Extract repository authors", function() {
   it("Given a list of authors extract the name and email", function() {
-    //   3\tThiago <thiago_bordignon@live.com>\n     2	Benjamin Paske <bpaske@brightsolid.local>     2	David Elliott <delliott@findmypast.com> 
+    //   3\tThiago <thiago_bordignon@live.com>\n     2	Benjamin Paske <bpaske@brightsolid.local>     2	David Elliott <delliott@findmypast.com>
     const listOfAuthorsString = `   33\tRichard Kotze <rkotze@email.com>${
       os.EOL
     }   53\tTony Stark <tony@stark.com>`;
@@ -57,9 +57,9 @@ describe("Extract repository authors", function() {
     ]);
   });
 
-  it("fails to match author pattern in list", function() {
+  it("exclude if fails to match author pattern in list", function() {
     const listOfAuthorsString = `   33\tRichard Kotze <rkotze.email.com>`;
     const listOfAuthors = createRepoAuthorList(listOfAuthorsString);
-    expect(listOfAuthors).toEqual([expect.any(Error)]);
+    expect(listOfAuthors).not.toEqual([expect.any(Error)]);
   });
 });
