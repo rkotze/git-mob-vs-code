@@ -1,4 +1,4 @@
-const os = require("os");
+const vscode = require("vscode");
 const { TreeNode } = require("../tree-node");
 
 class RepoAuthor extends TreeNode {
@@ -11,7 +11,7 @@ class RepoAuthor extends TreeNode {
 
   getTreeItem() {
     return {
-      label: `${this.key} ${this.email}`,
+      label: `${this.name} ${this.email}`,
       collapsibleState: vscode.TreeItemCollapsibleState.collapsibleState
     };
   }
@@ -19,7 +19,9 @@ class RepoAuthor extends TreeNode {
 
 function createRepoAuthorList(stringOfAuthors) {
   const splitEndOfLine = stringOfAuthors.split("\n");
-  return splitEndOfLine.map(createRepoAuthor);
+  return splitEndOfLine
+    .map(createRepoAuthor)
+    .filter(author => author instanceof RepoAuthor);
 }
 
 function createRepoAuthor(authorString, index) {
