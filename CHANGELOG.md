@@ -2,6 +2,17 @@
 
 Follows [Semantic Versioning](https://semver.org/).
 
+## [1.0.0] -- in progress
+
+### Added
+
+- Add a repo author into co-author file
+- Install `git-mob` when the extension is installed to make it easier to get going
+
+### Fixed
+
+- Allow co-author key to be longer than 3 characters and have other characters
+
 ## [0.4.0] -- 2019-01-27
 
 ### Added
