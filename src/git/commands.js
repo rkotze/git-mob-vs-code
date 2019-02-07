@@ -69,6 +69,10 @@ async function getRepoAuthors() {
   return silentExec(`git shortlog -sen HEAD`);
 }
 
+function addRepoAuthor({ commandKey, name, email }) {
+  return silentRun(`git add-coauthor ${commandKey} "${name}" ${email}`);
+}
+
 function setCurrent(mobList) {
   return format(handleResponse(`git mob ${mobList.join(" ")}`));
 }
@@ -111,5 +115,6 @@ module.exports = {
     listAll,
     solo
   },
-  getRepoAuthors
+  getRepoAuthors,
+  addRepoAuthor
 };

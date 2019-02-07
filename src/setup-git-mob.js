@@ -6,6 +6,7 @@ const { reloadCommand } = require("./commands/reload");
 const { openGitCoAuthor } = require("./commands/open-git-coauthors");
 const { soloCommand } = require("./commands/solo");
 const { addCoAuthor, removeCoAuthor } = require("./commands/co-author-actions");
+const { addRepoAuthorToCoauthors } = require("./commands/add-co-author");
 const { gitMobHookStatus } = require("./status-bar/git-mob-hook-status");
 const { isGitRepository } = require("./git/is-git-repository");
 
@@ -19,6 +20,7 @@ function setupGitMob(context) {
     reloadCommand({ coAuthorProvider });
     addCoAuthor({ coAuthorProvider });
     removeCoAuthor({ coAuthorProvider });
+    addRepoAuthorToCoauthors({ coAuthorProvider });
     openGitCoAuthor({ coAuthorProvider });
     soloCommand({ coAuthorProvider });
     reloadOnSave(coAuthorProvider);

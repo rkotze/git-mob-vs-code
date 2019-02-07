@@ -67,6 +67,15 @@
         }
       },
       {
+        "command": "gitmob.addRepoAuthorToCoAuthors",
+        "title": "Add repo author to co-authors",
+        "category": "Git Mob",
+        "icon": {
+          "light": "resources/icons/light/stage.svg",
+          "dark": "resources/icons/dark/stage.svg"
+        }
+      },
+      {
         "command": "gitmob.removeCoAuthor",
         "title": "Remove co-author",
         "category": "Git Mob",
@@ -102,6 +111,11 @@
         {
           "command": "gitmob.addCoAuthor",
           "when": "viewItem == add-author",
+          "group": "inline"
+        },
+        {
+          "command": "gitmob.addRepoAuthorToCoAuthors",
+          "when": "viewItem == add-repo-author",
           "group": "inline"
         },
         {

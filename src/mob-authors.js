@@ -1,7 +1,7 @@
-const vscode = require("vscode");
 const { mob, config, getRepoAuthors } = require("./git/commands");
 const { createRepoAuthorList } = require("./authors/repo-authors");
-const { TreeNode } = require("./tree-node");
+const { createAuthor } = require("./authors/co-authors");
+const { Author } = require("./authors/author");
 
 let author = null;
 let allAuthors = null;
@@ -85,48 +85,3 @@ class MobAuthors {
 }
 
 exports.MobAuthors = MobAuthors;
-
-class Author extends TreeNode {
-  constructor(name, email) {
-    super(name);
-    this.email = email;
-  }
-
-  getTreeItem({ context }) {
-    return {
-      label: this.key,
-      tooltip: `Email: ${this.email}`,
-      contextValue: "",
-      iconPath: context.asAbsolutePath("resources/icons/user.svg")
-    };
-  }
-}
-
-class CoAuthor extends Author {
-  constructor(name, email, selected = false, commandKey = "") {
-    super(name, email);
-    this.selected = selected;
-    this.commandKey = commandKey;
-  }
-
-  getTreeItem({ context }) {
-    return {
-      label: this.key,
-      tooltip: `Email: ${this.email}`,
-      contextValue: this.selected ? "remove-author" : "add-author",
-      collapsibleState: vscode.TreeItemCollapsibleState.None,
-      iconPath: context.asAbsolutePath("resources/icons/user.svg")
-    };
-  }
-
-  format() {
-    return `Co-authored-by: ${this.key} <${this.email}>`;
-  }
-}
-
-function createAuthor(stdoutFormat) {
-  const regexList = /^([a-z]{1,3})\s(.+)\s([a-zA-Z0-9_\-\.]+@[a-zA-Z0-9_\-\.]+\.[a-zA-Z]{2,5})/;
-  let list = stdoutFormat.match(regexList);
-  const [, commandKey, name, email] = list;
-  return new CoAuthor(name, email, false, commandKey);
-}
