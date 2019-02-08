@@ -1,5 +1,6 @@
 const commands = require("./git/commands");
 const { MobAuthors } = require("./mob-authors");
+const { Author } = require("./authors/author");
 
 jest.mock("./git/commands");
 
@@ -45,5 +46,22 @@ describe("Co-author list", function() {
 
     expect(repoAuthors).toHaveLength(1);
     expect(repoAuthors[0].email).toEqual("captain@america.com");
+  });
+
+  it("Remove author from repo authors", async function() {
+    const author = new Author("Richard Kotze", "rkotze@email.com");
+    jest.spyOn(mobAuthors, "author", "get").mockImplementation(() => author);
+
+    commands.mob.listAll.mockReturnValueOnce(`ts Tony Stark tony@stark.com`);
+    commands.getRepoAuthors.mockResolvedValueOnce(
+      `   33\tRichard Kotze <rkotze@email.com>\n   53\tBlack Panther <black@panther.com>`
+    );
+
+    const repoAuthors = await mobAuthors.repoAuthorList();
+    const repoAuthorEmails = repoAuthors.map(author => author.email);
+
+    expect(repoAuthorEmails).not.toEqual(
+      expect.arrayContaining([author.email])
+    );
   });
 });
