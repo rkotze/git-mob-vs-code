@@ -22,18 +22,25 @@ If not installed run this: `npm i -g git-mob` (Please follow the setup instructi
 
 Please use latest version of `git-mob`.
 
-### Add co-authors
+### Add new co-authors
 
 Add your co-authors to the `.git-coauthors` files in your user folder.
 (`ctrl+shift+p` -> "Open .git-coauthors file")
 
 ![open_coauthors](https://user-images.githubusercontent.com/10452163/52169086-b167f280-272a-11e9-947d-0e00df3eefa4.png)
 
+### Add authors from repository
+
+Click the plus button on authors items under **More Authors**.
+
+![image](https://user-images.githubusercontent.com/10452163/52488610-1d79a900-2bb8-11e9-8a9b-46529d4b9608.png)
+
 ## Features
 
 - Add and remove co-authors from commit messages
 - View all your co-authors in SCM (git) tab
 - Manage your co-authors in `.git-coauthors` file
+- Add authors from current repository into your `.git-coauthors` file
 - Solo remove all co-authors from current commit
 - Reload Git Mob and auto reload when updating `.git-coauthors` file in VS Code
 - Status bar shows if using `template file` or `prepare-commit-msg` hook
