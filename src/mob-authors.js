@@ -5,6 +5,7 @@ const { Author } = require("./authors/author");
 
 let author = null;
 let allAuthors = null;
+let allRepoAuthors = null;
 let setMob = null;
 
 class MobAuthors {
@@ -72,19 +73,24 @@ class MobAuthors {
   }
 
   async repoAuthorList() {
-    const authorStr = await getRepoAuthors();
-    const authorList = createRepoAuthorList(authorStr);
+    if (allRepoAuthors === null) {
+      const authorStr = await getRepoAuthors();
+      const authorList = createRepoAuthorList(authorStr);
 
-    return authorList.filter(
-      authorList =>
-        !this.listAll.some(coAuthor => coAuthor.email === authorList.email)
-    );
+      allRepoAuthors = authorList.filter(
+        authorList =>
+          !this.listAll.some(coAuthor => coAuthor.email === authorList.email)
+      );
+      return allRepoAuthors;
+    }
+    return allRepoAuthors;
   }
 
   reset() {
     allAuthors = null;
     author = null;
     setMob = null;
+    allRepoAuthors = null;
   }
 }
 
