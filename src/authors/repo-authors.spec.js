@@ -3,7 +3,6 @@ const { RepoAuthor, createRepoAuthorList } = require("./repo-authors");
 
 describe("Extract repository authors", function() {
   it("Given a list of authors extract the name and email", function() {
-    //   3\tThiago <thiago_bordignon@live.com>\n     2	Benjamin Paske <bpaske@brightsolid.local>     2	David Elliott <delliott@findmypast.com>
     const listOfAuthorsString = `   33\tRichard Kotze <rkotze@email.com>${
       os.EOL
     }   53\tTony Stark <tony@stark.com>`;

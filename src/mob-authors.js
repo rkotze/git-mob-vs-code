@@ -74,7 +74,11 @@ class MobAuthors {
   async repoAuthorList() {
     const authorStr = await getRepoAuthors();
     const authorList = createRepoAuthorList(authorStr);
-    return authorList;
+
+    return authorList.filter(
+      authorList =>
+        !this.listAll.some(coAuthor => coAuthor.email === authorList.email)
+    );
   }
 
   reset() {

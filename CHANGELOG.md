@@ -6,8 +6,8 @@ Follows [Semantic Versioning](https://semver.org/).
 
 ### Added
 
-- Add a repo author into co-author file
-- Install `git-mob` when the extension is installed to make it easier to get going
+- Add a repo author into co-author file (see issue [#13](https://github.com/rkotze/git-mob-vs-code/issues/13))
+- Install `git-mob` when the extension is installed to make it easier to get going (see issue [#9](https://github.com/rkotze/git-mob-vs-code/issues/9))
 
 ### Fixed
 

@@ -1,11 +1,10 @@
 const vscode = require("vscode");
-const { TreeNode } = require("../tree-node");
+const { Author } = require("./author");
 
-class RepoAuthor extends TreeNode {
+class RepoAuthor extends Author {
   constructor(key, name, email, commandKey) {
-    super(key);
+    super(key, email);
     this.name = name;
-    this.email = email;
     this.commandKey = commandKey;
   }
 
