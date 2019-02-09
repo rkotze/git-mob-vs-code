@@ -140,7 +140,6 @@
     }
   },
   "scripts": {
-    "preinstall": "npm install git-mob -g",
     "postinstall": "node ./node_modules/vscode/bin/install",
     "test": "jest",
     "ui-test": "node ./node_modules/vscode/bin/test",

@@ -1,6 +1,7 @@
 const { spawnSync, exec } = require("child_process");
 const { promisify } = require("util");
 const vscode = require("vscode");
+const { compare } = require("../semver/compare");
 
 /**
  * @typedef {Object} ChildProcess.SpawnResult
@@ -65,6 +66,16 @@ function has(key) {
   return silentRun(`git config ${key}`).status === 0;
 }
 
+function gitMobLatest() {
+  const version = silentRun("git mob -v");
+  if (version.status !== 0) return 1;
+  return compare("0.6.0", version.stdout);
+}
+
+function installGitMob() {
+  silentExec("npm i git-mob -g");
+}
+
 async function getRepoAuthors() {
   return silentExec(`git shortlog -sen HEAD`);
 }
@@ -113,7 +124,9 @@ module.exports = {
     current,
     setCurrent,
     listAll,
-    solo
+    solo,
+    gitMobLatest,
+    installGitMob
   },
   getRepoAuthors,
   addRepoAuthor

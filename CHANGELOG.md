@@ -2,12 +2,17 @@
 
 Follows [Semantic Versioning](https://semver.org/).
 
+## [1.0.1] -- 2019-02-09
+
+### Fixed
+
+- Install `git-mob` when the extension is installed to make it easier to get going (see issue [#9](https://github.com/rkotze/git-mob-vs-code/issues/9))
+
 ## [1.0.0] -- 2019-02-09
 
 ### Added
 
 - Add a repo author into co-author file (see issue [#13](https://github.com/rkotze/git-mob-vs-code/issues/13))
-- Install `git-mob` when the extension is installed to make it easier to get going (see issue [#9](https://github.com/rkotze/git-mob-vs-code/issues/9))
 
 ### Fixed
 
