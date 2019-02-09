@@ -1,7 +1,6 @@
+__mocks__/**
+.github/**
 .vscode/**
-.vscode-test/**
 test/**
-.gitignore
-jsconfig.json
-vsc-extension-quickstart.md
-.eslintrc.json
+**/*.spec.js
+azure-pipelines.yml
