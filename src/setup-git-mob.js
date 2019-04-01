@@ -32,6 +32,7 @@ function setupGitMob(context) {
       mobList.onDidChangeVisibility(function({ visible }) {
         visible && coAuthorProvider.reloadData();
         visible && checkStatus();
+        vscode.commands.executeCommand("setContext", "gitmob.loaded", visible);
       });
       vscode.commands.executeCommand("setContext", "gitmob.loaded", true);
     };
