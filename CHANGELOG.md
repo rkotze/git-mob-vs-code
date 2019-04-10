@@ -2,6 +2,13 @@
 
 Follows [Semantic Versioning](https://semver.org/).
 
+## [1.0.2] -- 2019-04-10
+
+### Fixed
+
+- Git Mob title bar actions showing on other extension bars (see issue [#16](https://github.com/rkotze/git-mob-vs-code/issues/16))
+- Add two EOL between co-authors meta data and message for VS Code Git text input field
+
 ## [1.0.1] -- 2019-02-09
 
 ### Fixed
