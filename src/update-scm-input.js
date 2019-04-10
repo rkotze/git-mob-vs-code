@@ -18,9 +18,15 @@ exports.updateSCMInput = function updateSCMInput(coAuthors) {
 };
 
 function replaceCoAuthors(currentText, coAuthors) {
-  const noCoAuthors = currentText.replace(/(\r\n|\r|\n)*Co-authored-by.*(\r\n|\r|\n)*/g, "");
+  const noCoAuthors = currentText.replace(
+    /(\r\n|\r|\n)*Co-authored-by.*(\r\n|\r|\n)*/g,
+    ""
+  );
   if (hasPrepareCommitMsgTemplate()) return noCoAuthors;
-  return noCoAuthors + os.EOL + os.EOL + coAuthors;
+
+  if (coAuthors.length > 0) return noCoAuthors + os.EOL + os.EOL + coAuthors;
+
+  return noCoAuthors + coAuthors;
 }
 
 function formatCoAuthors(authors) {
