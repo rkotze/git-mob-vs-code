@@ -146,9 +146,9 @@
     "preversion": "npm test"
   },
   "devDependencies": {
-    "eslint": "^4.11.0",
-    "jest": "^23.6.0",
-    "vscode": "^1.1.26"
+    "eslint": "^5.16.0",
+    "jest": "^24.8.0",
+    "vscode": "^1.1.34"
   },
   "jest": {
     "testPathIgnorePatterns": [
