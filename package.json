@@ -76,6 +76,11 @@
         }
       },
       {
+        "command": "gitmob.searchRepositoryUsers",
+        "title": "Search & select other authors in repository",
+        "category": "Git Mob"
+      },
+      {
         "command": "gitmob.removeCoAuthor",
         "title": "Remove co-author",
         "category": "Git Mob",
