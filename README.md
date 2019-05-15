@@ -26,7 +26,7 @@ Please use latest version of `git-mob`.
 
 - Add and remove co-authors from commit messages
 - View all your co-authors in SCM (git) tab
-- [Search for & select](#search-"more-authors") an author from the "More Authors" list (all contributors to the repository).
+- [Search for & select](#search-more-authors) an author from the "More Authors" list (all contributors to the repository).
 - Manage your co-authors in `.git-coauthors` file
 - [Add new co-authors from current repository](#add-new-co-authors-from-repository) into your `.git-coauthors` file
 - Solo remove all co-authors from current commit
