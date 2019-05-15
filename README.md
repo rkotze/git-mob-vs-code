@@ -39,6 +39,7 @@ Click the plus button on authors items under **More Authors**.
 
 - Add and remove co-authors from commit messages
 - View all your co-authors in SCM (git) tab
+- Search for & select an author from the "More Authors" list (all contributors to the repository).
 - Manage your co-authors in `.git-coauthors` file
 - Add authors from current repository into your `.git-coauthors` file
 - Solo remove all co-authors from current commit

@@ -1,21 +1,15 @@
 const vscode = require("vscode");
 const { addRepoAuthor } = require("../git/commands");
 
-function extractEmail(authorText) {
-  const emailMatch = /<([a-zA-Z0-9_\-\.\+]+@[a-zA-Z0-9_\-\.]+\.[a-zA-Z]{2,5})>/;
-  const [, email] = authorText.match(emailMatch);
-  return email;
-}
-
 function searchRepositoryUsers({ coAuthorProvider }) {
   const { context, mobAuthors } = coAuthorProvider;
   let disposableAddRepoAuthor = vscode.commands.registerCommand(
     "gitmob.searchRepositoryUsers",
     async function() {
       const repoAuthors = await mobAuthors.repoAuthorList();
-      const authorStr = await quickPickAuthors(repoAuthors);
-      if (authorStr) {
-        const selectedRepoAuthor = findSelectedAuthor(authorStr, repoAuthors);
+      const authorItem = await quickPickAuthors(repoAuthors);
+      if (authorItem) {
+        const selectedRepoAuthor = findSelectedAuthor(authorItem, repoAuthors);
 
         if (selectedRepoAuthor) {
           addRepoAuthor(selectedRepoAuthor);
@@ -31,14 +25,14 @@ function searchRepositoryUsers({ coAuthorProvider }) {
 
 exports.searchRepositoryUsers = searchRepositoryUsers;
 
-function findSelectedAuthor(authorStr, repoAuthors) {
-  const authorEmail = extractEmail(authorStr);
-  return repoAuthors.find(author => author.email === authorEmail);
+function findSelectedAuthor(authorItem, repoAuthors) {
+  return repoAuthors.find(author => author.email === authorItem.description);
 }
 
 async function quickPickAuthors(repoAuthors) {
-  const authorTextArray = repoAuthors.map(
-    author => `${author.name} <${author.email}>`
-  );
+  const authorTextArray = repoAuthors.map(author => ({
+    label: author.name,
+    description: author.email
+  }));
   return await vscode.window.showQuickPick(authorTextArray);
 }

@@ -2,6 +2,16 @@
 
 Follows [Semantic Versioning](https://semver.org/).
 
+## [1.1.0] -- 2019-05-15
+
+### Added
+
+- Search for & select an author from the "More Authors" list (all contributors to the repository).
+
+### Fixed
+
+- Fix security alert for dependency
+
 ## [1.0.2] -- 2019-04-10
 
 ### Fixed
