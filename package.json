@@ -78,7 +78,11 @@
       {
         "command": "gitmob.searchRepositoryUsers",
         "title": "Search & select other authors in repository",
-        "category": "Git Mob"
+        "category": "Git Mob",
+        "icon": {
+          "light": "resources/icons/light/search.svg",
+          "dark": "resources/icons/dark/search.svg"
+        }
       },
       {
         "command": "gitmob.removeCoAuthor",
@@ -131,6 +135,11 @@
         {
           "command": "gitmob.solo",
           "when": "viewItem == selected",
+          "group": "inline"
+        },
+        {
+          "command": "gitmob.searchRepositoryUsers",
+          "when": "viewItem == more-authors",
           "group": "inline"
         }
       ]
