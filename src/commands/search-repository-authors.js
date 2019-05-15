@@ -9,13 +9,9 @@ function searchRepositoryUsers({ coAuthorProvider }) {
       const repoAuthors = await mobAuthors.repoAuthorList();
       const authorItem = await quickPickAuthors(repoAuthors);
       if (authorItem) {
-        const selectedRepoAuthor = findSelectedAuthor(authorItem, repoAuthors);
-
-        if (selectedRepoAuthor) {
-          addRepoAuthor(selectedRepoAuthor);
-          await vscode.commands.executeCommand("gitmob.reload");
-          coAuthorProvider.toggleCoAuthor(selectedRepoAuthor, true);
-        }
+        addRepoAuthor(authorItem.repoAuthor);
+        await vscode.commands.executeCommand("gitmob.reload");
+        coAuthorProvider.toggleCoAuthor(authorItem.repoAuthor, true);
       }
     }
   );
@@ -25,14 +21,11 @@ function searchRepositoryUsers({ coAuthorProvider }) {
 
 exports.searchRepositoryUsers = searchRepositoryUsers;
 
-function findSelectedAuthor(authorItem, repoAuthors) {
-  return repoAuthors.find(author => author.email === authorItem.description);
-}
-
 async function quickPickAuthors(repoAuthors) {
   const authorTextArray = repoAuthors.map(author => ({
     label: author.name,
-    description: author.email
+    description: author.email,
+    repoAuthor: author
   }));
   return await vscode.window.showQuickPick(authorTextArray);
 }
