@@ -11,7 +11,6 @@ function searchRepositoryUsers({ coAuthorProvider }) {
       if (authorItem) {
         addRepoAuthor(authorItem.repoAuthor);
         await vscode.commands.executeCommand("gitmob.reload");
-        coAuthorProvider.toggleCoAuthor(authorItem.repoAuthor, true);
       }
     }
   );
