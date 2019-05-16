@@ -2,6 +2,12 @@
 
 Follows [Semantic Versioning](https://semver.org/).
 
+## [1.1.1] -- 2019-05-16
+
+### Fixed
+
+- Keep consistent behaviour of adding more authors to unselected list instead of straight to selected.
+
 ## [1.1.0] -- 2019-05-15
 
 ### Added
