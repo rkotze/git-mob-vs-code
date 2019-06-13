@@ -29,7 +29,10 @@ class MobAuthors {
     const currentMob = mob.current();
 
     return this.listAll.reduce((acc, author) => {
-      if (currentMob.includes(author.email)) {
+      if (
+        currentMob.includes(author.email) &&
+        author.email !== this.author.email
+      ) {
         author.selected = true;
         return [...acc, author];
       }
@@ -63,6 +66,7 @@ class MobAuthors {
       allAuthors = mob
         .listAll()
         .split("\n")
+        .filter(authorText => !authorText.includes(this.author.email))
         .map(author => createAuthor(author));
     }
     return allAuthors;
