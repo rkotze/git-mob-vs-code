@@ -24,7 +24,7 @@ class CoAuthor extends Author {
 }
 
 function createAuthor(stdoutFormat) {
-  const regexList = /^([a-zA-Z0-9_\-\.]+)\s(.+)\s([a-zA-Z0-9_\-\.]+@[a-zA-Z0-9_\-\.]+\.[a-zA-Z]{2,5})/;
+  const regexList = /^([\S]+)\s(.+)\s([a-zA-Z0-9_\-\.\+]+@[a-zA-Z0-9_\-\.]+\.[a-zA-Z]{2,5})/;
   let list = stdoutFormat.match(regexList);
   const [, commandKey, name, email] = list;
   return new CoAuthor(name, email, false, commandKey);
