@@ -162,7 +162,7 @@
   "devDependencies": {
     "eslint": "^6.4.0",
     "jest": "^24.9.0",
-    "vscode": "^1.1.34"
+    "vscode": "^1.1.36"
   },
   "jest": {
     "testPathIgnorePatterns": [
