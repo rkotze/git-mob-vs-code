@@ -2,6 +2,17 @@
 
 Follows [Semantic Versioning](https://semver.org/).
 
+## [1.2.0] -- 2019-09-26
+
+### Added
+
+- Support Git Mob feature [overwrite main author](https://github.com/findmypast-oss/git-mob#overwrite-the-main-author) to excluding the main author in unselect or select list. Reduce confusion when you're the main author.
+
+### Fixed
+
+- Git Mob authors fails to show with private emails and special chars in initials key
+- Upgrade dependencies to address GitHub security alerts
+
 ## [1.1.1] -- 2019-05-16
 
 ### Fixed
