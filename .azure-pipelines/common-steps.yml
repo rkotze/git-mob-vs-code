@@ -10,7 +10,7 @@ steps:
   #     echo no-op
   #   displayName: Generate service-schema.json
 
-  - script: npm run unittest
+  - script: npm run test
     displayName: Run unit tests
 
   # Acquire the `vsce` tool and use it to package
