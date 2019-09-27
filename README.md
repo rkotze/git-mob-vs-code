@@ -10,6 +10,8 @@
 
 Includes co-authors in commits when you collaborate on code. Use when pairing with a buddy or mobbing with your team.
 
+My project on Git Mob [VS code co-author commits](https://www.richardkotze.com/projects/co-author-commits-with-git-mob)
+
 ![Git Mob in action](https://user-images.githubusercontent.com/10452163/51446144-cc3b6f80-1d05-11e9-87fa-96622a25eedc.gif)
 
 Read our blog post to find out why git-mob exists: http://tech.findmypast.com/co-author-commits-with-git-mob
