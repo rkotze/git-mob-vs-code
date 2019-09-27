@@ -1,18 +1,7 @@
 # CI and PR build script
-#
-# There should be no deep magic here. The developer experience and CI experience
-# must remain as close to one another as possible.
-#
-# Developer experience:
-#   npm install
-#   (make changes)
-#   npm test
-#   vsce package
-#   (give VSIX to someone for buddy testing)
+
 trigger:
   - master
-
-# no `pr` keyword because we want all PRs to run this
 
 pool:
   vmImage: ubuntu-16.04

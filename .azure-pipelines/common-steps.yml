@@ -5,11 +5,6 @@ steps:
   - script: npm install
     displayName: npm install
 
-  # TODO: call the schema endpoint to generate the shipped schema file
-  # - script: |
-  #     echo no-op
-  #   displayName: Generate service-schema.json
-
   - script: npm run test
     displayName: Run unit tests
 
@@ -19,14 +14,13 @@ steps:
       vsce package
     displayName: Create VSIX
 
-  # For releasable builds, we'll want the branch and the changelog
+  # For releasable builds, we'll want the branch
   # Expects that a 'version.txt' has been laid down by a previous step
   - bash: |
       echo $(Build.SourceBranch) | sed "s|refs/[^/]*/||" > branch.txt
       PACKAGE_VERSION=$(cat version.txt)
       VERSION_REGEX="## $(echo $PACKAGE_VERSION | sed 's/\./\\./g')"
-      sed -n "/$VERSION_REGEX/,/## 1\..*/p" CHANGELOG.md | head -n -2 > minichangelog.txt
-    displayName: Get branch and mini-changelog
+    displayName: Get branch
 
   # Choose files to publish
   - task: CopyFiles@2
@@ -36,12 +30,11 @@ steps:
         *.vsix
         version.txt
         branch.txt
-        minichangelog.txt
       targetFolder: $(Build.ArtifactStagingDirectory)
 
   # Publish files as an artifact
   - task: PublishPipelineArtifact@1
     displayName: Publish VSIX
     inputs:
-      artifact: azure-pipelines-vscode
+      artifact: git-mob-vs-code
       targetPath: $(Build.ArtifactStagingDirectory)
