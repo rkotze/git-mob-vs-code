@@ -43,7 +43,7 @@ async function silentExec(command) {
 
     return response.stdout;
   } catch (err) {
-    vscode.window.showErrorMessage("GitMob error: " + err.message);
+      `GitMob silentExec: "${command}" ${err.message}`
     return "";
   }
 }
@@ -51,7 +51,7 @@ async function silentExec(command) {
 function handleResponse(query) {
   const response = silentRun(query);
   if (response.status !== 0) {
-    vscode.window.showErrorMessage("GitMob error: " + response.stderr.trim());
+      `GitMob handleResponse: "${query}" ${response.stderr.trim()}`
     return "";
   }
 
