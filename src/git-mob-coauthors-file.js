@@ -7,10 +7,15 @@ const coAuthorsFile = {
     return CONSTANTS.GIT_COAUTHORS_FILE;
   },
 
+  get rawPath() {
+    if (process.env.GITMOB_COAUTHORS_PATH)
+      return process.env.GITMOB_COAUTHORS_PATH;
+
+    return path.join(os.homedir(), this.file);
+  },
+
   get path() {
-    return path
-      .join(os.homedir(), this.file)
-      .replace(/^([a-z]:[\\]|[\/])/gi, "");
+    return this.rawPath.replace(/^([a-z]:[\\]|[\/])/gi, "");
   }
 };
 
