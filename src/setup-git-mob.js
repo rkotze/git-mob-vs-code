@@ -11,10 +11,11 @@ const {
   searchRepositoryUsers
 } = require("./commands/search-repository-authors");
 const { gitMobHookStatus } = require("./status-bar/git-mob-hook-status");
-const { isGitRepository } = require("./git/is-git-repository");
+const { GitExt } = require("./vscode-git-extension/git-ext");
 
 function setupGitMob(context) {
-  if (isGitRepository()) {
+  const gitExt = new GitExt();
+  if (gitExt.hasRepositories) {
     const coAuthorProvider = new CoAuthorProvider(context);
     const mobList = vscode.window.createTreeView("gitmob.CoAuthorsView", {
       treeDataProvider: coAuthorProvider

@@ -6,8 +6,19 @@ class GitExt {
     this.gitApi = ext.isActive && ext.exports.getAPI(1);
   }
 
+  get hasRepositories() {
+    return this.repositories.length > 0;
+  }
+
   get repositories() {
-    return this.gitApi.repositories;
+    return this.gitApi ? this.gitApi.repositories : [];
+  }
+
+  get rootPath() {
+    if (this.repositories.length > 0)
+      return this.repositories[0].rootUri.fsPath;
+
+    return "";
   }
 }
 

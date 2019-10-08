@@ -2,6 +2,7 @@ const { spawnSync, exec } = require("child_process");
 const { promisify } = require("util");
 const vscode = require("vscode");
 const { compare } = require("../semver/compare");
+const { GitExt } = require("../vscode-git-extension/git-ext");
 
 /**
  * @typedef {Object} ChildProcess.SpawnResult
@@ -20,11 +21,14 @@ const { compare } = require("../semver/compare");
  * @returns {ChildProcess.SpawnResult} object from child_process.spawnSync
  */
 function silentRun(command) {
-  return spawnSync(command, {
-    encoding: "utf8",
-    shell: true,
-    cwd: vscode.workspace.rootPath
-  });
+  try {
+    return spawnSync(command, cmdOptions());
+  } catch (err) {
+    vscode.window.showErrorMessage(
+      `GitMob silentRun: "${command}" ${err.message}`
+    );
+    throw err;
+  }
 }
 
 /**
@@ -35,15 +39,13 @@ function silentRun(command) {
 async function silentExec(command) {
   const execAsync = promisify(exec);
   try {
-    const response = await execAsync(command, {
-      encoding: "utf8",
-      shell: true,
-      cwd: vscode.workspace.rootPath
-    });
+    const response = await execAsync(command, cmdOptions());
 
     return response.stdout;
   } catch (err) {
+    vscode.window.showErrorMessage(
       `GitMob silentExec: "${command}" ${err.message}`
+    );
     return "";
   }
 }
@@ -51,7 +53,9 @@ async function silentExec(command) {
 function handleResponse(query) {
   const response = silentRun(query);
   if (response.status !== 0) {
+    vscode.window.showErrorMessage(
       `GitMob handleResponse: "${query}" ${response.stderr.trim()}`
+    );
     return "";
   }
 
@@ -102,6 +106,15 @@ function listAll() {
 
 function format(stdout) {
   return stdout.replace(/\r|<|>/g, "");
+}
+
+function cmdOptions() {
+  const gitExt = new GitExt();
+  return {
+    encoding: "utf8",
+    shell: true,
+    cwd: gitExt.rootPath
+  };
 }
 
 /**
