@@ -20,7 +20,14 @@ Read our blog post to find out why git-mob exists: http://tech.findmypast.com/co
 
 NPM `git-mob` will be installed globally with this extension.
 
-If not installed run this: `npm i -g git-mob` (Please follow the setup instructions on git-mob)
+If not installed run this: `npm i -g git-mob` (Please follow the [setup instructions on git-mob](https://github.com/findmypast-oss/git-mob/#install))
+
+Ensure you have set your primary author in Git
+
+```
+$ git config --global user.name "Jane Doe"
+$ git config --global user.email "jane@example.com"
+```
 
 Please use latest version of `git-mob`.
 
