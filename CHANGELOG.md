@@ -4,9 +4,13 @@ Follows [Semantic Versioning](https://semver.org/).
 
 ## [1.x] -- 2019-10-x
 
+### Added
+
+- Handle opening `.git-coauthors` file if users specifies path using environment variable `GITMOB_COAUTHORS_PATH`.
+
 ### Fixed
 
-- Open VS Code in sub-directory of a project Git Mob does not show co-authors [Issue 26](https://github.com/rkotze/git-mob-vs-code/issues/26)
+- Open VS Code in sub-directory of a project Git Mob does not show co-authors [Issue 26](https://github.com/rkotze/git-mob-vs-code/issues/26).
 
 ## [1.2.0] -- 2019-09-26
 
