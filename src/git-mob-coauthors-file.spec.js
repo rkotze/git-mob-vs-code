@@ -15,13 +15,8 @@ describe("Git coauthors path", function() {
     os.homedir.mockReset();
   });
 
-  it("return absolute path without starting drive letter (Windows)", () => {
+  it("return absolute path", () => {
     os.homedir.mockReturnValue("C:\\this\\work\\");
-    expect(coAuthorsFile.path).toEqual("this\\work\\.git-coauthors");
-  });
-
-  it("return absolute path without starting forward slash (Unix)", () => {
-    os.homedir.mockReturnValue("/diff/work/");
-    expect(coAuthorsFile.path).toEqual("diff/work/.git-coauthors");
+    expect(coAuthorsFile.path).toEqual("C:\\this\\work\\.git-coauthors");
   });
 });
