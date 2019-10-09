@@ -3,6 +3,7 @@ const { CoAuthorProvider } = require("./co-authors-provider");
 const { updateSCMInput } = require("./update-scm-input");
 const { reloadOnSave } = require("./reload-on-save");
 const { reloadCommand } = require("./commands/reload");
+const { tweetCommand } = require("./commands/tweet");
 const { openGitCoAuthor } = require("./commands/open-git-coauthors");
 const { soloCommand } = require("./commands/solo");
 const { addCoAuthor, removeCoAuthor } = require("./commands/co-author-actions");
@@ -21,6 +22,7 @@ function setupGitMob(context) {
       treeDataProvider: coAuthorProvider
     });
 
+    tweetCommand({ coAuthorProvider });
     reloadCommand({ coAuthorProvider });
     addCoAuthor({ coAuthorProvider });
     removeCoAuthor({ coAuthorProvider });

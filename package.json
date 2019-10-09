@@ -49,6 +49,15 @@
         }
       },
       {
+        "command": "gitmob.tweet",
+        "title": "Tweet about Git Mob",
+        "category": "Git Mob",
+        "icon": {
+          "light": "resources/icons/light/twitter.svg",
+          "dark": "resources/icons/dark/twitter.svg"
+        }
+      },
+      {
         "command": "gitmob.reload",
         "title": "Reload Git Mob view",
         "category": "Git Mob",
@@ -105,6 +114,11 @@
     ],
     "menus": {
       "view/title": [
+        {
+          "command": "gitmob.tweet",
+          "when": "gitmob.loaded",
+          "group": "navigation"
+        },
         {
           "command": "gitmob.openGitCoauthor",
           "when": "gitmob.loaded",
