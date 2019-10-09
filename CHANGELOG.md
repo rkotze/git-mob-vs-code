@@ -11,6 +11,7 @@ Follows [Semantic Versioning](https://semver.org/).
 ### Fixed
 
 - Open VS Code in sub-directory of a project Git Mob does not show co-authors [Issue 26](https://github.com/rkotze/git-mob-vs-code/issues/26).
+- Open git-coauthors file from sidebar doesn't work on Windows [Issue 21](https://github.com/rkotze/git-mob-vs-code/issues/21).
 
 ## [1.2.0] -- 2019-09-26
 
