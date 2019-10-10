@@ -6,7 +6,7 @@ Follows [Semantic Versioning](https://semver.org/).
 
 ### Added
 
-- Handle opening `.git-coauthors` file if users specifies path using environment variable `GITMOB_COAUTHORS_PATH`.
+- Handle opening `.git-coauthors` file if users specify the path using environment variable `GITMOB_COAUTHORS_PATH`.
 - Tweet action to encourage users to share extension. [Tweet about Git Mob](https://twitter.com/intent/tweet?hashtags=GitHub,WebDev&text=I%20use%20Git%20Mob%20for%20co-authoring%20commits.%20Try%20it%20out:%20https://marketplace.visualstudio.com/items?itemName=RichardKotze.git-mob)
 
 ### Fixed
