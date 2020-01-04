@@ -3,7 +3,7 @@ const { gitMobHookStatus } = require("./git-mob-hook-status");
 
 jest.mock("./../prepare-commit-msg-file");
 
-describe("Hook or temaplate status", function() {
+describe("Hook or template status", function() {
   let mockContext;
   beforeAll(function() {
     mockContext = {
