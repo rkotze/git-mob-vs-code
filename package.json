@@ -169,7 +169,7 @@
   },
   "scripts": {
     "test": "jest",
-    "ui-test": "node ./node_modules/vscode/bin/test",
+    "ui-test": "node ./test/test-runner",
     "preversion": "npm test"
   },
   "devDependencies": {

@@ -9,14 +9,33 @@
 // host can call to run the tests. The test runner is expected to use console.log
 // to report the results back to the caller. When the tests are finished, return
 // a possible error to the callback or null if none.
+const path = require("path");
+const jest = require("jest");
+function run(testRoot, reportTestResults) {
+  jest
+    .runCLI({ verbose: true, ci: true, colors: true }, [
+      path.resolve(__dirname)
+    ])
+    .then(jestCliCallResult => {
+      jestCliCallResult.results.testResults.forEach(testResult => {
+        testResult.testResults
+          .filter(assertionResult => assertionResult.status === "passed")
+          .forEach(({ ancestorTitles, title, status }) => {
+            console.info(`  ● ${ancestorTitles} › ${title} (${status})`);
+          });
+      });
 
-const testRunner = require('vscode/lib/testrunner');
+      jestCliCallResult.results.testResults.forEach(testResult => {
+        if (testResult.failureMessage) {
+          console.error(testResult.failureMessage);
+        }
+      });
 
-// You can directly control Mocha options by uncommenting the following lines
-// See https://github.com/mochajs/mocha/wiki/Using-mocha-programmatically#set-options for more info
-testRunner.configure({
-    ui: 'tdd', 		// the TDD UI is being used in extension.test.js (suite, test, etc.)
-    useColors: true // colored output from test results
-});
+      reportTestResults(undefined, jestCliCallResult.results.numFailedTests);
+    })
+    .catch(errorCaughtByJestRunner => {
+      reportTestResults(errorCaughtByJestRunner, 0);
+    });
+}
 
-module.exports = testRunner;
+module.exports = { run };
