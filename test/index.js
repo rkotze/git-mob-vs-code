@@ -13,7 +13,7 @@ const path = require("path");
 const jest = require("jest");
 function run(testRoot, reportTestResults) {
   jest
-    .runCLI({ verbose: true, ci: true, colors: true }, [
+    .runCLI({ testMatch: ["<rootDir>/test/**/*.e2e.js"] }, [
       path.resolve(__dirname)
     ])
     .then(jestCliCallResult => {

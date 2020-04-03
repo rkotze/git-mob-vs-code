@@ -9,7 +9,6 @@
 // as well as import your extension to test it
 const vscode = require("vscode");
 // const myExtension = require('../extension');
-console.log("file found");
 // Defines a Mocha test suite to group tests of similar kind together
 describe("Extension Tests", function() {
   afterAll(() => {
