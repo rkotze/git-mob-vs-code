@@ -2,6 +2,7 @@ const { mob, config, getRepoAuthors } = require("./git/commands");
 const { createRepoAuthorList } = require("./authors/repo-authors");
 const { createAuthor } = require("./authors/co-authors");
 const { Author } = require("./authors/author");
+const { ErrorAuthor } = require("./authors/error-author");
 
 let author = null;
 let allAuthors = null;
@@ -14,7 +15,11 @@ class MobAuthors {
       const name = config.get("user.name");
       const email = config.get("user.email");
 
-      author = new Author("Author: " + name, email);
+      if (name && email) {
+        author = new Author("Author: " + name, email);
+      } else {
+        author = new ErrorAuthor("Missing git author");
+      }
     }
     return author;
   }
@@ -46,7 +51,7 @@ class MobAuthors {
   setCurrent(author, selected) {
     const commandKeys = [];
 
-    this.listAll.forEach(coAuthor => {
+    this.listAll.forEach((coAuthor) => {
       if (author && author.email == coAuthor.email)
         coAuthor.selected = selected;
       if (coAuthor.selected) commandKeys.push(coAuthor.commandKey);
@@ -54,7 +59,9 @@ class MobAuthors {
 
     if (commandKeys.length > 0) {
       const currentMob = mob.setCurrent(commandKeys);
-      setMob = this.listAll.filter(author => currentMob.includes(author.email));
+      setMob = this.listAll.filter((author) =>
+        currentMob.includes(author.email)
+      );
     } else {
       mob.solo();
       setMob = [];
@@ -66,8 +73,8 @@ class MobAuthors {
       allAuthors = mob
         .listAll()
         .split("\n")
-        .filter(authorText => !authorText.includes(this.author.email))
-        .map(author => createAuthor(author));
+        .filter((authorText) => !authorText.includes(this.author.email))
+        .map((author) => createAuthor(author));
     }
     return allAuthors;
   }
@@ -81,11 +88,11 @@ class MobAuthors {
       const authorStr = await getRepoAuthors();
       const authorList = createRepoAuthorList(authorStr);
 
-      allRepoAuthors = authorList.filter(authorList => {
+      allRepoAuthors = authorList.filter((authorList) => {
         if (authorList.email === this.author.email) return false;
 
         return !this.listAll.some(
-          coAuthor => coAuthor.email === authorList.email
+          (coAuthor) => coAuthor.email === authorList.email
         );
       });
       return allRepoAuthors;
