@@ -34,7 +34,7 @@ class CoAuthorProvider {
       this.mobAuthors.author,
       new TreeNode("Selected", "selected", "selected.svg"),
       new TreeNode("Unselected", "unselected", "unselected.svg"),
-      new TreeNode("More Authors", "more-authors", "more.svg", false)
+      new TreeNode("More Authors", "more-authors", "more.svg", false),
     ];
   }
 
@@ -64,7 +64,7 @@ class CoAuthorProvider {
 
   _changed() {
     const currentSelected = this.mobAuthors.listAll.filter(
-      coAuthors => coAuthors.selected
+      (coAuthors) => coAuthors.selected
     );
 
     const isDiff = this._selected.length !== currentSelected.length;

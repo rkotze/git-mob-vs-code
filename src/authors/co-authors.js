@@ -1,5 +1,6 @@
 const vscode = require("vscode");
 const { Author } = require("./author");
+const { ErrorAuthor } = require("./error-author");
 
 class CoAuthor extends Author {
   constructor(name, email, selected = false, commandKey = "") {
@@ -14,7 +15,7 @@ class CoAuthor extends Author {
       tooltip: `Email: ${this.email}`,
       contextValue: this.selected ? "remove-author" : "add-author",
       collapsibleState: vscode.TreeItemCollapsibleState.None,
-      iconPath: context.asAbsolutePath("resources/icons/user.svg")
+      iconPath: context.asAbsolutePath("resources/icons/user.svg"),
     };
   }
 
@@ -26,6 +27,7 @@ class CoAuthor extends Author {
 function createAuthor(stdoutFormat) {
   const regexList = /^([\S]+)\s(.+)\s([a-zA-Z0-9_\-\.\+]+@[a-zA-Z0-9_\-\.]+\.[a-zA-Z]{2,5})/;
   let list = stdoutFormat.match(regexList);
+  if (list === null) return new ErrorAuthor();
   const [, commandKey, name, email] = list;
   return new CoAuthor(name, email, false, commandKey);
 }
