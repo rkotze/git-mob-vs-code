@@ -7,12 +7,13 @@ Follows [Semantic Versioning](https://semver.org/).
 ### Added
 
 - Handle broken UI when no Git author or missing Git Mob list command [Issue 29](https://github.com/rkotze/git-mob-vs-code/issues/29).
+- Enable users to input a co-author manually using VS code inputs [Issue 4](https://github.com/rkotze/git-mob-vs-code/issues/4).
 
 ### Fixed
 
 - Update dependencies: latest vscode engine and security patches in dev dependencies
 - Introduce End to End testing using Jest as the test runner
- 
+
 ## [1.3.0] -- 2019-10-09
 
 ### Added
