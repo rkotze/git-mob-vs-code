@@ -68,7 +68,7 @@
       },
       {
         "command": "gitmob.addCoAuthor",
-        "title": "Add co-author",
+        "title": "Select co-author",
         "category": "Git Mob",
         "icon": {
           "light": "resources/icons/light/stage.svg",
@@ -77,7 +77,7 @@
       },
       {
         "command": "gitmob.addRepoAuthorToCoAuthors",
-        "title": "Add repo author to co-authors",
+        "title": "Add new co-author",
         "category": "Git Mob",
         "icon": {
           "light": "resources/icons/light/stage.svg",
@@ -95,7 +95,7 @@
       },
       {
         "command": "gitmob.removeCoAuthor",
-        "title": "Remove co-author",
+        "title": "Unselect co-author",
         "category": "Git Mob",
         "icon": {
           "light": "resources/icons/light/unstage.svg",
