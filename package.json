@@ -28,6 +28,11 @@
     "vscode.git"
   ],
   "activationEvents": [
+    "onCommand:gitmob.openGitCoauthor",
+    "onCommand:gitmob.tweet",
+    "onCommand:gitmob.reload",
+    "onCommand:gitmob.searchRepositoryUsers",
+    "onCommand:gitmob.solo",
     "*"
   ],
   "main": "./extension",
@@ -60,7 +65,7 @@
       },
       {
         "command": "gitmob.reload",
-        "title": "Reload Git Mob view",
+        "title": "Reload view",
         "category": "Git Mob",
         "icon": {
           "light": "resources/icons/light/refresh.svg",
