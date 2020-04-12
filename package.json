@@ -32,6 +32,7 @@
     "onCommand:gitmob.tweet",
     "onCommand:gitmob.reload",
     "onCommand:gitmob.searchRepositoryUsers",
+    "onCommand:gitmob.addRepoAuthorToCoAuthors",
     "onCommand:gitmob.solo",
     "*"
   ],
