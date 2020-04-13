@@ -8,10 +8,14 @@ function addRepoAuthorToCoauthors({ coAuthorProvider }) {
     async function (author) {
       if (author) {
         addRepoAuthor(author);
+        vscode.commands.executeCommand("gitmob.reload");
       } else {
-        addRepoAuthor(await inputAuthorData());
+        const newAuthor = await inputAuthorData();
+        if (newAuthor) {
+          addRepoAuthor(newAuthor);
+          vscode.commands.executeCommand("gitmob.reload");
+        }
       }
-      vscode.commands.executeCommand("gitmob.reload");
     }
   );
 
@@ -20,20 +24,35 @@ function addRepoAuthorToCoauthors({ coAuthorProvider }) {
 
 async function inputAuthorData() {
   const name = await vscode.window.showInputBox({
-    prompt: "Author name",
+    prompt: "Author name (Required)",
+    validateInput: isRequired("Author name"),
   });
   const email = await vscode.window.showInputBox({
-    prompt: "Author email",
+    prompt: "Author email (Required)",
+    validateInput: isRequired("Author email"),
   });
   const commandKey = await vscode.window.showInputBox({
-    prompt: "Author initials",
+    prompt: "Author initials (Required)",
+    validateInput: isRequired("Author initials"),
   });
+
+  if (anyUndefined(name, email, commandKey)) return null;
 
   return {
     name,
     email,
     commandKey,
   };
+}
+
+function isRequired(fieldName) {
+  return (value) => {
+    if (value.length === 0) return `${fieldName} is required.`;
+  };
+}
+
+function anyUndefined(...args) {
+  return args.some((value) => typeof value === "undefined");
 }
 
 exports.addRepoAuthorToCoauthors = addRepoAuthorToCoauthors;
