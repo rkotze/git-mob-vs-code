@@ -113,7 +113,7 @@ function cmdOptions() {
   return {
     encoding: "utf8",
     shell: true,
-    cwd: gitExt.rootPath
+    cwd: gitExt.rootPath,
   };
 }
 
@@ -131,7 +131,7 @@ module.exports = {
   version: gitVersion,
   config: {
     get,
-    has
+    has,
   },
   mob: {
     current,
@@ -139,8 +139,8 @@ module.exports = {
     listAll,
     solo,
     gitMobLatest,
-    installGitMob
+    installGitMob,
   },
   getRepoAuthors,
-  addRepoAuthor
+  addRepoAuthor,
 };
