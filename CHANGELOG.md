@@ -2,7 +2,7 @@
 
 Follows [Semantic Versioning](https://semver.org/).
 
-## [1.4.0] -- in progress
+## [1.4.0] -- 2020-04-13
 
 ### Added
 
