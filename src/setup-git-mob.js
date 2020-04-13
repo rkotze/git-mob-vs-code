@@ -9,7 +9,7 @@ const { soloCommand } = require("./commands/solo");
 const { addCoAuthor, removeCoAuthor } = require("./commands/co-author-actions");
 const { addRepoAuthorToCoauthors } = require("./commands/add-co-author");
 const {
-  searchRepositoryUsers
+  searchRepositoryUsers,
 } = require("./commands/search-repository-authors");
 const { gitMobHookStatus } = require("./status-bar/git-mob-hook-status");
 const { GitExt } = require("./vscode-git-extension/git-ext");
@@ -19,7 +19,7 @@ function setupGitMob(context) {
   if (gitExt.hasRepositories) {
     const coAuthorProvider = new CoAuthorProvider(context);
     const mobList = vscode.window.createTreeView("gitmob.CoAuthorsView", {
-      treeDataProvider: coAuthorProvider
+      treeDataProvider: coAuthorProvider,
     });
 
     tweetCommand({ coAuthorProvider });
@@ -35,8 +35,8 @@ function setupGitMob(context) {
     const checkStatus = gitMobHookStatus({ context });
     checkStatus();
 
-    coAuthorProvider.loaded = function() {
-      mobList.onDidChangeVisibility(function({ visible }) {
+    coAuthorProvider.loaded = function () {
+      mobList.onDidChangeVisibility(function ({ visible }) {
         visible && coAuthorProvider.reloadData();
         visible && checkStatus();
         vscode.commands.executeCommand("setContext", "gitmob.loaded", visible);
@@ -44,7 +44,7 @@ function setupGitMob(context) {
       vscode.commands.executeCommand("setContext", "gitmob.loaded", true);
     };
 
-    vscode.window.onDidChangeWindowState(function({ focused }) {
+    vscode.window.onDidChangeWindowState(function ({ focused }) {
       focused && mobList.visible && coAuthorProvider.reloadData();
     });
 
