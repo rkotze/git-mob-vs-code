@@ -4,23 +4,23 @@
 
 > Provides a **UI** for the command-line application [Git Mob](https://github.com/findmypast-oss/git-mob)
 
-1. [Setup](#setup)
-1. [Features](#features)
-1. [Contributing](https://github.com/rkotze/git-mob-vs-code/blob/master/CONTRIBUTING.md)
+1. [Install](#install)
+2. [Features](#features)
+3. [Contributing](https://github.com/rkotze/git-mob-vs-code/blob/master/CONTRIBUTING.md)
 
 Includes co-authors in commits when you collaborate on code. Use when pairing with a buddy or mobbing with your team.
 
-My project on Git Mob [VS code co-author commits](https://www.richardkotze.com/projects/co-author-commits-with-git-mob)
-
 ![Git Mob in action](https://user-images.githubusercontent.com/10452163/51446144-cc3b6f80-1d05-11e9-87fa-96622a25eedc.gif)
 
-Read our blog post to find out why git-mob exists: http://tech.findmypast.com/co-author-commits-with-git-mob
+The Git Mob project for [VS code co-author commits](https://www.richardkotze.com/projects/co-author-commits-with-git-mob)
 
-## Setup
+Read our [blog post](http://tech.findmypast.com/co-author-commits-with-git-mob) to find out learn more about Git Mob. 
 
-NPM `git-mob` will be installed globally with this extension.
+## Install
 
-If not installed run this: `npm i -g git-mob` (Please follow the [setup instructions on git-mob](https://github.com/findmypast-oss/git-mob/#install))
+Install Git Mob `npm i -g git-mob` (Please follow the [set up instructions on git-mob](https://github.com/findmypast-oss/git-mob/#install))
+
+Search for "Git Mob" in extensions and click **install**.
 
 Ensure you have set your primary author in Git
 
@@ -28,8 +28,6 @@ Ensure you have set your primary author in Git
 $ git config --global user.name "Jane Doe"
 $ git config --global user.email "jane@example.com"
 ```
-
-Please use latest version of `git-mob`.
 
 ## Features
 
