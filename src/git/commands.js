@@ -73,7 +73,7 @@ function has(key) {
 function gitMobLatest() {
   const version = silentRun("git mob -v");
   if (version.status !== 0) return 1;
-  return compare("1.0.1", version.stdout);
+  return compare("1.1.0", version.stdout);
 }
 
 function installGitMob() {
