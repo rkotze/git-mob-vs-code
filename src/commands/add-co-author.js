@@ -13,6 +13,9 @@ function addRepoAuthorToCoauthors({ coAuthorProvider }) {
         const newAuthor = await inputAuthorData();
         if (newAuthor) {
           addRepoAuthor(newAuthor);
+          vscode.window.showInformationMessage(
+            `Git Mob: "${newAuthor.name}" added to co-authors.`
+          );
           vscode.commands.executeCommand("gitmob.reload");
         }
       }
