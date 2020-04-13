@@ -48,8 +48,8 @@ function setupGitMob(context) {
       focused && mobList.visible && coAuthorProvider.reloadData();
     });
 
-    coAuthorProvider.onChanged = function() {
-      updateSCMInput(coAuthorProvider.mobAuthors.listAll);
+    coAuthorProvider.onChanged = function () {
+      updateSCMInput(coAuthorProvider.mobAuthors.listCurrent);
     };
   }
 }

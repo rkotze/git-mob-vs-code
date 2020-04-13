@@ -30,8 +30,5 @@ function replaceCoAuthors(currentText, coAuthors) {
 }
 
 function formatCoAuthors(authors) {
-  return authors
-    .filter(author => author.selected)
-    .map(author => author.format())
-    .join(os.EOL);
+  return authors.map((author) => author.format()).join(os.EOL);
 }
