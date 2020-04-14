@@ -24,6 +24,10 @@
     "name": "Richard Kotze",
     "email": "richkotze@outlook.com"
   },
+  "homepage": "https://github.com/rkotze/git-mob-vs-code/blob/master/README.md",
+  "bugs": {
+    "url": "https://github.com/rkotze/git-mob-vs-code/issues"
+  },
   "extensionDependencies": [
     "vscode.git"
   ],
@@ -42,7 +46,8 @@
     "co-authors",
     "log",
     "annotation",
-    "github"
+    "github",
+    "commit"
   ],
   "contributes": {
     "commands": [
