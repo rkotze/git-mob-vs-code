@@ -1,6 +1,5 @@
 const vscode = require("vscode");
 const { CoAuthorProvider } = require("./co-authors-provider");
-const { updateSCMInput } = require("./update-scm-input");
 const { reloadOnSave } = require("./reload-on-save");
 const { reloadCommand } = require("./commands/reload");
 const { tweetCommand } = require("./commands/tweet");
@@ -13,6 +12,9 @@ const {
 } = require("./commands/search-repository-authors");
 const { gitMobHookStatus } = require("./status-bar/git-mob-hook-status");
 const { GitExt } = require("./vscode-git-extension/git-ext");
+const {
+  replaceCoAuthors,
+} = require("./vscode-git-extension/format-scm-input-text");
 
 function setupGitMob(context) {
   const gitExt = new GitExt();
@@ -49,7 +51,9 @@ function setupGitMob(context) {
     });
 
     coAuthorProvider.onChanged = function () {
-      updateSCMInput(coAuthorProvider.mobAuthors.listCurrent);
+      gitExt.updateInputs(
+        replaceCoAuthors(coAuthorProvider.mobAuthors.listCurrent)
+      );
     };
   }
 }

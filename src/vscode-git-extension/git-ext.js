@@ -20,6 +20,17 @@ class GitExt {
 
     return "";
   }
+
+  updateInputs(value) {
+    const valueIsFunction = typeof value === "function";
+    for (let repo of this.gitApi.repositories) {
+      if (valueIsFunction) {
+        repo.inputBox.value = value(repo.inputBox.value);
+      } else {
+        repo.inputBox.value = value;
+      }
+    }
+  }
 }
 
 exports.GitExt = GitExt;
