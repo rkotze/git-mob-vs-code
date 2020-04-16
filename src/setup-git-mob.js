@@ -10,6 +10,7 @@ const { addRepoAuthorToCoauthors } = require("./commands/add-co-author");
 const {
   searchRepositoryUsers,
 } = require("./commands/search-repository-authors");
+const { searchGitEmojis } = require("./commands/search-git-emojis");
 const { gitMobHookStatus } = require("./status-bar/git-mob-hook-status");
 const { GitExt } = require("./vscode-git-extension/git-ext");
 const {
@@ -32,6 +33,7 @@ function setupGitMob(context) {
     searchRepositoryUsers({ coAuthorProvider });
     openGitCoAuthor({ coAuthorProvider });
     soloCommand({ coAuthorProvider });
+    searchGitEmojis({ coAuthorProvider });
     reloadOnSave(coAuthorProvider);
 
     const checkStatus = gitMobHookStatus({ context });
