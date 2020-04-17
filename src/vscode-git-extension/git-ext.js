@@ -16,7 +16,7 @@ class GitExt {
 
   get rootPath() {
     if (this.repositories.length > 0)
-      return this.repositories[0].rootUri.fsPath;
+      return this.selectedRepository.rootUri.fsPath;
 
     return "";
   }

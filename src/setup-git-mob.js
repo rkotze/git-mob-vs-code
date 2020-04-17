@@ -52,6 +52,10 @@ function setupGitMob(context) {
       focused && mobList.visible && coAuthorProvider.reloadData();
     });
 
+    gitExt.selectedRepository.ui.onDidChange(function() {
+      coAuthorProvider.reloadData();
+    });
+
     coAuthorProvider.onChanged = function () {
       gitExt.updateSelectedInput(
         replaceCoAuthors(coAuthorProvider.mobAuthors.listCurrent)
