@@ -134,17 +134,17 @@
       "view/title": [
         {
           "command": "gitmob.tweet",
-          "when": "gitmob.loaded",
+          "when": "view == gitmob.CoAuthorsView",
           "group": "navigation"
         },
         {
           "command": "gitmob.openGitCoauthor",
-          "when": "gitmob.loaded",
+          "when": "view == gitmob.CoAuthorsView",
           "group": "navigation"
         },
         {
           "command": "gitmob.reload",
-          "when": "gitmob.loaded",
+          "when": "view == gitmob.CoAuthorsView",
           "group": "navigation"
         }
       ],
