@@ -21,14 +21,17 @@ class GitExt {
     return "";
   }
 
-  updateInputs(value) {
+  get selectedRepository(){
+    return this.gitApi.repositories.find((repo) => repo.ui.selected);
+  }
+
+  updateSelectedInput(value) {
     const valueIsFunction = typeof value === "function";
-    for (let repo of this.gitApi.repositories) {
-      if (valueIsFunction) {
-        repo.inputBox.value = value(repo.inputBox.value);
-      } else {
-        repo.inputBox.value = value;
-      }
+    const repo = this.selectedRepository;
+    if (valueIsFunction) {
+      repo.inputBox.value = value(repo.inputBox.value);
+    } else {
+      repo.inputBox.value = value;
     }
   }
 }

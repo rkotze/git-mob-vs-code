@@ -53,7 +53,7 @@ function setupGitMob(context) {
     });
 
     coAuthorProvider.onChanged = function () {
-      gitExt.updateInputs(
+      gitExt.updateSelectedInput(
         replaceCoAuthors(coAuthorProvider.mobAuthors.listCurrent)
       );
     };

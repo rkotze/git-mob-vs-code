@@ -10,7 +10,7 @@ function searchGitEmojis({ coAuthorProvider }) {
       const emoji = await quickPickEmojis();
       if (emoji) {
         const gitExt = new GitExt();
-        gitExt.updateInputs(function(value) {
+        gitExt.updateSelectedInput(function(value) {
           return emoji.code + value;
         });
       }
