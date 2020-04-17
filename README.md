@@ -2,7 +2,7 @@
 
 [![](https://vsmarketplacebadge.apphb.com/version-short/RichardKotze.git-mob.svg)](https://marketplace.visualstudio.com/items?itemName=RichardKotze.git-mob) [![](https://vsmarketplacebadge.apphb.com/rating-short/RichardKotze.git-mob.svg)](https://marketplace.visualstudio.com/items?itemName=RichardKotze.git-mob) [![Build Status](https://dev.azure.com/TinkerTaylor/VS%20code%20extensions/_apis/build/status/rkotze.git-mob-vs-code?branchName=master)](https://dev.azure.com/TinkerTaylor/VS%20code%20extensions/_build/latest?definitionId=1?branchName=master)
 
-> Provides a **UI** for the command-line application [Git Mob](https://github.com/findmypast-oss/git-mob)
+> VS Code extension for [Git Mob cli](https://github.com/findmypast-oss/git-mob) & help making commit messages more informative.
 
 1. [Install](#install)
 2. [Features](#features)
@@ -33,6 +33,7 @@ $ git config --global user.email "jane@example.com"
 
 - Select and unselect co-authors to be appended to commit messages
 - View all your co-authors in source control tab
+- [Git emojis](#git-emojis) search and select emojis
 - [Search suggested co-authors](#search-suggested-co-authors) from the "More Authors" list (all contributors to the repository)
 - [Add new co-authors](#add-new-co-authors) and manage them in `.git-coauthors` file
 - [Add new co-authors from current repository](#add-new-co-authors-from-repository) into your `.git-coauthors` file
@@ -61,3 +62,11 @@ Click the **plus +** button on an author in **More Authors** list.
 Click the search icon on the **More Authors** section or `CTRL+shift+p` or `⌘+⇧+p` and search for "Search suggested co-authors".
 
 ![image](https://user-images.githubusercontent.com/10452163/57807338-e2f44f00-7758-11e9-8fb1-6d8b8cb9d7ce.png)
+
+### Git Emojis
+
+Using the **standardised** list from [Gitmoji](https://github.com/carloscuesta/gitmoji).
+
+Search and select an emoji to add to the Git message input field
+
+![git emojis select list](https://user-images.githubusercontent.com/10452163/79442052-ef6bd200-7fcf-11ea-85c1-82789738add3.png)

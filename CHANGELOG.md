@@ -2,12 +2,22 @@
 
 Follows [Semantic Versioning](https://semver.org/).
 
+## [1.5.0] -- in progress
+
+### Added
+
+- Gitmoji, search and select from the standardized emojis for commit message [Issue 32](https://github.com/rkotze/git-mob-vs-code/issues/32)
+
+### Fixed
+
+- Prevent the main Git Mob action icons from showing on other views like "output" [Issue 34](https://github.com/rkotze/git-mob-vs-code/issues/34)
+
 ## [1.4.0] -- 2020-04-13
 
 ### Added
 
-- Handle broken UI when no Git author or missing Git Mob list command [Issue 29](https://github.com/rkotze/git-mob-vs-code/issues/29).
-- Enable users to input a co-author manually using VS code inputs [Issue 4](https://github.com/rkotze/git-mob-vs-code/issues/4).
+- Handle broken UI when no Git author or missing Git Mob list command [Issue 29](https://github.com/rkotze/git-mob-vs-code/issues/29)
+- Enable users to input a co-author manually using VS code inputs [Issue 4](https://github.com/rkotze/git-mob-vs-code/issues/4)
 
 ### Fixed
 
