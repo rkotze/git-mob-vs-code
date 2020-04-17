@@ -10,7 +10,7 @@ function searchGitEmojis({ coAuthorProvider }) {
       const emoji = await quickPickEmojis();
       if (emoji) {
         const gitExt = new GitExt();
-        gitExt.updateSelectedInput(function(value) {
+        gitExt.updateSelectedInput(function (value) {
           return emoji.code + value;
         });
       }
@@ -23,10 +23,13 @@ function searchGitEmojis({ coAuthorProvider }) {
 exports.searchGitEmojis = searchGitEmojis;
 
 async function quickPickEmojis() {
-  const emojiList = gitEmojisJson.gitmojis.map(emoji => ({
+  const emojiList = gitEmojisJson.gitmojis.map((emoji) => ({
     label: `${emoji.emoji} ${emoji.name}`,
     description: emoji.description,
-    code: emoji.code
+    code: emoji.code,
   }));
-  return await vscode.window.showQuickPick(emojiList, { matchOnDescription: true, placeHolder: "Select emoji to add to source control input box" });
+  return await vscode.window.showQuickPick(emojiList, {
+    matchOnDescription: true,
+    placeHolder: "Select emoji to add to source control input box",
+  });
 }

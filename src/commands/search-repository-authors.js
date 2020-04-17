@@ -5,7 +5,7 @@ function searchRepositoryUsers({ coAuthorProvider }) {
   const { context, mobAuthors } = coAuthorProvider;
   let disposableAddRepoAuthor = vscode.commands.registerCommand(
     "gitmob.searchRepositoryUsers",
-    async function() {
+    async function () {
       const repoAuthors = await mobAuthors.repoAuthorList();
       const authorItem = await quickPickAuthors(repoAuthors);
       if (authorItem) {
@@ -22,10 +22,10 @@ exports.searchRepositoryUsers = searchRepositoryUsers;
 
 async function quickPickAuthors(repoAuthors) {
   const lastSegment = vscode.workspace.rootPath.split(/\\|\//).pop();
-  const authorTextArray = repoAuthors.map(author => ({
+  const authorTextArray = repoAuthors.map((author) => ({
     label: `${author.name} <${author.email}>`,
     description: lastSegment,
-    repoAuthor: author
+    repoAuthor: author,
   }));
   return await vscode.window.showQuickPick(authorTextArray);
 }
