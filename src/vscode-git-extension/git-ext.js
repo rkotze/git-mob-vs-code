@@ -1,3 +1,4 @@
+const path = require("path");
 const vscode = require("vscode");
 
 class GitExt {
@@ -21,8 +22,18 @@ class GitExt {
     return "";
   }
 
-  get selectedRepository(){
-    return this.gitApi.repositories.find((repo) => repo.ui.selected);
+  get selectedFolderName() {
+    const segments = this.rootPath.split(path.sep);
+    if (segments.length > 0) {
+      return segments.pop();
+    }
+    return "";
+  }
+
+  get selectedRepository() {
+    if (this.repositories.length === 1) return this.repositories[0];
+
+    return this.repositories.find((repo) => repo.ui.selected);
   }
 
   updateSelectedInput(value) {
@@ -33,6 +44,29 @@ class GitExt {
     } else {
       repo.inputBox.value = value;
     }
+  }
+
+  onDidChangeUiState(stateChangeCallback) {
+    const trackRepos = [];
+
+    for (let repo of this.repositories) {
+      trackRepos.push(repo.rootUri.path);
+      repo.ui.onDidChange(stateChangeCallback);
+    }
+
+    this.gitApi.onDidOpenRepository(function (repo) {
+      if (!trackRepos.includes(repo.rootUri.path)) {
+        trackRepos.push(repo.rootUri.path);
+        repo.ui.onDidChange(stateChangeCallback);
+      }
+    });
+
+    this.gitApi.onDidCloseRepository(function (repo) {
+      const index = trackRepos.indexOf(repo.rootUri.path);
+      if (index > -1) {
+        trackRepos.splice(index, 1);
+      }
+    });
   }
 }
 

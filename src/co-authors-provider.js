@@ -1,7 +1,8 @@
 const vscode = require("vscode");
 const { MobAuthors } = require("./mob-authors");
 const { TreeNode } = require("./tree-node");
-
+const { GitExt } = require("./vscode-git-extension/git-ext");
+const { Collapsed, None } = vscode.TreeItemCollapsibleState;
 class CoAuthorProvider {
   constructor(context) {
     this._notLoaded = true;
@@ -9,6 +10,7 @@ class CoAuthorProvider {
     this._onDidChangeTreeData = new vscode.EventEmitter();
     this.onDidChangeTreeData = this._onDidChangeTreeData.event;
     this.mobAuthors = new MobAuthors();
+    this.gitExt = new GitExt();
     this.context = context;
   }
 
@@ -31,10 +33,16 @@ class CoAuthorProvider {
     }
 
     return [
+      new TreeNode(
+        "Selected project: " + this.gitExt.selectedFolderName,
+        "",
+        "",
+        None
+      ),
       this.mobAuthors.author,
       new TreeNode("Selected", "selected", "selected.svg"),
       new TreeNode("Unselected", "unselected", "unselected.svg"),
-      new TreeNode("More Authors", "more-authors", "more.svg", false),
+      new TreeNode("More Authors", "more-authors", "more.svg", Collapsed),
     ];
   }
 

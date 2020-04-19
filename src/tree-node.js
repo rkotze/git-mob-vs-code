@@ -1,21 +1,26 @@
 const path = require("path");
 const vscode = require("vscode");
 
+const { Expanded } = vscode.TreeItemCollapsibleState;
 class TreeNode {
-  constructor(name, contextValue = "", iconPath = "", expanded = true) {
+  constructor(
+    name,
+    contextValue = "",
+    iconPath = "",
+    collapsibleState = Expanded
+  ) {
     this.key = name;
     this.contextValue = contextValue;
     this.iconPath = iconPath;
-    this.expanded = expanded;
+    this.collapsibleState = collapsibleState;
   }
 
   getTreeItem({ context }) {
-    const { Expanded, Collapsed } = vscode.TreeItemCollapsibleState;
     return {
       label: this.key,
-      collapsibleState: this.expanded ? Expanded : Collapsed,
+      collapsibleState: this.collapsibleState,
       contextValue: this.contextValue,
-      iconPath: this.iconResolver(context)
+      iconPath: this.iconResolver(context),
     };
   }
 

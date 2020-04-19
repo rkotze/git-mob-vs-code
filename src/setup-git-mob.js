@@ -43,18 +43,20 @@ function setupGitMob(context) {
       mobList.onDidChangeVisibility(function ({ visible }) {
         visible && coAuthorProvider.reloadData();
         visible && checkStatus();
-        vscode.commands.executeCommand("setContext", "gitmob.loaded", visible);
       });
-      vscode.commands.executeCommand("setContext", "gitmob.loaded", true);
     };
 
     vscode.window.onDidChangeWindowState(function ({ focused }) {
       focused && mobList.visible && coAuthorProvider.reloadData();
     });
 
-    gitExt.selectedRepository.ui.onDidChange(function() {
+    gitExt.onDidChangeUiState(function () {
+      console.log("State changed");
       coAuthorProvider.reloadData();
     });
+
+    // gitExt.selectedRepository.ui.onDidChange(function () {
+    // });
 
     coAuthorProvider.onChanged = function () {
       gitExt.updateSelectedInput(
