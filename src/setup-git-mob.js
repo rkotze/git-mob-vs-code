@@ -51,12 +51,8 @@ function setupGitMob(context) {
     });
 
     gitExt.onDidChangeUiState(function () {
-      console.log("State changed");
       coAuthorProvider.reloadData();
     });
-
-    // gitExt.selectedRepository.ui.onDidChange(function () {
-    // });
 
     coAuthorProvider.onChanged = function () {
       gitExt.updateSelectedInput(

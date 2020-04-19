@@ -50,8 +50,10 @@ class GitExt {
     const trackRepos = [];
 
     for (let repo of this.repositories) {
-      trackRepos.push(repo.rootUri.path);
-      repo.ui.onDidChange(stateChangeCallback);
+      if (!trackRepos.includes(repo.rootUri.path)) {
+        trackRepos.push(repo.rootUri.path);
+        repo.ui.onDidChange(stateChangeCallback);
+      }
     }
 
     this.gitApi.onDidOpenRepository(function (repo) {
