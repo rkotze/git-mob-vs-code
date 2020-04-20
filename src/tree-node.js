@@ -25,6 +25,10 @@ class TreeNode {
   }
 
   iconResolver({ asAbsolutePath }) {
+    if (this.iconPath instanceof vscode.ThemeIcon) {
+      return this.iconPath;
+    }
+
     return (
       this.iconPath &&
       asAbsolutePath(path.join("resources/icons/", this.iconPath))

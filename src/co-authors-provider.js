@@ -34,9 +34,9 @@ class CoAuthorProvider {
 
     return [
       new TreeNode(
-        "Selected project: " + this.gitExt.selectedFolderName,
+        this.gitExt.selectedFolderName,
         "",
-        "",
+        new vscode.ThemeIcon("folder-active"),
         None
       ),
       this.mobAuthors.author,
