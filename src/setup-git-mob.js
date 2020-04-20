@@ -51,6 +51,7 @@ function setupGitMob(context) {
     });
 
     gitExt.onDidChangeUiState(function () {
+      coAuthorProvider.mobAuthors.resetRepoAuthorList();
       coAuthorProvider.reloadData();
     });
 
