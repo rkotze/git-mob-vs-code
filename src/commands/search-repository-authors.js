@@ -1,5 +1,6 @@
 const vscode = require("vscode");
 const { addRepoAuthor } = require("../git/commands");
+const { GitExt } = require("../vscode-git-extension/git-ext");
 
 function searchRepositoryUsers({ coAuthorProvider }) {
   const { context, mobAuthors } = coAuthorProvider;
@@ -21,10 +22,10 @@ function searchRepositoryUsers({ coAuthorProvider }) {
 exports.searchRepositoryUsers = searchRepositoryUsers;
 
 async function quickPickAuthors(repoAuthors) {
-  const lastSegment = vscode.workspace.rootPath.split(/\\|\//).pop();
+  const gitExt = new GitExt();
   const authorTextArray = repoAuthors.map((author) => ({
     label: `${author.name} <${author.email}>`,
-    description: lastSegment,
+    description: gitExt.selectedFolderName,
     repoAuthor: author,
   }));
   return await vscode.window.showQuickPick(authorTextArray);
