@@ -56,15 +56,13 @@
         "command": "gitmob.openGitCoauthor",
         "title": "Open git-coauthors file",
         "category": "Git Mob",
-        "icon": {
-          "light": "resources/icons/light/open-file.svg",
-          "dark": "resources/icons/dark/open-file.svg"
-        }
+        "icon": "$(file)"
       },
       {
         "command": "gitmob.searchGitEmojis",
-        "title": "Search Git Emojis - gitmojis",
-        "category": "Git Mob"
+        "title": "Search Gitmojis - emojis",
+        "category": "Git Mob",
+        "icon": "$(smiley)"
       },
       {
         "command": "gitmob.tweet",
@@ -135,6 +133,11 @@
         {
           "command": "gitmob.tweet",
           "when": "view == gitmob.CoAuthorsView",
+          "group": "inline"
+        },
+        {
+          "command": "gitmob.searchGitEmojis",
+          "when": "view == gitmob.CoAuthorsView",
           "group": "navigation"
         },
         {
@@ -145,7 +148,7 @@
         {
           "command": "gitmob.reload",
           "when": "view == gitmob.CoAuthorsView",
-          "group": "navigation"
+          "group": "inline"
         }
       ],
       "view/item/context": [
