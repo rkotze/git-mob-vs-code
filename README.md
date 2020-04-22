@@ -33,7 +33,7 @@ $ git config --global user.email "jane@example.com"
 
 - Select and unselect co-authors to be appended to commit messages
 - View all your co-authors in source control tab
-- [VS Code workspace support]()
+- [VS Code workspace support](#workspace-support)
 - [Search suggested co-authors](#search-suggested-co-authors) from the "More Authors" list (all contributors to the repository)
 - [Add new co-authors](#add-new-co-authors) and manage them in `.git-coauthors` file
 - [Add new co-authors from current repository](#add-new-co-authors-from-repository) into your `.git-coauthors` file
