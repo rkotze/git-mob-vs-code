@@ -7,7 +7,12 @@ Follows [Semantic Versioning](https://semver.org/).
 ### Added
 
 - Support workspaces, be able to select one of multiple Git repositories and update with co-author metadata [Issue 31](https://github.com/rkotze/git-mob-vs-code/issues/31)
+
+<img alt="Workspace support" src="https://user-images.githubusercontent.com/10452163/80038666-08074b00-84ee-11ea-9565-26c9f755d512.gif" width="320" />
+
 - Gitmoji, search and select from the standardized emojis for commit message [Issue 32](https://github.com/rkotze/git-mob-vs-code/issues/32)
+
+![git emojis select list](https://user-images.githubusercontent.com/10452163/79442052-ef6bd200-7fcf-11ea-85c1-82789738add3.png)
 
 ### Fixed
 

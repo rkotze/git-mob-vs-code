@@ -33,10 +33,11 @@ $ git config --global user.email "jane@example.com"
 
 - Select and unselect co-authors to be appended to commit messages
 - View all your co-authors in source control tab
-- [Git emojis](#git-emojis) search and select emojis
+- [VS Code workspace support]()
 - [Search suggested co-authors](#search-suggested-co-authors) from the "More Authors" list (all contributors to the repository)
 - [Add new co-authors](#add-new-co-authors) and manage them in `.git-coauthors` file
 - [Add new co-authors from current repository](#add-new-co-authors-from-repository) into your `.git-coauthors` file
+- [Git emojis](#git-emojis) search and select emojis
 - Solo remove all co-authors from current commit
 - Reload Git Mob and auto reload when updating `.git-coauthors` file in VS Code
 - Status bar shows if using `template file` or `prepare-commit-msg` hook
@@ -62,6 +63,12 @@ Click the **plus +** button on an author in **More Authors** list.
 Click the search icon on the **More Authors** section or `CTRL+shift+p` or `⌘+⇧+p` and search for "Search suggested co-authors".
 
 ![image](https://user-images.githubusercontent.com/10452163/57807338-e2f44f00-7758-11e9-8fb1-6d8b8cb9d7ce.png)
+
+### Workspace support
+
+Select one of multiple open Git repositories and add co-author metadata to source control input field.
+
+<img alt="workspace-support" src="https://user-images.githubusercontent.com/10452163/80038666-08074b00-84ee-11ea-9565-26c9f755d512.gif" width="320" />
 
 ### Git Emojis
 
