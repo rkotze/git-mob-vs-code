@@ -1,3 +1,4 @@
+const path = require("path");
 const { TreeNode } = require("../tree-node");
 
 class Author extends TreeNode {
@@ -6,12 +7,12 @@ class Author extends TreeNode {
     this.email = email;
   }
 
-  getTreeItem({ context }) {
+  getTreeItem() {
     return {
       label: this.key,
       tooltip: `Email: ${this.email}`,
       contextValue: "",
-      iconPath: context.asAbsolutePath("resources/icons/user.svg")
+      iconPath: path.join(__dirname, "..", "..", "resources", "icons", "user.svg")
     };
   }
 }
