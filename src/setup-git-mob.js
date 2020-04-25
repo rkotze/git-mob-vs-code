@@ -17,6 +17,9 @@ const {
   replaceCoAuthors,
 } = require("./vscode-git-extension/format-scm-input-text");
 
+const MAX_RETRIES = 5;
+let numberRetries = 0;
+
 function setupGitMob(context) {
   const gitExt = new GitExt();
   if (gitExt.hasRepositories) {
@@ -60,6 +63,11 @@ function setupGitMob(context) {
         replaceCoAuthors(coAuthorProvider.mobAuthors.listCurrent)
       );
     };
+  } else {
+    if (numberRetries < MAX_RETRIES) {
+      setTimeout(() => setupGitMob(context), 1000);
+      numberRetries += 1;
+    }
   }
 }
 
