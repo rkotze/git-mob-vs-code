@@ -22,24 +22,5 @@ steps:
       echo "##vso[build.updatebuildnumber]${VERSION_STRING}_${BUILD_BUILDID}"
       echo "$PACKAGE_VERSION" > version.txt
     displayName: Set version number of package and build
-    condition: eq(variables.releaseVersion, 'none')
-
-  - bash: |
-      git config --global user.email "richkotze@outlook.com"
-      git config --global user.name "Richard Kotze"
-      git checkout master
-
-      npm version $RELEASEVERSION
-
-      git push --follow-tags
-
-      PACKAGE_VERSION=$(node -p "require('./package.json').version")
-
-      VERSION_STRING=${PACKAGE_VERSION}-ci-$(git rev-parse --short HEAD)
-
-      echo "##vso[build.updatebuildnumber]${VERSION_STRING}_${BUILD_BUILDID}"
-      echo "$PACKAGE_VERSION" > version.txt
-    displayName: Bump version and build
-    condition: in(variables.releaseVersion, 'major', 'minor', 'patch')
 
   - template: common-steps.yml
