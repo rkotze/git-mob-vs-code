@@ -2,6 +2,12 @@
 
 Follows [Semantic Versioning](https://semver.org/).
 
+## [1.5.1] -- 2020-04-26
+
+### Fixed
+
+- Fix timing issue with dependency on `vscode.git`. Sometimes Git Mob will trigger before the Git repositories are registered in VS code.
+
 ## [1.5.0] -- 2020-04-23
 
 ### Added
