@@ -200,8 +200,7 @@
   },
   "scripts": {
     "test": "jest",
-    "ui-test": "node ./test/test-runner",
-    "preversion": "npm test"
+    "ui-test": "node ./test/test-runner"
   },
   "devDependencies": {
     "@types/vscode": "^1.44.0",
