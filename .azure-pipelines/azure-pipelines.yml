@@ -25,7 +25,9 @@ steps:
     condition: eq(variables.releaseVersion, 'none')
 
   - bash: |
-      npm version ${releaseVersion}
+      npm version $RELEASEVERSION
+      
+      echo "$RELEASEVERSION"
 
       PACKAGE_VERSION=$(node -p "require('./package.json').version")
 
