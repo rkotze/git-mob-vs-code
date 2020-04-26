@@ -1,8 +1,13 @@
 const vscode = require("vscode");
 const { MobAuthors } = require("./mob-authors");
-const { TreeNode } = require("./tree-node");
+const {
+  ProjectFolder,
+  Selected,
+  Unselected,
+  MoreAuthors,
+} = require("./co-author-tree-provider/group-item");
 const { GitExt } = require("./vscode-git-extension/git-ext");
-const { Collapsed, None } = vscode.TreeItemCollapsibleState;
+
 class CoAuthorProvider {
   constructor(context) {
     this._notLoaded = true;
@@ -16,33 +21,22 @@ class CoAuthorProvider {
 
   getChildren(element = {}) {
     const allAuthors = this.mobAuthors.listAll;
-    if (element.key === "Selected") {
-      return this.mobAuthors.listCurrent;
-    }
-
-    if (element.key === "Unselected") {
-      const setAllAuthor = new Set(allAuthors);
-      for (let author of setAllAuthor) {
-        if (author.selected) setAllAuthor.delete(author);
-      }
-      return Array.from(setAllAuthor);
-    }
-
-    if (element.key === "More Authors") {
-      return this.mobAuthors.repoAuthorList();
+    if (element.fetchChildren) {
+      return element.fetchChildren();
     }
 
     return [
-      new TreeNode(
-        this.gitExt.selectedFolderName,
-        "",
-        new vscode.ThemeIcon("folder-active"),
-        None
-      ),
+      new ProjectFolder(this.gitExt.selectedFolderName),
       this.mobAuthors.author,
-      new TreeNode("Selected", "selected", "selected.svg"),
-      new TreeNode("Unselected", "unselected", "unselected.svg"),
-      new TreeNode("More Authors", "more-authors", "more.svg", Collapsed),
+      new Selected(() => this.mobAuthors.listCurrent),
+      new Unselected(() => {
+        const setAllAuthor = new Set(allAuthors);
+        for (let author of setAllAuthor) {
+          if (author.selected) setAllAuthor.delete(author);
+        }
+        return Array.from(setAllAuthor);
+      }),
+      new MoreAuthors(() => this.mobAuthors.repoAuthorList()),
     ];
   }
 
@@ -62,7 +56,9 @@ class CoAuthorProvider {
       this.onChanged();
     }
 
-    return element.getTreeItem({ context: this.context });
+    return element.getTreeItem
+      ? element.getTreeItem({ context: this.context })
+      : element;
   }
 
   toggleCoAuthor(author, selected) {
