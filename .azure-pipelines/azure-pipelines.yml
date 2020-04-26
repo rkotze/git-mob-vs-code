@@ -25,9 +25,12 @@ steps:
     condition: eq(variables.releaseVersion, 'none')
 
   - bash: |
+      git config --global user.email "richkotze@outlook.com"
+      git config --global user.name "Richard Kotze"
+
       npm version $RELEASEVERSION
-      
-      echo "$RELEASEVERSION"
+
+      git push --follow-tags
 
       PACKAGE_VERSION=$(node -p "require('./package.json').version")
 
