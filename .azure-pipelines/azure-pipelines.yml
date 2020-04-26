@@ -27,6 +27,7 @@ steps:
   - bash: |
       git config --global user.email "richkotze@outlook.com"
       git config --global user.name "Richard Kotze"
+      git checkout master
 
       npm version $RELEASEVERSION
 
