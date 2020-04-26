@@ -2,7 +2,7 @@
 
 Follows [Semantic Versioning](https://semver.org/).
 
-## [1.5.1] -- 2020-04-26
+## [1.5.2] -- 2020-04-26
 
 ### Fixed
 
