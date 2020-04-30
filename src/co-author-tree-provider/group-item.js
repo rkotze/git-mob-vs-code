@@ -38,6 +38,10 @@ class Selected extends Group {
     super("Selected", "selected", "selected.svg");
     this.fetchChildren = fetchChildren;
   }
+
+  get tooltip() {
+    return "Co-authors you're committing with";
+  }
 }
 
 class Unselected extends Group {
@@ -45,12 +49,20 @@ class Unselected extends Group {
     super("Unselected", "unselected", "unselected.svg");
     this.fetchChildren = fetchChildren;
   }
+
+  get tooltip() {
+    return "Co-author in your lists";
+  }
 }
 
 class MoreAuthors extends Group {
   constructor(fetchChildren = () => {}) {
     super("More Authors", "more-authors", "more.svg", Collapsed);
     this.fetchChildren = fetchChildren;
+  }
+
+  get tooltip() {
+    return "Authors who have contributed to this repo";
   }
 }
 
