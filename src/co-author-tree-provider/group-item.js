@@ -16,8 +16,7 @@ class Group extends vscode.TreeItem {
     }
 
     return path.join(
-      __filename,
-      "..",
+      __dirname,
       "..",
       "..",
       "resources",
