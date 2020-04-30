@@ -41,10 +41,12 @@ const commands = {
 };
 
 const TreeItemCollapsibleState = {
-  None: "none",
+  None: "None",
   Expanded: "Expanded",
   Collapsed: "Collapsed",
 };
+
+class TreeItem {}
 
 const vscode = {
   languages,
@@ -59,6 +61,7 @@ const vscode = {
   debug,
   commands,
   TreeItemCollapsibleState,
+  TreeItem,
 };
 
 module.exports = vscode;

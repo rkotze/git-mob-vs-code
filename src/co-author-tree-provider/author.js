@@ -1,10 +1,10 @@
 const path = require("path");
 const vscode = require("vscode");
-const { Collapsed } = vscode.TreeItemCollapsibleState;
+const { None } = vscode.TreeItemCollapsibleState;
 
 class Author extends vscode.TreeItem {
   constructor(name, email) {
-    super(name, Collapsed);
+    super(name, None);
     this.email = email;
   }
 
