@@ -2,6 +2,12 @@
 
 Follows [Semantic Versioning](https://semver.org/).
 
+## [1.5.3] -- in progress
+
+### Fixed
+
+- Code improvements making it easier to reason about and is more idiomatic vscode extension code. [Issue 35](https://github.com/rkotze/git-mob-vs-code/issues/35)
+
 ## [1.5.2] -- 2020-04-26
 
 ### Fixed

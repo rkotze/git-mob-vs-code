@@ -1,7 +1,7 @@
 {
   "name": "git-mob",
-  "displayName": "Git Mob - Co-authors in commits",
-  "description": "Co-author commits when pair/mob programming. UI for Git Mob command-line.",
+  "displayName": "Git Mob Co-author commits",
+  "description": "Add multiple authors to a commit when pair/mob programming from the source control tab.",
   "version": "1.5.2",
   "publisher": "RichardKotze",
   "engines": {
@@ -46,6 +46,7 @@
     "git",
     "co-authors",
     "log",
+    "author",
     "annotation",
     "github",
     "commit",
