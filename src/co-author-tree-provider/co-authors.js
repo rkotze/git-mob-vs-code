@@ -6,6 +6,7 @@ const { None } = vscode.TreeItemCollapsibleState;
 class CoAuthor extends vscode.TreeItem {
   constructor(name, email, selected = false, commandKey = "") {
     super(name, None);
+    this.name = name;
     this.email = email;
     this.selected = selected;
     this.commandKey = commandKey;

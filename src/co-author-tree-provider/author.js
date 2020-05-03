@@ -5,6 +5,7 @@ const { None } = vscode.TreeItemCollapsibleState;
 class Author extends vscode.TreeItem {
   constructor(name, email) {
     super(name, None);
+    this.name = name;
     this.email = email;
   }
 

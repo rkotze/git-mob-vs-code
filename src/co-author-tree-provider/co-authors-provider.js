@@ -1,12 +1,12 @@
 const vscode = require("vscode");
-const { MobAuthors } = require("./mob-authors");
+const { MobAuthors } = require("../mob-authors");
 const {
   ProjectFolder,
   Selected,
   Unselected,
   MoreAuthors,
-} = require("./co-author-tree-provider/group-item");
-const { GitExt } = require("./vscode-git-extension/git-ext");
+} = require("./group-item");
+const { GitExt } = require("../vscode-git-extension/git-ext");
 
 class CoAuthorProvider {
   constructor(context) {

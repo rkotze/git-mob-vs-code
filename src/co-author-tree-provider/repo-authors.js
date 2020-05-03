@@ -5,6 +5,7 @@ const { None } = vscode.TreeItemCollapsibleState;
 class RepoAuthor extends vscode.TreeItem {
   constructor(name, email, commandKey) {
     super(name, None);
+    this.name = name;
     this.email = email;
     this.commandKey = commandKey;
   }

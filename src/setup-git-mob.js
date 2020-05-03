@@ -1,5 +1,7 @@
 const vscode = require("vscode");
-const { CoAuthorProvider } = require("./co-authors-provider");
+const {
+  CoAuthorProvider,
+} = require("./co-author-tree-provider/co-authors-provider");
 const { reloadOnSave } = require("./reload-on-save");
 const { reloadCommand } = require("./commands/reload");
 const { tweetCommand } = require("./commands/tweet");
