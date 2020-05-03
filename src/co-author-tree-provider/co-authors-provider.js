@@ -56,9 +56,7 @@ class CoAuthorProvider {
       this.onChanged();
     }
 
-    return element.getTreeItem
-      ? element.getTreeItem({ context: this.context })
-      : element;
+    return element;
   }
 
   toggleCoAuthor(author, selected) {
