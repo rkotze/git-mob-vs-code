@@ -48,7 +48,8 @@
     "log",
     "annotation",
     "github",
-    "commit"
+    "commit",
+    "emojis"
   ],
   "contributes": {
     "commands": [

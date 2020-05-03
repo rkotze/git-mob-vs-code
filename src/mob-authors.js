@@ -1,5 +1,7 @@
 const { mob, config, getRepoAuthors } = require("./git/commands");
-const { createRepoAuthorList } = require("./authors/repo-authors");
+const {
+  createRepoAuthorList,
+} = require("./co-author-tree-provider/repo-authors");
 const { createAuthor } = require("./co-author-tree-provider/co-authors");
 const { Author } = require("./co-author-tree-provider/author");
 const { ErrorAuthor } = require("./co-author-tree-provider/error-author");
