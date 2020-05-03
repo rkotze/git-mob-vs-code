@@ -25,21 +25,26 @@ let numberRetries = 0;
 function setupGitMob(context) {
   const gitExt = new GitExt();
   if (gitExt.hasRepositories) {
-    const coAuthorProvider = new CoAuthorProvider(context);
+    const coAuthorProvider = new CoAuthorProvider();
     const mobList = vscode.window.createTreeView("gitmob.CoAuthorsView", {
       treeDataProvider: coAuthorProvider,
     });
 
-    tweetCommand({ coAuthorProvider });
-    reloadCommand({ coAuthorProvider });
-    addCoAuthor({ coAuthorProvider });
-    removeCoAuthor({ coAuthorProvider });
-    addRepoAuthorToCoauthors({ coAuthorProvider });
-    searchRepositoryUsers({ coAuthorProvider });
-    openGitCoAuthor({ coAuthorProvider });
-    soloCommand({ coAuthorProvider });
-    searchGitEmojis({ coAuthorProvider });
-    reloadOnSave(coAuthorProvider);
+    const disposables = [
+      tweetCommand(),
+      reloadCommand({ coAuthorProvider }),
+      addCoAuthor({ coAuthorProvider }),
+      removeCoAuthor({ coAuthorProvider }),
+      addRepoAuthorToCoauthors(),
+      searchRepositoryUsers({ coAuthorProvider }),
+      openGitCoAuthor({ coAuthorProvider }),
+      soloCommand({ coAuthorProvider }),
+      searchGitEmojis(),
+    ];
+
+    disposables.forEach((dispose) => context.subscriptions.push(dispose));
+
+    reloadOnSave({ coAuthorProvider });
 
     const checkStatus = gitMobHookStatus({ context });
     checkStatus();

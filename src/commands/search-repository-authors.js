@@ -3,8 +3,8 @@ const { addRepoAuthor } = require("../git/commands");
 const { GitExt } = require("../vscode-git-extension/git-ext");
 
 function searchRepositoryUsers({ coAuthorProvider }) {
-  const { context, mobAuthors } = coAuthorProvider;
-  let disposableAddRepoAuthor = vscode.commands.registerCommand(
+  const { mobAuthors } = coAuthorProvider;
+  return vscode.commands.registerCommand(
     "gitmob.searchRepositoryUsers",
     async function () {
       const repoAuthors = await mobAuthors.repoAuthorList();
@@ -15,8 +15,6 @@ function searchRepositoryUsers({ coAuthorProvider }) {
       }
     }
   );
-
-  context.subscriptions.push(disposableAddRepoAuthor);
 }
 
 exports.searchRepositoryUsers = searchRepositoryUsers;

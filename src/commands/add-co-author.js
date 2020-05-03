@@ -1,9 +1,8 @@
 const vscode = require("vscode");
 const { addRepoAuthor } = require("../git/commands");
 
-function addRepoAuthorToCoauthors({ coAuthorProvider }) {
-  const { context } = coAuthorProvider;
-  let disposableAddRepoAuthor = vscode.commands.registerCommand(
+function addRepoAuthorToCoauthors() {
+  return vscode.commands.registerCommand(
     "gitmob.addRepoAuthorToCoAuthors",
     async function (author) {
       if (author) {
@@ -21,8 +20,6 @@ function addRepoAuthorToCoauthors({ coAuthorProvider }) {
       }
     }
   );
-
-  context.subscriptions.push(disposableAddRepoAuthor);
 }
 
 async function inputAuthorData() {

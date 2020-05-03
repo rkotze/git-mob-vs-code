@@ -5,19 +5,19 @@ const vscode = require("../__mocks__/vscode");
 const coAuthorProviderStub = {
   reloadData: jest.fn(),
   mobAuthors: {
-    reset: jest.fn()
-  }
+    reset: jest.fn(),
+  },
 };
 const coAuthorTextDocStub = {
-  fileName: `file/Path/to/${CONSTANTS.GIT_COAUTHORS_FILE}`
+  fileName: `file/Path/to/${CONSTANTS.GIT_COAUTHORS_FILE}`,
 };
 const otherTextDocStub = {
-  fileName: `file/Path/to/other.js`
+  fileName: `file/Path/to/other.js`,
 };
 
 let saveTrigger = null;
 beforeEach(() => {
-  vscode.workspace.onDidSaveTextDocument.mockImplementation(cb => {
+  vscode.workspace.onDidSaveTextDocument.mockImplementation((cb) => {
     saveTrigger = cb;
   });
 });
@@ -29,7 +29,7 @@ afterEach(() => {
 });
 
 test("Reload co-author list when git-coauthors file saved", () => {
-  reloadOnSave(coAuthorProviderStub);
+  reloadOnSave({ coAuthorProvider: coAuthorProviderStub });
   expect(vscode.workspace.onDidSaveTextDocument).toHaveBeenCalledWith(
     expect.any(Function)
   );
@@ -39,7 +39,7 @@ test("Reload co-author list when git-coauthors file saved", () => {
 });
 
 test("Do NOT reload co-author list when other files are saved", () => {
-  reloadOnSave(coAuthorProviderStub);
+  reloadOnSave({ coAuthorProvider: coAuthorProviderStub });
   expect(vscode.workspace.onDidSaveTextDocument).toHaveBeenCalledWith(
     expect.any(Function)
   );

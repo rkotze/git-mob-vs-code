@@ -9,14 +9,13 @@ const {
 const { GitExt } = require("../vscode-git-extension/git-ext");
 
 class CoAuthorProvider {
-  constructor(context) {
+  constructor() {
     this._notLoaded = true;
     this._selected = [];
     this._onDidChangeTreeData = new vscode.EventEmitter();
     this.onDidChangeTreeData = this._onDidChangeTreeData.event;
     this.mobAuthors = new MobAuthors();
     this.gitExt = new GitExt();
-    this.context = context;
   }
 
   getChildren(element = {}) {

@@ -1,10 +1,10 @@
 const vscode = require("vscode");
 const { coAuthorsFile } = require("../git-mob-coauthors-file");
 
-function openGitCoAuthor({ coAuthorProvider }) {
-  let openFile = vscode.commands.registerCommand(
+function openGitCoAuthor() {
+  return vscode.commands.registerCommand(
     "gitmob.openGitCoauthor",
-    async function() {
+    async function () {
       const { openTextDocument } = vscode.workspace;
       const { showTextDocument } = vscode.window;
 
@@ -17,8 +17,6 @@ function openGitCoAuthor({ coAuthorProvider }) {
       }
     }
   );
-
-  coAuthorProvider.context.subscriptions.push(openFile);
 }
 
 exports.openGitCoAuthor = openGitCoAuthor;

@@ -2,9 +2,8 @@ const vscode = require("vscode");
 const { GitExt } = require("../vscode-git-extension/git-ext");
 const gitEmojisJson = require("../git-emojis/gitmojis.json");
 
-function searchGitEmojis({ coAuthorProvider }) {
-  const { context } = coAuthorProvider;
-  let disposableAddRepoAuthor = vscode.commands.registerCommand(
+function searchGitEmojis() {
+  return vscode.commands.registerCommand(
     "gitmob.searchGitEmojis",
     async function () {
       const emoji = await quickPickEmojis();
@@ -16,8 +15,6 @@ function searchGitEmojis({ coAuthorProvider }) {
       }
     }
   );
-
-  context.subscriptions.push(disposableAddRepoAuthor);
 }
 
 exports.searchGitEmojis = searchGitEmojis;
