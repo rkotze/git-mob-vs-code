@@ -14,7 +14,7 @@ class Author extends vscode.TreeItem {
   }
 
   get tooltip() {
-    return `Email: ${this.email}`;
+    return `${this.label}\n${this.email}`;
   }
 }
 

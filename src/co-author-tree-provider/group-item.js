@@ -30,6 +30,10 @@ class ProjectFolder extends Group {
   constructor(label) {
     super(label, "", new vscode.ThemeIcon("folder-active"), None);
   }
+
+  get tooltip() {
+    return "Project folder: " + this.label;
+  }
 }
 
 class Selected extends Group {
@@ -39,7 +43,7 @@ class Selected extends Group {
   }
 
   get tooltip() {
-    return "Co-authors you're committing with";
+    return "Selected co-authors";
   }
 }
 
@@ -50,7 +54,7 @@ class Unselected extends Group {
   }
 
   get tooltip() {
-    return "Co-author in your lists";
+    return "Available co-authors";
   }
 }
 
@@ -61,7 +65,7 @@ class MoreAuthors extends Group {
   }
 
   get tooltip() {
-    return "Authors who have contributed to this repo";
+    return "Contributors to this repo";
   }
 }
 

@@ -121,7 +121,7 @@
       },
       {
         "command": "gitmob.solo",
-        "title": "Solo: remove selected co-authors",
+        "title": "Solo: remove all selected co-authors",
         "category": "Git Mob",
         "icon": {
           "light": "resources/icons/light/unstage.svg",
