@@ -4,7 +4,7 @@ const { mob } = require("../git/commands");
 function soloCommand({ coAuthorProvider }) {
   return vscode.commands.registerCommand("gitmob.solo", function () {
     mob.solo();
-    coAuthorProvider.reloadData();
+    vscode.commands.executeCommand("gitmob.reload");
   });
 }
 
