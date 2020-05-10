@@ -2,10 +2,11 @@
 
 Follows [Semantic Versioning](https://semver.org/).
 
-## [1.5.3] -- in progress
+## [1.5.3] -- 2020-05-10
 
 ### Fixed
 
+- List updates when solo action clicked and "selected" is collapsed [Issue 36](https://github.com/rkotze/git-mob-vs-code/issues/36)
 - Code improvements making it easier to reason about and is more idiomatic vscode extension code. [Issue 35](https://github.com/rkotze/git-mob-vs-code/issues/35)
 
 ## [1.5.2] -- 2020-04-26
