@@ -16,10 +16,12 @@ class GitExt {
   }
 
   get rootPath() {
-    if (this.repositories.length > 0)
-      return this.selectedRepository.rootUri.fsPath;
+    if(!this.hasRepositories) return null;
 
-    return "";
+    const selected = this.selectedRepository;
+    if(!selected) return this.repositories[0].rootUri.fsPath;
+    
+    return selected.rootUri.fsPath;
   }
 
   get selectedFolderName() {
@@ -31,8 +33,6 @@ class GitExt {
   }
 
   get selectedRepository() {
-    if (this.repositories.length === 1) return this.repositories[0];
-
     return this.repositories.find((repo) => repo.ui.selected);
   }
 
