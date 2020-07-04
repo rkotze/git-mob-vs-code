@@ -2,6 +2,12 @@
 
 Follows [Semantic Versioning](https://semver.org/).
 
+## [1.5.4] -- 2020-07-04
+
+### Fixed
+
+- On Mac OS users opening workspaces might see an error notification appear when contacting Git Mob CLI [Issue 39](https://github.com/rkotze/git-mob-vs-code/issues/39)
+  
 ## [1.5.3] -- 2020-05-10
 
 ### Fixed
