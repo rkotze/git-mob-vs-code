@@ -1,10 +1,9 @@
 const path = require("path");
-const vscode = require("vscode");
+const { vsCodeGit } = require("./vs-code-git");
 
 class GitExt {
   constructor() {
-    const ext = vscode.extensions.getExtension("vscode.git");
-    this.gitApi = ext.isActive && ext.exports.getAPI(1);
+    this.gitApi = vsCodeGit();
   }
 
   get hasRepositories() {
@@ -16,11 +15,11 @@ class GitExt {
   }
 
   get rootPath() {
-    if(!this.hasRepositories) return null;
+    if (!this.hasRepositories) return null;
 
     const selected = this.selectedRepository;
-    if(!selected) return this.repositories[0].rootUri.fsPath;
-    
+    if (!selected) return this.repositories[0].rootUri.fsPath;
+
     return selected.rootUri.fsPath;
   }
 
