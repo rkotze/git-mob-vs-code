@@ -2,9 +2,9 @@
 
 [![](https://vsmarketplacebadge.apphb.com/version-short/RichardKotze.git-mob.svg)](https://marketplace.visualstudio.com/items?itemName=RichardKotze.git-mob) [![](https://vsmarketplacebadge.apphb.com/rating-short/RichardKotze.git-mob.svg)](https://marketplace.visualstudio.com/items?itemName=RichardKotze.git-mob) [![Build Status](https://dev.azure.com/TinkerTaylor/VS%20code%20extensions/_apis/build/status/rkotze.git-mob-vs-code?branchName=master)](https://dev.azure.com/TinkerTaylor/VS%20code%20extensions/_build/latest?definitionId=1?branchName=master)
 
-> VS Code extension to add co-author meta data in commits, managed all from the source control tab.
+> VS Code extension to add multiple co-authors to commits, managed all from the source control tab.
 
-Great extension when **pair programming** or **mobbing** with your team. Depends on [Git Mob cli](https://github.com/findmypast-oss/git-mob)
+Great extension when **pair programming** or **mobbing** with your team. Requires [Git Mob cli](https://github.com/findmypast-oss/git-mob)
 
 ![Git Mob in action](https://user-images.githubusercontent.com/10452163/51446144-cc3b6f80-1d05-11e9-87fa-96622a25eedc.gif)
 
