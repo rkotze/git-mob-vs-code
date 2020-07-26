@@ -39,7 +39,7 @@ $ git config --global user.email "jane@example.com"
 - [Git emojis](#git-emojis) search and select Gitmojis
 - Auto reload when updating `.git-coauthors` file in VS Code
 - Status bar shows if using `template file` or `prepare-commit-msg` hook
-- Co-authors in-sync with **Git Mob CLI**
+- Change primary author from co-author list
 
 ### Add new co-authors
 

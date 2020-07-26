@@ -2,6 +2,10 @@
 
 Follows [Semantic Versioning](https://semver.org/).
 
+## [1.6.0] -- in progress
+
+- Change primary author from co-author list [Issue 42](https://github.com/rkotze/git-mob-vs-code/issues/42)
+
 ## [1.5.4] -- 2020-07-04
 
 ### Fixed
