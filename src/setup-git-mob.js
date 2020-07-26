@@ -12,6 +12,7 @@ const { addRepoAuthorToCoauthors } = require("./commands/add-co-author");
 const {
   searchRepositoryUsers,
 } = require("./commands/search-repository-authors");
+const { changePrimaryAuthor } = require("./commands/change-primary-author");
 const { searchGitEmojis } = require("./commands/search-git-emojis");
 const { gitMobHookStatus } = require("./status-bar/git-mob-hook-status");
 const { GitExt } = require("./vscode-git-extension/git-ext");
@@ -40,6 +41,7 @@ function setupGitMob(context) {
       openGitCoAuthor({ coAuthorProvider }),
       soloCommand({ coAuthorProvider }),
       searchGitEmojis(),
+      changePrimaryAuthor({ coAuthorProvider }),
     ];
 
     disposables.forEach((dispose) => context.subscriptions.push(dispose));

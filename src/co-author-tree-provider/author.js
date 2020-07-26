@@ -7,6 +7,7 @@ class Author extends vscode.TreeItem {
     super(name, None);
     this.name = name;
     this.email = email;
+    this.contextValue = "primary-author";
   }
 
   get iconPath() {

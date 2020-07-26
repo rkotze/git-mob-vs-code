@@ -92,6 +92,10 @@ function setCurrent(mobList) {
   return format(handleResponse(`git mob ${mobList.join(" ")}`));
 }
 
+function changeAuthor(authorKey) {
+  return format(handleResponse(`git mob -o ${authorKey}`));
+}
+
 function solo() {
   return format(handleResponse(`git solo`));
 }
@@ -140,6 +144,7 @@ module.exports = {
     solo,
     gitMobLatest,
     installGitMob,
+    changeAuthor,
   },
   getRepoAuthors,
   addRepoAuthor,

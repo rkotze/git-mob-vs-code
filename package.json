@@ -112,6 +112,12 @@
         }
       },
       {
+        "command": "gitmob.changePrimaryAuthor",
+        "title": "Change primary author",
+        "category": "Git Mob",
+        "icon": "$(sync)"
+      },
+      {
         "command": "gitmob.removeCoAuthor",
         "title": "Unselect co-author",
         "category": "Git Mob",
@@ -167,6 +173,11 @@
         {
           "command": "gitmob.removeCoAuthor",
           "when": "viewItem == remove-author",
+          "group": "inline"
+        },
+        {
+          "command": "gitmob.changePrimaryAuthor",
+          "when": "viewItem == primary-author",
           "group": "inline"
         },
         {
