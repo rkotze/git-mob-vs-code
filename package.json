@@ -209,7 +209,13 @@
           "name": "Git Mob Co-authors"
         }
       ]
-    }
+    },
+    "viewsWelcome": [
+      {
+        "view": "gitmob.CoAuthorsView",
+        "contents": "The current open folder does not have a git repository. \n Initialize one to activate Git Mob.",
+      }
+    ]
   },
   "scripts": {
     "test": "jest",
