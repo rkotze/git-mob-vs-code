@@ -20,18 +20,23 @@ const {
 } = require("./vscode-git-extension/format-scm-input-text");
 
 const MAX_RETRIES = 5;
-let numberRetries = 0;
 
 function setupGitMob(context, gitExt) {
   gitExt.gitApi.onDidOpenRepository(function(){
     bootGitMob(context, gitExt);
   });
-  if (gitExt.hasRepositories) {
+
+  waitForRepos(gitExt, MAX_RETRIES, () => {
     bootGitMob(context, gitExt);
+  });
+}
+
+function waitForRepos(gitExt, retries, bootFn){
+  if (gitExt.hasRepositories) {
+    bootFn();
   } else {
-    if (numberRetries < MAX_RETRIES) {
-      setTimeout(() => setupGitMob(context, gitExt), 1000);
-      numberRetries += 1;
+    if (retries > 0) {
+      setTimeout(() => waitForRepos(hasRepo, retries - 1, bootFn), 1000);
     }
   }
 }
