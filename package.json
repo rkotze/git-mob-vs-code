@@ -213,7 +213,7 @@
     "viewsWelcome": [
       {
         "view": "gitmob.CoAuthorsView",
-        "contents": "The current open folder does not have a git repository. \n Initialize one to activate Git Mob.",
+        "contents": "The current open folder does not have a git repository.\nInitialize one to activate Git Mob."
       }
     ]
   },
