@@ -2,16 +2,21 @@
 
 Follows [Semantic Versioning](https://semver.org/).
 
-## [1.6.0] -- in progress
+## [1.6.0] -- 2020-08-01
+
+### Added
 
 - Change primary author from co-author list [Issue 42](https://github.com/rkotze/git-mob-vs-code/issues/42)
+- Starting a new Git repo from VS Code editor will initialize Git Mob as well [Issue 41](https://github.com/rkotze/git-mob-vs-code/issues/41)
+
+![Change primary author](https://user-images.githubusercontent.com/10452163/89105613-6d86a400-d41a-11ea-88ec-25b34a084598.gif)
 
 ## [1.5.4] -- 2020-07-04
 
 ### Fixed
 
 - On Mac OS users opening workspaces might see an error notification appear when contacting Git Mob CLI [Issue 39](https://github.com/rkotze/git-mob-vs-code/issues/39)
-  
+
 ## [1.5.3] -- 2020-05-10
 
 ### Fixed
