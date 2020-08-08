@@ -18,11 +18,12 @@ const { gitMobHookStatus } = require("./status-bar/git-mob-hook-status");
 const {
   replaceCoAuthors,
 } = require("./vscode-git-extension/format-scm-input-text");
+const { soloAfterCommit } = require("./ext-config/solo-after-commit");
 
 const MAX_RETRIES = 5;
 
 function setupGitMob(context, gitExt) {
-  gitExt.gitApi.onDidOpenRepository(function(){
+  gitExt.gitApi.onDidOpenRepository(function () {
     bootGitMob(context, gitExt);
   });
 
@@ -31,7 +32,7 @@ function setupGitMob(context, gitExt) {
   });
 }
 
-function waitForRepos(gitExt, retries, bootFn){
+function waitForRepos(gitExt, retries, bootFn) {
   if (gitExt.hasRepositories) {
     bootFn();
   } else {
@@ -56,6 +57,8 @@ function bootGitMob(context, gitExt) {
     );
   };
 
+  soloAfterCommit(coAuthorProvider);
+
   const disposables = [
     tweetCommand(),
     reloadCommand({ coAuthorProvider }),
@@ -76,16 +79,15 @@ function bootGitMob(context, gitExt) {
   const checkStatus = gitMobHookStatus({ context });
   checkStatus();
 
-  
   vscode.window.onDidChangeWindowState(function ({ focused }) {
     focused && mobList.visible && coAuthorProvider.reloadData();
   });
-  
+
   gitExt.onDidChangeUiState(function () {
     coAuthorProvider.mobAuthors.resetRepoAuthorList();
     coAuthorProvider.reloadData();
   });
-  
+
   const mobList = vscode.window.createTreeView("gitmob.CoAuthorsView", {
     treeDataProvider: coAuthorProvider,
   });
