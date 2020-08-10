@@ -24,7 +24,10 @@
       "type": "extensionHost",
       "request": "launch",
       "runtimeExecutable": "${execPath}",
-      "args": ["--extensionDevelopmentPath=${workspaceFolder}"]
+      "args": [
+        "--extensionDevelopmentPath=${workspaceFolder}", 
+        "--disable-extensions"
+      ]
     },
     {
       "name": "Extension Tests",
