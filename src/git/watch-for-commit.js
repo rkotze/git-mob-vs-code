@@ -5,14 +5,19 @@ const { GitExt } = require("../vscode-git-extension/git-ext");
 exports.watchForCommit = function watchForCommit(cb) {
   const gitExt = new GitExt();
   const gitCommit = path.join(gitExt.rootPath, ".git", "COMMIT_EDITMSG");
-  let fsWait = false;
-  fs.watch(gitCommit, function (evt, filename) {
+
+  return fs.watch(gitCommit, function (evt, filename) {
     if (filename) {
-      if (fsWait) return;
-      fsWait = setTimeout(() => {
-        fsWait = false;
-      }, 100);
+      if (debounceFsWatch()) return;
       cb(evt);
     }
   });
 };
+
+let fsWait = false;
+function debounceFsWatch() {
+  if (fsWait) return true;
+  fsWait = setTimeout(() => {
+    fsWait = false;
+  }, 100);
+}

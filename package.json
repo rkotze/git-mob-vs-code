@@ -53,6 +53,16 @@
     "emojis"
   ],
   "contributes": {
+    "configuration": {
+      "title": "Git Mob",
+      "properties": {
+        "gitMob.postCommit.solo": {
+          "type": "boolean",
+          "default": false,
+          "description": "After a successful commit remove selected co-authors from input to unselected."
+        }
+      }
+    },
     "commands": [
       {
         "command": "gitmob.openGitCoauthor",
