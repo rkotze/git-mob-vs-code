@@ -88,3 +88,9 @@ Search and select an emoji to add to the Git message input field
 After a commit remove selected co-authors from input to unselected. If you commit in the command-line the UI will update as well.
 
 `Default: false`
+
+### Author list -> Expand more authors
+
+Expand 'More Authors' tree when UI starts.
+
+`Default: true`

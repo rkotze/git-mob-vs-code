@@ -59,8 +59,14 @@ class Unselected extends Group {
 }
 
 class MoreAuthors extends Group {
-  constructor(fetchChildren = () => {}) {
-    super("More Authors", "more-authors", "more.svg", Collapsed);
+  constructor(expand = true, fetchChildren = () => {}) {
+    super(
+      "More Authors",
+      "more-authors",
+      "more.svg",
+      expand ? Expanded : Collapsed
+    );
+
     this.fetchChildren = fetchChildren;
   }
 

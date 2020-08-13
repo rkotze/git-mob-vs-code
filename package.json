@@ -60,6 +60,11 @@
           "type": "boolean",
           "default": false,
           "description": "After a commit remove selected co-authors from input to unselected."
+        },
+        "gitMob.authorList.expandMoreAuthors": {
+          "type": "boolean",
+          "default": true,
+          "description": "Expand 'More Authors' tree when UI starts"
         }
       }
     },

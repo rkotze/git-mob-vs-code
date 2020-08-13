@@ -16,6 +16,7 @@ class CoAuthorProvider {
     this.onDidChangeTreeData = this._onDidChangeTreeData.event;
     this.mobAuthors = new MobAuthors();
     this.gitExt = new GitExt();
+    this.config = vscode.workspace.getConfiguration("gitMob.authorList");
   }
 
   getChildren(element = {}) {
@@ -35,7 +36,9 @@ class CoAuthorProvider {
         }
         return Array.from(setAllAuthor);
       }),
-      new MoreAuthors(() => this.mobAuthors.repoAuthorList()),
+      new MoreAuthors(this.config.get("expandMoreAuthors"), () =>
+        this.mobAuthors.repoAuthorList()
+      ),
     ];
   }
 
