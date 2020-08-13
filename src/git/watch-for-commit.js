@@ -19,5 +19,5 @@ function debounceFsWatch() {
   if (fsWait) return true;
   fsWait = setTimeout(() => {
     fsWait = false;
-  }, 100);
+  }, 1000); // windows is a bit slower
 }
