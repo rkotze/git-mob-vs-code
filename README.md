@@ -10,7 +10,8 @@ Great extension when **pair programming** or **mobbing** with your team. Require
 
 1. [Install](#install)
 2. [Features](#features)
-3. [Contributing](https://github.com/rkotze/git-mob-vs-code/blob/master/CONTRIBUTING.md)
+3. [Settings](#settings)
+4. [Contributing](https://github.com/rkotze/git-mob-vs-code/blob/master/CONTRIBUTING.md)
 
 The Git Mob project for [VS code co-author commits](https://www.richardkotze.com/projects/co-author-commits-with-git-mob)
 
@@ -79,3 +80,11 @@ Search and select an emoji to add to the Git message input field
 ### Change primary author
 
 ![Change primary author](https://user-images.githubusercontent.com/10452163/89105613-6d86a400-d41a-11ea-88ec-25b34a084598.gif)
+
+## Settings
+
+### Post commit -> Solo
+
+After a commit remove selected co-authors from input to unselected. If you commit in the command-line the UI will update as well.
+
+`Default: false`

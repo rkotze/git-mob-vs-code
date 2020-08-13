@@ -59,7 +59,7 @@
         "gitMob.postCommit.solo": {
           "type": "boolean",
           "default": false,
-          "description": "After a successful commit remove selected co-authors from input to unselected."
+          "description": "After a commit remove selected co-authors from input to unselected."
         }
       }
     },
