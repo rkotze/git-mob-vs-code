@@ -21,7 +21,7 @@ Read our [blog post](http://tech.findmypast.com/co-author-commits-with-git-mob) 
 
 Install Git Mob `npm i -g git-mob` _(See [git-mob](https://github.com/findmypast-oss/git-mob/#install) for more info)_
 
-Search for "Git Mob" in **Extensions** and click **install**.
+Search for "git-mob" in **Extensions** and click **install**.
 
 Ensure you have set your primary author in Git
 

@@ -2,6 +2,13 @@
 
 Follows [Semantic Versioning](https://semver.org/).
 
+## [1.7.0] -- 2020-08-15
+
+### Added
+
+- Toggle setting to move selected co-authors to unselected after a commit, default false. [Issue 43](https://github.com/rkotze/git-mob-vs-code/issues/43)
+- Toggle setting to expand "More authors" on start by default true. 
+
 ## [1.6.0] -- 2020-08-01
 
 ### Added
