@@ -36,6 +36,7 @@
     "onCommand:gitmob.tweet",
     "onCommand:gitmob.reload",
     "onCommand:gitmob.searchRepositoryUsers",
+    "onCommand:gitmob.searchGithubAuthors",
     "onCommand:gitmob.addRepoAuthorToCoAuthors",
     "onCommand:gitmob.solo",
     "onCommand:gitmob.searchGitEmojis",
@@ -125,6 +126,11 @@
           "light": "resources/icons/light/search.svg",
           "dark": "resources/icons/dark/search.svg"
         }
+      },
+      {
+        "command": "gitmob.searchGithubAuthors",
+        "title": "Search Github users",
+        "category": "Git Mob"
       },
       {
         "command": "gitmob.changePrimaryAuthor",

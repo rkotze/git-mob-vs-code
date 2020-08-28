@@ -19,6 +19,7 @@ const {
   replaceCoAuthors,
 } = require("./vscode-git-extension/format-scm-input-text");
 const { soloAfterCommit } = require("./ext-config/solo-after-commit");
+const { searchGithubAuthors } = require("./commands/github-authors");
 
 const MAX_RETRIES = 5;
 
@@ -70,6 +71,7 @@ function bootGitMob(context, gitExt) {
     soloCommand({ coAuthorProvider }),
     searchGitEmojis(),
     changePrimaryAuthor({ coAuthorProvider }),
+    searchGithubAuthors({ coAuthorProvider }),
   ];
 
   disposables.forEach((dispose) => context.subscriptions.push(dispose));
