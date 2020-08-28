@@ -1,0 +1,9 @@
+GET https://api.github.com/search/users?q=richard kotze
+Accept: application/vnd.github.v3+json
+Authorization: token {{githubkey}}
+
+###
+
+GET https://api.github.com/users/rkotze
+Accept: application/vnd.github.v3+json
+Authorization: token {{githubkey}}
