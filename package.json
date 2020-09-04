@@ -66,6 +66,11 @@
           "type": "boolean",
           "default": true,
           "description": "Expand 'More Authors' tree when UI starts"
+        },
+        "gitMob.gitHub.personalAccessToken": {
+          "type": "string",
+          "default": "",
+          "description": "GitHub personal access token (read:user) https://github.com/settings/tokens"
         }
       }
     },
