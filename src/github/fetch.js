@@ -1,33 +1,39 @@
 const https = require("https");
 
-function fetch(path) {
+const USER_AGENT = { "User-Agent": "vs-code-git-mob" };
+
+function fetch(url, options) {
+  options.headers = updateHeaders(options.headers);
   return new Promise(function (fulfil, reject) {
-    https
-      .get(
-        "https://api.github.com/" + path,
-        {
-          headers: {
-            "User-Agent": "vs-code-git-mob",
-            Accept: "application/vnd.github.v3+json",
-            Authorization: "token <tokenhere>",
-          },
-        },
-        (response) => {
-          let data = "";
+    const req = https
+      .request(url, options, (response) => {
+        let data = "";
 
-          response.on("data", (chunk) => {
-            data += chunk;
-          });
+        response.on("data", (chunk) => {
+          data += chunk;
+        });
 
-          response.on("end", () => {
-            fulfil(data);
-          });
-        }
-      )
+        response.on("end", () => {
+          fulfil(data);
+        });
+      })
       .on("error", (error) => {
         reject(error);
       });
+
+    req.end();
   });
+}
+
+function updateHeaders(headers) {
+  if (headers) {
+    return {
+      ...headers,
+      ...USER_AGENT,
+    };
+  }
+
+  return USER_AGENT;
 }
 
 exports.fetch = fetch;

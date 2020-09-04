@@ -1,5 +1,5 @@
 const vscode = require("vscode");
-const { fetch } = require("../github/fetch");
+const { get } = require("../github/github-api");
 // const { addRepoAuthor } = require("../git/commands");
 // const { GitExt } = require("../vscode-git-extension/git-ext");
 
@@ -8,8 +8,8 @@ function searchGithubAuthors() {
   return vscode.commands.registerCommand(
     "gitmob.searchGithubAuthors",
     async function () {
-      const result = await fetch("search/users?q=richard kotze");
-      console.log(JSON.parse(result));
+      const result = await get("search/users?q=richard kotze");
+      console.log(result);
     }
   );
 }
