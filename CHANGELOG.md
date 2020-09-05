@@ -6,7 +6,7 @@ Follows [Semantic Versioning](https://semver.org/).
 
 ### Added
 
-- Enable user to search GitHub for users that don't exist in current repository. [Issue 45](https://github.com/rkotze/git-mob-vs-code/issues/45)
+- Enable user to search GitHub for users that don't exist in current repository. [Issue 15](https://github.com/rkotze/git-mob-vs-code/issues/15)
 
 ## [1.7.0] -- 2020-08-15
 
