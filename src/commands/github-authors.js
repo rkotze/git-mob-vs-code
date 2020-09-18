@@ -8,7 +8,16 @@ function searchGithubAuthors() {
   return vscode.commands.registerCommand(
     "gitmob.searchGithubAuthors",
     async function () {
-      const result = await get("search/users?q=richard kotze");
+      const searchText = await vscode.window.showInputBox({
+        placeHolder: "Try the name of person, email or username",
+        validateInput(value) {
+          if (value && value.length < 2) {
+            return "Enter at least one character";
+          }
+          return null;
+        },
+      });
+      const result = await get("search/users?q=" + searchText);
       console.log(result);
     }
   );
