@@ -1,10 +1,8 @@
 const vscode = require("vscode");
 const { get } = require("../github/github-api");
-// const { addRepoAuthor } = require("../git/commands");
-// const { GitExt } = require("../vscode-git-extension/git-ext");
+const { addRepoAuthor } = require("../git/commands");
 
 function searchGithubAuthors() {
-  // const { mobAuthors } = coAuthorProvider;
   return vscode.commands.registerCommand(
     "gitmob.searchGithubAuthors",
     async function () {
@@ -17,10 +15,26 @@ function searchGithubAuthors() {
           return null;
         },
       });
-      const result = await get("search/users?q=" + searchText);
-      console.log(result);
+      const searchUsers = await get("search/users?q=" + searchText);
+      const users = await Promise.all(
+        searchUsers.data.items.map((item) => get(item.url))
+      );
+      const selectedAuthor = await quickPickAuthors(users);
+      if (selectedAuthor) {
+        addRepoAuthor(selectedAuthor.repoAuthor);
+        await vscode.commands.executeCommand("gitmob.reload");
+      }
     }
   );
+}
+
+async function quickPickAuthors(repoAuthors) {
+  const authorTextArray = repoAuthors.map(({ data }) => ({
+    label: `${data.name} ${data.login}`,
+    description: `<${data.email}>`,
+    repoAuthor: { ...data, commandKey: data.login },
+  }));
+  return await vscode.window.showQuickPick(authorTextArray);
 }
 
 exports.searchGithubAuthors = searchGithubAuthors;
