@@ -9,7 +9,7 @@ function searchGithubAuthors() {
       const searchText = await vscode.window.showInputBox({
         placeHolder: "Try the name of person, email or username",
         validateInput(value) {
-          if (value && value.length < 2) {
+          if (value.length === 0) {
             return "Enter at least one character";
           }
           return null;
@@ -31,10 +31,12 @@ function searchGithubAuthors() {
 async function quickPickAuthors(repoAuthors) {
   const authorTextArray = repoAuthors.map(({ data }) => ({
     label: `${data.name} ${data.login}`,
-    description: `<${data.email}>`,
+    description: `<${data.email ? data.email : "no email"}>`,
     repoAuthor: { ...data, commandKey: data.login },
   }));
-  return await vscode.window.showQuickPick(authorTextArray);
+  return await vscode.window.showQuickPick(authorTextArray, {
+    matchOnDescription: true,
+  });
 }
 
 exports.searchGithubAuthors = searchGithubAuthors;
