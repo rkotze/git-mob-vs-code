@@ -18,7 +18,7 @@ class MobAuthors {
       const email = config.get("user.email");
 
       if (name && email) {
-        author = new Author("Author: " + name, email);
+        author = new Author(name, email);
       } else {
         author = new ErrorAuthor("Missing git author");
       }

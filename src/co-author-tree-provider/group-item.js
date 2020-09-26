@@ -38,7 +38,7 @@ class ProjectFolder extends Group {
 
 class Selected extends Group {
   constructor(fetchChildren = () => {}) {
-    super("Selected", "selected", "selected.svg");
+    super("Co-authoring", "selected", "selected.svg");
     this.fetchChildren = fetchChildren;
   }
 

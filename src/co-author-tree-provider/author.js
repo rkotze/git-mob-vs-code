@@ -11,11 +11,15 @@ class Author extends vscode.TreeItem {
   }
 
   get iconPath() {
-    return path.join(__dirname, "..", "..", "resources", "icons", "user.svg");
+    return new vscode.ThemeIcon("account");
+  }
+
+  get description() {
+    return this.email;
   }
 
   get tooltip() {
-    return `${this.label}\n${this.email}`;
+    return `Author: ${this.label}\n${this.email}`;
   }
 }
 

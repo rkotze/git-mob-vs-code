@@ -24,6 +24,10 @@ class CoAuthor extends vscode.TreeItem {
     return path.join(__dirname, "..", "..", "resources", "icons", "user.svg");
   }
 
+  get description() {
+    return this.email;
+  }
+
   format() {
     return `Co-authored-by: ${this.label} <${this.email}>`;
   }
