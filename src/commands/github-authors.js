@@ -19,10 +19,22 @@ function searchGithubAuthors() {
       const users = await Promise.all(
         searchUsers.data.items.map((item) => get(item.url))
       );
+
+      const messageUnder30 = `Git Mob: Showing ${searchUsers.data.total_count} GitHub users.`;
+      const messageOver30 = `Git Mob: Can only showing 30 of ${searchUsers.data.total_count} GitHub users.`;
+      vscode.window.showInformationMessage(
+        (searchUsers.data.total_count > 30 ? messageOver30 : messageUnder30) +
+          " Please select users with an email."
+      );
+
       const selectedAuthor = await quickPickAuthors(users);
       if (selectedAuthor) {
-        addRepoAuthor(selectedAuthor.repoAuthor);
-        await vscode.commands.executeCommand("gitmob.reload");
+        if (!selectedAuthor.repoAuthor.email) {
+          vscode.window.showErrorMessage("No email! Can't be added.");
+        } else {
+          addRepoAuthor(selectedAuthor.repoAuthor);
+          await vscode.commands.executeCommand("gitmob.reload");
+        }
       }
     }
   );
