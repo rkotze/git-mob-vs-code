@@ -125,7 +125,7 @@
       },
       {
         "command": "gitmob.searchRepositoryUsers",
-        "title": "Search suggested co-authors",
+        "title": "Search suggested co-authors & add",
         "category": "Git Mob",
         "icon": {
           "light": "resources/icons/light/search.svg",
@@ -134,7 +134,7 @@
       },
       {
         "command": "gitmob.searchGithubAuthors",
-        "title": "Search Github users",
+        "title": "Search for GitHub users & add to co-authors",
         "category": "Git Mob"
       },
       {
@@ -248,7 +248,7 @@
     "ui-test": "node ./test/test-runner"
   },
   "devDependencies": {
-    "@types/vscode": "^1.44.0",
+    "@types/vscode": "^1.49.0",
     "eslint": "^7.4.0",
     "jest": "^25.4.0",
     "vscode-test": "^1.4.0"
