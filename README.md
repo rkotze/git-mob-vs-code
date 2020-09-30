@@ -33,6 +33,7 @@ $ git config --global user.email "jane@example.com"
 ## Features
 
 - Manage & view all your co-authors in source control tab
+- **Search GitHub** for co-authors, see [setting options](#settings) to learn more.
 - [VS Code workspace support](#workspace-support)
 - [Search suggested co-authors](#search-suggested-co-authors) from the "More Authors" list (all contributors to the repository)
 - [Add new co-authors](#add-new-co-authors) and manage them in `.git-coauthors` file
@@ -94,3 +95,13 @@ After a commit remove selected co-authors from input to unselected. If you commi
 Expand 'More Authors' tree when UI starts.
 
 `Default: true`
+
+### Github -> Personal Access Token
+
+Search for co-authors on GitHub you will need to generate a PAT.
+
+1.  Visit [GitHub > settings > tokens](https://github.com/settings/tokens)
+2.  Click "generate new token"
+3.  Select "user:read" _(This allows GitMob to fetch a users public email)_
+
+`Default: <empty>`
