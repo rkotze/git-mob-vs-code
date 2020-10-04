@@ -27,4 +27,16 @@ describe("requests to github api", function () {
 
     expect(result).toEqual({ data: { items: [1] } });
   });
+
+  it("no api key found", async function () {
+    workspace.getConfiguration.mockReturnValue({
+      get() {
+        return null;
+      },
+    });
+
+    await expect(get("search/users")).rejects.toThrow(
+      "No GitHub personal access token found"
+    );
+  });
 });
