@@ -2,11 +2,12 @@
 
 Follows [Semantic Versioning](https://semver.org/).
 
-## Current
+## [1.8.0] -- 2020-10-04
 
 ### Added
 
 - Enable user to search GitHub for users that don't exist in current repository. [Issue 15](https://github.com/rkotze/git-mob-vs-code/issues/15)
+- Minor UI updates, show emails for co-authoring, unselected and author to make it clear which account is being used.
 
 ## [1.7.0] -- 2020-08-15
 
