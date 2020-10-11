@@ -21,26 +21,11 @@ const {
 const { soloAfterCommit } = require("./ext-config/solo-after-commit");
 const { searchGithubAuthors } = require("./commands/github-authors");
 
-const MAX_RETRIES = 5;
-
 function setupGitMob(context, gitExt) {
   gitExt.gitApi.onDidOpenRepository(function () {
     bootGitMob(context, gitExt);
   });
-
-  waitForRepos(gitExt, MAX_RETRIES, () => {
-    bootGitMob(context, gitExt);
-  });
-}
-
-function waitForRepos(gitExt, retries, bootFn) {
-  if (gitExt.hasRepositories) {
-    bootFn();
-  } else {
-    if (retries > 0) {
-      setTimeout(() => waitForRepos(hasRepo, retries - 1, bootFn), 1000);
-    }
-  }
+  bootGitMob(context, gitExt);
 }
 
 function bootGitMob(context, gitExt) {
