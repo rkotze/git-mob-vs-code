@@ -76,8 +76,9 @@ function gitMobLatest() {
   return compare("1.1.0", version.stdout);
 }
 
-function installGitMob() {
-  silentExec("npm i git-mob -g");
+function installGitMob(local) {
+  const flag = local ? "-D" : "-g";
+  return silentExec(`npm i git-mob ${flag}`);
 }
 
 async function getRepoAuthors() {
