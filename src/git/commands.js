@@ -71,7 +71,7 @@ function has(key) {
 }
 
 function gitMobLatest() {
-  const version = silentRun("git mob -v");
+  const version = silentRun("npx git mob -v");
   if (version.status !== 0) return 1;
   return compare("1.1.0", version.stdout);
 }
@@ -86,27 +86,29 @@ async function getRepoAuthors() {
 }
 
 function addRepoAuthor({ commandKey, name, email }) {
-  return silentRun(`git add-coauthor ${commandKey} "${name}" ${email}`);
+  return handleResponse(
+    silentRun(`npx git add-coauthor ${commandKey} "${name}" ${email}`)
+  );
 }
 
 function setCurrent(mobList) {
-  return format(handleResponse(`git mob ${mobList.join(" ")}`));
+  return format(handleResponse(`npx git mob ${mobList.join(" ")}`));
 }
 
 function changeAuthor(authorKey) {
-  return format(handleResponse(`git mob -o ${authorKey}`));
+  return format(handleResponse(`npx git mob -o ${authorKey}`));
 }
 
 function solo() {
-  return format(handleResponse(`git solo`));
+  return format(handleResponse(`npx git solo`));
 }
 
 function current() {
-  return format(handleResponse(`git mob`));
+  return format(handleResponse(`npx git mob`));
 }
 
 function listAll() {
-  return format(handleResponse(`git mob --list`));
+  return format(handleResponse(`npx git mob --list`));
 }
 
 function format(stdout) {
