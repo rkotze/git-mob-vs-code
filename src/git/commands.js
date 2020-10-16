@@ -86,9 +86,7 @@ async function getRepoAuthors() {
 }
 
 function addRepoAuthor({ commandKey, name, email }) {
-  return handleResponse(
-    silentRun(`npx git add-coauthor ${commandKey} "${name}" ${email}`)
-  );
+  return silentRun(`npx git add-coauthor ${commandKey} \\"${name}\\" ${email}`);
 }
 
 function setCurrent(mobList) {
