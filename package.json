@@ -257,7 +257,13 @@
     "viewsWelcome": [
       {
         "view": "gitmob.CoAuthorsView",
-        "contents": "The current open folder does not have a git repository.\nInitialize one to activate Git Mob.\n[npm i -g git-mob](command:gitmob.installCliG)\n[npm i -D git-mob](command:gitmob.installCliL)"
+        "contents": "The current open folder does not have a git repository.\nInitialize one to activate Git Mob.",
+        "when": "config.git.enabled && git.state == initialized && workbenchState == empty"
+      },
+      {
+        "view": "gitmob.CoAuthorsView",
+        "contents": "Please install Git Mob Cli globally or as local dependency.\n[Global: npm i -g git-mob](command:gitmob.installCliG)\n[Local: npm i -D git-mob](command:gitmob.installCliL)",
+        "when": "gitmob.notInstalled"
       }
     ]
   },
