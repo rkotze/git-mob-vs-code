@@ -53,7 +53,7 @@ function bootGitMob(context, gitExt) {
     addRepoAuthorToCoauthors(),
     searchRepositoryUsers({ coAuthorProvider }),
     openGitCoAuthor({ coAuthorProvider }),
-    soloCommand({ coAuthorProvider }),
+    soloCommand(),
     searchGitEmojis(),
     changePrimaryAuthor({ coAuthorProvider }),
     searchGithubAuthors({ coAuthorProvider }),
