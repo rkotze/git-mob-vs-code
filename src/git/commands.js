@@ -86,7 +86,12 @@ async function getRepoAuthors() {
 }
 
 function addRepoAuthor({ commandKey, name, email }) {
-  return silentRun(`npx git add-coauthor ${commandKey} \\"${name}\\" ${email}`);
+  if (process.platform === "win32") {
+    return silentRun(
+      `npx git add-coauthor ${commandKey} \\"${name}\\" ${email}`
+    );
+  }
+  return silentRun(`npx git add-coauthor ${commandKey} "${name}" ${email}`);
 }
 
 function setCurrent(mobList) {
