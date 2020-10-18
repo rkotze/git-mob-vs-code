@@ -24,5 +24,6 @@
       "double",
       { "avoidEscape": true, "allowTemplateLiterals": true }
     ]
-  }
+  },
+  "ignorePatterns": ["*.json"]
 }

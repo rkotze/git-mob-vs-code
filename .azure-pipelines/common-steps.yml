@@ -5,8 +5,8 @@ steps:
   - script: npm install
     displayName: npm install
 
-  - script: npm run test
-    displayName: Run unit tests
+  - script: npm run ci
+    displayName: Run linting rules and unit tests
 
   # Acquire the `vsce` tool and use it to package
   - script: |
