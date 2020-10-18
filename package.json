@@ -278,7 +278,7 @@
   "scripts": {
     "test": "jest",
     "ui-test": "node ./test/test-runner",
-    "lint": "eslint extension.js extension.spec.js src/**",
+    "lint": "eslint . --ext .js",
     "ci": "npm run lint && npm test"
   },
   "devDependencies": {

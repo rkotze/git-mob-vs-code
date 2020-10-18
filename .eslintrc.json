@@ -24,6 +24,5 @@
       "double",
       { "avoidEscape": true, "allowTemplateLiterals": true }
     ]
-  },
-  "ignorePatterns": ["git-emojis"]
+  }
 }
