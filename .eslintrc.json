@@ -25,5 +25,5 @@
       { "avoidEscape": true, "allowTemplateLiterals": true }
     ]
   },
-  "ignorePatterns": ["*.json"]
+  "ignorePatterns": ["git-emojis"]
 }
