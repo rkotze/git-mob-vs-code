@@ -2,6 +2,12 @@
 
 Follows [Semantic Versioning](https://semver.org/).
 
+## [1.9.0] -- 2020-10-18
+
+### Added
+
+- Support using Git Mob CLI as a dev dependency instead of global only using npx. Container will show install options if no cli version detected. [Issue 44](https://github.com/rkotze/git-mob-vs-code/issues/44)
+
 ## [1.8.0] -- 2020-10-04
 
 ### Added

@@ -19,7 +19,12 @@ Read our [blog post](http://tech.findmypast.com/co-author-commits-with-git-mob) 
 
 ## Install
 
-Install Git Mob `npm i -g git-mob` _(See [git-mob](https://github.com/findmypast-oss/git-mob/#install) for more info)_
+Git Mob Cli is needed and supports:
+
+- Global install `npm i -g git-mob`
+- Dev dependency `npm i -D git-mob`
+
+_(See [git-mob](https://github.com/findmypast-oss/git-mob/#install) for more info)_
 
 Search for "git-mob" in **Extensions** and click **install**.
 
