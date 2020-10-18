@@ -54,6 +54,14 @@
     "emojis"
   ],
   "contributes": {
+    "languages": [
+      {
+        "id": "json",
+        "extensions": [
+          ".git-coauthors"
+        ]
+      }
+    ],
     "configuration": {
       "title": "Git Mob",
       "properties": {
