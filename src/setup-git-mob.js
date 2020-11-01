@@ -77,6 +77,11 @@ function bootGitMob(context, gitExt) {
 
   const mobList = vscode.window.createTreeView("gitmob.CoAuthorsView", {
     treeDataProvider: coAuthorProvider,
+    canSelectMany: true,
+  });
+
+  mobList.onDidChangeSelection(function (evt) {
+    coAuthorProvider.multiSelected = evt.selection;
   });
 }
 

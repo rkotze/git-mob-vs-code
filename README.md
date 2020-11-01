@@ -39,14 +39,16 @@ $ git config --global user.email "jane@example.com"
 
 - Manage & view all your co-authors in source control tab
 - **Search GitHub** for co-authors, see [setting options](#settings) to learn more.
-- [VS Code workspace support](#workspace-support)
+- [Change primary author](#change-primary-author) from co-author list
 - [Search suggested co-authors](#search-suggested-co-authors) from the "More Authors" list (all contributors to the repository)
 - [Add new co-authors](#add-new-co-authors) and manage them in `.git-coauthors` file
 - [Add new co-authors from current repository](#add-new-co-authors-from-repository) into your `.git-coauthors` file
-- [Git emojis](#git-emojis) search and select Gitmojis
+- [**Git emojis**](#git-emojis) search and select Gitmojis
+- [VS Code workspace support](#workspace-support)
+- Select multiple co-authors (shift or ctrl) to be added to commit
 - Auto reload when updating `.git-coauthors` file in VS Code
 - Status bar shows if using `template file` or `prepare-commit-msg` hook
-- [Change primary author](#change-primary-author) from co-author list
+- Configurable see [setting options](#settings)
 
 ### Add new co-authors
 

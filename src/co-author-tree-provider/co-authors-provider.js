@@ -7,11 +7,13 @@ const {
   MoreAuthors,
 } = require("./group-item");
 const { GitExt } = require("../vscode-git-extension/git-ext");
+const { CoAuthor } = require("./co-authors");
 
 class CoAuthorProvider {
   constructor() {
     this._notLoaded = true;
     this._selected = [];
+    this.multiSelected = [];
     this._onDidChangeTreeData = new vscode.EventEmitter();
     this.onDidChangeTreeData = this._onDidChangeTreeData.event;
     this.mobAuthors = new MobAuthors();
@@ -62,7 +64,14 @@ class CoAuthorProvider {
   }
 
   toggleCoAuthor(author, selected) {
-    this.mobAuthors.setCurrent(author, selected);
+    const selectedCoAuthors = this.multiSelected.filter(
+      (author) => author instanceof CoAuthor
+    );
+    if (selectedCoAuthors.length > 1) {
+      this.mobAuthors.setCurrent(selectedCoAuthors, selected);
+    } else {
+      this.mobAuthors.setCurrent([author], selected);
+    }
     this.reloadData();
   }
 
@@ -79,6 +88,7 @@ class CoAuthorProvider {
   }
 
   reloadData() {
+    this.multiSelected = [];
     this._onDidChangeTreeData.fire();
   }
 }

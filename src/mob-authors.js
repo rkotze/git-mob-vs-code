@@ -50,14 +50,15 @@ class MobAuthors {
     }, []);
   }
 
-  setCurrent(author, selected) {
+  setCurrent(authors, selected) {
     const commandKeys = [];
 
-    this.listAll.forEach((coAuthor) => {
-      if (author && author.email == coAuthor.email)
-        coAuthor.selected = selected;
+    const authorEmails = authors.map((author) => author.email);
+
+    for (const coAuthor of this.listAll) {
+      if (authorEmails.includes(coAuthor.email)) coAuthor.selected = selected;
       if (coAuthor.selected) commandKeys.push(coAuthor.commandKey);
-    });
+    }
 
     if (commandKeys.length > 0) {
       const currentMob = mob.setCurrent(commandKeys);

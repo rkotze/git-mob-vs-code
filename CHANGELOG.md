@@ -2,6 +2,14 @@
 
 Follows [Semantic Versioning](https://semver.org/).
 
+## 1.10.0 -- current
+
+### Added
+
+- Select multiple CoAuthors to mob program with [Issue 46](https://github.com/rkotze/git-mob-vs-code/issues/46)
+- set .git-coauthors language to JSON
+- Add linting to CI pipeline
+
 ## [1.9.0] -- 2020-10-18
 
 ### Added
