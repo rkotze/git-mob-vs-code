@@ -15,6 +15,9 @@ function searchGithubAuthors() {
           return null;
         },
       });
+
+      if (typeof searchText === "undefined") return null;
+
       const searchUsers = await get("search/users?q=" + searchText);
       const users = await Promise.all(
         searchUsers.data.items.map((item) => get(item.url))

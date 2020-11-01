@@ -12,6 +12,10 @@ Follows [Semantic Versioning](https://semver.org/).
 - Make search options for Git repository and GitHub available in context menu
 - Open Git Mob settings from context menu
 
+### Fixed
+
+- Pressing ESC on GitHub search input should not trigger a search
+
 ## [1.9.0] -- 2020-10-18
 
 ### Added
