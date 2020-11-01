@@ -68,7 +68,7 @@
         "gitMob.postCommit.solo": {
           "type": "boolean",
           "default": false,
-          "description": "After a commit remove selected co-authors from input to unselected."
+          "description": "After a commit remove selected co-authors"
         },
         "gitMob.authorList.expandMoreAuthors": {
           "type": "boolean",
@@ -133,7 +133,7 @@
       },
       {
         "command": "gitmob.searchRepositoryUsers",
-        "title": "Search suggested co-authors & add",
+        "title": "Search Git repository for co-authors",
         "category": "Git Mob",
         "icon": {
           "light": "resources/icons/light/search.svg",
@@ -142,7 +142,12 @@
       },
       {
         "command": "gitmob.searchGithubAuthors",
-        "title": "Search for GitHub users & add to co-authors",
+        "title": "Search GitHub for co-authors",
+        "category": "Git Mob"
+      },
+      {
+        "command": "gitmob.openSettings",
+        "title": "Settings",
         "category": "Git Mob"
       },
       {
@@ -183,11 +188,6 @@
     "menus": {
       "view/title": [
         {
-          "command": "gitmob.tweet",
-          "when": "view == gitmob.CoAuthorsView",
-          "group": "inline"
-        },
-        {
           "command": "gitmob.searchGitEmojis",
           "when": "view == gitmob.CoAuthorsView",
           "group": "navigation"
@@ -200,7 +200,27 @@
         {
           "command": "gitmob.reload",
           "when": "view == gitmob.CoAuthorsView",
-          "group": "inline"
+          "group": "2_misc@1"
+        },
+        {
+          "command": "gitmob.openSettings",
+          "when": "view == gitmob.CoAuthorsView",
+          "group": "2_misc@2"
+        },
+        {
+          "command": "gitmob.tweet",
+          "when": "view == gitmob.CoAuthorsView",
+          "group": "3_tweet@1"
+        },
+        {
+          "command": "gitmob.searchRepositoryUsers",
+          "when": "view == gitmob.CoAuthorsView",
+          "group": "1_search@1"
+        },
+        {
+          "command": "gitmob.searchGithubAuthors",
+          "when": "view == gitmob.CoAuthorsView",
+          "group": "1_search@2"
         }
       ],
       "view/item/context": [

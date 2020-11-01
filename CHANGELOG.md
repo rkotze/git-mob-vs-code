@@ -7,8 +7,10 @@ Follows [Semantic Versioning](https://semver.org/).
 ### Added
 
 - Select multiple CoAuthors to mob program with [Issue 46](https://github.com/rkotze/git-mob-vs-code/issues/46)
-- set .git-coauthors language to JSON
+- set `.git-coauthors` language to JSON
 - Add linting to CI pipeline
+- Make search options for Git repository and GitHub available in context menu
+- Open Git Mob settings from context menu
 
 ## [1.9.0] -- 2020-10-18
 

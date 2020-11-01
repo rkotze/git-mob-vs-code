@@ -14,12 +14,13 @@ const {
 } = require("./commands/search-repository-authors");
 const { changePrimaryAuthor } = require("./commands/change-primary-author");
 const { searchGitEmojis } = require("./commands/search-git-emojis");
+const { openSettings } = require("./commands/open-settings");
+const { searchGithubAuthors } = require("./commands/github-authors");
 const { gitMobHookStatus } = require("./status-bar/git-mob-hook-status");
 const {
   replaceCoAuthors,
 } = require("./vscode-git-extension/format-scm-input-text");
 const { soloAfterCommit } = require("./ext-config/solo-after-commit");
-const { searchGithubAuthors } = require("./commands/github-authors");
 
 function setupGitMob(context, gitExt) {
   gitExt.gitApi.onDidOpenRepository(function () {
@@ -47,6 +48,7 @@ function bootGitMob(context, gitExt) {
 
   const disposables = [
     tweetCommand(),
+    openSettings(),
     reloadCommand({ coAuthorProvider }),
     addCoAuthor({ coAuthorProvider }),
     removeCoAuthor({ coAuthorProvider }),
