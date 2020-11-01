@@ -48,6 +48,11 @@ const TreeItemCollapsibleState = {
 
 class TreeItem {}
 
+class EventEmitter {
+  get event() {}
+  fire() {}
+}
+
 const vscode = {
   languages,
   StatusBarAlignment,
@@ -62,6 +67,7 @@ const vscode = {
   commands,
   TreeItemCollapsibleState,
   TreeItem,
+  EventEmitter,
 };
 
 module.exports = vscode;
