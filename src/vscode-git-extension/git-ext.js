@@ -32,6 +32,7 @@ class GitExt {
   }
 
   get selectedRepository() {
+    if (this.repositories.length === 1) return this.repositories[0];
     return this.repositories.find((repo) => repo.ui.selected);
   }
 
