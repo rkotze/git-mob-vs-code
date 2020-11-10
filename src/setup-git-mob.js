@@ -39,9 +39,13 @@ function bootGitMob(context, gitExt) {
   };
 
   coAuthorProvider.onChanged = function () {
-    gitExt.updateSelectedInput(
-      replaceCoAuthors(coAuthorProvider.mobAuthors.listCurrent)
-    );
+    try {
+      gitExt.updateSelectedInput(
+        replaceCoAuthors(coAuthorProvider.mobAuthors.listCurrent)
+      );
+    } catch (err) {
+      vscode.window.showErrorMessage("Failed to update input: " + err.message);
+    }
   };
 
   soloAfterCommit(coAuthorProvider);

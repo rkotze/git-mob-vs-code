@@ -8,10 +8,14 @@ function searchGitEmojis() {
     async function () {
       const emoji = await quickPickEmojis();
       if (emoji) {
-        const gitExt = new GitExt();
-        gitExt.updateSelectedInput(function (value) {
-          return emoji.code + value;
-        });
+        try {
+          const gitExt = new GitExt();
+          gitExt.updateSelectedInput(function (value) {
+            return emoji.code + value;
+          });
+        } catch (err) {
+          vscode.window.showErrorMessage("Failed to add emoji: " + err.message);
+        }
       }
     }
   );
