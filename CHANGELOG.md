@@ -2,11 +2,17 @@
 
 Follows [Semantic Versioning](https://semver.org/).
 
+## 1.10.1 -- 2020-11-11
+
+### Fixed
+
+- When selecting a co-author error "Cannot read property 'inputBox' of undefined". [Issue 48](https://github.com/rkotze/git-mob-vs-code/issues/48) **Note** related VS Code issues logged in ticket.
+
 ## 1.10.0 -- 2020-11-01
 
 ### Added
 
-- Select multiple CoAuthors to mob program with [Issue 46](https://github.com/rkotze/git-mob-vs-code/issues/46)
+- Select multiple CoAuthors to mob program with. [Issue 46](https://github.com/rkotze/git-mob-vs-code/issues/46)
 - set `.git-coauthors` language to JSON
 - Add linting to CI pipeline
 - Make search options for Git repository and GitHub available in context menu
