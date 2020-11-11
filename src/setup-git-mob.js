@@ -21,6 +21,7 @@ const {
   replaceCoAuthors,
 } = require("./vscode-git-extension/format-scm-input-text");
 const { soloAfterCommit } = require("./ext-config/solo-after-commit");
+const { logIssue } = require("./errors/log-issue");
 
 function setupGitMob(context, gitExt) {
   gitExt.gitApi.onDidOpenRepository(function () {
@@ -44,7 +45,7 @@ function bootGitMob(context, gitExt) {
         replaceCoAuthors(coAuthorProvider.mobAuthors.listCurrent)
       );
     } catch (err) {
-      vscode.window.showErrorMessage("Failed to update input: " + err.message);
+      logIssue("Failed to update input: " + err.message);
     }
   };
 

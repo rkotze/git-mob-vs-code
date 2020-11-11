@@ -1,4 +1,5 @@
 const vscode = require("vscode");
+const { logIssue } = require("../errors/log-issue");
 const { coAuthorsFile } = require("../git-mob-coauthors-file");
 
 function openGitCoAuthor() {
@@ -13,7 +14,7 @@ function openGitCoAuthor() {
         const doc = await openTextDocument(pathToCoauthors);
         showTextDocument(doc);
       } catch (err) {
-        vscode.window.showErrorMessage("GitMob error: " + err);
+        logIssue("GitMob error: " + err);
       }
     }
   );

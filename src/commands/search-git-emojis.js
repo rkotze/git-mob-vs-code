@@ -1,6 +1,7 @@
 const vscode = require("vscode");
 const { GitExt } = require("../vscode-git-extension/git-ext");
 const gitEmojisJson = require("../git-emojis/gitmojis.json");
+const { logIssue } = require("../errors/log-issue");
 
 function searchGitEmojis() {
   return vscode.commands.registerCommand(
@@ -14,7 +15,7 @@ function searchGitEmojis() {
             return emoji.code + value;
           });
         } catch (err) {
-          vscode.window.showErrorMessage("Failed to add emoji: " + err.message);
+          logIssue("Failed to add emoji: " + err.message);
         }
       }
     }

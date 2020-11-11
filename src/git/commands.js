@@ -1,6 +1,6 @@
 const { spawnSync, exec } = require("child_process");
 const { promisify } = require("util");
-const vscode = require("vscode");
+const { logIssue } = require("../errors/log-issue");
 const { compare } = require("../semver/compare");
 const { GitExt } = require("../vscode-git-extension/git-ext");
 
@@ -24,9 +24,7 @@ function silentRun(command) {
   try {
     return spawnSync(command, cmdOptions());
   } catch (err) {
-    vscode.window.showErrorMessage(
-      `GitMob silentRun: "${command}" ${err.message}`
-    );
+    logIssue(`GitMob silentRun: "${command}" ${err.message}`);
     throw err;
   }
 }
@@ -43,9 +41,7 @@ async function silentExec(command) {
 
     return response.stdout;
   } catch (err) {
-    vscode.window.showErrorMessage(
-      `GitMob silentExec: "${command}" ${err.message}`
-    );
+    logIssue(`GitMob silentExec: "${command}" ${err.message}`);
     return "";
   }
 }
@@ -53,9 +49,7 @@ async function silentExec(command) {
 function handleResponse(query) {
   const response = silentRun(query);
   if (response.status !== 0) {
-    vscode.window.showErrorMessage(
-      `GitMob handleResponse: "${query}" ${response.stderr.trim()}`
-    );
+    logIssue(`GitMob handleResponse: "${query}" ${response.stderr.trim()}`);
     return "";
   }
 
