@@ -22,7 +22,7 @@ const { GitExt } = require("../vscode-git-extension/git-ext");
  */
 function silentRun(command) {
   try {
-    return spawnSync(command, cmdOptions());
+    return spawnSync(command, cmdOptions({ shell: true }));
   } catch (err) {
     logIssue(`GitMob silentRun: "${command}" ${err.message}`);
     throw err;
@@ -112,11 +112,11 @@ function format(stdout) {
   return stdout.replace(/\r|<|>/g, "");
 }
 
-function cmdOptions() {
+function cmdOptions(extendOptions = {}) {
   const gitExt = new GitExt();
   return {
+    ...extendOptions,
     encoding: "utf8",
-    shell: true,
     cwd: gitExt.rootPath,
   };
 }
