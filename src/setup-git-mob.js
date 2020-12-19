@@ -78,8 +78,10 @@ function bootGitMob(context, gitExt) {
   });
 
   gitExt.onDidChangeUiState(function () {
-    coAuthorProvider.mobAuthors.resetRepoAuthorList();
-    coAuthorProvider.reloadData();
+    if (this.ui.selected) {
+      coAuthorProvider.mobAuthors.resetRepoAuthorList();
+      coAuthorProvider.reloadData();
+    }
   });
 
   const mobList = vscode.window.createTreeView("gitmob.CoAuthorsView", {

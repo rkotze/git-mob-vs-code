@@ -52,14 +52,14 @@ class GitExt {
     for (let repo of this.repositories) {
       if (!trackRepos.includes(repo.rootUri.path)) {
         trackRepos.push(repo.rootUri.path);
-        repo.ui.onDidChange(stateChangeCallback);
+        repo.ui.onDidChange(stateChangeCallback.bind(repo));
       }
     }
 
     this.gitApi.onDidOpenRepository(function (repo) {
       if (!trackRepos.includes(repo.rootUri.path)) {
         trackRepos.push(repo.rootUri.path);
-        repo.ui.onDidChange(stateChangeCallback);
+        repo.ui.onDidChange(stateChangeCallback.bind(repo));
       }
     });
 
