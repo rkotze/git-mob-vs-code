@@ -2,6 +2,12 @@
 
 Follows [Semantic Versioning](https://semver.org/).
 
+## In Progress
+
+### Fixed
+
+- Watch for commit failed ENOENT: no such file or directory `\.git\COMMIT_EDITMSG` [Issue 56](https://github.com/rkotze/git-mob-vs-code/issues/56)
+
 ## 1.10.1 -- 2020-11-11
 
 ### Fixed
