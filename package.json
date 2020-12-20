@@ -5,7 +5,7 @@
   "version": "1.10.1",
   "publisher": "RichardKotze",
   "engines": {
-    "vscode": "^1.49.0"
+    "vscode": "^1.52.0"
   },
   "repository": {
     "type": "git",
@@ -306,7 +306,7 @@
   },
   "devDependencies": {
     "@types/jest": "^26.0.14",
-    "@types/vscode": "^1.49.0",
+    "@types/vscode": "^1.52.0",
     "eslint": "^7.4.0",
     "jest": "^25.4.0",
     "vscode-test": "^1.4.0"

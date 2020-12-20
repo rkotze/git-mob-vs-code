@@ -14,6 +14,8 @@ class CoAuthorProvider {
     this._notLoaded = true;
     this._selected = [];
     this.multiSelected = [];
+    this._onCoAuthorChange = new vscode.EventEmitter();
+    this.onCoAuthorChange = this._onCoAuthorChange.event;
     this._onDidChangeTreeData = new vscode.EventEmitter();
     this.onDidChangeTreeData = this._onDidChangeTreeData.event;
     this.mobAuthors = new MobAuthors();
@@ -57,7 +59,7 @@ class CoAuthorProvider {
       element.email === this.mobAuthors.lastCoAuthor.email &&
       this._changed()
     ) {
-      this.onChanged();
+      this._onCoAuthorChange.fire();
     }
 
     return element;

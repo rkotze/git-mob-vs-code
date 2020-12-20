@@ -22,6 +22,9 @@ const {
 } = require("./vscode-git-extension/format-scm-input-text");
 const { soloAfterCommit } = require("./ext-config/solo-after-commit");
 const { logIssue } = require("./errors/log-issue");
+const {
+  CountDecorationProvider,
+} = require("./co-author-tree-provider/count-decorator-provider");
 
 function setupGitMob(context, gitExt) {
   gitExt.gitApi.onDidOpenRepository(function () {
@@ -39,7 +42,7 @@ function bootGitMob(context, gitExt) {
     });
   };
 
-  coAuthorProvider.onChanged = function () {
+  coAuthorProvider.onCoAuthorChange(function () {
     try {
       gitExt.updateSelectedInput(
         replaceCoAuthors(coAuthorProvider.mobAuthors.listCurrent)
@@ -47,7 +50,7 @@ function bootGitMob(context, gitExt) {
     } catch (err) {
       logIssue("Failed to update input: " + err.message);
     }
-  };
+  });
 
   soloAfterCommit(coAuthorProvider);
 
@@ -64,6 +67,7 @@ function bootGitMob(context, gitExt) {
     searchGitEmojis(),
     changePrimaryAuthor({ coAuthorProvider }),
     searchGithubAuthors({ coAuthorProvider }),
+    new CountDecorationProvider(coAuthorProvider),
   ];
 
   disposables.forEach((dispose) => context.subscriptions.push(dispose));

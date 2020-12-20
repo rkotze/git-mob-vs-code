@@ -45,6 +45,10 @@ class Selected extends Group {
   get tooltip() {
     return "Selected co-authors";
   }
+
+  get resourceUri() {
+    return vscode.Uri.file(this.contextValue);
+  }
 }
 
 class Unselected extends Group {
@@ -55,6 +59,10 @@ class Unselected extends Group {
 
   get tooltip() {
     return "Available co-authors";
+  }
+
+  get resourceUri() {
+    return vscode.Uri.file(this.contextValue);
   }
 }
 
@@ -72,6 +80,10 @@ class MoreAuthors extends Group {
 
   get tooltip() {
     return "Contributors to this repo";
+  }
+
+  get resourceUri() {
+    return vscode.Uri.file(this.contextValue);
   }
 }
 
