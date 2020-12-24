@@ -11,6 +11,7 @@ const window = {
   showErrorMessage: jest.fn(),
   showWarningMessage: jest.fn(),
   createTextEditorDecorationType: jest.fn(),
+  registerFileDecorationProvider: jest.fn(),
 };
 
 const workspace = {
