@@ -1,5 +1,18 @@
 # Contributing Guide
 
+👋Thank you for taking the time to read this and I look forward to reviewing your contribution.
+
+## Contribution instructions:
+
+- Create a fork of the project on Github.
+- Clone the fork on your local machine. Your remote repo on Github is called `origin`.
+- Add the original repository as a remote called `upstream`.
+- If you created your fork a while ago be sure to pull upstream changes into your local repository.
+- Create a new branch to work on! Branch from `master`.
+- Please make an issue to reference and implement/fix your feature.
+- Please add unit tests, **jest** is the testing tool.
+- Make a pull request (PR) to merge into `master` and make sure it passes the continuous integration pipeline.
+- You're PR will be reviewed as soon as possible.
 ## Getting Started
 
 1. Install latest version of `git-mob`
@@ -17,7 +30,7 @@
 
 ## Releasing
 
-This section is for maintainers with push access to git-mob-vs-code on the extension marketplace.
+This section is for owner/maintainers with publish access to git-mob-vs-code on the extension marketplace.
 
 1. Add release notes at https://github.com/rkotze/git-mob-vs-code/releases and update the CHANGELOG https://github.com/rkotze/git-mob-vs-code/blob/master/CHANGELOG.md
 1. Bump the version at the appropriate level (major, minor, patch); e.g.
