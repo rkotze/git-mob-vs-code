@@ -4,6 +4,10 @@ Follows [Semantic Versioning](https://semver.org/).
 
 ## In Progress
 
+### Added
+
+- Add a total count for Selected and Unselected co-authors [Issue 3](https://github.com/rkotze/git-mob-vs-code/issues/3)
+
 ### Fixed
 
 - Watch for commit failed ENOENT: no such file or directory `\.git\COMMIT_EDITMSG` [Issue 56](https://github.com/rkotze/git-mob-vs-code/issues/56)
