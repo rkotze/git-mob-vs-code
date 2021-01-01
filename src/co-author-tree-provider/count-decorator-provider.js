@@ -27,23 +27,30 @@ class CountDecorationProvider {
         badge: mobAuthors.listAll
           .filter((author) => !author.selected)
           .length.toString(),
-        tooltip: "Available to co-author with",
-        propagate: false,
+        tooltip: "Available to co-author",
       };
     }
     if (uri.path === selected) {
       return {
         badge: mobAuthors.listCurrent.length.toString(),
-        propagate: false,
-        tooltip: "Co-authoring with",
+        tooltip: "Selected co-authors",
       };
     }
     if (uri.path === moreAuthors) {
       const repoAuthors = await mobAuthors.repoAuthorList();
+      const authorTotal = repoAuthors.length;
+      const tooltip = `Contributors to this repo (${authorTotal})`;
+
+      if (authorTotal > 99) {
+        return {
+          badge: "99",
+          tooltip,
+        };
+      }
+
       return {
-        badge: repoAuthors.length.toString(),
-        propagate: false,
-        tooltip: "Contributors to this repo",
+        badge: authorTotal.toString(),
+        tooltip,
       };
     }
   }
