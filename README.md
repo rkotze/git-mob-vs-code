@@ -6,7 +6,7 @@
 
 Great extension when **pair programming** or **mobbing** with your team. Requires [Git Mob cli](https://github.com/findmypast-oss/git-mob)
 
-![Git Mob in action](https://user-images.githubusercontent.com/10452163/51446144-cc3b6f80-1d05-11e9-87fa-96622a25eedc.gif)
+![Git Mob in action](https://user-images.githubusercontent.com/10452163/103484860-d323f580-4de9-11eb-9819-bb8d6602a21e.gif)
 
 1. [Install](#install)
 2. [Features](#features)
