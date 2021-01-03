@@ -12,7 +12,7 @@ function searchGitEmojis() {
         try {
           const gitExt = new GitExt();
           gitExt.updateSelectedInput(function (value) {
-            return emoji.code + value;
+            return emoji.code + " " + value;
           });
         } catch (err) {
           logIssue("Failed to add emoji: " + err.message);
