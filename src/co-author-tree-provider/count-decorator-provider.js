@@ -12,7 +12,7 @@ class CountDecorationProvider {
 
   handleChange() {
     const changeDecoration = this._onDidChangeDecorations;
-    this.coAuthorProvider.onCoAuthorChange(function () {
+    this.coAuthorProvider.onDidChangeTreeData(function () {
       changeDecoration.fire();
     });
   }

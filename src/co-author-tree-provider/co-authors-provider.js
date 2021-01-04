@@ -14,8 +14,6 @@ class CoAuthorProvider {
     this._notLoaded = true;
     this._selected = [];
     this.multiSelected = [];
-    this._onCoAuthorChange = new vscode.EventEmitter();
-    this.onCoAuthorChange = this._onCoAuthorChange.event;
     this._onDidChangeTreeData = new vscode.EventEmitter();
     this.onDidChangeTreeData = this._onDidChangeTreeData.event;
     this.mobAuthors = new MobAuthors();
@@ -55,13 +53,6 @@ class CoAuthorProvider {
       this._notLoaded = false;
     }
 
-    if (
-      element.email === this.mobAuthors.lastCoAuthor.email &&
-      this._changed()
-    ) {
-      this._onCoAuthorChange.fire();
-    }
-
     return element;
   }
 
@@ -75,18 +66,6 @@ class CoAuthorProvider {
       this.mobAuthors.setCurrent([author], selected);
     }
     this.reloadData();
-  }
-
-  _changed() {
-    const currentSelected = this.mobAuthors.listAll.filter(
-      (coAuthors) => coAuthors.selected
-    );
-
-    const isDiff = this._selected.length !== currentSelected.length;
-
-    this._selected = currentSelected;
-
-    return isDiff;
   }
 
   reloadData() {

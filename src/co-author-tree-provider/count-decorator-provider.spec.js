@@ -7,7 +7,7 @@ describe("Count co-authors", function () {
       listCurrent: new Array(2),
       repoAuthorList: jest.fn().mockResolvedValue(new Array(30)),
     },
-    onCoAuthorChange: jest.fn(),
+    onDidChangeTreeData: jest.fn(),
   };
 
   it("should be two selected", async function () {

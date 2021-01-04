@@ -42,7 +42,7 @@ function bootGitMob(context, gitExt) {
     });
   };
 
-  coAuthorProvider.onCoAuthorChange(function () {
+  coAuthorProvider.onDidChangeTreeData(function () {
     try {
       gitExt.updateSelectedInput(
         replaceCoAuthors(coAuthorProvider.mobAuthors.listCurrent)
