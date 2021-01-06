@@ -2,11 +2,12 @@
 
 Follows [Semantic Versioning](https://semver.org/).
 
-## 1.11.0 -- 2021-01-03
+## 1.11.0 -- 2021-01-06
 
 ### Added
 
 - Add a total count for Selected and Unselected co-authors [Issue 3](https://github.com/rkotze/git-mob-vs-code/issues/3)
+- Updated gif demo of Git Mob
 
 ### Fixed
 
