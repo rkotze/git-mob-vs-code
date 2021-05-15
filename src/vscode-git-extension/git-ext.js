@@ -46,6 +46,10 @@ class GitExt {
     }
   }
 
+  onRepoChange(repoChangedCallback) {
+    this.selectedRepository.state.onDidChange(() => repoChangedCallback());
+  }
+
   onDidChangeUiState(stateChangeCallback) {
     const trackRepos = [];
 
