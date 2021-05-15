@@ -47,7 +47,6 @@
     "git",
     "co-authors",
     "git author",
-    "git log",
     "author",
     "annotation",
     "github",
@@ -82,6 +81,11 @@
           "type": "string",
           "default": "",
           "description": "GitHub personal access token (read:user) https://github.com/settings/tokens"
+        },
+        "gitMob.hooks.prepareCommitMsg": {
+          "type": "boolean",
+          "default": false,
+          "description": "Check if using prepare-commit-msg hook to append co-authors"
         }
       }
     },
