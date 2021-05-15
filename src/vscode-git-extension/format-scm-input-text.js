@@ -1,5 +1,5 @@
 const os = require("os");
-const { hasPrepareCommitMsgTemplate } = require("../prepare-commit-msg-file");
+const { prepareCommitMsgSet } = require("../ext-config/prepare-commit-msg-set");
 
 exports.replaceCoAuthors = function replaceCoAuthors(coAuthors) {
   return function (currentText) {
@@ -7,7 +7,8 @@ exports.replaceCoAuthors = function replaceCoAuthors(coAuthors) {
       /(\r\n|\r|\n)*Co-authored-by.*(\r\n|\r|\n)*/g,
       ""
     );
-    if (hasPrepareCommitMsgTemplate()) return noCoAuthors;
+
+    if (prepareCommitMsgSet()) return noCoAuthors;
 
     const coAuthorsMetadata = formatCoAuthors(coAuthors);
 
