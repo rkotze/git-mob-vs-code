@@ -8,7 +8,10 @@ exports.replaceCoAuthors = function replaceCoAuthors(coAuthors) {
       ""
     );
 
-    if (prepareCommitMsgSet()) return noCoAuthors;
+    if (prepareCommitMsgSet()) {
+      if (noCoAuthors === "") return " ";
+      return noCoAuthors;
+    }
 
     const coAuthorsMetadata = formatCoAuthors(coAuthors);
 
