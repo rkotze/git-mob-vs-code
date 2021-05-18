@@ -77,6 +77,7 @@ function bootGitMob(context, gitExt) {
   });
 
   gitExt.onDidChangeUiState(function () {
+    if (gitExt.repositories.length === 1) return;
     if (this.ui.selected) {
       coAuthorProvider.mobAuthors.resetRepoAuthorList();
       coAuthorProvider.reloadData();
