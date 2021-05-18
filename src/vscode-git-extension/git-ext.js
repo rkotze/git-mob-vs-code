@@ -46,7 +46,7 @@ class GitExt {
     }
   }
 
-  onRepoChange(repoChangedCallback) {
+  onDidChangeRepo(repoChangedCallback) {
     this.selectedRepository.state.onDidChange(() => repoChangedCallback());
   }
 
