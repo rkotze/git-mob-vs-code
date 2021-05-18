@@ -2,6 +2,15 @@
 
 Follows [Semantic Versioning](https://semver.org/).
 
+
+## 1.12.0 -- WIP
+
+### Added
+
+- Stop support for prepare-commit-msg no longer option in `git-mob v2` [Issue 62](https://github.com/rkotze/git-mob-vs-code/issues/62)
+- Stop continuous loading of co-author list when interacting with SCM UI
+
+
 ## 1.11.0 -- 2021-01-06
 
 ### Added

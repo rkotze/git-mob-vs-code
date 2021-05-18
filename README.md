@@ -47,8 +47,9 @@ $ git config --global user.email "jane@example.com"
 - [VS Code workspace support](#workspace-support)
 - Select multiple co-authors (shift or ctrl) to be added to commit
 - Auto reload when updating `.git-coauthors` file in VS Code
-- Status bar shows if using `template file` or `prepare-commit-msg` hook
 - Configurable see [setting options](#settings)
+
+**`prepare-commit-msg` hook support removed in `v1.12.0`**
 
 ### Add new co-authors
 
