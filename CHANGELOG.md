@@ -3,12 +3,13 @@
 Follows [Semantic Versioning](https://semver.org/).
 
 
-## 1.12.0 -- WIP
+## 1.12.0 -- 2021-06-02
 
 ### Added
 
 - Stop support for prepare-commit-msg no longer option in `git-mob v2` [Issue 62](https://github.com/rkotze/git-mob-vs-code/issues/62)
 - Stop continuous loading of co-author list when interacting with SCM UI
+- Show error message if no GitHub PAT is set [Issue 58](https://github.com/rkotze/git-mob-vs-code/issues/58)
 
 
 ## 1.11.0 -- 2021-01-06
