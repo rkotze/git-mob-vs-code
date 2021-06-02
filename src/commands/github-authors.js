@@ -31,6 +31,10 @@ function searchGithubAuthors() {
         searchUsers.data.items.map((item) => get(item.url))
       );
 
+      if (searchUsers.data.total_count === 0) {
+        vscode.window.showInformationMessage("No users found!");
+        return;
+      }
       const messageUnder30 = `Git Mob: Showing ${searchUsers.data.total_count} GitHub users.`;
       const messageOver30 = `Git Mob: Can only showing 30 of ${searchUsers.data.total_count} GitHub users.`;
       vscode.window.showInformationMessage(
