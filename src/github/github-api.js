@@ -1,11 +1,10 @@
-const { workspace } = require("vscode");
+const { getGitHubPat } = require("../ext-config/config");
 const { fetch } = require("./fetch");
 
 const GITHUB_API = "https://api.github.com/";
 
 async function get(url) {
-  const gitHubSettings = workspace.getConfiguration("gitMob.gitHub");
-  const pat = gitHubSettings.get("personalAccessToken");
+  const pat = getGitHubPat();
   if (!pat) {
     throw new Error("No GitHub personal access token found");
   }

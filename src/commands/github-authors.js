@@ -1,11 +1,19 @@
 const vscode = require("vscode");
 const { get } = require("../github/github-api");
 const { addRepoAuthor } = require("../git/commands");
+const { getGitHubPat } = require("../ext-config/config");
 
 function searchGithubAuthors() {
   return vscode.commands.registerCommand(
     "gitmob.searchGithubAuthors",
     async function () {
+      const gitHubPat = getGitHubPat();
+      if (!gitHubPat) {
+        vscode.window.showErrorMessage(
+          "Missing GitHub PAT. Update settings with valid PAT."
+        );
+        return;
+      }
       const searchText = await vscode.window.showInputBox({
         placeHolder: "Try the name of person, email or username",
         validateInput(value) {

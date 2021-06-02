@@ -1,6 +1,7 @@
 const vscode = require("vscode");
 const { watchForCommit } = require("../git/watch-for-commit");
 const { mob } = require("../git/commands");
+const { getConfigSolo } = require("./config");
 
 exports.soloAfterCommit = function soloAfterCommit(coAuthorProvider) {
   vscode.workspace.onDidChangeConfiguration((evt) => {
@@ -11,11 +12,6 @@ exports.soloAfterCommit = function soloAfterCommit(coAuthorProvider) {
 
   soloSwitch(coAuthorProvider, getConfigSolo(coAuthorProvider));
 };
-
-function getConfigSolo() {
-  const config = vscode.workspace.getConfiguration("gitMob.postCommit");
-  return config.get("solo");
-}
 
 let watch = null;
 function soloSwitch(coAuthorProvider, afterCommitOn) {
