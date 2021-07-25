@@ -5,6 +5,7 @@ const {
 const { createAuthor } = require("./co-author-tree-provider/co-authors");
 const { Author } = require("./co-author-tree-provider/author");
 const { ErrorAuthor } = require("./co-author-tree-provider/error-author");
+const { gitAuthors } = require("./git/git-mob-api/git-authors");
 
 let author = null;
 let allAuthors = null;
@@ -26,7 +27,7 @@ class MobAuthors {
     return author;
   }
 
-  get listCurrent() {
+  async listCurrent() {
     if (setMob !== null) {
       const tempMob = setMob;
       setMob = null;
@@ -34,8 +35,9 @@ class MobAuthors {
     }
 
     const currentMob = mob.current();
+    const list = await this.listAll();
 
-    return this.listAll.reduce((acc, author) => {
+    return list.reduce((acc, author) => {
       if (
         currentMob.includes(author.email) &&
         author.email !== this.author.email
@@ -50,53 +52,51 @@ class MobAuthors {
     }, []);
   }
 
-  setCurrent(authors, selected) {
+  async setCurrent(authors, selected) {
     const commandKeys = [];
 
     const authorEmails = authors.map((author) => author.email);
-
-    for (const coAuthor of this.listAll) {
+    const list = await this.listAll();
+    for (const coAuthor of list) {
       if (authorEmails.includes(coAuthor.email)) coAuthor.selected = selected;
       if (coAuthor.selected) commandKeys.push(coAuthor.commandKey);
     }
 
     if (commandKeys.length > 0) {
       const currentMob = mob.setCurrent(commandKeys);
-      setMob = this.listAll.filter((author) =>
-        currentMob.includes(author.email)
-      );
+      setMob = list.filter((author) => currentMob.includes(author.email));
     } else {
       mob.solo();
       setMob = [];
     }
   }
 
-  get listAll() {
+  async listAll() {
     if (allAuthors === null) {
-      allAuthors = mob
-        .listAll()
-        .split("\n")
+      const gitMobAuthors = gitAuthors();
+      const authorList = gitMobAuthors.toList(await gitMobAuthors.read());
+      allAuthors = authorList
         .filter((authorText) => !authorText.includes(this.author.email))
         .map((author) => createAuthor(author));
     }
     return allAuthors;
   }
 
-  get lastCoAuthor() {
-    return this.listAll[this.listAll.length - 1];
+  async lastCoAuthor() {
+    const list = await this.listAll();
+    return list[list.length - 1];
   }
 
   async repoAuthorList() {
     if (allRepoAuthors === null) {
       const authorStr = await getRepoAuthors();
       const authorList = createRepoAuthorList(authorStr);
+      const list = await this.listAll();
 
       allRepoAuthors = authorList.filter((authorList) => {
         if (authorList.email === this.author.email) return false;
 
-        return !this.listAll.some(
-          (coAuthor) => coAuthor.email === authorList.email
-        );
+        return !list.some((coAuthor) => coAuthor.email === authorList.email);
       });
       return allRepoAuthors;
     }
