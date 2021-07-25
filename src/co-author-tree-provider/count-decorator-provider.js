@@ -23,10 +23,9 @@ class CountDecorationProvider {
     const moreAuthors = "/more-authors";
     const mobAuthors = this.coAuthorProvider.mobAuthors;
     if (uri.path === unselected) {
+      const list = await mobAuthors.listAll();
       return {
-        badge: mobAuthors.listAll
-          .filter((author) => !author.selected)
-          .length.toString(),
+        badge: list.filter((author) => !author.selected).length.toString(),
         tooltip: "Available to co-author",
       };
     }
