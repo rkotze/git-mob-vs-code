@@ -21,8 +21,8 @@ class CoAuthorProvider {
     this.config = vscode.workspace.getConfiguration("gitMob.authorList");
   }
 
-  getChildren(element = {}) {
-    const allAuthors = this.mobAuthors.listAll;
+  async getChildren(element = {}) {
+    const allAuthors = await this.mobAuthors.listAll();
     if (element.fetchChildren) {
       return element.fetchChildren();
     }
@@ -44,11 +44,9 @@ class CoAuthorProvider {
     ];
   }
 
-  getTreeItem(element) {
-    if (
-      element.email === this.mobAuthors.lastCoAuthor.email &&
-      this._notLoaded
-    ) {
+  async getTreeItem(element) {
+    const lastCoAuthor = await this.mobAuthors.lastCoAuthor();
+    if (element.email === lastCoAuthor.email && this._notLoaded) {
       this.loaded();
       this._notLoaded = false;
     }
