@@ -40,10 +40,10 @@ function bootGitMob(context, gitExt) {
     });
   };
 
-  coAuthorProvider.onDidChangeTreeData(function () {
+  coAuthorProvider.onDidChangeTreeData(async function () {
     try {
       gitExt.updateSelectedInput(
-        replaceCoAuthors(coAuthorProvider.mobAuthors.listCurrent)
+        replaceCoAuthors(await coAuthorProvider.mobAuthors.listCurrent())
       );
     } catch (err) {
       logIssue("Failed to update input: " + err.message);

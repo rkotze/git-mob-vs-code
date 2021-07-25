@@ -30,8 +30,9 @@ class CountDecorationProvider {
       };
     }
     if (uri.path === selected) {
+      const listCurrent = await mobAuthors.listCurrent();
       return {
-        badge: mobAuthors.listCurrent.length.toString(),
+        badge: listCurrent.length.toString(),
         tooltip: "Selected co-authors",
       };
     }

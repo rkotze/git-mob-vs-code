@@ -30,7 +30,7 @@ class CoAuthorProvider {
     return [
       new ProjectFolder(this.gitExt.selectedFolderName),
       this.mobAuthors.author,
-      new Selected(() => this.mobAuthors.listCurrent),
+      new Selected(() => this.mobAuthors.listCurrent()),
       new Unselected(() => {
         const setAllAuthor = new Set(allAuthors);
         for (let author of setAllAuthor) {
@@ -54,14 +54,14 @@ class CoAuthorProvider {
     return element;
   }
 
-  toggleCoAuthor(author, selected) {
+  async toggleCoAuthor(author, selected) {
     const selectedCoAuthors = this.multiSelected.filter(
       (author) => author instanceof CoAuthor
     );
     if (selectedCoAuthors.length > 1) {
-      this.mobAuthors.setCurrent(selectedCoAuthors, selected);
+      await this.mobAuthors.setCurrent(selectedCoAuthors, selected);
     } else {
-      this.mobAuthors.setCurrent([author], selected);
+      await this.mobAuthors.setCurrent([author], selected);
     }
     this.reloadData();
   }
