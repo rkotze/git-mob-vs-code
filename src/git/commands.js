@@ -56,12 +56,45 @@ function handleResponse(query) {
   return response.stdout.trim();
 }
 
+function getAll(key) {
+  return handleResponse(`git config --get-all ${key}`);
+}
+
 function get(key) {
   return handleResponse(`git config --get ${key}`);
 }
 
 function has(key) {
   return silentRun(`git config ${key}`).status === 0;
+}
+
+function coAuthors() {
+  return getAll("git-mob.co-author");
+}
+
+function getGitAuthor() {
+  const name = get("user.name");
+  const email = get("user.email");
+  return { name, email };
+}
+
+function author({ name, email }) {
+  return `${name} <${email}>`;
+}
+
+function printCurrent() {
+  const gitAuthor = getGitAuthor();
+  const list = [author(gitAuthor)];
+
+  if (isCoAuthorSet()) {
+    list.push(coAuthors());
+  }
+
+  return list.join(" ");
+}
+
+function isCoAuthorSet() {
+  return has("git-mob.co-author");
 }
 
 function gitMobLatest() {
@@ -101,7 +134,7 @@ function solo() {
 }
 
 function current() {
-  return format(handleResponse(`npx git mob`));
+  return format(printCurrent());
 }
 
 function listAll() {
