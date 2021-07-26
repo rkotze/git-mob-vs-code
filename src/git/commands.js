@@ -97,7 +97,7 @@ function changeAuthor(authorKey) {
 }
 
 function solo() {
-  return format(handleResponse(`npx git solo`));
+  return format(handleResponse(`git config --remove-section git-mob`));
 }
 
 function current() {
