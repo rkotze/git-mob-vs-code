@@ -21,12 +21,7 @@ const { GitExt } = require("../vscode-git-extension/git-ext");
  * @returns {ChildProcess.SpawnResult} object from child_process.spawnSync
  */
 function silentRun(command) {
-  try {
-    return spawnSync(command, cmdOptions({ shell: true }));
-  } catch (err) {
-    logIssue(`GitMob silentRun: "${command}" ${err.message}`);
-    throw err;
-  }
+  return spawnSync(command, cmdOptions({ shell: true }));
 }
 
 /**
@@ -47,13 +42,18 @@ async function silentExec(command) {
 }
 
 function handleResponse(query) {
-  const response = silentRun(query);
-  if (response.status !== 0) {
-    logIssue(`GitMob handleResponse: "${query}" ${response.stderr.trim()}`);
+  try {
+    const response = silentRun(query);
+    if (response.status !== 0) {
+      logIssue(`GitMob handleResponse: "${query}" ${response.stderr.trim()}`);
+      return "";
+    }
+
+    return response.stdout.trim();
+  } catch (err) {
+    logIssue(`GitMob catch: "${query}" ${err.message}`);
     return "";
   }
-
-  return response.stdout.trim();
 }
 
 function getAll(key) {
@@ -68,8 +68,16 @@ function has(key) {
   return silentRun(`git config ${key}`).status === 0;
 }
 
+function add(key, value) {
+  return silentRun(`git config --add ${key} "${value}"`);
+}
+
 function coAuthors() {
   return getAll("git-mob.co-author");
+}
+
+function addCoAuthor(coAuthor) {
+  return add("git-mob.co-author", coAuthor);
 }
 
 function getGitAuthor() {
@@ -121,8 +129,13 @@ function addRepoAuthor({ commandKey, name, email }) {
   return silentRun(`npx git add-coauthor ${commandKey} "${name}" ${email}`);
 }
 
-function setCurrent(mobList) {
-  return format(handleResponse(`npx git mob ${mobList.join(" ")}`));
+function setCurrent(coAuthorList) {
+  solo();
+  for (const author of coAuthorList) {
+    addCoAuthor(author.toString());
+  }
+
+  return current();
 }
 
 function changeAuthor(authorKey) {
@@ -130,7 +143,7 @@ function changeAuthor(authorKey) {
 }
 
 function solo() {
-  return format(handleResponse(`git config --remove-section git-mob`));
+  return silentRun(`git config --remove-section git-mob`);
 }
 
 function current() {

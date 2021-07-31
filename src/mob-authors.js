@@ -53,17 +53,17 @@ class MobAuthors {
   }
 
   async setCurrent(authors, selected) {
-    const commandKeys = [];
+    const authorsSelected = [];
 
     const authorEmails = authors.map((author) => author.email);
     const list = await this.listAll();
     for (const coAuthor of list) {
       if (authorEmails.includes(coAuthor.email)) coAuthor.selected = selected;
-      if (coAuthor.selected) commandKeys.push(coAuthor.commandKey);
+      if (coAuthor.selected) authorsSelected.push(coAuthor);
     }
 
-    if (commandKeys.length > 0) {
-      const currentMob = mob.setCurrent(commandKeys);
+    if (authorsSelected.length > 0) {
+      const currentMob = mob.setCurrent(authorsSelected);
       setMob = list.filter((author) => currentMob.includes(author.email));
     } else {
       mob.solo();

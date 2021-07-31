@@ -29,12 +29,17 @@ class CoAuthor extends vscode.TreeItem {
   }
 
   format() {
-    return `Co-authored-by: ${this.label} <${this.email}>`;
+    return `Co-authored-by: ${this.toString()}`;
+  }
+
+  toString() {
+    return `${this.label} <${this.email}>`;
   }
 }
 
 function createAuthor(stdoutFormat) {
-  const regexList = /^([\S]+)\s(.+)\s([a-zA-Z0-9_\-\.\+]+@[a-zA-Z0-9_\-\.]+\.[a-zA-Z]{2,5})/;
+  const regexList =
+    /^([\S]+)\s(.+)\s([a-zA-Z0-9_\-\.\+]+@[a-zA-Z0-9_\-\.]+\.[a-zA-Z]{2,5})/;
   let list = stdoutFormat.match(regexList);
   if (list === null) return new ErrorAuthor();
   const [, commandKey, name, email] = list;
