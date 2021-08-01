@@ -6,7 +6,10 @@ const { createAuthor } = require("./co-author-tree-provider/co-authors");
 const { Author } = require("./co-author-tree-provider/author");
 const { ErrorAuthor } = require("./co-author-tree-provider/error-author");
 const { gitAuthors } = require("./git/git-mob-api/git-authors");
-
+const {
+  commitTemplatePath,
+  gitMessage,
+} = require("./git/git-mob-api/git-message");
 let author = null;
 let allAuthors = null;
 let allRepoAuthors = null;
@@ -62,11 +65,14 @@ class MobAuthors {
       if (coAuthor.selected) authorsSelected.push(coAuthor);
     }
 
+    const gitTemplate = gitMessage(commitTemplatePath());
     if (authorsSelected.length > 0) {
       const currentMob = mob.setCurrent(authorsSelected);
+      gitTemplate.writeCoAuthors(authorsSelected);
       setMob = list.filter((author) => currentMob.includes(author.email));
     } else {
       mob.solo();
+      gitTemplate.removeCoAuthors();
       setMob = [];
     }
   }
