@@ -3,11 +3,7 @@ const { promisify } = require("util");
 const { logIssue } = require("../errors/log-issue");
 const { compare } = require("../semver/compare");
 const { GitExt } = require("../vscode-git-extension/git-ext");
-const {
-  commitTemplatePath,
-  gitMessage,
-  gitMessagePath,
-} = require("./git-mob-api/git-message");
+// const { commitTemplatePath } = require("./git-mob-api/git-message");
 const { silentRun } = require("./silent-run");
 
 /**
@@ -125,7 +121,7 @@ function addRepoAuthor({ commandKey, name, email }) {
 }
 
 function setCurrent(coAuthorList) {
-  setCommitTemplate();
+  // setCommitTemplate();
   solo();
   for (const author of coAuthorList) {
     addCoAuthor(author.toString());
@@ -165,24 +161,13 @@ function cmdOptions(extendOptions = {}) {
   };
 }
 
-function setCommitTemplate() {
-  if (!has("commit.template")) {
-    set("commit.template", commitTemplatePath());
-  }
-}
-
-/**
- * Extracts the git version into an array format.
- * @param {string} version a string containing a semver format
- * @returns {array} [major, minor, patch]
- */
-function gitVersion(version) {
-  const [, major, minor, patch] = /(\d)\.(\d*)\.(\d*)/gm.exec(version);
-  return [major, minor, patch];
-}
+// function setCommitTemplate() {
+//   if (!has("commit.template")) {
+//     set("commit.template", commitTemplatePath());
+//   }
+// }
 
 module.exports = {
-  gitVersion,
   config: {
     get,
     has,

@@ -68,7 +68,7 @@ function gitMessagePath() {
 function commitTemplatePath() {
   return (
     process.env.GITMOB_MESSAGE_PATH ||
-    config.get("commit.template") ||
+    path.resolve(topLevelDirectory(), config.get("commit.template")) ||
     path.relative(topLevelDirectory(), gitMessagePath())
   );
 }

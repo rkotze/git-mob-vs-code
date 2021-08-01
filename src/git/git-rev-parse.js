@@ -1,5 +1,14 @@
-const { gitVersion } = require("./commands");
 const { silentRun } = require("./silent-run");
+
+/**
+ * Extracts the git version into an array format.
+ * @param {string} version a string containing a semver format
+ * @returns {array} [major, minor, patch]
+ */
+function gitVersion(version) {
+  const [, major, minor, patch] = /(\d)\.(\d*)\.(\d*)/gm.exec(version);
+  return [major, minor, patch];
+}
 
 function gitPath(path) {
   const version = silentRun("git --version").stdout.trim();
