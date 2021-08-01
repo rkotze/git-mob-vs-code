@@ -1,28 +1,14 @@
-const { spawnSync, exec } = require("child_process");
+const { exec } = require("child_process");
 const { promisify } = require("util");
 const { logIssue } = require("../errors/log-issue");
 const { compare } = require("../semver/compare");
 const { GitExt } = require("../vscode-git-extension/git-ext");
-
-/**
- * @typedef {Object} ChildProcess.SpawnResult
- * @property {number} pid Process identification number of the child process
- * @property {Array} output Array of results from stdio output
- * @property {Buffer} stdout  The contents of output[1]
- * @property {Buffer} stderr The contents of output[2]
- * @property {number} status The exit code of the child process
- * @property {string} signal The signal used to kill the child process
- * @property {Error} error The error object if the child process failed or timed out
- */
-
-/**
- * Runs the given command in a shell.
- * @param {string} command The command to execute
- * @returns {ChildProcess.SpawnResult} object from child_process.spawnSync
- */
-function silentRun(command) {
-  return spawnSync(command, cmdOptions({ shell: true }));
-}
+const {
+  commitTemplatePath,
+  gitMessage,
+  gitMessagePath,
+} = require("./git-mob-api/git-message");
+const { silentRun } = require("./silent-run");
 
 /**
  * Runs the given command in a shell.
@@ -70,6 +56,15 @@ function has(key) {
 
 function add(key, value) {
   return silentRun(`git config --add ${key} "${value}"`);
+}
+
+// Sets the option, overwriting the existing value if one exists.
+function set(key, value) {
+  const { status } = silentRun(`git config ${key} "${value}"`);
+  if (status !== 0) {
+    const message = `Option ${key} has multiple values. Cannot overwrite multiple values for option ${key} with a single value.`;
+    logIssue(`GitMob set: ${message}`);
+  }
 }
 
 function coAuthors() {
@@ -130,10 +125,13 @@ function addRepoAuthor({ commandKey, name, email }) {
 }
 
 function setCurrent(coAuthorList) {
+  setCommitTemplate();
   solo();
   for (const author of coAuthorList) {
     addCoAuthor(author.toString());
   }
+
+  gitMessage(gitMessagePath()).writeCoAuthors(coAuthorList);
 
   return current();
 }
@@ -167,6 +165,12 @@ function cmdOptions(extendOptions = {}) {
   };
 }
 
+function setCommitTemplate() {
+  if (!has("commit.template")) {
+    set("commit.template", commitTemplatePath());
+  }
+}
+
 /**
  * Extracts the git version into an array format.
  * @param {string} version a string containing a semver format
@@ -178,7 +182,7 @@ function gitVersion(version) {
 }
 
 module.exports = {
-  version: gitVersion,
+  gitVersion,
   config: {
     get,
     has,
