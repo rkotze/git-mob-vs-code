@@ -71,7 +71,7 @@ class MobAuthors {
       gitTemplate.writeCoAuthors(authorsSelected);
       setMob = list.filter((author) => currentMob.includes(author.email));
     } else {
-      mob.solo();
+      mob.removeGitMobSection();
       gitTemplate.removeCoAuthors();
       setMob = [];
     }
