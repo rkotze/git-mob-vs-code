@@ -1,4 +1,5 @@
 const { gitAuthors } = require(".");
+const { Author } = require("../author");
 
 const validJsonString = `
 {
@@ -74,10 +75,10 @@ test("create an organised string list of .git-coauthors", async () => {
 
   const json = await authors.read();
   const authorList = authors.toList(json);
-  const expectAuthorList = [
-    "jd Jane Doe jane@findmypast.com",
-    "fb Frances Bar frances-bar@findmypast.com",
-  ];
+  const expectAuthorList = new Map([
+    ["jd", new Author("jd", "Jane Doe", "jane@findmypast.com")],
+    ["fb", new Author("fb", "Frances Bar", "frances-bar@findmypast.com")],
+  ]);
   expect(expectAuthorList).toEqual(authorList);
 });
 

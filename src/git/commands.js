@@ -3,6 +3,7 @@ const { promisify } = require("util");
 const { logIssue } = require("../errors/log-issue");
 const { compare } = require("../semver/compare");
 const { GitExt } = require("../vscode-git-extension/git-ext");
+// const { gitMessage, gitMessagePath } = require("./git-mob-api/git-message");
 // const { commitTemplatePath } = require("./git-mob-api/git-message");
 const { silentRun } = require("./silent-run");
 
@@ -122,12 +123,12 @@ function addRepoAuthor({ commandKey, name, email }) {
 
 function setCurrent(coAuthorList) {
   // setCommitTemplate();
-  solo();
+  removeGitMobSection();
   for (const author of coAuthorList) {
     addCoAuthor(author.toString());
   }
 
-  gitMessage(gitMessagePath()).writeCoAuthors(coAuthorList);
+  // gitMessage(gitMessagePath()).writeCoAuthors(coAuthorList);
 
   return current();
 }
@@ -136,7 +137,7 @@ function changeAuthor(authorKey) {
   return format(handleResponse(`npx git mob -o ${authorKey}`));
 }
 
-function solo() {
+function removeGitMobSection() {
   return silentRun(`git config --remove-section git-mob`);
 }
 
@@ -171,12 +172,13 @@ module.exports = {
   config: {
     get,
     has,
+    set,
   },
   mob: {
     current,
     setCurrent,
     listAll,
-    solo,
+    removeGitMobSection,
     gitMobLatest,
     installGitMob,
     changeAuthor,

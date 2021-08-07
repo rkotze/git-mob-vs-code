@@ -2,6 +2,7 @@ const fs = require("fs");
 const os = require("os");
 const path = require("path");
 const { promisify } = require("util");
+const { Author } = require("../author");
 
 const gitCoauthorsPath =
   process.env.GITMOB_COAUTHORS_PATH ||
@@ -105,10 +106,11 @@ function gitAuthors(readFilePromise, writeFilePromise, overwriteFilePromise) {
 
     toList(authors) {
       const entries = Object.entries(authors.coauthors);
-      return entries.map((authorParts) => {
-        const [initials, { name, email }] = authorParts;
-        return [initials, name, email].join(" ");
-      });
+      const authorMap = new Map();
+      for (let [key, { name, email }] of entries) {
+        authorMap.set(key, new Author(key, name, email));
+      }
+      return authorMap;
     },
   };
 }

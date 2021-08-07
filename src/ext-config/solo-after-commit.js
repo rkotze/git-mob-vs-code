@@ -17,7 +17,7 @@ let watch = null;
 function soloSwitch(coAuthorProvider, afterCommitOn) {
   if (afterCommitOn) {
     watch = watchForCommit(function () {
-      mob.solo();
+      mob.removeGitMobSection();
       coAuthorProvider.reloadData();
     });
   } else {
