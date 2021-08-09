@@ -68,7 +68,7 @@ function coAuthors() {
   return getAll("git-mob.co-author");
 }
 
-function addCoAuthor(coAuthor) {
+function gitAddCoAuthor(coAuthor) {
   return add("git-mob.co-author", coAuthor);
 }
 
@@ -125,7 +125,7 @@ function setCurrent(coAuthorList) {
   // setCommitTemplate();
   removeGitMobSection();
   for (const author of coAuthorList) {
-    addCoAuthor(author.toString());
+    gitAddCoAuthor(author.toString());
   }
 
   // gitMessage(gitMessagePath()).writeCoAuthors(coAuthorList);
@@ -162,12 +162,6 @@ function cmdOptions(extendOptions = {}) {
   };
 }
 
-// function setCommitTemplate() {
-//   if (!has("commit.template")) {
-//     set("commit.template", commitTemplatePath());
-//   }
-// }
-
 module.exports = {
   config: {
     get,
@@ -182,6 +176,7 @@ module.exports = {
     gitMobLatest,
     installGitMob,
     changeAuthor,
+    gitAddCoAuthor,
   },
   getRepoAuthors,
   addRepoAuthor,

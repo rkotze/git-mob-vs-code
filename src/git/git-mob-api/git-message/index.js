@@ -1,8 +1,5 @@
 const fs = require("fs");
 const os = require("os");
-const path = require("path");
-const { gitPath, topLevelDirectory } = require("../../git-rev-parse");
-const { config } = require("../../commands");
 
 function fileExists(error) {
   return error.code !== "ENOENT";
@@ -61,21 +58,7 @@ function gitMessage(messagePath, appendFilePromise, readFilePromise) {
   };
 }
 
-function gitMessagePath() {
-  return process.env.GITMOB_MESSAGE_PATH || gitPath(".gitmessage");
-}
-
-function commitTemplatePath() {
-  return (
-    process.env.GITMOB_MESSAGE_PATH ||
-    path.resolve(topLevelDirectory(), config.get("commit.template")) ||
-    path.relative(topLevelDirectory(), gitMessagePath())
-  );
-}
-
 module.exports = {
   gitMessage,
-  gitMessagePath,
-  commitTemplatePath,
   formatCoAuthorList,
 };
