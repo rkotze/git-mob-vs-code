@@ -29,7 +29,7 @@ describe("Git Mob API", () => {
     const authorKeys = ["ab", "cd"];
     const authorList = buildAuthors(authorKeys);
     const mockWriteCoAuthors = jest.fn();
-    gitAuthors.mockImplementation(buildMockGitAuthors(authorKeys));
+    gitAuthors.mockImplementation(buildMockGitAuthors([...authorKeys, "ef"]));
     gitMessage.mockImplementation(() => ({
       writeCoAuthors: mockWriteCoAuthors,
     }));
