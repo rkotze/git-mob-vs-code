@@ -29,13 +29,17 @@ describe("Git Mob API", () => {
     const authorKeys = ["ab", "cd"];
     const authorList = buildAuthors(authorKeys);
     const mockWriteCoAuthors = jest.fn();
+    const mockRemoveCoAuthors = jest.fn();
     gitAuthors.mockImplementation(buildMockGitAuthors([...authorKeys, "ef"]));
     gitMessage.mockImplementation(() => ({
       writeCoAuthors: mockWriteCoAuthors,
+      removeCoAuthors: mockRemoveCoAuthors,
     }));
 
     const coAuthors = await applyCoAuthors(authorKeys);
 
+    expect(mob.removeGitMobSection).toBeCalledTimes(1);
+    expect(mockRemoveCoAuthors).toBeCalledTimes(1);
     expect(mob.gitAddCoAuthor).toBeCalledTimes(2);
     expect(mockWriteCoAuthors).toBeCalledWith(authorList);
     expect(coAuthors).toEqual(authorList);
