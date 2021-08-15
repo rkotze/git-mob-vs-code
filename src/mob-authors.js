@@ -96,13 +96,13 @@ class MobAuthors {
   async repoAuthorList() {
     if (allRepoAuthors === null) {
       const authorStr = await getRepoAuthors();
-      const authorList = createRepoAuthorList(authorStr);
+      const contributorAuthorList = createRepoAuthorList(authorStr);
       const list = await this.listAll();
 
-      allRepoAuthors = authorList.filter((authorList) => {
-        if (authorList.email === this.author.email) return false;
+      allRepoAuthors = contributorAuthorList.filter((repoAuthor) => {
+        if (repoAuthor.email === this.author.email) return false;
 
-        return !list.some((coAuthor) => coAuthor.email === authorList.email);
+        return !list.some((coAuthor) => coAuthor.email === repoAuthor.email);
       });
       return allRepoAuthors;
     }
