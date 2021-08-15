@@ -1,48 +1,39 @@
-const path = require("path");
 const { mob, config } = require("../commands");
-const { topLevelDirectory } = require("../git-rev-parse");
 const { gitAuthors } = require("./git-authors");
 const { gitMessage } = require("./git-message");
-const { gitMessagePath } = require("./git-message/message-path");
+const {
+  resolveGitMessagePath,
+  setCommitTemplate,
+} = require("./resolve-git-message-path");
 
 async function getAllAuthors() {
   const gitMobAuthors = gitAuthors();
   return gitMobAuthors.toList(await gitMobAuthors.read());
 }
 
-async function addCoAuthors(keys) {
+async function applyCoAuthors(keys) {
   setCommitTemplate();
   mob.removeGitMobSection();
-  const selectedAuthors = getSelectedAuthors(keys, getAllAuthors());
+  const selectedAuthors = getSelectedAuthors(keys, await getAllAuthors());
   for (const author of selectedAuthors) {
     mob.gitAddCoAuthor(author.toString());
   }
   const gitTemplate = gitMessage(
-    commitTemplatePath(config.get("commit.template"))
+    resolveGitMessagePath(config.get("commit.template"))
   );
   await gitTemplate.writeCoAuthors(selectedAuthors);
   return selectedAuthors;
 }
 
 function getSelectedAuthors(keys, authorMap) {
-  return keys.map((key) => authorMap.get(key));
-}
-
-function setCommitTemplate() {
-  if (!config.has("commit.template")) {
-    config.set("commit.template", commitTemplatePath());
+  const selectAuthors = new Map();
+  for (const key of keys) {
+    selectAuthors.set(key, authorMap.get(key));
   }
-}
-
-function commitTemplatePath() {
-  return (
-    process.env.GITMOB_MESSAGE_PATH ||
-    path.resolve(topLevelDirectory(), config.get("commit.template")) ||
-    path.relative(topLevelDirectory(), gitMessagePath())
-  );
+  return selectAuthors;
 }
 
 module.exports = {
-  addCoAuthors,
+  applyCoAuthors,
   getAllAuthors,
 };
