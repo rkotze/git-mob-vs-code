@@ -106,11 +106,9 @@ function gitAuthors(readFilePromise, writeFilePromise, overwriteFilePromise) {
 
     toList(authors) {
       const entries = Object.entries(authors.coauthors);
-      const authorMap = new Map();
-      for (let [key, { name, email }] of entries) {
-        authorMap.set(key, new Author(key, name, email));
-      }
-      return authorMap;
+      return entries.map(
+        ([key, { name, email }]) => new Author(key, name, email)
+      );
     },
   };
 }
