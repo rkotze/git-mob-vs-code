@@ -2,14 +2,11 @@ const { mob, config, getRepoAuthors } = require("./git/commands");
 const {
   createRepoAuthorList,
 } = require("./co-author-tree-provider/repo-authors");
-const { createAuthor } = require("./co-author-tree-provider/co-authors");
+const { CoAuthor } = require("./co-author-tree-provider/co-authors");
 const { Author } = require("./co-author-tree-provider/author");
 const { ErrorAuthor } = require("./co-author-tree-provider/error-author");
-const { gitAuthors } = require("./git/git-mob-api/git-authors");
-const {
-  commitTemplatePath,
-  gitMessage,
-} = require("./git/git-mob-api/git-message");
+
+const { getAllAuthors, applyCoAuthors, solo } = require("./git/git-mob-api");
 let author = null;
 let allAuthors = null;
 let allRepoAuthors = null;
@@ -56,34 +53,35 @@ class MobAuthors {
   }
 
   async setCurrent(authors, selected) {
-    const authorsSelected = [];
+    const selectedAuthorKeys = [];
 
-    const authorEmails = authors.map((author) => author.email);
+    const authorKeys = authors.map((author) => author.commandKey);
     const list = await this.listAll();
     for (const coAuthor of list) {
-      if (authorEmails.includes(coAuthor.email)) coAuthor.selected = selected;
-      if (coAuthor.selected) authorsSelected.push(coAuthor);
+      if (authorKeys.includes(coAuthor.commandKey))
+        coAuthor.selected = selected;
+      if (coAuthor.selected) selectedAuthorKeys.push(coAuthor.commandKey);
     }
 
-    const gitTemplate = gitMessage(commitTemplatePath());
-    if (authorsSelected.length > 0) {
-      const currentMob = mob.setCurrent(authorsSelected);
-      gitTemplate.writeCoAuthors(authorsSelected);
-      setMob = list.filter((author) => currentMob.includes(author.email));
+    if (selectedAuthorKeys.length > 0) {
+      const currentMob = await applyCoAuthors(selectedAuthorKeys);
+      setMob = currentMob.map(
+        (author) => new CoAuthor(author.name, author.email, true, author.key)
+      );
     } else {
-      mob.removeGitMobSection();
-      gitTemplate.removeCoAuthors();
+      await solo();
       setMob = [];
     }
   }
 
   async listAll() {
     if (allAuthors === null) {
-      const gitMobAuthors = gitAuthors();
-      const authorList = gitMobAuthors.toList(await gitMobAuthors.read());
+      const authorList = await getAllAuthors();
       allAuthors = authorList
-        .filter((authorText) => !authorText.includes(this.author.email))
-        .map((author) => createAuthor(author));
+        .filter((author) => author.email !== this.author.email)
+        .map(
+          (author) => new CoAuthor(author.name, author.email, false, author.key)
+        );
     }
     return allAuthors;
   }

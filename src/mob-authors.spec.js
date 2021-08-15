@@ -1,31 +1,23 @@
 const commands = require("./git/commands");
-const { gitAuthors } = require("./git/git-mob-api/git-authors");
 const { MobAuthors } = require("./mob-authors");
 const { Author } = require("./co-author-tree-provider/author");
+const { getAllAuthors } = require("./git/git-mob-api");
 
 jest.mock("./git/commands");
-jest.mock("./git/git-mob-api/git-authors");
+jest.mock("./git/git-mob-api");
 
 describe("Co-author list", function () {
   const mobAuthors = new MobAuthors();
-  const gitAuthorsMockApi = {
-    toList: jest.fn(),
-    read: jest.fn(),
-  };
-
-  beforeAll(function () {
-    gitAuthors.mockImplementation(() => gitAuthorsMockApi);
-  });
 
   beforeEach(function () {
-    gitAuthorsMockApi.toList.mockReset();
+    getAllAuthors.mockReset();
     mobAuthors.reset();
   });
 
   it("Repo authors should not contain co-authors with same email", async function () {
-    gitAuthors().toList.mockReturnValueOnce([
-      "rk richard kotze rkotze@email.com",
-      "ts Tony Stark tony@stark.com",
+    getAllAuthors.mockReturnValueOnce([
+      { key: "rk", name: "richard kotze", email: "rkotze@email.com" },
+      { key: "ts", name: "Tony Stark", email: "tony@stark.com" },
     ]);
 
     commands.getRepoAuthors.mockResolvedValueOnce(
@@ -42,7 +34,9 @@ describe("Co-author list", function () {
     const author = new Author("Richard Kotze", "rkotze@email.com");
     jest.spyOn(mobAuthors, "author", "get").mockImplementation(() => author);
 
-    gitAuthors().toList.mockReturnValueOnce(["ts Tony Stark tony@stark.com"]);
+    getAllAuthors.mockReturnValueOnce([
+      { key: "ts", name: "Tony Stark", email: "tony@stark.com" },
+    ]);
     commands.getRepoAuthors.mockResolvedValueOnce(
       `   33\tRichard Kotze <rkotze@email.com>\n   53\tBlack Panther <black@panther.com>`
     );
