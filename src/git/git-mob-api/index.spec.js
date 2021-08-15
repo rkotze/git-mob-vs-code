@@ -1,12 +1,8 @@
 const { applyCoAuthors } = require(".");
-const { mob, config } = require("../commands");
+const { mob } = require("../commands");
 const { Author } = require("./author");
 const { gitAuthors } = require("./git-authors");
 const { gitMessage } = require("./git-message");
-const {
-  resolveGitMessagePath,
-  setCommitTemplate,
-} = require("./resolve-git-message-path");
 
 jest.mock("../commands");
 jest.mock("./git-authors");
@@ -15,14 +11,9 @@ jest.mock("./resolve-git-message-path");
 
 describe("Git Mob API", () => {
   function buildAuthors(keys) {
-    const authorMap = new Map();
-    for (let key of keys) {
-      authorMap.set(
-        key,
-        new Author(key, key + " lastName", key + "@email.com")
-      );
-    }
-    return authorMap;
+    return keys.map(
+      (key) => new Author(key, key + " lastName", key + "@email.com")
+    );
   }
   function buildMockGitAuthors(keys) {
     const authors = buildAuthors(keys);

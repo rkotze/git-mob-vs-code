@@ -26,11 +26,7 @@ async function applyCoAuthors(keys) {
 }
 
 function getSelectedAuthors(keys, authorMap) {
-  const selectAuthors = new Map();
-  for (const key of keys) {
-    selectAuthors.set(key, authorMap.get(key));
-  }
-  return selectAuthors;
+  return authorMap.filter((author) => keys.includes(author.key));
 }
 
 module.exports = {
