@@ -1,4 +1,4 @@
-const { mob, config, getRepoAuthors } = require("./git/commands");
+const { mob, getRepoAuthors } = require("./git/commands");
 const {
   createRepoAuthorList,
 } = require("./co-author-tree-provider/repo-authors");
@@ -6,7 +6,12 @@ const { CoAuthor } = require("./co-author-tree-provider/co-authors");
 const { Author } = require("./co-author-tree-provider/author");
 const { ErrorAuthor } = require("./co-author-tree-provider/error-author");
 
-const { getAllAuthors, applyCoAuthors, solo } = require("./git/git-mob-api");
+const {
+  getAllAuthors,
+  applyCoAuthors,
+  solo,
+  primaryAuthor,
+} = require("./git/git-mob-api");
 let author = null;
 let allAuthors = null;
 let allRepoAuthors = null;
@@ -15,11 +20,10 @@ let setMob = null;
 class MobAuthors {
   get author() {
     if (author === null) {
-      const name = config.get("user.name");
-      const email = config.get("user.email");
+      let mainAuthor = primaryAuthor();
 
-      if (name && email) {
-        author = new Author(name, email);
+      if (mainAuthor) {
+        author = new Author(mainAuthor.name, mainAuthor.email);
       } else {
         author = new ErrorAuthor("Missing git author");
       }

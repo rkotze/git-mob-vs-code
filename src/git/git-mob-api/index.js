@@ -1,4 +1,5 @@
 const { mob, config } = require("../commands");
+const { Author } = require("./author");
 const { gitAuthors } = require("./git-authors");
 const { gitMessage } = require("./git-message");
 const {
@@ -37,8 +38,19 @@ async function solo() {
   return gitTemplate.removeCoAuthors();
 }
 
+function primaryAuthor() {
+  const name = config.get("user.name");
+  const email = config.get("user.email");
+
+  if (name && email) {
+    return new Author("prime", name, email);
+  }
+  return null;
+}
+
 module.exports = {
   applyCoAuthors,
   getAllAuthors,
   solo,
+  primaryAuthor,
 };
