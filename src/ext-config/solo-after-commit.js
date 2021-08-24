@@ -1,7 +1,7 @@
 const vscode = require("vscode");
 const { watchForCommit } = require("../git/watch-for-commit");
-const { mob } = require("../git/commands");
 const { getConfigSolo } = require("./config");
+const { solo } = require("../git/git-mob-api");
 
 exports.soloAfterCommit = function soloAfterCommit(coAuthorProvider) {
   vscode.workspace.onDidChangeConfiguration((evt) => {
@@ -16,8 +16,8 @@ exports.soloAfterCommit = function soloAfterCommit(coAuthorProvider) {
 let watch = null;
 function soloSwitch(coAuthorProvider, afterCommitOn) {
   if (afterCommitOn) {
-    watch = watchForCommit(function () {
-      mob.removeGitMobSection();
+    watch = watchForCommit(async function () {
+      await solo()
       coAuthorProvider.reloadData();
     });
   } else {
