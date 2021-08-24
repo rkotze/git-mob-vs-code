@@ -1,7 +1,7 @@
-const { gitAuthors } = require('../git-authors');
+const { gitAuthors } = require("../git-authors");
 
 async function editCoauthor({ _, ...props }) {
-  if ('name' in props || 'email' in props) {
+  if ("name" in props || "email" in props) {
     const [key] = _;
     const coauthors = gitAuthors();
     const authorList = await coauthors.read();
@@ -15,13 +15,13 @@ async function editCoauthor({ _, ...props }) {
       }
 
       await coauthors.overwrite(authorList);
-      console.log(key + ' has been updated.');
+      console.log(key + " has been updated.");
     } else {
-      console.error(key + ' does not exist in your .git-coauthors file.');
+      console.error(key + " does not exist in your .git-coauthors file.");
     }
   } else {
     console.error(
-      'Please provide a name or an email property. Use -h for examples.'
+      "Please provide a name or an email property. Use -h for examples."
     );
   }
 }
