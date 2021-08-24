@@ -1,43 +1,24 @@
-const os = require('os');
-const test = require('ava');
-const sinon = require('sinon');
+const os = require("os");
+const { Author } = require("../author");
+const { gitMessage } = require("./index");
 
-const { gitMessage, gitMessagePath } = require('.');
-
-test('Append co-authors to .gitmessage append file mock', t => {
-  const appendSpy = sinon.spy();
-  const message = gitMessage(process.env.GITMOB_MESSAGE_PATH, appendSpy);
+test("Append co-authors to .gitmessage append file mock", () => {
+  const appendMock = jest.fn();
+  const message = gitMessage(".git/.gitmessage", appendMock);
   message.writeCoAuthors([
-    'Jane Doe <jane@findmypast.com>',
-    'Frances Bar <frances-bar@findmypast.com>',
+    new Author("jd", "Jane Doe", "jane@findmypast.com"),
+    new Author("fb", "Frances Bar", "frances-bar@findmypast.com"),
   ]);
 
-  const [argPath, argContent] = appendSpy.getCall(0).args;
-
-  t.true(appendSpy.calledOnce);
-  t.true(argPath.includes('.gitmessage'));
-  t.is(
-    argContent,
+  expect(appendMock).toBeCalledTimes(1);
+  expect(appendMock).toBeCalledWith(
+    expect.stringContaining(".gitmessage"),
     [
       os.EOL,
       os.EOL,
-      'Co-authored-by: Jane Doe <jane@findmypast.com>',
+      "Co-authored-by: Jane Doe <jane@findmypast.com>",
       os.EOL,
-      'Co-authored-by: Frances Bar <frances-bar@findmypast.com>',
-    ].join('')
+      "Co-authored-by: Frances Bar <frances-bar@findmypast.com>",
+    ].join("")
   );
-});
-
-test('gitMessagePath is relative from the cwd in the repo', t => {
-  const { GITMOB_MESSAGE_PATH } = process.env;
-  delete process.env.GITMOB_MESSAGE_PATH;
-
-  t.is(gitMessagePath(), '.git/.gitmessage');
-
-  process.chdir('src');
-
-  t.is(gitMessagePath(), '../.git/.gitmessage');
-
-  process.chdir('..');
-  process.env.GITMOB_MESSAGE_PATH = GITMOB_MESSAGE_PATH;
 });
