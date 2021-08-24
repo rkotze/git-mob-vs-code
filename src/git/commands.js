@@ -121,18 +121,6 @@ function addRepoAuthor({ commandKey, name, email }) {
   return silentRun(`npx git add-coauthor ${commandKey} "${name}" ${email}`);
 }
 
-function setCurrent(coAuthorList) {
-  // setCommitTemplate();
-  removeGitMobSection();
-  for (const author of coAuthorList) {
-    gitAddCoAuthor(author.toString());
-  }
-
-  // gitMessage(gitMessagePath()).writeCoAuthors(coAuthorList);
-
-  return current();
-}
-
 function changeAuthor(authorKey) {
   return format(handleResponse(`npx git mob -o ${authorKey}`));
 }
@@ -143,10 +131,6 @@ function removeGitMobSection() {
 
 function current() {
   return format(printCurrent());
-}
-
-function listAll() {
-  return format(handleResponse(`npx git mob --list`));
 }
 
 function format(stdout) {
@@ -170,8 +154,6 @@ module.exports = {
   },
   mob: {
     current,
-    setCurrent,
-    listAll,
     removeGitMobSection,
     gitMobLatest,
     installGitMob,
