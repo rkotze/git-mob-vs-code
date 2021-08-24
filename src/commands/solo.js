@@ -1,9 +1,9 @@
 const vscode = require("vscode");
-const { mob } = require("../git/commands");
+const { solo } = require("../git/git-mob-api");
 
 function soloCommand() {
   return vscode.commands.registerCommand("gitmob.solo", function () {
-    mob.removeGitMobSection();
+    solo();
     vscode.commands.executeCommand("gitmob.reload");
   });
 }
