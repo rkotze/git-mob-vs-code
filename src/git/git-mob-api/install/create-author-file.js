@@ -1,10 +1,10 @@
-const { gitAuthors, gitCoauthorsPath } = require('../git-authors');
+const { gitAuthors, gitCoauthorsPath } = require("../git-authors");
 
 const SAMPLE_CONTENT = {
   coauthors: {
     hh: {
-      name: 'Hulk Hogan',
-      email: 'hulk_hogan22@hotmail.org',
+      name: "Hulk Hogan",
+      email: "hulk_hogan22@hotmail.org",
     },
   },
 };
@@ -16,9 +16,9 @@ async function createFileIfNotExist() {
   if (!instance.fileExists()) {
     try {
       await instance.write(SAMPLE_CONTENT);
-      console.log('Add co-authors to:', gitCoauthorsPath);
+      console.log("Add co-authors to:", gitCoauthorsPath);
     } catch (error) {
-      console.log('Someting went wrong adding a new co-authors file, error:', error);
+      console.log("Someting went wrong adding a new co-authors file, error:", error);
     }
   }
 }
