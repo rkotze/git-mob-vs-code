@@ -90,16 +90,8 @@ function addRepoAuthor({ commandKey, name, email }) {
   return silentRun(`npx git add-coauthor ${commandKey} "${name}" ${email}`);
 }
 
-function changeAuthor(authorKey) {
-  return format(handleResponse(`npx git mob -o ${authorKey}`));
-}
-
 function removeGitMobSection() {
   return silentRun(`git config --remove-section git-mob`);
-}
-
-function format(stdout) {
-  return stdout.replace(/\r|<|>/g, "");
 }
 
 function cmdOptions(extendOptions = {}) {
@@ -122,7 +114,6 @@ module.exports = {
     removeGitMobSection,
     gitMobLatest,
     installGitMob,
-    changeAuthor,
     gitAddCoAuthor,
   },
   getRepoAuthors,

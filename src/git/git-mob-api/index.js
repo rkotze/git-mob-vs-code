@@ -56,10 +56,18 @@ function primaryAuthor() {
   return null;
 }
 
+function setPrimaryAuthor(author) {
+  if (author) {
+    config.set("user.name", author.name);
+    config.set("user.email", author.email);
+  }
+}
+
 module.exports = {
   applyCoAuthors,
   getAllAuthors,
   solo,
   primaryAuthor,
   fetchSelectedCoAuthors,
+  setPrimaryAuthor,
 };

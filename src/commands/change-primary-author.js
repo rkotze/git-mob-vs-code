@@ -1,15 +1,15 @@
 const vscode = require("vscode");
-const { mob } = require("../git/commands");
+const { setPrimaryAuthor } = require("../git/git-mob-api");
 
 function changePrimaryAuthor({ coAuthorProvider }) {
   const { mobAuthors } = coAuthorProvider;
   return vscode.commands.registerCommand(
     "gitmob.changePrimaryAuthor",
     async function () {
-      const allCoAuthors = await mobAuthors.listAll;
-      const selected = await quickPickFromCoAuthors(allCoAuthors);
-      if (selected) {
-        mob.changeAuthor(selected.authorKey);
+      const allCoAuthors = await mobAuthors.listAll();
+      const selectedAuthor = await quickPickFromCoAuthors(allCoAuthors);
+      if (selectedAuthor) {
+        setPrimaryAuthor(selectedAuthor);
         await vscode.commands.executeCommand("gitmob.reload");
       }
     }
@@ -24,5 +24,11 @@ async function quickPickFromCoAuthors(repoAuthors) {
     description: author.email,
     authorKey: author.commandKey,
   }));
-  return await vscode.window.showQuickPick(authorTextArray);
+  const selected = await vscode.window.showQuickPick(authorTextArray);
+  if (selected) {
+    return repoAuthors.find(
+      (author) => selected.authorKey === author.commandKey
+    );
+  }
+  return null;
 }
