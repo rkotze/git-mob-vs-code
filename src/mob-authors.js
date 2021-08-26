@@ -1,4 +1,4 @@
-const { mob, getRepoAuthors } = require("./git/commands");
+const { getRepoAuthors } = require("./git/commands");
 const {
   createRepoAuthorList,
 } = require("./co-author-tree-provider/repo-authors");
@@ -11,6 +11,7 @@ const {
   applyCoAuthors,
   solo,
   primaryAuthor,
+  fetchSelectedCoAuthors,
 } = require("./git/git-mob-api");
 let author = null;
 let allAuthors = null;
@@ -38,22 +39,21 @@ class MobAuthors {
       return tempMob;
     }
 
-    const currentMob = mob.current();
     const list = await this.listAll();
+    const currentMob = fetchSelectedCoAuthors(list);
 
-    return list.reduce((acc, author) => {
-      if (
-        currentMob.includes(author.email) &&
-        author.email !== this.author.email
-      ) {
+    for (const author of list) {
+      if (currentMob.find((coAuthor) => coAuthor.email === author.email)) {
         author.selected = true;
-        return [...acc, author];
       }
 
       author.selected = false;
+    }
 
-      return acc;
-    }, []);
+    return currentMob.map((author) => {
+      author.selected = true;
+      return author;
+    });
   }
 
   async setCurrent(authors, selected) {
