@@ -22,7 +22,6 @@ class CoAuthorProvider {
   }
 
   async getChildren(element = {}) {
-    const allAuthors = await this.mobAuthors.listAll();
     if (element.fetchChildren) {
       return element.fetchChildren();
     }
@@ -31,12 +30,9 @@ class CoAuthorProvider {
       new ProjectFolder(this.gitExt.selectedFolderName),
       this.mobAuthors.author,
       new Selected(() => this.mobAuthors.listCurrent()),
-      new Unselected(() => {
-        const setAllAuthor = new Set(allAuthors);
-        for (let author of setAllAuthor) {
-          if (author.selected) setAllAuthor.delete(author);
-        }
-        return Array.from(setAllAuthor);
+      new Unselected(async () => {
+        const allAuthors = await this.mobAuthors.listAll();
+        return allAuthors.filter((author) => !author.selected);
       }),
       new MoreAuthors(this.config.get("expandMoreAuthors"), () =>
         this.mobAuthors.repoAuthorList()

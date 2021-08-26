@@ -3,8 +3,6 @@ const { promisify } = require("util");
 const { logIssue } = require("../errors/log-issue");
 const { compare } = require("../semver/compare");
 const { GitExt } = require("../vscode-git-extension/git-ext");
-// const { gitMessage, gitMessagePath } = require("./git-mob-api/git-message");
-// const { commitTemplatePath } = require("./git-mob-api/git-message");
 const { silentRun } = require("./silent-run");
 
 /**
@@ -64,37 +62,8 @@ function set(key, value) {
   }
 }
 
-function coAuthors() {
-  return getAll("git-mob.co-author");
-}
-
 function gitAddCoAuthor(coAuthor) {
   return add("git-mob.co-author", coAuthor);
-}
-
-function getGitAuthor() {
-  const name = get("user.name");
-  const email = get("user.email");
-  return { name, email };
-}
-
-function author({ name, email }) {
-  return `${name} <${email}>`;
-}
-
-function printCurrent() {
-  const gitAuthor = getGitAuthor();
-  const list = [author(gitAuthor)];
-
-  if (isCoAuthorSet()) {
-    list.push(coAuthors());
-  }
-
-  return list.join(" ");
-}
-
-function isCoAuthorSet() {
-  return has("git-mob.co-author");
 }
 
 function gitMobLatest() {
@@ -129,10 +98,6 @@ function removeGitMobSection() {
   return silentRun(`git config --remove-section git-mob`);
 }
 
-function current() {
-  return format(printCurrent());
-}
-
 function format(stdout) {
   return stdout.replace(/\r|<|>/g, "");
 }
@@ -148,12 +113,12 @@ function cmdOptions(extendOptions = {}) {
 
 module.exports = {
   config: {
+    getAll,
     get,
     has,
     set,
   },
   mob: {
-    current,
     removeGitMobSection,
     gitMobLatest,
     installGitMob,
