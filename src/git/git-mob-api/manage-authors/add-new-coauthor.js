@@ -1,6 +1,6 @@
 const { gitAuthors } = require("../git-authors");
 
-async function addCoauthor([key, name, email]) {
+async function addNewCoAuthor({ key, name, email }) {
   const coauthors = gitAuthors();
   const authorList = await coauthors.read();
   if (key in authorList.coauthors) {
@@ -13,5 +13,5 @@ async function addCoauthor([key, name, email]) {
 }
 
 module.exports = {
-  addCoauthor,
+  addNewCoAuthor,
 };

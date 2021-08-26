@@ -81,15 +81,6 @@ async function getRepoAuthors() {
   return silentExec(`git shortlog -sen HEAD`);
 }
 
-function addRepoAuthor({ commandKey, name, email }) {
-  if (process.platform === "win32") {
-    return silentRun(
-      `npx git add-coauthor ${commandKey} \\"${name}\\" ${email}`
-    );
-  }
-  return silentRun(`npx git add-coauthor ${commandKey} "${name}" ${email}`);
-}
-
 function removeGitMobSection() {
   return silentRun(`git config --remove-section git-mob`);
 }
@@ -117,5 +108,4 @@ module.exports = {
     gitAddCoAuthor,
   },
   getRepoAuthors,
-  addRepoAuthor,
 };

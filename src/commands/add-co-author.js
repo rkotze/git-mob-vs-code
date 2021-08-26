@@ -1,17 +1,17 @@
 const vscode = require("vscode");
-const { addRepoAuthor } = require("../git/commands");
+const { addNewCoAuthor } = require("../git/git-mob-api");
 
 function addRepoAuthorToCoauthors() {
   return vscode.commands.registerCommand(
     "gitmob.addRepoAuthorToCoAuthors",
     async function (author) {
       if (author) {
-        addRepoAuthor(author);
-        vscode.commands.executeCommand("gitmob.reload");
+        await addNewCoAuthor({ ...author, key: author.commandKey });
+        await vscode.commands.executeCommand("gitmob.reload");
       } else {
         const newAuthor = await inputAuthorData();
         if (newAuthor) {
-          addRepoAuthor(newAuthor);
+          await addNewCoAuthor(newAuthor);
           vscode.window.showInformationMessage(
             `Git Mob: "${newAuthor.name}" added to co-authors.`
           );
@@ -31,17 +31,17 @@ async function inputAuthorData() {
     prompt: "Author email (Required)",
     validateInput: isRequired("Author email"),
   });
-  const commandKey = await vscode.window.showInputBox({
+  const key = await vscode.window.showInputBox({
     prompt: "Author initials (Required)",
     validateInput: isRequired("Author initials"),
   });
 
-  if (anyUndefined(name, email, commandKey)) return null;
+  if (anyUndefined(name, email, key)) return null;
 
   return {
     name,
     email,
-    commandKey,
+    key,
   };
 }
 
