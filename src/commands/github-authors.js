@@ -1,7 +1,7 @@
 const vscode = require("vscode");
 const { get } = require("../github/github-api");
-const { addRepoAuthor } = require("../git/commands");
 const { getGitHubPat } = require("../ext-config/config");
+const { addNewCoAuthor } = require("../git/git-mob-api");
 
 function searchGithubAuthors() {
   return vscode.commands.registerCommand(
@@ -47,7 +47,7 @@ function searchGithubAuthors() {
         if (!selectedAuthor.repoAuthor.email) {
           vscode.window.showErrorMessage("No email! Can't be added.");
         } else {
-          addRepoAuthor(selectedAuthor.repoAuthor);
+          await addNewCoAuthor(selectedAuthor.repoAuthor);
           await vscode.commands.executeCommand("gitmob.reload");
         }
       }
@@ -59,7 +59,7 @@ async function quickPickAuthors(repoAuthors) {
   const authorTextArray = repoAuthors.map(({ data }) => ({
     label: `${data.name} ${data.login}`,
     description: `<${data.email ? data.email : "no email"}>`,
-    repoAuthor: { ...data, commandKey: data.login },
+    repoAuthor: { ...data, key: data.login },
   }));
   return await vscode.window.showQuickPick(authorTextArray, {
     matchOnDescription: true,

@@ -1,5 +1,5 @@
 const vscode = require("vscode");
-const { addRepoAuthor } = require("../git/commands");
+const { addNewCoAuthor } = require("../git/git-mob-api");
 const { GitExt } = require("../vscode-git-extension/git-ext");
 
 function searchRepositoryUsers({ coAuthorProvider }) {
@@ -10,7 +10,7 @@ function searchRepositoryUsers({ coAuthorProvider }) {
       const repoAuthors = await mobAuthors.repoAuthorList();
       const authorItem = await quickPickAuthors(repoAuthors);
       if (authorItem) {
-        addRepoAuthor(authorItem.repoAuthor);
+        await addNewCoAuthor(authorItem.repoAuthor);
         await vscode.commands.executeCommand("gitmob.reload");
       }
     }
@@ -24,7 +24,7 @@ async function quickPickAuthors(repoAuthors) {
   const authorTextArray = repoAuthors.map((author) => ({
     label: `${author.name} <${author.email}>`,
     description: gitExt.selectedFolderName,
-    repoAuthor: author,
+    repoAuthor: { ...author, key: author.commandKey },
   }));
   return await vscode.window.showQuickPick(authorTextArray);
 }
