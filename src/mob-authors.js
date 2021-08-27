@@ -8,10 +8,10 @@ const { ErrorAuthor } = require("./co-author-tree-provider/error-author");
 
 const {
   getAllAuthors,
-  applyCoAuthors,
+  setCoAuthors,
   solo,
-  primaryAuthor,
-  fetchSelectedCoAuthors,
+  getPrimaryAuthor,
+  getSelectedCoAuthors,
 } = require("./git/git-mob-api");
 let author = null;
 let allAuthors = null;
@@ -21,7 +21,7 @@ let setMob = null;
 class MobAuthors {
   get author() {
     if (author === null) {
-      let mainAuthor = primaryAuthor();
+      let mainAuthor = getPrimaryAuthor();
 
       if (mainAuthor) {
         author = new Author(mainAuthor.name, mainAuthor.email);
@@ -40,7 +40,7 @@ class MobAuthors {
     }
 
     const list = await this.listAll();
-    const currentMob = fetchSelectedCoAuthors(list);
+    const currentMob = getSelectedCoAuthors(list);
 
     for (const author of list) {
       if (currentMob.find((coAuthor) => coAuthor.email === author.email)) {
@@ -68,7 +68,7 @@ class MobAuthors {
     }
 
     if (selectedAuthorKeys.length > 0) {
-      const currentMob = await applyCoAuthors(selectedAuthorKeys);
+      const currentMob = await setCoAuthors(selectedAuthorKeys);
       setMob = currentMob.map(
         (author) => new CoAuthor(author.name, author.email, true, author.key)
       );
