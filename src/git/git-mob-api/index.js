@@ -13,7 +13,7 @@ async function getAllAuthors() {
   return gitMobAuthors.toList(await gitMobAuthors.read());
 }
 
-async function applyCoAuthors(keys) {
+async function setCoAuthors(keys) {
   setCommitTemplate();
   await solo();
   const selectedAuthors = pickSelectedAuthors(keys, await getAllAuthors());
@@ -31,7 +31,7 @@ function pickSelectedAuthors(keys, authorMap) {
   return authorMap.filter((author) => keys.includes(author.key));
 }
 
-function fetchSelectedCoAuthors(allAuthors) {
+function getSelectedCoAuthors(allAuthors) {
   let coAuthorsString = "";
   const CO_AUTHOR_KEY = "git-mob.co-author";
   if (config.has(CO_AUTHOR_KEY)) coAuthorsString = config.getAll(CO_AUTHOR_KEY);
@@ -47,7 +47,7 @@ async function solo() {
   return gitTemplate.removeCoAuthors();
 }
 
-function primaryAuthor() {
+function getPrimaryAuthor() {
   const name = config.get("user.name");
   const email = config.get("user.email");
 
@@ -65,11 +65,11 @@ function setPrimaryAuthor(author) {
 }
 
 module.exports = {
-  applyCoAuthors,
-  getAllAuthors,
-  solo,
-  primaryAuthor,
-  fetchSelectedCoAuthors,
-  setPrimaryAuthor,
   addNewCoAuthor,
+  getAllAuthors,
+  getPrimaryAuthor,
+  getSelectedCoAuthors,
+  setCoAuthors,
+  setPrimaryAuthor,
+  solo,
 };

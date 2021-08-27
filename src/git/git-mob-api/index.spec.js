@@ -1,4 +1,4 @@
-const { applyCoAuthors } = require(".");
+const { setCoAuthors } = require(".");
 const { mob } = require("../commands");
 const { Author } = require("./author");
 const { gitAuthors } = require("./git-authors");
@@ -36,7 +36,7 @@ describe("Git Mob API", () => {
       removeCoAuthors: mockRemoveCoAuthors,
     }));
 
-    const coAuthors = await applyCoAuthors(authorKeys);
+    const coAuthors = await setCoAuthors(authorKeys);
 
     expect(mob.removeGitMobSection).toBeCalledTimes(1);
     expect(mockRemoveCoAuthors).toBeCalledTimes(1);
