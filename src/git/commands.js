@@ -1,7 +1,6 @@
 const { exec } = require("child_process");
 const { promisify } = require("util");
 const { logIssue } = require("../errors/log-issue");
-const { compare } = require("../semver/compare");
 const { GitExt } = require("../vscode-git-extension/git-ext");
 const { silentRun } = require("./silent-run");
 
@@ -66,17 +65,6 @@ function gitAddCoAuthor(coAuthor) {
   return add("git-mob.co-author", coAuthor);
 }
 
-function gitMobLatest() {
-  const version = silentRun("npx git mob -v");
-  if (version.status !== 0) return 1;
-  return compare("1.1.0", version.stdout);
-}
-
-function installGitMob(local) {
-  const flag = local ? "-D" : "-g";
-  return silentExec(`npm i git-mob ${flag}`);
-}
-
 async function getRepoAuthors() {
   return silentExec(`git shortlog -sen HEAD`);
 }
@@ -103,8 +91,6 @@ module.exports = {
   },
   mob: {
     removeGitMobSection,
-    gitMobLatest,
-    installGitMob,
     gitAddCoAuthor,
   },
   getRepoAuthors,

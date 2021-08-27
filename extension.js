@@ -1,24 +1,18 @@
-const { mob } = require("./src/git/commands");
 const { setupGitMob } = require("./src/setup-git-mob");
 const { GitExt } = require("./src/vscode-git-extension/git-ext");
 const { waitForRepos } = require("./src/wait-for-repos");
-const { installCli } = require("./src/commands/install-cli");
-const { setContextNotInstalled } = require("./src/set-context/notInstalled");
+const {
+  installGitCoAuthorFile,
+} = require("./src/install/install-git-coauthor-file");
 
-function activate(context) {
+async function activate(context) {
+  await installGitCoAuthorFile();
   const gitExt = new GitExt();
   waitForRepos(gitExt, () => {
-    if (mob.gitMobLatest() === 1) {
-      setContextNotInstalled(true);
-      installCli(context, () => {
-        setContextNotInstalled(false);
-        setupGitMob(context, gitExt);
-      });
-    } else {
-      setupGitMob(context, gitExt);
-    }
+    setupGitMob(context, gitExt);
   });
 }
+
 exports.activate = activate;
 
 function deactivate() {}

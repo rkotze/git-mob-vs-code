@@ -2,7 +2,7 @@
   "name": "git-mob",
   "displayName": "Git Mob Co-author commits",
   "description": "Add multiple authors to a commit when pair/mob programming from the source control tab.",
-  "version": "1.12.0",
+  "version": "1.13.0-beta.1",
   "publisher": "RichardKotze",
   "engines": {
     "vscode": "^1.52.0"
@@ -175,16 +175,6 @@
           "light": "resources/icons/light/unstage.svg",
           "dark": "resources/icons/dark/unstage.svg"
         }
-      },
-      {
-        "command": "gitmob.installCliG",
-        "title": "Install Git Mob Cli globally",
-        "category": "Git Mob"
-      },
-      {
-        "command": "gitmob.installCliL",
-        "title": "Install Git Mob Cli local dev",
-        "category": "Git Mob"
       }
     ],
     "menus": {
@@ -265,14 +255,6 @@
         {
           "command": "gitmob.removeCoAuthor",
           "when": "false"
-        },
-        {
-          "command": "gitmob.installCliG",
-          "when": "false"
-        },
-        {
-          "command": "gitmob.installCliL",
-          "when": "false"
         }
       ]
     },
@@ -289,11 +271,6 @@
         "view": "gitmob.CoAuthorsView",
         "contents": "The current open folder does not have a git repository.\nInitialize one to activate Git Mob.",
         "when": "config.git.enabled && git.state == initialized && workbenchState == empty"
-      },
-      {
-        "view": "gitmob.CoAuthorsView",
-        "contents": "Please install Git Mob Cli globally or as local dependency.\n[Global: npm i -g git-mob](command:gitmob.installCliG)\n[Local: npm i -D git-mob](command:gitmob.installCliL)",
-        "when": "gitmob.notInstalled"
       }
     ]
   },
@@ -301,13 +278,15 @@
     "test": "jest",
     "ui-test": "node ./test/test-runner",
     "lint": "eslint . --ext .js",
-    "ci": "npm run lint && npm test"
+    "ci": "npm run lint && npm test",
+    "package": "vsce package"
   },
   "devDependencies": {
     "@types/jest": "^26.0.19",
     "@types/vscode": "^1.52.0",
     "eslint": "^7.16.0",
     "jest": "^26.6.3",
+    "vsce": "^1.96.1",
     "vscode-test": "^1.4.1"
   }
 }
