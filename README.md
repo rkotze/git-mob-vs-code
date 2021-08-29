@@ -1,10 +1,10 @@
-# <img src="https://user-images.githubusercontent.com/10452163/79142596-a808fa00-7db3-11ea-9a02-2d020e0b29d7.png" width="80" alt="Git Mob" /> Co-author commits
+# <img src="https://user-images.githubusercontent.com/10452163/79142596-a808fa00-7db3-11ea-9a02-2d020e0b29d7.png" width="80" alt="VS Code Git Mob logo" /> Co-author commits
 
 [![](https://vsmarketplacebadge.apphb.com/version-short/RichardKotze.git-mob.svg)](https://marketplace.visualstudio.com/items?itemName=RichardKotze.git-mob) [![](https://vsmarketplacebadge.apphb.com/rating-short/RichardKotze.git-mob.svg)](https://marketplace.visualstudio.com/items?itemName=RichardKotze.git-mob) [![Build Status](https://dev.azure.com/TinkerTaylor/VS%20code%20extensions/_apis/build/status/rkotze.git-mob-vs-code?branchName=master)](https://dev.azure.com/TinkerTaylor/VS%20code%20extensions/_build/latest?definitionId=1?branchName=master) ![](https://vsmarketplacebadge.apphb.com/installs/RichardKotze.git-mob.svg)
 
-> VS Code extension to make it easy to _co-author commits_, managed all from the source control tab.
+> VS Code extension to make it easy to _co-author commits_, managed all from the source control panel.
 
-Helpful extension when **pair programming** or **mobbing** with your team.
+Helpful when **pair programming** or **mobbing**.
 
 ![Git Mob in action](https://user-images.githubusercontent.com/10452163/103484860-d323f580-4de9-11eb-9819-bb8d6602a21e.gif)
 
@@ -15,9 +15,9 @@ Helpful extension when **pair programming** or **mobbing** with your team.
 
 ## Install
 
-Search for "git-mob" in VS Code **Extensions** and click **install**.
+Open VS Code and search for "git-mob" in **Extensions** panel and click **install**.
 
-Ensure you have set your primary author in Git
+Set your primary author in Git.
 
 ```
 $ git config --global user.name "Jane Doe"
@@ -29,19 +29,19 @@ Optional, can be used with _[git-mob cli](https://github.com/findmypast-oss/git-
 
 ## Features
 
-- Apply co-author meta data to commit message from source control tab
-- Select multiple co-authors (shift or ctrl) to add to commit
+- Apply co-author meta data to commit message
+- Select multiple co-authors to add to commit (`shift` or `ctrl` or `⌘`)
 - [Search suggested co-authors](#search-suggested-co-authors) from the "More Authors" list ([Add from local repository](#add-new-co-authors-from-repository))
-- **Search GitHub** for co-authors, see [setting options](#settings) to learn more.
+- Add co-authors from **GitHub**, see [setting options](#settings) to learn more.
 - [Change primary author](#change-primary-author)
-- [VS Code workspace support](#workspace-support)
-- [Git emojis](#git-emojis) search and select Gitmojis
+- [Workspace support](#workspace-support)
+- Add [emojis](#git-emojis) to commits (Gitmojis)
 - Manually [add new co-authors](#add-new-co-authors) via input 
 - Button to open co-author file (`.git-coauthors`) in VS Code
 - [Remove co-authors from input](#post-commit---solo) after a commit
 - Configurable see [setting options](#settings)
 
-**`prepare-commit-msg` hook support removed in `v1.12.0`**
+`prepare-commit-msg` hook support **removed** in `v1.12.0`
 
 ### Add new co-authors
 

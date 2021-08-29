@@ -15,10 +15,6 @@
 - You're PR will be reviewed as soon as possible.
 ## Getting Started
 
-1. Install latest version of `git-mob`
-   ```
-   npm i -g git-mob
-   ```
 1. Run tests (Uses Jest)
    ```
    npm test
@@ -27,6 +23,10 @@
 1. Debug extension:
    Press F5 in VS Code to launch the extension into a sandbox and you can place break points
 1. Debug tests: In the debug tab you can change to `jest` from the dropdown
+1. Optional - Install latest version of `git-mob`. Useful to check it's keeping in sync with CLI.
+   ```
+   npm i -g git-mob
+   ```
 
 ## Releasing
 
