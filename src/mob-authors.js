@@ -81,11 +81,14 @@ class MobAuthors {
   async listAll() {
     if (allAuthors === null) {
       const authorList = await getAllAuthors();
-      allAuthors = authorList
-        .filter((author) => author.email !== this.author.email)
-        .map(
-          (author) => new CoAuthor(author.name, author.email, false, author.key)
-        );
+      allAuthors = this.sortAuthors(
+        authorList
+          .filter((author) => author.email !== this.author.email)
+          .map(
+            (author) =>
+              new CoAuthor(author.name, author.email, false, author.key)
+          )
+      );
     }
     return allAuthors;
   }
@@ -101,11 +104,13 @@ class MobAuthors {
       const contributorAuthorList = createRepoAuthorList(authorStr);
       const list = await this.listAll();
 
-      allRepoAuthors = contributorAuthorList.filter((repoAuthor) => {
-        if (repoAuthor.email === this.author.email) return false;
+      allRepoAuthors = this.sortAuthors(
+        contributorAuthorList.filter((repoAuthor) => {
+          if (repoAuthor.email === this.author.email) return false;
 
-        return !list.some((coAuthor) => coAuthor.email === repoAuthor.email);
-      });
+          return !list.some((coAuthor) => coAuthor.email === repoAuthor.email);
+        })
+      );
       return allRepoAuthors;
     }
     return allRepoAuthors;
@@ -120,6 +125,12 @@ class MobAuthors {
     author = null;
     setMob = null;
     this.resetRepoAuthorList();
+  }
+
+  sortAuthors(authors) {
+    return authors.sort((a, b) =>
+      a.name.toLowerCase().localeCompare(b.name.toLowerCase())
+    );
   }
 }
 
