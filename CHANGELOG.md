@@ -2,15 +2,19 @@
 
 Follows [Semantic Versioning](https://semver.org/).
 
+## Next version
+
+- Sort co-author list by alphabetical order [PR 11](https://github.com/rkotze/git-mob-vs-code/pull/11) - thanks to @viperet
+
 ## 1.13.0 -- 2021-08-29
 
 ### Added
 
 - Use Git Mob API [PR 67](https://github.com/rkotze/git-mob-vs-code/pull/67)
-  - Simplifies the extension and no need to check if CLI is installed including which version.
-  - Performance, UI responds faster when adding, selecting and listing co-authors. Most notable on Windows.
-  - Still keeps in sync with Git Mob CLI and can be used in conjunction.
-  - Addresses the errors of missing "npx git mob" commands "could not determine executable to run NPM ERR!" [PR 49](https://github.com/rkotze/git-mob-vs-code/pull/49)
+- Simplifies the extension and no need to check if CLI is installed including which version.
+- Performance, UI responds faster when adding, selecting and listing co-authors. Most notable on Windows.
+- Still keeps in sync with Git Mob CLI and can be used in conjunction.
+- Addresses the errors of missing "npx git mob" commands "could not determine executable to run NPM ERR!" [PR 49](https://github.com/rkotze/git-mob-vs-code/pull/49)
 
 
 ## 1.12.0 -- 2021-06-02
