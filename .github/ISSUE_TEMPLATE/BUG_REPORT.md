@@ -35,8 +35,8 @@ By filing an Issue, you are expected to comply with it, including treating every
 ### Versions
 
 - operating system and version:
+- VS Code version
 - git-mob-vs-code version (can be found in the Extensions tab)
-- git-mob version (`git-mob --version`):
 - git version (`git --version`):
 
 ### Additional Information
