@@ -4,7 +4,7 @@ Follows [Semantic Versioning](https://semver.org/).
 
 ## Next version
 
-- Sort co-author list by alphabetical order [PR 11](https://github.com/rkotze/git-mob-vs-code/pull/11) - thanks to @viperet
+- Sort co-author list by alphabetical order in [issue 11](https://github.com/rkotze/git-mob-vs-code/issues/11) - thanks to @viperet
 - Listen to repo change event to sync Git Mob UI rather than VS Code UI change events, which run more often even if co-authors have not changed.
 
 ## 1.13.0 -- 2021-08-29

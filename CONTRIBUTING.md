@@ -12,7 +12,7 @@
 - Please make an issue to reference and implement/fix your feature.
 - Please add unit tests, **jest** is the testing tool.
 - Make a pull request (PR) to merge into `master` and make sure it passes the continuous integration pipeline.
-- Please ensure linting and unit tests all pass before submitting your PR. Run command `npm run ci`.
+- Ensure linting and unit tests all pass before submitting your PR. Run command `npm run ci`.
 - You're PR will be reviewed as soon as possible.
 
 
@@ -30,6 +30,8 @@
    ```
    npm i -g git-mob
    ```
+
+### List of available [VS Code icons](https://microsoft.github.io/vscode-codicons/dist/codicon.html)
 
 ## Releasing
 
