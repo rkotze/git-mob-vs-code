@@ -11,7 +11,6 @@ const { CoAuthor } = require("./co-authors");
 
 class CoAuthorProvider {
   constructor() {
-    this._notLoaded = true;
     this._selected = [];
     this.multiSelected = [];
     this._onDidChangeTreeData = new vscode.EventEmitter();
@@ -41,12 +40,6 @@ class CoAuthorProvider {
   }
 
   async getTreeItem(element) {
-    const lastCoAuthor = await this.mobAuthors.lastCoAuthor();
-    if (element.email === lastCoAuthor.email && this._notLoaded) {
-      this.loaded();
-      this._notLoaded = false;
-    }
-
     return element;
   }
 

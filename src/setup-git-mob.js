@@ -34,11 +34,6 @@ function setupGitMob(context, gitExt) {
 
 function bootGitMob(context, gitExt) {
   const coAuthorProvider = new CoAuthorProvider();
-  coAuthorProvider.loaded = function () {
-    mobList.onDidChangeVisibility(function ({ visible }) {
-      visible && coAuthorProvider.reloadData();
-    });
-  };
 
   coAuthorProvider.onDidChangeTreeData(async function () {
     try {
@@ -50,7 +45,9 @@ function bootGitMob(context, gitExt) {
     }
   });
 
-  soloAfterCommit(coAuthorProvider);
+  gitExt.onDidChangeRepo(function () {
+    coAuthorProvider.reloadData();
+  });
 
   const disposables = [
     tweetCommand(),
@@ -71,10 +68,7 @@ function bootGitMob(context, gitExt) {
   disposables.forEach((dispose) => context.subscriptions.push(dispose));
 
   reloadOnSave({ coAuthorProvider });
-
-  vscode.window.onDidChangeWindowState(function ({ focused }) {
-    focused && mobList.visible && coAuthorProvider.reloadData();
-  });
+  soloAfterCommit(coAuthorProvider);
 
   gitExt.onDidChangeUiState(function () {
     if (gitExt.repositories.length === 1) return;
