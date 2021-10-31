@@ -21,13 +21,13 @@ describe("Extract repository authors", function () {
   });
 
   it("author uses a private GitHub email", function () {
-    const listOfAuthorsString = `   33\tRichard <rkotze@email.com>${os.EOL}   53\tTony Stark <20342323+tony@users.noreply.github.com>`;
+    const listOfAuthorsString = `   33\tRichard <rkotze@email.com>${os.EOL}   53\tTony Stark <20342323+tony[bot]@users.noreply.github.com>`;
     const listOfAuthors = createRepoAuthorList(listOfAuthorsString);
     expect(listOfAuthors).toEqual([
       new RepoAuthor("Richard", "rkotze@email.com", "rem"),
       new RepoAuthor(
         "Tony Stark",
-        "20342323+tony@users.noreply.github.com",
+        "20342323+tony[bot]@users.noreply.github.com",
         "tsus"
       ),
     ]);
