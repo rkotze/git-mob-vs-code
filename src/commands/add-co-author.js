@@ -1,25 +1,30 @@
 const vscode = require("vscode");
 const { addNewCoAuthor } = require("../git/git-mob-api");
 
-function addRepoAuthorToCoauthors() {
+function addRepoAuthorToCoauthors({ coAuthorProvider }) {
   return vscode.commands.registerCommand(
     "gitmob.addRepoAuthorToCoAuthors",
     async function (author) {
       if (author) {
         await addNewCoAuthor({ ...author, key: author.commandKey });
-        await vscode.commands.executeCommand("gitmob.reload");
+        await updateAuthorUiList(coAuthorProvider, author);
+        // await vscode.commands.executeCommand("gitmob.reload");
       } else {
         const newAuthor = await inputAuthorData();
         if (newAuthor) {
           await addNewCoAuthor(newAuthor);
-          vscode.window.showInformationMessage(
-            `Git Mob: "${newAuthor.name}" added to co-authors.`
-          );
-          vscode.commands.executeCommand("gitmob.reload");
+          await updateAuthorUiList(coAuthorProvider, newAuthor);
+          // vscode.commands.executeCommand("gitmob.reload");
         }
       }
     }
   );
+}
+
+async function updateAuthorUiList(coAuthorProvider, author) {
+  coAuthorProvider.mobAuthors.reset();
+  await coAuthorProvider.mobAuthors.listCurrent();
+  await coAuthorProvider.toggleCoAuthor(author, true);
 }
 
 async function inputAuthorData() {

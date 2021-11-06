@@ -55,7 +55,7 @@ function bootGitMob(context, gitExt) {
     reloadCommand({ coAuthorProvider }),
     addCoAuthor({ coAuthorProvider }),
     removeCoAuthor({ coAuthorProvider }),
-    addRepoAuthorToCoauthors(),
+    addRepoAuthorToCoauthors({ coAuthorProvider }),
     searchRepositoryUsers({ coAuthorProvider }),
     openGitCoAuthor({ coAuthorProvider }),
     soloCommand(),
