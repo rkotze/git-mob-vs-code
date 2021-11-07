@@ -9,9 +9,7 @@ steps:
     displayName: Run linting rules and unit tests
 
   # Acquire the `vsce` tool and use it to package
-  - script: |
-      sudo npm install -g vsce
-      vsce package
+  - script: npm run package
     displayName: Create VSIX
 
   # For releasable builds, we'll want the branch

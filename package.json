@@ -284,7 +284,8 @@
     "ui-test": "node ./test/test-runner",
     "lint": "eslint . --ext .js",
     "ci": "npm run lint && npm test",
-    "package": "vsce package"
+    "package": "vsce package",
+    "vsix-publish": "vsce publish"
   },
   "devDependencies": {
     "@types/jest": "^27.0.2",
