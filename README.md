@@ -96,6 +96,12 @@ Expand 'More Authors' tree when UI starts.
 
 `Default: true`
 
+### Author list -> More Authors To Co-authoring
+
+Add a new author directly to 'Co-authoring' from 'More Authors'.
+
+`Default: true`
+
 ### Github -> Personal Access Token
 
 Search for co-authors on GitHub you will need to generate a PAT.
