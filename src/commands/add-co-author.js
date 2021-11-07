@@ -8,7 +8,9 @@ function addRepoAuthorToCoauthors({ coAuthorProvider }) {
     async function (author) {
       const authorListConfig =
         vscode.workspace.getConfiguration("gitMob.authorList");
-      const moveToCoAuthoring = authorListConfig.get("moreAuthorCoAuthor");
+      const moveToCoAuthoring = authorListConfig.get(
+        "moreAuthorsToCo-authoring"
+      );
 
       if (author) {
         await addNewCoAuthor({ ...author, key: author.commandKey });
