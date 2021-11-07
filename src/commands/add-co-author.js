@@ -1,4 +1,5 @@
 const vscode = require("vscode");
+const { CoAuthor } = require("../co-author-tree-provider/co-authors");
 const { addNewCoAuthor } = require("../git/git-mob-api");
 
 function addRepoAuthorToCoauthors({ coAuthorProvider }) {
@@ -13,7 +14,10 @@ function addRepoAuthorToCoauthors({ coAuthorProvider }) {
         const newAuthor = await inputAuthorData();
         if (newAuthor) {
           await addNewCoAuthor(newAuthor);
-          await updateAuthorUiList(coAuthorProvider, newAuthor);
+          await updateAuthorUiList(
+            coAuthorProvider,
+            new CoAuthor(newAuthor.name, newAuthor.email, false, newAuthor.key)
+          );
           // vscode.commands.executeCommand("gitmob.reload");
         }
       }
