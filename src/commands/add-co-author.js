@@ -6,20 +6,31 @@ function addRepoAuthorToCoauthors({ coAuthorProvider }) {
   return vscode.commands.registerCommand(
     "gitmob.addRepoAuthorToCoAuthors",
     async function (author) {
+      const authorListConfig =
+        vscode.workspace.getConfiguration("gitMob.authorList");
+      const moveToCoAuthoring = authorListConfig.get("moreAuthorCoAuthor");
+
       if (author) {
         await addNewCoAuthor({ ...author, key: author.commandKey });
-        await updateAuthorUiList(coAuthorProvider, author);
-        // await vscode.commands.executeCommand("gitmob.reload");
+        if (moveToCoAuthoring) {
+          await updateAuthorUiList(coAuthorProvider, author);
+        }
       } else {
         const newAuthor = await inputAuthorData();
         if (newAuthor) {
           await addNewCoAuthor(newAuthor);
-          await updateAuthorUiList(
-            coAuthorProvider,
-            new CoAuthor(newAuthor.name, newAuthor.email, false, newAuthor.key)
-          );
-          // vscode.commands.executeCommand("gitmob.reload");
+          if (moveToCoAuthoring) {
+            const { name, email, key } = newAuthor;
+            await updateAuthorUiList(
+              coAuthorProvider,
+              new CoAuthor(name, email, false, key)
+            );
+          }
         }
+      }
+
+      if (!moveToCoAuthoring) {
+        vscode.commands.executeCommand("gitmob.reload");
       }
     }
   );

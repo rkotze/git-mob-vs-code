@@ -77,6 +77,11 @@
           "default": true,
           "description": "Expand 'More Authors' tree when UI starts"
         },
+        "gitMob.authorList.moreAuthorCoAuthor": {
+          "type": "boolean",
+          "default": true,
+          "description": "Add a new author directly to 'Co-authoring' from 'More Authors'"
+        },
         "gitMob.gitHub.personalAccessToken": {
           "type": "string",
           "default": "",
