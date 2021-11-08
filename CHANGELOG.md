@@ -4,7 +4,15 @@ Follows [Semantic Versioning](https://semver.org/).
 
 ## Next version
 
+## 1.14.0 -- 2021-11-09
+
+### Added
+
 - Sort co-author list by alphabetical order in [issue 11](https://github.com/rkotze/git-mob-vs-code/issues/11) - thanks to @viperet
+- Add co-author from "more authors" directly into "selected" [issue 76](https://github.com/rkotze/git-mob-vs-code/issues/76)
+
+### Fixed
+
 - Listen to repo change event to sync Git Mob UI rather than VS Code UI change events, which run more often even if co-authors have not changed.
 - Loosen the author email matcher for "more authors" to ensure all contributors are listed.
 
