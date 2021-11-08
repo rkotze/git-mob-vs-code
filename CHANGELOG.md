@@ -15,6 +15,7 @@ Follows [Semantic Versioning](https://semver.org/).
 
 - Listen to repo change event to sync Git Mob UI rather than VS Code UI change events, which run more often even if co-authors have not changed.
 - Loosen the author email matcher for "more authors" to ensure all contributors are listed.
+- Open extension settings correctly by showing only GitMob settings.
 
 ## 1.13.0 -- 2021-08-29
 
