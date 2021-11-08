@@ -4,7 +4,6 @@ const {
 } = require("./co-author-tree-provider/co-authors-provider");
 const { reloadOnSave } = require("./reload-on-save");
 const { reloadCommand } = require("./commands/reload");
-const { tweetCommand } = require("./commands/tweet");
 const { openGitCoAuthor } = require("./commands/open-git-coauthors");
 const { soloCommand } = require("./commands/solo");
 const { addCoAuthor, removeCoAuthor } = require("./commands/co-author-actions");
@@ -50,7 +49,6 @@ function bootGitMob(context, gitExt) {
   });
 
   const disposables = [
-    tweetCommand(),
     openSettings(),
     reloadCommand({ coAuthorProvider }),
     addCoAuthor({ coAuthorProvider }),

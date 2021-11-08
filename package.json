@@ -33,7 +33,6 @@
   ],
   "activationEvents": [
     "onCommand:gitmob.openGitCoauthor",
-    "onCommand:gitmob.tweet",
     "onCommand:gitmob.reload",
     "onCommand:gitmob.searchRepositoryUsers",
     "onCommand:gitmob.searchGithubAuthors",
@@ -101,15 +100,6 @@
         "title": "Search Gitmojis - emojis",
         "category": "Git Mob",
         "icon": "$(smiley)"
-      },
-      {
-        "command": "gitmob.tweet",
-        "title": "Tweet about Git Mob",
-        "category": "Git Mob",
-        "icon": {
-          "light": "resources/icons/light/twitter.svg",
-          "dark": "resources/icons/dark/twitter.svg"
-        }
       },
       {
         "command": "gitmob.reload",
@@ -203,11 +193,6 @@
           "command": "gitmob.openSettings",
           "when": "view == gitmob.CoAuthorsView",
           "group": "2_misc@2"
-        },
-        {
-          "command": "gitmob.tweet",
-          "when": "view == gitmob.CoAuthorsView",
-          "group": "3_tweet@1"
         },
         {
           "command": "gitmob.searchRepositoryUsers",
