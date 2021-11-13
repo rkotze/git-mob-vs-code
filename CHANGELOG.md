@@ -4,6 +4,12 @@ Follows [Semantic Versioning](https://semver.org/).
 
 ## Next version
 
+## 1.14.1 -- WIP
+### Fixed
+
+- Cannot read property 'inputBox' of undefined for workspaces [issue 80](https://github.com/rkotze/git-mob-vs-code/issues/80) and related [issue 61](https://github.com/rkotze/git-mob-vs-code/issues/61). When there are two or more repositories open and Git Mob **cannot** reliably workout the selected repository it fails.
+- Noticed that setting the commit template first time usage on a repository was done incorrectly and essentially failing to write the changes into the template file. This prevented the co-author metadata from being added into the inputBox. See [issue 81](https://github.com/rkotze/git-mob-vs-code/issues/81)
+
 ## 1.14.0 -- 2021-11-09
 
 ### Added
