@@ -116,15 +116,11 @@ class MobAuthors {
     return allRepoAuthors;
   }
 
-  resetRepoAuthorList() {
-    allRepoAuthors = null;
-  }
-
   reset() {
     allAuthors = null;
+    allRepoAuthors = null;
     author = null;
     setMob = null;
-    this.resetRepoAuthorList();
   }
 
   sortAuthors(authors) {
