@@ -2,7 +2,7 @@
 
 [![](https://vsmarketplacebadge.apphb.com/version-short/RichardKotze.git-mob.svg)](https://marketplace.visualstudio.com/items?itemName=RichardKotze.git-mob) [![](https://vsmarketplacebadge.apphb.com/rating-short/RichardKotze.git-mob.svg)](https://marketplace.visualstudio.com/items?itemName=RichardKotze.git-mob) [![Build Status](https://dev.azure.com/TinkerTaylor/VS%20code%20extensions/_apis/build/status/rkotze.git-mob-vs-code?branchName=master)](https://dev.azure.com/TinkerTaylor/VS%20code%20extensions/_build/latest?definitionId=1?branchName=master) ![](https://vsmarketplacebadge.apphb.com/installs/RichardKotze.git-mob.svg)
 
-> VS Code extension to make it easy to _co-author commits_, managed all from the source control panel.
+> VS Code extension to easily _co-author a commit message_ from the source control panel.
 
 Helpful when **pair programming** or **mobbing**.
 
@@ -24,17 +24,16 @@ $ git config --global user.name "Jane Doe"
 $ git config --global user.email "jane@example.com"
 ```
 
-Optional, can be used with _[git-mob cli](https://github.com/findmypast-oss/git-mob/#install)_
-
+Optional, will sync with _[git-mob cli](https://github.com/findmypast-oss/git-mob/#install)_
 
 ## Features
 
-- Apply co-author meta data to commit message
+- Apply co-author metadata to commit message
 - Select multiple co-authors to add to commit (`shift` or `ctrl` or `⌘`)
 - [Search suggested co-authors](#search-suggested-co-authors) from the "More Authors" list ([Add from local repository](#add-new-co-authors-from-repository))
-- Add co-authors from **GitHub**, see [setting options](#settings) to learn more.
+- [Workspace support](#workspace-support), multiple Git repositories
+- Add co-authors from **GitHub**, see [setting options](#settings) to learn more
 - [Change primary author](#change-primary-author)
-- [Workspace support](#workspace-support)
 - Add [emojis](#git-emojis) to commits (Gitmojis)
 - Manually [add new co-authors](#add-new-co-authors) via input 
 - Button to open co-author file (`.git-coauthors`) in VS Code

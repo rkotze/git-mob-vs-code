@@ -4,7 +4,8 @@ Follows [Semantic Versioning](https://semver.org/).
 
 ## Next version
 
-## 1.14.1 -- WIP
+## 1.14.1 -- 2021-11-14
+
 ### Fixed
 
 - Cannot read property 'inputBox' of undefined for workspaces [issue 80](https://github.com/rkotze/git-mob-vs-code/issues/80) and related [issue 61](https://github.com/rkotze/git-mob-vs-code/issues/61). When there are two or more repositories open and Git Mob **cannot** reliably workout the selected repository it fails.

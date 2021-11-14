@@ -11,7 +11,6 @@ const { CoAuthor } = require("./co-authors");
 
 class CoAuthorProvider {
   constructor() {
-    this._selected = [];
     this.multiSelected = [];
     this._onDidChangeTreeData = new vscode.EventEmitter();
     this.onDidChangeTreeData = this._onDidChangeTreeData.event;

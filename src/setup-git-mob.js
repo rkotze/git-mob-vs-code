@@ -25,9 +25,6 @@ const {
 } = require("./co-author-tree-provider/count-decorator-provider");
 
 function setupGitMob(context, gitExt) {
-  gitExt.gitApi.onDidOpenRepository(function () {
-    bootGitMob(context, gitExt);
-  });
   bootGitMob(context, gitExt);
 }
 
