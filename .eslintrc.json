@@ -4,6 +4,9 @@
     "node": true,
     "jest": true
   },
+  "globals": {
+    "vscode": true
+  },
   "parserOptions": {
     "ecmaVersion": 2018,
     "sourceType": "module",

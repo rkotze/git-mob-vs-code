@@ -5,9 +5,8 @@
 
 // You can import and use all API from the 'vscode' module
 // as well as import your extension to test it
-const vscode = require("vscode");
 // const myExtension = require('../extension');
-// Defines a Mocha test suite to group tests of similar kind together
+
 describe("Extension Tests", function () {
   afterAll(() => {
     vscode.window.showInformationMessage("All tests done!");
