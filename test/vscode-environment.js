@@ -9,7 +9,7 @@ class VsCodeEnvironment extends NodeEnvironment {
   }
 
   async teardown() {
-    this.global.vscode = {};
+    delete this.global.vscode;
     await super.teardown();
   }
 }

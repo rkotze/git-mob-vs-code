@@ -11,11 +11,18 @@
 // a possible error to the callback or null if none.
 const path = require("path");
 const { runCLI } = require("jest");
+
 function run(testRoot, reportTestResults) {
   return runCLI(
     {
       testMatch: ["<rootDir>/test/**/*.e2e.js"],
       testEnvironment: "<rootDir>/test/vscode-environment.js",
+      moduleDirectories: ["node_modules", "test", "src"],
+      moduleNameMapper: {
+        // prettier-ignore
+        "vscode": "<rootDir>/test/test-vscode.js",
+      },
+      // showConfig: true,
     },
     [path.resolve(__dirname)]
   )

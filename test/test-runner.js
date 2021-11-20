@@ -11,13 +11,13 @@ async function main() {
     // The path to the extension test runner script
     // Passed to --extensionTestsPath
     const extensionTestsPath = path.resolve(__dirname, "./index");
-
+    const testWorkspace = path.resolve(__dirname, "../../advent2020");
     // Download VS Code, unzip it and run the integration test
     await runTests({
       version: "insiders",
       extensionDevelopmentPath,
       extensionTestsPath,
-      launchArgs: ["--disable-extensions"],
+      launchArgs: [testWorkspace, "--disable-extensions"],
     });
   } catch (err) {
     console.error(err);
