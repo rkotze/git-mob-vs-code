@@ -37,7 +37,7 @@
       "args": [
         "${workspaceFolder}/../advent2020",
         "--extensionDevelopmentPath=${workspaceFolder}",
-        "--extensionTestsPath=${workspaceFolder}/test/index",
+        "--extensionTestsPath=${workspaceFolder}/test/mocha-suite",
         "--disable-extensions"
       ]
     }

@@ -10,7 +10,8 @@ async function main() {
 
     // The path to the extension test runner script
     // Passed to --extensionTestsPath
-    const extensionTestsPath = path.resolve(__dirname, "./index");
+    // const extensionTestsPath = path.resolve(__dirname, "./index");
+    const extensionTestsPath = path.resolve(__dirname, "./mocha-suite.js");
     const testWorkspace = path.resolve(__dirname, "../../advent2020");
     // Download VS Code, unzip it and run the integration test
     await runTests({
