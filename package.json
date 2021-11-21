@@ -266,7 +266,7 @@
   },
   "scripts": {
     "test": "jest",
-    "ui-test": "node ./test/test-runner",
+    "ui-test": "node ./test/setup/test-runner",
     "lint": "eslint . --ext .js",
     "ci": "npm run lint && npm test",
     "package": "vsce package",

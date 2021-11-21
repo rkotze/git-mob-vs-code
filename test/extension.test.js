@@ -4,7 +4,7 @@ const {
   getAllAuthors,
   getSelectedCoAuthors,
 } = require("../src/git/git-mob-api");
-const myExtension = require("../extension");
+
 const { CoAuthor } = require("../src/co-author-tree-provider/co-authors");
 
 describe("GitMob core tests", function () {
@@ -12,7 +12,6 @@ describe("GitMob core tests", function () {
   let allAuthors = [];
   before(async function () {
     allAuthors = await getAllAuthors();
-    await myExtension.ready();
   });
 
   it("add a co-author to commit", async function () {

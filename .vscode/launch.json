@@ -35,9 +35,9 @@
       "request": "launch",
       "runtimeExecutable": "${execPath}",
       "args": [
-        "${workspaceFolder}/../advent2020",
+        "${workspaceFolder}/test/fixture-1",
         "--extensionDevelopmentPath=${workspaceFolder}",
-        "--extensionTestsPath=${workspaceFolder}/test/mocha-suite",
+        "--extensionTestsPath=${workspaceFolder}/test/setup/mocha-suite",
         "--disable-extensions"
       ]
     }

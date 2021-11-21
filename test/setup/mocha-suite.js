@@ -1,15 +1,19 @@
 const path = require("path");
 const Mocha = require("mocha");
 const glob = require("glob");
+const { beforeAll } = require("./before-all");
+const { afterAll } = require("./after-all");
 
 exports.run = function run() {
-  // Create the mocha test
+  const testsRoot = path.resolve(__dirname, "../");
   const mocha = new Mocha({
     ui: "bdd",
     color: true,
+    rootHooks: {
+      beforeAll: beforeAll,
+      afterAll: afterAll,
+    },
   });
-
-  const testsRoot = path.resolve(__dirname);
 
   return new Promise((c, e) => {
     glob("**/**.test.js", { cwd: testsRoot }, (err, files) => {
