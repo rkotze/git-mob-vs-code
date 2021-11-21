@@ -18,7 +18,7 @@ test("returns selected repository file path", () => {
   expect(gitExt.rootPath).toEqual("project/fspath");
 });
 
-test("returns a file path when there are repositories but none are selected", () => {
+test("returns first file path when there are repositories but none are selected", () => {
   vsCodeGitRepo([
     {
       ui: {
@@ -39,6 +39,33 @@ test("returns a file path when there are repositories but none are selected", ()
   ]);
   const gitExt = new GitExt();
   expect(gitExt.rootPath).toEqual("first/project/fspath");
+});
+
+test("returns selected repo by matching rootUri.path", () => {
+  vsCodeGitRepo([
+    {
+      ui: {
+        selected: false,
+      },
+      rootUri: {
+        fsPath: "first/project/fspath",
+        path: "first/path",
+      },
+    },
+    {
+      ui: {
+        selected: false,
+      },
+      rootUri: {
+        fsPath: "second/project/find/me",
+        path: "second/path",
+      },
+    },
+  ]);
+  const selectedPath = "second/path";
+  const gitExt = new GitExt();
+  gitExt.selectedRepositoryPath = selectedPath;
+  expect(gitExt.rootPath).toEqual("second/project/find/me");
 });
 
 test("returns null when no repositories", () => {

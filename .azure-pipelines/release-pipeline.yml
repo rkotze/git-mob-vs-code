@@ -4,15 +4,15 @@ trigger: none
 pr: none
 
 pool:
-  vmImage: ubuntu-16.04
+  vmImage: ubuntu-latest
 
 steps:
   - bash: |
-      sudo npm install -g vsce
+      npm install vsce
 
       PACKAGE_VERSION=$(cat git-mob-vs-code/version.txt)
 
-      vsce publish -p $MARKET_KEY --packagePath git-mob-vs-code/git-mob-$PACKAGE_VERSION.vsix
+      npm run vsix-publish -- -p $MARKET_KEY --packagePath git-mob-vs-code/git-mob-$PACKAGE_VERSION.vsix
     workingDirectory: '$(System.DefaultWorkingDirectory)/_rkotze.git-mob-vs-code'
     displayName: Deploy
     env:

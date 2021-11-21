@@ -4,7 +4,6 @@ const {
 } = require("./co-author-tree-provider/co-authors-provider");
 const { reloadOnSave } = require("./reload-on-save");
 const { reloadCommand } = require("./commands/reload");
-const { tweetCommand } = require("./commands/tweet");
 const { openGitCoAuthor } = require("./commands/open-git-coauthors");
 const { soloCommand } = require("./commands/solo");
 const { addCoAuthor, removeCoAuthor } = require("./commands/co-author-actions");
@@ -26,9 +25,6 @@ const {
 } = require("./co-author-tree-provider/count-decorator-provider");
 
 function setupGitMob(context, gitExt) {
-  gitExt.gitApi.onDidOpenRepository(function () {
-    bootGitMob(context, gitExt);
-  });
   bootGitMob(context, gitExt);
 }
 
@@ -50,12 +46,11 @@ function bootGitMob(context, gitExt) {
   });
 
   const disposables = [
-    tweetCommand(),
     openSettings(),
     reloadCommand({ coAuthorProvider }),
     addCoAuthor({ coAuthorProvider }),
     removeCoAuthor({ coAuthorProvider }),
-    addRepoAuthorToCoauthors(),
+    addRepoAuthorToCoauthors({ coAuthorProvider }),
     searchRepositoryUsers({ coAuthorProvider }),
     openGitCoAuthor({ coAuthorProvider }),
     soloCommand(),
@@ -73,7 +68,8 @@ function bootGitMob(context, gitExt) {
   gitExt.onDidChangeUiState(function () {
     if (gitExt.repositories.length === 1) return;
     if (this.ui.selected) {
-      coAuthorProvider.mobAuthors.resetRepoAuthorList();
+      gitExt.selectedRepositoryPath = this.rootUri.path;
+      coAuthorProvider.mobAuthors.reset();
       coAuthorProvider.reloadData();
     }
   });

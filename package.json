@@ -2,7 +2,7 @@
   "name": "git-mob",
   "displayName": "Git Mob Co-author commits",
   "description": "Quick way to add co-author meta data to a commit during pair/mob programming from the source control panel.",
-  "version": "1.13.0",
+  "version": "1.14.1",
   "publisher": "RichardKotze",
   "engines": {
     "vscode": "^1.61.0"
@@ -33,7 +33,6 @@
   ],
   "activationEvents": [
     "onCommand:gitmob.openGitCoauthor",
-    "onCommand:gitmob.tweet",
     "onCommand:gitmob.reload",
     "onCommand:gitmob.searchRepositoryUsers",
     "onCommand:gitmob.searchGithubAuthors",
@@ -77,6 +76,11 @@
           "default": true,
           "description": "Expand 'More Authors' tree when UI starts"
         },
+        "gitMob.authorList.moreAuthorsToCo-authoring": {
+          "type": "boolean",
+          "default": true,
+          "description": "Add a new author directly to 'Co-authoring' from 'More Authors'"
+        },
         "gitMob.gitHub.personalAccessToken": {
           "type": "string",
           "default": "",
@@ -102,15 +106,6 @@
         "title": "Search Gitmojis - emojis",
         "category": "Git Mob",
         "icon": "$(smiley)"
-      },
-      {
-        "command": "gitmob.tweet",
-        "title": "Tweet about Git Mob",
-        "category": "Git Mob",
-        "icon": {
-          "light": "resources/icons/light/twitter.svg",
-          "dark": "resources/icons/dark/twitter.svg"
-        }
       },
       {
         "command": "gitmob.reload",
@@ -206,11 +201,6 @@
           "group": "2_misc@2"
         },
         {
-          "command": "gitmob.tweet",
-          "when": "view == gitmob.CoAuthorsView",
-          "group": "3_tweet@1"
-        },
-        {
           "command": "gitmob.searchRepositoryUsers",
           "when": "view == gitmob.CoAuthorsView",
           "group": "1_search@1"
@@ -282,17 +272,23 @@
   },
   "scripts": {
     "test": "jest",
-    "ui-test": "node ./test/test-runner",
+    "ui-test": "node ./test/setup/test-runner",
     "lint": "eslint . --ext .js",
     "ci": "npm run lint && npm test",
-    "package": "vsce package"
+    "package": "vsce package",
+    "vsix-publish": "vsce publish"
   },
   "devDependencies": {
     "@types/jest": "^27.0.2",
     "@types/vscode": "^1.61.0",
+    "@vscode/test-electron": "^1.6.2",
+    "chai": "^4.3.4",
     "eslint": "^8.0.0",
+    "glob": "^7.2.0",
     "jest": "^27.2.5",
-    "vsce": "^1.100.1",
-    "vscode-test": "^1.6.1"
-  }
+    "jest-environment-node": "^27.3.1",
+    "mocha": "^9.1.3",
+    "vsce": "^1.100.1"
+  },
+  "dependencies": {}
 }

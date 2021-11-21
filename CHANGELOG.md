@@ -4,9 +4,26 @@ Follows [Semantic Versioning](https://semver.org/).
 
 ## Next version
 
+## 1.14.1 -- 2021-11-14
+
+### Fixed
+
+- Cannot read property 'inputBox' of undefined for workspaces [issue 80](https://github.com/rkotze/git-mob-vs-code/issues/80) and related [issue 61](https://github.com/rkotze/git-mob-vs-code/issues/61). When there are two or more repositories open and Git Mob **cannot** reliably workout the selected repository it fails.
+- Author **not** changing when switching between repositories in workspaces.
+- Setting the commit template first time usage on a repository was done incorrectly and essentially failing to write the changes into the template file. This prevented the co-author metadata from being added into the inputBox. See [issue 81](https://github.com/rkotze/git-mob-vs-code/issues/81)
+
+## 1.14.0 -- 2021-11-09
+
+### Added
+
 - Sort co-author list by alphabetical order in [issue 11](https://github.com/rkotze/git-mob-vs-code/issues/11) - thanks to @viperet
+- Add co-author from "more authors" directly into "selected" [issue 76](https://github.com/rkotze/git-mob-vs-code/issues/76)
+
+### Fixed
+
 - Listen to repo change event to sync Git Mob UI rather than VS Code UI change events, which run more often even if co-authors have not changed.
 - Loosen the author email matcher for "more authors" to ensure all contributors are listed.
+- Open extension settings correctly by showing only GitMob settings.
 
 ## 1.13.0 -- 2021-08-29
 
