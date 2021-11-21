@@ -1,3 +1,4 @@
+const { workspace } = require("../__mocks__/vscode");
 const commands = require("./git/commands");
 const { MobAuthors } = require("./mob-authors");
 const { Author } = require("./co-author-tree-provider/author");
@@ -15,6 +16,11 @@ describe("Co-author list", function () {
   });
 
   it("Repo authors should not contain co-authors with same email", async function () {
+    workspace.getConfiguration.mockReturnValue({
+      get() {
+        return "ascending";
+      },
+    });
     getAllAuthors.mockReturnValueOnce([
       { key: "rk", name: "richard kotze", email: "rkotze@email.com" },
       { key: "ts", name: "Tony Stark", email: "tony@stark.com" },

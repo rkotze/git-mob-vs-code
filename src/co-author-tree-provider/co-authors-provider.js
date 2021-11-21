@@ -10,12 +10,13 @@ const { GitExt } = require("../vscode-git-extension/git-ext");
 const { CoAuthor } = require("./co-authors");
 
 class CoAuthorProvider {
-  constructor() {
+  constructor(context) {
+    this._notLoaded = true;
     this._selected = [];
     this.multiSelected = [];
     this._onDidChangeTreeData = new vscode.EventEmitter();
     this.onDidChangeTreeData = this._onDidChangeTreeData.event;
-    this.mobAuthors = new MobAuthors();
+    this.mobAuthors = new MobAuthors(context);
     this.gitExt = new GitExt();
     this.config = vscode.workspace.getConfiguration("gitMob.authorList");
   }

@@ -18,6 +18,7 @@ const workspace = {
   getConfiguration: jest.fn(),
   workspaceFolders: [],
   onDidSaveTextDocument: jest.fn(),
+  onDidChangeConfiguration: jest.fn(),
 };
 
 const OverviewRulerLane = {

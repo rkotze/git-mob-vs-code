@@ -81,6 +81,12 @@
           "type": "string",
           "default": "",
           "description": "GitHub personal access token (read:user) https://github.com/settings/tokens"
+        },
+        "gitMob.coAuthors.sortDirection": {
+          "type": "string",
+          "default": "ascending",
+          "enum": ["ascending", "descending"],
+          "description": "Co-author list sorting direction"
         }
       }
     },
