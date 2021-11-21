@@ -1,5 +1,6 @@
 const path = require("path");
 const { vsCodeGit } = require("./vs-code-git");
+let selectedRepoPath = null;
 
 class GitExt {
   constructor() {
@@ -17,10 +18,7 @@ class GitExt {
   get rootPath() {
     if (!this.hasRepositories) return null;
 
-    const selected = this.selectedRepository;
-    if (!selected) return this.repositories[0].rootUri.fsPath;
-
-    return selected.rootUri.fsPath;
+    return this.selectedRepository.rootUri.fsPath;
   }
 
   get selectedFolderName() {
@@ -32,8 +30,18 @@ class GitExt {
   }
 
   get selectedRepository() {
-    if (this.repositories.length === 1) return this.repositories[0];
-    return this.repositories.find((repo) => repo.ui.selected);
+    if (this.hasRepositories && this.repositories.length < 2)
+      return this.repositories[0];
+
+    const repo = this.repositories.find(
+      (repo) => repo.rootUri.path === selectedRepoPath
+    );
+    if (!repo) return this.repositories[0];
+    return repo;
+  }
+
+  set selectedRepositoryPath(val) {
+    selectedRepoPath = val;
   }
 
   updateSelectedInput(value) {
