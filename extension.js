@@ -11,8 +11,8 @@ async function activate(context) {
   await installGitCoAuthorFile();
   const gitExt = new GitExt();
   waitForRepos(gitExt, () => {
-    setupGitMob(context, gitExt);
     isReady = true;
+    setupGitMob(context, gitExt);
   });
 }
 
@@ -21,14 +21,22 @@ exports.activate = activate;
 function deactivate() {}
 exports.deactivate = deactivate;
 
-exports.ready = function ready() {
-  return new Promise(function (resolved) {
-    if (isReady) {
-      return resolved("git-mob ready");
-    }
-
-    setTimeout(function () {
-      ready();
-    }, 1050);
+function ready() {
+  return new Promise((resolve, reject) => {
+    retry(1, resolve, reject);
   });
-};
+}
+
+function retry(count, resolve, reject) {
+  if (isReady) {
+    resolve("git-mob ready");
+  }
+  if (count >= 10) {
+    reject("git-mob failed");
+  }
+  setTimeout(function () {
+    retry(count + 1, resolve, reject);
+  }, 200);
+}
+
+exports.ready = ready;
