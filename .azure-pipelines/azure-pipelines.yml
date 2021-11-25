@@ -7,6 +7,10 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '14.x'
+    displayName: 'Install Node.js'
   # for convenience, we tag CI-produced packages with a version number
   # pointing to the commit which was built. for PRs, also include the PR #.
   - bash: |

@@ -17,7 +17,7 @@ steps:
   - bash: |
       echo ">>> Run core integration test"
       npm run ui-test
-    displayName: Run Tests
+    displayName: Run integration tests
     env:
       DISPLAY: ':99.0'
 
