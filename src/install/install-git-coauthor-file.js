@@ -1,6 +1,6 @@
 const {
   gitAuthors,
-  gitCoauthorsPath,
+  pathToCoAuthors,
 } = require("../git/git-mob-api/git-authors");
 
 const SAMPLE_CONTENT = {
@@ -18,7 +18,7 @@ async function installGitCoAuthorFile() {
     try {
       await coAuthors.write(SAMPLE_CONTENT);
     } catch (error) {
-      throw new Error(`Failed to add new "${gitCoauthorsPath}" file`);
+      throw new Error(`Failed to add new "${pathToCoAuthors()}" file`);
     }
   }
 }

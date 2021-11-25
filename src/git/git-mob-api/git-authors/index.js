@@ -4,10 +4,6 @@ const path = require("path");
 const { promisify } = require("util");
 const { Author } = require("../author");
 
-const gitCoauthorsPath =
-  process.env.GITMOB_COAUTHORS_PATH ||
-  path.join(os.homedir(), ".git-coauthors");
-
 function gitAuthors(readFilePromise, writeFilePromise, overwriteFilePromise) {
   async function readFile(path) {
     const readPromise = readFilePromise || promisify(fs.readFile);
@@ -42,7 +38,7 @@ function gitAuthors(readFilePromise, writeFilePromise, overwriteFilePromise) {
 
   return {
     read: async () => {
-      const authorJsonString = await readFile(gitCoauthorsPath);
+      const authorJsonString = await readFile(pathToCoAuthors());
       try {
         return JSON.parse(authorJsonString);
       } catch (error) {
@@ -53,7 +49,7 @@ function gitAuthors(readFilePromise, writeFilePromise, overwriteFilePromise) {
     write: async (authorJson) => {
       try {
         return writeToFile(
-          gitCoauthorsPath,
+          pathToCoAuthors(),
           JSON.stringify(authorJson, null, 2)
         );
       } catch (error) {
@@ -64,7 +60,7 @@ function gitAuthors(readFilePromise, writeFilePromise, overwriteFilePromise) {
     overwrite: async (authorJson) => {
       try {
         return overwriteFile(
-          gitCoauthorsPath,
+          pathToCoAuthors(),
           JSON.stringify(authorJson, null, 2)
         );
       } catch (error) {
@@ -73,7 +69,7 @@ function gitAuthors(readFilePromise, writeFilePromise, overwriteFilePromise) {
     },
 
     fileExists: () => {
-      return fs.existsSync(gitCoauthorsPath);
+      return fs.existsSync(pathToCoAuthors());
     },
 
     coAuthors(authorInitials, authorJson) {
@@ -119,4 +115,11 @@ function missingAuthorError(initials, coauthors) {
   }
 }
 
-module.exports = { gitAuthors, gitCoauthorsPath };
+function pathToCoAuthors() {
+  return (
+    process.env.GITMOB_COAUTHORS_PATH ||
+    path.join(os.homedir(), ".git-coauthors")
+  );
+}
+
+module.exports = { gitAuthors, pathToCoAuthors };
