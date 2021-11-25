@@ -8,6 +8,19 @@ steps:
   - script: npm run ci
     displayName: Run linting rules and unit tests
 
+  - bash: |
+      /usr/bin/Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+      echo ">>> Started xvfb"
+    displayName: Start xvfb
+    condition: and(succeeded(), eq(variables['Agent.OS'], 'Linux'))
+  
+  - bash: |
+      echo ">>> Run core integration test"
+      npm run ui-test
+    displayName: Run Tests
+    env:
+      DISPLAY: ':99.0'
+
   # Acquire the `vsce` tool and use it to package
   - script: npm run package
     displayName: Create VSIX
