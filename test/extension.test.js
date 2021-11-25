@@ -5,6 +5,7 @@ const {
   getSelectedCoAuthors,
 } = require("../src/git/git-mob-api");
 const { CoAuthor } = require("../src/co-author-tree-provider/co-authors");
+const { RepoAuthor } = require("../src/co-author-tree-provider/repo-authors");
 const { GitExt } = require("../src/vscode-git-extension/git-ext");
 
 function wait(timeMs) {
@@ -92,5 +93,32 @@ describe("GitMob core tests", function () {
     );
     const selected = getSelectedCoAuthors(allAuthors);
     expect(selected).to.have.lengthOf(0);
+  });
+
+  it("add a contributor from repo as a new selected co-author by default", async function () {
+    const coAuthor = new RepoAuthor(
+      "Jessica Jones",
+      "jessica-j@gitmob.com",
+      "jj"
+    );
+    await vscode.commands.executeCommand(
+      "gitmob.addRepoAuthorToCoAuthors",
+      coAuthor
+    );
+    const allAuthors = await getAllAuthors();
+    const gitExt = new GitExt();
+    const selected = getSelectedCoAuthors(allAuthors);
+
+    expect(allAuthors).to.have.lengthOf(4);
+    expect(allAuthors).to.deep.contain({
+      key: "jj",
+      name: "Jessica Jones",
+      email: "jessica-j@gitmob.com",
+    });
+    expect(selected[0].key).to.equal(coAuthor.commandKey);
+    expect(selected).to.have.lengthOf(1);
+    expect(gitExt.selectedRepository.inputBox.value).to.contain(
+      `Co-authored-by: ${coAuthor.name} <${coAuthor.email}>`
+    );
   });
 });
