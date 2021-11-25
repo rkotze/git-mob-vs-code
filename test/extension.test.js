@@ -31,6 +31,33 @@ describe("GitMob core tests", function () {
     expect(selected).to.have.lengthOf(1);
   });
 
+  it("remove one of the two co-authors from commit message", async function () {
+    const author1 = allAuthors[1];
+    const author0 = allAuthors[0];
+    const addCoAuthor = new CoAuthor(
+      author1.name,
+      author1.email,
+      false,
+      author1.key
+    );
+    const removeCoAuthor = new CoAuthor(
+      author0.name,
+      author0.email,
+      false,
+      author0.key
+    );
+    await vscode.commands.executeCommand("gitmob.addCoAuthor", removeCoAuthor);
+    await vscode.commands.executeCommand("gitmob.addCoAuthor", addCoAuthor);
+    await vscode.commands.executeCommand(
+      "gitmob.removeCoAuthor",
+      removeCoAuthor
+    );
+
+    const selected = getSelectedCoAuthors(allAuthors);
+    expect(selected[0].key).to.equal(addCoAuthor.commandKey);
+    expect(selected).to.have.lengthOf(1);
+  });
+
   it("run solo no co-authors should be selected", async function () {
     await vscode.commands.executeCommand("gitmob.solo");
     const selected = getSelectedCoAuthors(allAuthors);
