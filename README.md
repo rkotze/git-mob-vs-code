@@ -35,7 +35,7 @@ Optional, will sync with _[git-mob cli](https://github.com/findmypast-oss/git-mo
 - Add co-authors from **GitHub**, see [setting options](#settings) to learn more
 - [Change primary author](#change-primary-author)
 - Add [emojis](#git-emojis) to commits (Gitmojis)
-- Manually [add new co-authors](#add-new-co-authors) via input 
+- Manually [add new co-authors](#add-new-co-authors) via input
 - Button to open co-author file (`.git-coauthors`) in VS Code
 - [Remove co-authors from input](#post-commit---solo) after a commit
 - Configurable see [setting options](#settings)
@@ -110,3 +110,9 @@ Search for co-authors on GitHub you will need to generate a PAT.
 3.  Select "user:read" _(This allows GitMob to fetch a users public email)_
 
 `Default: <empty>`
+
+### Co-authors -> Sort direction
+
+Co-author list sorting direction.
+
+`Default: ascending`

@@ -5,6 +5,7 @@ const {
 const { CoAuthor } = require("./co-author-tree-provider/co-authors");
 const { Author } = require("./co-author-tree-provider/author");
 const { ErrorAuthor } = require("./co-author-tree-provider/error-author");
+const { getSortDirection } = require("./ext-config/config");
 
 const {
   getAllAuthors,
@@ -81,16 +82,13 @@ class MobAuthors {
   async listAll() {
     if (allAuthors === null) {
       const authorList = await getAllAuthors();
-      allAuthors = this.sortAuthors(
-        authorList
-          .filter((author) => author.email !== this.author.email)
-          .map(
-            (author) =>
-              new CoAuthor(author.name, author.email, false, author.key)
-          )
-      );
+      allAuthors = authorList
+        .filter((author) => author.email !== this.author.email)
+        .map(
+          (author) => new CoAuthor(author.name, author.email, false, author.key)
+        );
     }
-    return allAuthors;
+    return this.sortAuthors(allAuthors);
   }
 
   async lastCoAuthor() {
@@ -124,9 +122,13 @@ class MobAuthors {
   }
 
   sortAuthors(authors) {
-    return authors.sort((a, b) =>
+    let sorted = authors.sort((a, b) =>
       a.name.toLowerCase().localeCompare(b.name.toLowerCase())
     );
+    if (getSortDirection() == "descending") {
+      sorted.reverse();
+    }
+    return sorted;
   }
 }
 
