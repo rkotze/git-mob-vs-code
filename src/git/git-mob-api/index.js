@@ -14,7 +14,6 @@ async function getAllAuthors() {
 }
 
 async function setCoAuthors(keys) {
-  setCommitTemplate();
   await solo();
   const selectedAuthors = pickSelectedAuthors(keys, await getAllAuthors());
   for (const author of selectedAuthors) {
@@ -40,6 +39,7 @@ function getSelectedCoAuthors(allAuthors) {
 }
 
 async function solo() {
+  setCommitTemplate();
   mob.removeGitMobSection();
   const gitTemplate = gitMessage(
     resolveGitMessagePath(config.get("commit.template"))
