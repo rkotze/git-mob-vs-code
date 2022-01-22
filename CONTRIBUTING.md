@@ -13,6 +13,7 @@
 - Please add unit tests, **jest** is the testing tool.
 - Make a pull request (PR) to merge into `master` and make sure it passes the continuous integration pipeline.
 - Ensure linting and unit tests all pass before submitting your PR. Run command `npm run ci`.
+- Ensure integration tests are all passing `npm run ui-tests`.
 - You're PR will be reviewed as soon as possible.
 
 
@@ -23,6 +24,7 @@
    npm test
    npm test -- --watch
    ```
+1. Run integration tests `npm run ui-tests`
 1. Debug extension:
    Press F5 in VS Code to launch the extension into a sandbox and you can place break points
 1. Debug tests: In the debug tab you can change to `jest` from the dropdown

@@ -4,6 +4,20 @@ Follows [Semantic Versioning](https://semver.org/).
 
 ## Next version
 
+## 1.15.0 -- 2022-01-22
+
+### Added
+
+- Toggle authors in alphabetical order ascending or descending [issue 73](https://github.com/rkotze/git-mob-vs-code/issues/73) - see settings to toggle sort. Thanks to @viperet.
+- New core integration tests added using @vscode/test-electron and mocha. Added to Azure CI pipeline.
+
+### Fixes
+
+- Small stability fixes: 
+  - app is ready check for tests
+  - set git template path on solo function (edge case)
+
+
 ## 1.14.1 -- 2021-11-14
 
 ### Fixed
