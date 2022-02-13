@@ -248,10 +248,6 @@
       ],
       "commandPalette": [
         {
-          "command": "gitmob.addCoAuthor",
-          "when": "false"
-        },
-        {
           "command": "gitmob.removeCoAuthor",
           "when": "false"
         }
