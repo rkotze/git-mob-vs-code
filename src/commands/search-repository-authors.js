@@ -1,4 +1,5 @@
 const vscode = require("vscode");
+const { moveToCoAuthoring } = require("../ext-config/config");
 const { addNewCoAuthor } = require("../git/git-mob-api");
 const { GitExt } = require("../vscode-git-extension/git-ext");
 
@@ -11,6 +12,9 @@ function searchRepositoryUsers({ coAuthorProvider }) {
       const authorItem = await quickPickAuthors(repoAuthors);
       if (authorItem) {
         await addNewCoAuthor(authorItem.repoAuthor);
+        if (moveToCoAuthoring()) {
+          updateAuthorUiList(coAuthorProvider, authorItem.repoAuthor);
+        }
         await vscode.commands.executeCommand("gitmob.reload");
       }
     }
@@ -18,6 +22,12 @@ function searchRepositoryUsers({ coAuthorProvider }) {
 }
 
 exports.searchRepositoryUsers = searchRepositoryUsers;
+
+async function updateAuthorUiList(coAuthorProvider, author) {
+  coAuthorProvider.mobAuthors.reset();
+  await coAuthorProvider.mobAuthors.listCurrent();
+  await coAuthorProvider.toggleCoAuthor(author, true);
+}
 
 async function quickPickAuthors(repoAuthors) {
   const gitExt = new GitExt();

@@ -15,6 +15,11 @@ function getSortDirection() {
   return config.get("sortDirection");
 }
 
+function moveToCoAuthoring() {
+  const authorListConfig = workspace.getConfiguration("gitMob.authorList");
+  return authorListConfig.get("moreAuthorsToCo-authoring");
+}
+
 workspace.onDidChangeConfiguration((evt) => {
   if (evt.affectsConfiguration("gitMob.coAuthors.sortDirection")) {
     commands.executeCommand("gitmob.reload");
@@ -24,3 +29,4 @@ workspace.onDidChangeConfiguration((evt) => {
 exports.getGitHubPat = getGitHubPat;
 exports.getConfigSolo = getConfigSolo;
 exports.getSortDirection = getSortDirection;
+exports.moveToCoAuthoring = moveToCoAuthoring;
