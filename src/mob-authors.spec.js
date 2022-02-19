@@ -2,13 +2,24 @@ const { workspace } = require("../__mocks__/vscode");
 const commands = require("./git/commands");
 const { MobAuthors } = require("./mob-authors");
 const { Author } = require("./co-author-tree-provider/author");
-const { getAllAuthors } = require("./git/git-mob-api");
+const { getAllAuthors, setCoAuthors } = require("./git/git-mob-api");
+const { CoAuthor } = require("./co-author-tree-provider/co-authors");
 
 jest.mock("./git/commands");
 jest.mock("./git/git-mob-api");
 
 describe("Co-author list", function () {
   const mobAuthors = new MobAuthors();
+  const author = new Author("Richard Kotze", "rkotze@email.com");
+
+  beforeAll(function () {
+    workspace.getConfiguration.mockReturnValue({
+      get() {
+        return "ascending";
+      },
+    });
+    jest.spyOn(mobAuthors, "author", "get").mockImplementation(() => author);
+  });
 
   beforeEach(function () {
     getAllAuthors.mockReset();
@@ -16,13 +27,8 @@ describe("Co-author list", function () {
   });
 
   it("Repo authors should not contain co-authors with same email", async function () {
-    workspace.getConfiguration.mockReturnValue({
-      get() {
-        return "ascending";
-      },
-    });
     getAllAuthors.mockReturnValueOnce([
-      { key: "rk", name: "richard kotze", email: "rkotze@email.com" },
+      { key: "rk", name: "Richard Kotze", email: "rkotze@email.com" },
       { key: "ts", name: "Tony Stark", email: "tony@stark.com" },
     ]);
 
@@ -37,9 +43,6 @@ describe("Co-author list", function () {
   });
 
   it("Remove author from repo authors", async function () {
-    const author = new Author("Richard Kotze", "rkotze@email.com");
-    jest.spyOn(mobAuthors, "author", "get").mockImplementation(() => author);
-
     getAllAuthors.mockReturnValueOnce([
       { key: "ts", name: "Tony Stark", email: "tony@stark.com" },
     ]);
@@ -53,5 +56,39 @@ describe("Co-author list", function () {
     expect(repoAuthorEmails).not.toEqual(
       expect.arrayContaining([author.email])
     );
+  });
+
+  it("Set selected co-authors only", async function () {
+    getAllAuthors.mockReturnValueOnce([
+      {
+        key: "rk",
+        name: "Richard Kotze",
+        email: "rkotze@email.com",
+        selected: false,
+      },
+      {
+        key: "ts",
+        name: "Tony Stark",
+        email: "tony@stark.com",
+        selected: true,
+      },
+      {
+        key: "pp",
+        name: "Peter Parker",
+        email: "peter@stark.com",
+        selected: false,
+      },
+    ]);
+
+    const selected = [
+      new CoAuthor("Peter Parker", "peter@stark.com", false, "pp"),
+    ];
+    await mobAuthors.set(selected);
+    const all = await mobAuthors.listAll();
+    const pp = all.find((author) => author.commandKey == "pp");
+    const ts = all.find((author) => author.commandKey == "ts");
+    expect(pp.selected).toEqual(true);
+    expect(ts.selected).toEqual(false);
+    expect(setCoAuthors).toBeCalledWith(["pp"]);
   });
 });

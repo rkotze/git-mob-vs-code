@@ -29,10 +29,7 @@ function addCoAuthor({ coAuthorProvider }) {
         // ...repoAuthors,
       ]);
       if (authorItem) {
-        await mobAuthors.setCurrent(
-          authorItem.map((author) => author.repoAuthor),
-          true
-        );
+        await mobAuthors.set(authorItem.map((author) => author.repoAuthor));
         await vscode.commands.executeCommand("gitmob.reload");
       }
     }

@@ -79,6 +79,17 @@ class MobAuthors {
     }
   }
 
+  async set(selectedAuthors) {
+    const authorKeys = selectedAuthors.map((author) => author.commandKey);
+    const list = await this.listAll();
+    for (const coAuthor of list) {
+      if (authorKeys.includes(coAuthor.commandKey)) coAuthor.selected = true;
+      else coAuthor.selected = false;
+    }
+
+    return setCoAuthors(authorKeys);
+  }
+
   async listAll() {
     if (allAuthors === null) {
       const authorList = await getAllAuthors();
