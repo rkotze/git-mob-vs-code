@@ -1,5 +1,4 @@
 const vscode = require("vscode");
-const { CoAuthor } = require("../co-author-tree-provider/co-authors");
 const { GitExt } = require("../vscode-git-extension/git-ext");
 
 async function quickPickAuthors(repoAuthors) {
