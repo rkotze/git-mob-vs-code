@@ -35,13 +35,13 @@ Add new co-authors from [repository contributors](#search-repository-contributor
 - Append multiple co-author metadata to commit message
 - Select multiple co-authors (`shift` or `ctrl` or `⌘`) in SCM panel view
 - [Search repository contributors co-authors](#search-repository-contributors-co-authors) from the "More Authors" list ([Add from local repository](#add-from-repository-contributors))
+- **After a commit** [remove all selected co-authors](#post-commit---solo) 
 - [Workspace support](#workspace-support), multiple Git repositories
 - Add co-authors from **GitHub**, see [setting options](#settings) to learn more
 - [Change primary author](#change-primary-author)
 - Add [emojis](#git-emojis) to commits (Gitmojis)
 - Manually [add new co-authors](#add-new-co-authors) via input
 - Button to open co-author file (`.git-coauthors`) in VS Code
-- [Remove co-authors from input](#post-commit---solo) after a commit
 - Configurable see [setting options](#settings)
 
 `prepare-commit-msg` hook support **removed** in `v1.12.0`
@@ -90,7 +90,7 @@ Search and select an emoji to add to the Git message input field.
 
 ### Post commit -> Solo
 
-After a commit remove selected co-authors from input to unselected. If you commit in the command-line the UI will update as well.
+After a commit remove selected co-authors. If you commit in the command-line the UI will update as well.
 
 `Default: false`
 
