@@ -118,38 +118,24 @@
       {
         "command": "gitmob.reload",
         "title": "Reload view",
-        "category": "Git Mob",
-        "icon": {
-          "light": "resources/icons/light/refresh.svg",
-          "dark": "resources/icons/dark/refresh.svg"
-        }
+        "category": "Git Mob"
       },
       {
         "command": "gitmob.addCoAuthor",
         "title": "Select co-author",
         "category": "Git Mob",
-        "icon": {
-          "light": "resources/icons/light/stage.svg",
-          "dark": "resources/icons/dark/stage.svg"
-        }
+        "icon": "$(add)"
       },
       {
         "command": "gitmob.addRepoAuthorToCoAuthors",
         "title": "Add new co-author",
-        "category": "Git Mob",
-        "icon": {
-          "light": "resources/icons/light/stage.svg",
-          "dark": "resources/icons/dark/stage.svg"
-        }
+        "category": "Git Mob"
       },
       {
         "command": "gitmob.searchRepositoryUsers",
         "title": "Search Git repository for co-authors",
         "category": "Git Mob",
-        "icon": {
-          "light": "resources/icons/light/search.svg",
-          "dark": "resources/icons/dark/search.svg"
-        }
+        "icon": "$(search)"
       },
       {
         "command": "gitmob.searchGithubAuthors",
@@ -171,19 +157,13 @@
         "command": "gitmob.removeCoAuthor",
         "title": "Unselect co-author",
         "category": "Git Mob",
-        "icon": {
-          "light": "resources/icons/light/unstage.svg",
-          "dark": "resources/icons/dark/unstage.svg"
-        }
+        "icon": "$(remove)"
       },
       {
         "command": "gitmob.solo",
         "title": "Solo: remove all co-authors",
         "category": "Git Mob",
-        "icon": {
-          "light": "resources/icons/light/unstage.svg",
-          "dark": "resources/icons/dark/unstage.svg"
-        }
+        "icon": "$(remove)"
       }
     ],
     "menus": {
