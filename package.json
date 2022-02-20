@@ -129,7 +129,8 @@
       {
         "command": "gitmob.addRepoAuthorToCoAuthors",
         "title": "Add new co-author",
-        "category": "Git Mob"
+        "category": "Git Mob",
+        "icon": "$(add)"
       },
       {
         "command": "gitmob.searchRepositoryUsers",
