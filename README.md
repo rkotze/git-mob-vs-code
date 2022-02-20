@@ -4,33 +4,37 @@
 
 > VS Code extension to easily _co-author a commit message_ from the source control panel.
 
-Helpful when **pair programming** or **mobbing**.
+Helpful when **pair programming**.
 
 ![Git Mob in action](https://user-images.githubusercontent.com/10452163/103484860-d323f580-4de9-11eb-9819-bb8d6602a21e.gif)
 
 1. [Install](#install)
-2. [Features](#features)
-3. [Settings](#settings)
-4. [Contributing](https://github.com/rkotze/git-mob-vs-code/blob/master/CONTRIBUTING.md)
+2. [Quick start](#quick-start)
+3. [Features](#features)
+4. [Settings](#settings)
+5. [Contributing](https://github.com/rkotze/git-mob-vs-code/blob/master/CONTRIBUTING.md)
 
 ## Install
 
-Open VS Code and search for "git-mob" in **Extensions** panel and click **install**.
-
-Set your primary author in Git.
-
-```
-$ git config --global user.name "Jane Doe"
-$ git config --global user.email "jane@example.com"
-```
+Open VS Code and search for **"git-mob"** in **Extensions panel**.
 
 Optional, will sync with _[git-mob cli](https://github.com/findmypast-oss/git-mob/#install)_
 
+## Quick start
+
+### Key commands
+
+**Select co-authors** - `CTRL+shift+p` or `⌘+⇧+p` -> "Select co-authors". Use the multi-selector to add and remove co-authors.
+
+**Solo** - clear all selected co-authors: `CTRL+shift+p` or `⌘+⇧+p` -> "Solo: remove all co-authors"
+
+Add new co-authors from [repository contributors](#search-repository-contributors-co-authors) or add directly to your co-authors file [`.git-coauthors`](#add-new-co-authors).
+
 ## Features
 
-- Apply co-author metadata to commit message
-- Select multiple co-authors to add to commit (`shift` or `ctrl` or `⌘`)
-- [Search suggested co-authors](#search-suggested-co-authors) from the "More Authors" list ([Add from local repository](#add-new-co-authors-from-repository))
+- Append multiple co-author metadata to commit message
+- Select multiple co-authors (`shift` or `ctrl` or `⌘`) in SCM panel view
+- [Search repository contributors co-authors](#search-repository-contributors-co-authors) from the "More Authors" list ([Add from local repository](#add-from-repository-contributors))
 - [Workspace support](#workspace-support), multiple Git repositories
 - Add co-authors from **GitHub**, see [setting options](#settings) to learn more
 - [Change primary author](#change-primary-author)
@@ -44,22 +48,21 @@ Optional, will sync with _[git-mob cli](https://github.com/findmypast-oss/git-mo
 
 ### Add new co-authors
 
-**Option 1:** `CTRL+shift+p` or `⌘+⇧+p` and search for "Add new co-author". Fill in all input fields.
-(`ctrl+shift+p` -> "Open .git-coauthors file")
+**Option 1:** `CTRL+shift+p` or `⌘+⇧+p` -> "Add new co-author". Fill in all input fields.
 
-**Option 2:** Add your co-authors to the `.git-coauthors` files in your user folder.
+**Option 2:** `ctrl+shift+p` or `⌘+⇧+p` -> "Open .git-coauthors file" or use UI to open co-authors file `.git-coauthors`.
 
 ![open_coauthors](https://user-images.githubusercontent.com/10452163/52169086-b167f280-272a-11e9-947d-0e00df3eefa4.png)
 
-### Add new co-authors from repository
+### Add from repository contributors
 
 Click the **plus +** button on an author in **More Authors** list.
 
 ![image](https://user-images.githubusercontent.com/10452163/52488610-1d79a900-2bb8-11e9-8a9b-46529d4b9608.png)
 
-### Search suggested co-authors
+### Search repository contributors co-authors
 
-Click the search icon on the **More Authors** section or `CTRL+shift+p` or `⌘+⇧+p` and search for "Search suggested co-authors".
+Click the search icon on the **More Authors** section or `CTRL+shift+p` or `⌘+⇧+p` -> "Search Git repository for co-authors".
 
 ![image](https://user-images.githubusercontent.com/10452163/57807338-e2f44f00-7758-11e9-8fb1-6d8b8cb9d7ce.png)
 
@@ -73,7 +76,9 @@ Select one of multiple open Git repositories and add co-author metadata to sourc
 
 Using the **standardised** list from [Gitmoji](https://github.com/carloscuesta/gitmoji).
 
-Search and select an emoji to add to the Git message input field
+Search and select an emoji to add to the Git message input field. 
+
+`CTRL+shift+p` or `⌘+⇧+p` -> "Search Gitmojis - emojis"
 
 ![git emojis select list](https://user-images.githubusercontent.com/10452163/79442052-ef6bd200-7fcf-11ea-85c1-82789738add3.png)
 

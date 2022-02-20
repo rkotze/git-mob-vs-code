@@ -4,6 +4,17 @@ Follows [Semantic Versioning](https://semver.org/).
 
 ## Next version
 
+## 1.16.0 -- in progress
+
+### Added
+
+- Use command palette to select co-authors from unselected co-authors [issue 82](https://github.com/rkotze/git-mob-vs-code/issues/82)
+  
+### Fixes
+
+- Clean up unused icons and use VS Code provided icons to match the editors UI.
+- When selecting a contributor from search command palette, fix flow of adding them to selected for co-authoring if setting is enabled.
+
 ## 1.15.0 -- 2022-01-22
 
 ### Added
