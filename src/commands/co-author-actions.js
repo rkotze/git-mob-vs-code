@@ -1,5 +1,5 @@
 const vscode = require("vscode");
-// const { addNewCoAuthor } = require("../git/git-mob-api");
+const { CoAuthor } = require("../co-author-tree-provider/co-authors");
 const { GitExt } = require("../vscode-git-extension/git-ext");
 
 async function quickPickAuthors(repoAuthors) {
@@ -14,24 +14,10 @@ async function quickPickAuthors(repoAuthors) {
 }
 
 function addCoAuthor({ coAuthorProvider }) {
-  const { mobAuthors } = coAuthorProvider;
   return vscode.commands.registerCommand(
     "gitmob.addCoAuthor",
     async function (author) {
-      if (author) {
-        return coAuthorProvider.toggleCoAuthor(author, true);
-      }
-      await mobAuthors.listCurrent();
-      const allSavedAuthors = await mobAuthors.listAll();
-      // const repoAuthors = await mobAuthors.repoAuthorList();
-      const authorItem = await quickPickAuthors([
-        ...allSavedAuthors,
-        // ...repoAuthors,
-      ]);
-      if (authorItem) {
-        await mobAuthors.set(authorItem.map((author) => author.repoAuthor));
-        await vscode.commands.executeCommand("gitmob.reload");
-      }
+      return coAuthorProvider.toggleCoAuthor(author, true);
     }
   );
 }
@@ -45,5 +31,22 @@ function removeCoAuthor({ coAuthorProvider }) {
   );
 }
 
+function addFromFavourite({ coAuthorProvider }) {
+  const { mobAuthors } = coAuthorProvider;
+  return vscode.commands.registerCommand(
+    "gitmob.addFromFavourite",
+    async function () {
+      await mobAuthors.listCurrent();
+      const allSavedAuthors = await mobAuthors.listAll();
+      const authorItem = await quickPickAuthors(allSavedAuthors);
+      if (authorItem) {
+        await mobAuthors.set(authorItem.map((author) => author.repoAuthor));
+        await vscode.commands.executeCommand("gitmob.reload");
+      }
+    }
+  );
+}
+
 exports.addCoAuthor = addCoAuthor;
 exports.removeCoAuthor = removeCoAuthor;
+exports.addFromFavourite = addFromFavourite;

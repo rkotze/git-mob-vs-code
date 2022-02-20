@@ -6,7 +6,11 @@ const { reloadOnSave } = require("./reload-on-save");
 const { reloadCommand } = require("./commands/reload");
 const { openGitCoAuthor } = require("./commands/open-git-coauthors");
 const { soloCommand } = require("./commands/solo");
-const { addCoAuthor, removeCoAuthor } = require("./commands/co-author-actions");
+const {
+  addCoAuthor,
+  removeCoAuthor,
+  addFromFavourite,
+} = require("./commands/co-author-actions");
 const { addRepoAuthorToCoauthors } = require("./commands/add-co-author");
 const {
   searchRepositoryUsers,
@@ -50,6 +54,7 @@ function bootGitMob(context, gitExt) {
     reloadCommand({ coAuthorProvider }),
     addCoAuthor({ coAuthorProvider }),
     removeCoAuthor({ coAuthorProvider }),
+    addFromFavourite({ coAuthorProvider }),
     addRepoAuthorToCoauthors({ coAuthorProvider }),
     searchRepositoryUsers({ coAuthorProvider }),
     openGitCoAuthor({ coAuthorProvider }),
