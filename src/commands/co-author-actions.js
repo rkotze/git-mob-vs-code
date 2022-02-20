@@ -1,14 +1,24 @@
 const vscode = require("vscode");
+const { CoAuthor } = require("../co-author-tree-provider/co-authors");
+const { saveNewCoAuthors } = require("../git/git-mob-api");
 const { GitExt } = require("../vscode-git-extension/git-ext");
 
 async function quickPickAuthors(repoAuthors) {
   const gitExt = new GitExt();
-  const authorTextArray = repoAuthors.map((author) => ({
-    label: `${author.name} <${author.email}>`,
-    description: gitExt.selectedFolderName,
-    repoAuthor: { ...author, key: author.commandKey },
-    picked: author.selected,
-  }));
+  const authorTextArray = repoAuthors.map((author) => {
+    let icon = "";
+    let type = "RepoAuthor";
+    if (author instanceof CoAuthor) {
+      icon = "$(star-full)";
+      type = "CoAuthor";
+    }
+    return {
+      label: `${icon}${author.name} <${author.email}>`,
+      description: gitExt.selectedFolderName,
+      repoAuthor: { ...author, type, key: author.commandKey },
+      picked: author.selected,
+    };
+  });
   return vscode.window.showQuickPick(authorTextArray, { canPickMany: true });
 }
 
@@ -35,11 +45,26 @@ function addFromFavourite({ coAuthorProvider }) {
   return vscode.commands.registerCommand(
     "gitmob.addFromFavourite",
     async function () {
-      await mobAuthors.listCurrent();
-      const allSavedAuthors = await mobAuthors.listAll();
-      const authorItem = await quickPickAuthors(allSavedAuthors);
-      if (authorItem) {
-        await mobAuthors.set(authorItem.map((author) => author.repoAuthor));
+      const [allSavedAuthors, contributors] = await Promise.all([
+        mobAuthors.listAll(),
+        mobAuthors.repoAuthorList(),
+      ]);
+
+      const selectedAuthors = await quickPickAuthors([
+        ...allSavedAuthors,
+        ...contributors,
+      ]);
+
+      if (selectedAuthors) {
+        const authors = selectedAuthors.map((author) => author.repoAuthor);
+        const anyRepoAuthors = authors.filter(
+          (author) => author.type === "RepoAuthor"
+        );
+        if (anyRepoAuthors.length > 0) {
+          await saveNewCoAuthors(anyRepoAuthors);
+        }
+        mobAuthors.reset();
+        await mobAuthors.set(authors);
         await vscode.commands.executeCommand("gitmob.reload");
       }
     }
