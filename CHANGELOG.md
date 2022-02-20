@@ -8,7 +8,7 @@ Follows [Semantic Versioning](https://semver.org/).
 
 ### Added
 
-- Use command palette to select co-authors from unselected co-authors [issue 82](https://github.com/rkotze/git-mob-vs-code/issues/82)
+- Use command palette to select co-authors from unselected and repo contributors [issue 82](https://github.com/rkotze/git-mob-vs-code/issues/82) This also enables adding multiple repo contributors at once with the multi-selector command palette.
   
 ### Fixes
 
