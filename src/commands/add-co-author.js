@@ -1,7 +1,7 @@
 const vscode = require("vscode");
 const { CoAuthor } = require("../co-author-tree-provider/co-authors");
 const { moveToCoAuthoring } = require("../ext-config/config");
-const { addNewCoAuthor } = require("../git/git-mob-api");
+const { saveNewCoAuthors } = require("../git/git-mob-api");
 
 function addRepoAuthorToCoauthors({ coAuthorProvider }) {
   return vscode.commands.registerCommand(
@@ -10,14 +10,14 @@ function addRepoAuthorToCoauthors({ coAuthorProvider }) {
       const moveToSelected = moveToCoAuthoring();
 
       if (author) {
-        await addNewCoAuthor({ ...author, key: author.commandKey });
+        await saveNewCoAuthors([{ ...author, key: author.commandKey }]);
         if (moveToSelected) {
           await updateAuthorUiList(coAuthorProvider, author);
         }
       } else {
         const newAuthor = await inputAuthorData();
         if (newAuthor) {
-          await addNewCoAuthor(newAuthor);
+          await saveNewCoAuthors([newAuthor]);
           if (moveToSelected) {
             const { name, email, key } = newAuthor;
             await updateAuthorUiList(

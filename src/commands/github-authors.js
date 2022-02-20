@@ -1,7 +1,7 @@
 const vscode = require("vscode");
 const { get } = require("../github/github-api");
 const { getGitHubPat } = require("../ext-config/config");
-const { addNewCoAuthor } = require("../git/git-mob-api");
+const { saveNewCoAuthors } = require("../git/git-mob-api");
 
 function searchGithubAuthors() {
   return vscode.commands.registerCommand(
@@ -47,7 +47,7 @@ function searchGithubAuthors() {
         if (!selectedAuthor.repoAuthor.email) {
           vscode.window.showErrorMessage("No email! Can't be added.");
         } else {
-          await addNewCoAuthor(selectedAuthor.repoAuthor);
+          await saveNewCoAuthors([selectedAuthor.repoAuthor]);
           await vscode.commands.executeCommand("gitmob.reload");
         }
       }
