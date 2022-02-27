@@ -55,15 +55,15 @@ function addFromFavourite({ coAuthorProvider }) {
         ...contributors,
       ]);
 
-      if (selectedAuthors) {
+      if (selectedAuthors && selectedAuthors.length > 0) {
         const authors = selectedAuthors.map((author) => author.repoAuthor);
         const anyRepoAuthors = authors.filter(
           (author) => author.type === "RepoAuthor"
         );
         if (anyRepoAuthors.length > 0) {
           await saveNewCoAuthors(anyRepoAuthors);
+          mobAuthors.reset();
         }
-        mobAuthors.reset();
         await mobAuthors.set(authors);
         await vscode.commands.executeCommand("gitmob.reload");
       }
