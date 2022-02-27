@@ -165,6 +165,11 @@
         "title": "Solo: remove all co-authors",
         "category": "Git Mob",
         "icon": "$(remove)"
+      },
+      {
+        "command": "gitmob.copyCoAuthor",
+        "title": "Copy co-author",
+        "category": "Git Mob"
       }
     ],
     "menus": {
@@ -230,9 +235,18 @@
           "command": "gitmob.searchRepositoryUsers",
           "when": "viewItem == more-authors",
           "group": "inline"
+        },
+        {
+          "command": "gitmob.copyCoAuthor",
+          "when": "viewItem == add-author || viewItem == add-repo-author || viewItem == remove-author || viewItem == primary-author",
+          "group": "navigation"
         }
       ],
       "commandPalette": [
+        {
+          "command": "gitmob.copyCoAuthor",
+          "when": "false"
+        },
         {
           "command": "gitmob.removeCoAuthor",
           "when": "false"

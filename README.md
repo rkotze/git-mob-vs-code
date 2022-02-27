@@ -39,6 +39,7 @@ Add new co-authors from [repository contributors](#search-repository-contributor
 - [Workspace support](#workspace-support), multiple Git repositories
 - Add co-authors from **GitHub**, see [setting options](#settings) to learn more
 - [Change primary author](#change-primary-author)
+- Right-click and copy co-author data.
 - Add [emojis](#git-emojis) to commits (Gitmojis)
 - Manually [add new co-authors](#add-new-co-authors) via input
 - Button to open co-author file (`.git-coauthors`) in VS Code

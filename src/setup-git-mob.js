@@ -19,6 +19,7 @@ const { changePrimaryAuthor } = require("./commands/change-primary-author");
 const { searchGitEmojis } = require("./commands/search-git-emojis");
 const { openSettings } = require("./commands/open-settings");
 const { searchGithubAuthors } = require("./commands/github-authors");
+const { copyCoAuthor } = require("./commands/copy-co-author");
 const {
   replaceCoAuthors,
 } = require("./vscode-git-extension/format-scm-input-text");
@@ -63,6 +64,7 @@ function bootGitMob(context, gitExt) {
     changePrimaryAuthor({ coAuthorProvider }),
     searchGithubAuthors({ coAuthorProvider }),
     new CountDecorationProvider(coAuthorProvider),
+    copyCoAuthor(),
   ];
 
   disposables.forEach((dispose) => context.subscriptions.push(dispose));
