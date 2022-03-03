@@ -4,7 +4,7 @@ Follows [Semantic Versioning](https://semver.org/).
 
 ## Next version
 
-## 1.16.0 -- in progress
+## 1.16.0 -- 2020-03-03
 
 ### Added
 
@@ -14,7 +14,7 @@ Follows [Semantic Versioning](https://semver.org/).
 ### Fixes
 
 - Clean up unused icons and use VS Code provided icons to match the editors UI.
-- When selecting a contributor from search command palette, fix flow of adding them to selected for co-authoring if setting is enabled.
+- When selecting a repo contributor from search command palette, fix flow of adding them to selected for co-authoring if setting is enabled.
 
 ## 1.15.0 -- 2022-01-22
 

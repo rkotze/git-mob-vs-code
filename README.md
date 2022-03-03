@@ -6,7 +6,7 @@
 
 Helpful when **pair programming**.
 
-![Git Mob in action](https://user-images.githubusercontent.com/10452163/103484860-d323f580-4de9-11eb-9819-bb8d6602a21e.gif)
+![Git Mob in action](https://user-images.githubusercontent.com/10452163/156645932-8f5629f5-24b6-42cd-b24a-767164364353.gif)
 
 1. [Install](#install)
 2. [Quick start](#quick-start)
@@ -53,13 +53,9 @@ Add new co-authors from [repository contributors](#search-repository-contributor
 
 **Option 2:** `ctrl+shift+p` or `⌘+⇧+p` -> "Open .git-coauthors file" or use UI to open co-authors file `.git-coauthors`.
 
-![open_coauthors](https://user-images.githubusercontent.com/10452163/52169086-b167f280-272a-11e9-947d-0e00df3eefa4.png)
-
 ### Add from repository contributors
 
 Click the **plus +** button on an author in **More Authors** list.
-
-![image](https://user-images.githubusercontent.com/10452163/52488610-1d79a900-2bb8-11e9-8a9b-46529d4b9608.png)
 
 ### Search repository contributors co-authors
 
@@ -69,9 +65,7 @@ Click the search icon on the **More Authors** section or `CTRL+shift+p` or `⌘+
 
 ### Workspace support
 
-Select one of multiple open Git repositories and add co-author metadata to source control input field.
-
-<img alt="workspace-support" src="https://user-images.githubusercontent.com/10452163/80038666-08074b00-84ee-11ea-9565-26c9f755d512.gif" width="320" />
+Select one of multiple open Git repositories and add co-author metadata to source control input field. You can have different co-authors applied to all the open Git repositories.
 
 ### Git Emojis
 
@@ -85,7 +79,7 @@ Search and select an emoji to add to the Git message input field.
 
 ### Change primary author
 
-![Change primary author](https://user-images.githubusercontent.com/10452163/89105613-6d86a400-d41a-11ea-88ec-25b34a084598.gif)
+`CTRL+shift+p` or `⌘+⇧+p` -> "Change primary author"
 
 ## Settings
 
