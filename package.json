@@ -290,7 +290,7 @@
     "@types/vscode": "^1.63.1",
     "@vscode/test-electron": "^2.1.1",
     "chai": "^4.3.4",
-    "eslint": "^8.7.0",
+    "eslint": "^8.15.0",
     "glob": "^7.2.0",
     "jest": "^27.4.7",
     "jest-environment-node": "^27.4.6",
