@@ -5,7 +5,7 @@
   "version": "1.16.0",
   "publisher": "RichardKotze",
   "engines": {
-    "vscode": "^1.63.1"
+    "vscode": "^1.67.0"
   },
   "repository": {
     "type": "git",
