@@ -20,12 +20,6 @@ jobs:
         uses: dependabot/fetch-metadata@v1.1.1
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
-      # Here the PR gets approved.
-      - name: Approve a PR
-        run: gh pr review --approve "$PR_URL"
-        env:
-          PR_URL: ${{ github.event.pull_request.html_url }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       # Finally, this sets the PR to allow auto-merging for patch and minor
       # updates if all checks pass
       - name: Enable auto-merge for Dependabot PRs
