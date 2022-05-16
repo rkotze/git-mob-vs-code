@@ -286,7 +286,7 @@
     "vsix-publish": "vsce publish"
   },
   "devDependencies": {
-    "@types/jest": "^27.5.0",
+    "@types/jest": "^27.5.1",
     "@types/vscode": "^1.67.0",
     "@vscode/test-electron": "^2.1.3",
     "chai": "^4.3.4",
