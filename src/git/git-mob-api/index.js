@@ -32,7 +32,7 @@ function pickSelectedAuthors(keys, authorMap) {
 
 function getSelectedCoAuthors(allAuthors) {
   let coAuthorsString = "";
-  const CO_AUTHOR_KEY = "git-mob.co-author";
+  const CO_AUTHOR_KEY = "--global git-mob.co-author";
   if (config.has(CO_AUTHOR_KEY)) coAuthorsString = config.getAll(CO_AUTHOR_KEY);
 
   return allAuthors.filter((author) => coAuthorsString.includes(author.email));

@@ -11,8 +11,9 @@ Helpful when **pair programming**.
 1. [Install](#install)
 2. [Quick start](#quick-start)
 3. [Features](#features)
-4. [Settings](#settings)
-5. [Contributing](https://github.com/rkotze/git-mob-vs-code/blob/master/CONTRIBUTING.md)
+4. [Notable changes](#notable-changes)
+5. [Settings](#settings)
+6. [Contributing](https://github.com/rkotze/git-mob-vs-code/blob/master/CONTRIBUTING.md)
 
 ## Install
 
@@ -45,7 +46,11 @@ Add new co-authors from [repository contributors](#search-repository-contributor
 - Button to open co-author file (`.git-coauthors`) in VS Code
 - Configurable see [setting options](#settings)
 
-`prepare-commit-msg` hook support **removed** in `v1.12.0`
+### Notable changes:
+
+Global mob meaning switch between projects will have same co-authors selected. (`v1.17.0`)
+
+`prepare-commit-msg` hook support **removed** (`v1.12.0`)
 
 ### Add new co-authors
 

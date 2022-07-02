@@ -1,11 +1,12 @@
 const path = require("path");
+const os = require("os");
 
 const { config } = require("../commands");
-const { topLevelDirectory, gitPath } = require("../git-rev-parse");
+const { topLevelDirectory } = require("../git-rev-parse");
 
 function setCommitTemplate() {
   if (!config.has("commit.template")) {
-    config.set("commit.template", gitMessagePath());
+    config.set("--global commit.template", gitMessagePath());
   }
 }
 
@@ -19,7 +20,9 @@ function resolveGitMessagePath(templatePath) {
 }
 
 function gitMessagePath() {
-  return process.env.GITMOB_MESSAGE_PATH || gitPath(".gitmessage");
+  return (
+    process.env.GITMOB_MESSAGE_PATH || path.join(os.homedir(), ".gitmessage")
+  );
 }
 
 module.exports = {

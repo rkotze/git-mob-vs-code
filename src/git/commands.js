@@ -62,7 +62,7 @@ function set(key, value) {
 }
 
 function gitAddCoAuthor(coAuthor) {
-  return add("git-mob.co-author", coAuthor);
+  return add("--global git-mob.co-author", coAuthor);
 }
 
 async function getRepoAuthors() {
@@ -70,7 +70,7 @@ async function getRepoAuthors() {
 }
 
 function removeGitMobSection() {
-  return silentRun(`git config --remove-section git-mob`);
+  return silentRun(`git config --global --remove-section git-mob`);
 }
 
 function cmdOptions(extendOptions = {}) {
