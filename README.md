@@ -121,3 +121,9 @@ Search for co-authors on GitHub you will need to generate a PAT.
 Co-author list sorting direction.
 
 `Default: ascending`
+
+### Commit -> Local template warning
+
+Show local templating warning message. Uncheck if local commit template is correct for this project. Read more about the [local template warning](https://github.com/rkotze/git-mob-vs-code/discussions/120).
+
+`Default: true`

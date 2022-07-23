@@ -73,6 +73,10 @@ function removeGitMobSection() {
   return silentRun(`git config --global --remove-section git-mob`);
 }
 
+function usingLocalTemplate() {
+  return has("--local commit.template");
+}
+
 function cmdOptions(extendOptions = {}) {
   const gitExt = new GitExt();
   return {
@@ -92,6 +96,7 @@ module.exports = {
   mob: {
     removeGitMobSection,
     gitAddCoAuthor,
+    usingLocalTemplate,
   },
   getRepoAuthors,
 };

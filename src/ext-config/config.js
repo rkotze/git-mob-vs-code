@@ -20,6 +20,11 @@ function moveToCoAuthoring() {
   return authorListConfig.get("moreAuthorsToCo-authoring");
 }
 
+function showLocalTemplateWarning() {
+  const commitConfig = workspace.getConfiguration("gitMob.commit");
+  return commitConfig.get("localTemplateWarning");
+}
+
 workspace.onDidChangeConfiguration((evt) => {
   if (evt.affectsConfiguration("gitMob.coAuthors.sortDirection")) {
     commands.executeCommand("gitmob.reload");
@@ -30,3 +35,4 @@ exports.getGitHubPat = getGitHubPat;
 exports.getConfigSolo = getConfigSolo;
 exports.getSortDirection = getSortDirection;
 exports.moveToCoAuthoring = moveToCoAuthoring;
+exports.showLocalTemplateWarning = showLocalTemplateWarning;

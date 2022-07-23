@@ -94,6 +94,11 @@
             "descending"
           ],
           "description": "Co-author list sorting direction"
+        },
+        "gitMob.commit.localTemplateWarning": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show local templating warning message. Uncheck if local commit template is correct for this project."
         }
       }
     },
@@ -119,7 +124,7 @@
         "command": "gitmob.reload",
         "title": "Reload view",
         "category": "Git Mob",
-        "icon": "$(sync)"
+        "icon": "$(refresh)"
       },
       {
         "command": "gitmob.addCoAuthor",
