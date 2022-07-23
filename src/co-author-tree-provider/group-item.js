@@ -28,7 +28,7 @@ class Group extends vscode.TreeItem {
 
 class ProjectFolder extends Group {
   constructor(label) {
-    super(label, "", new vscode.ThemeIcon("folder-active"), None);
+    super(label, "project-folder", new vscode.ThemeIcon("folder-active"), None);
   }
 
   get tooltip() {

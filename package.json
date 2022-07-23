@@ -118,7 +118,8 @@
       {
         "command": "gitmob.reload",
         "title": "Reload view",
-        "category": "Git Mob"
+        "category": "Git Mob",
+        "icon": "$(sync)"
       },
       {
         "command": "gitmob.addCoAuthor",
@@ -209,6 +210,11 @@
         {
           "command": "gitmob.addCoAuthor",
           "when": "viewItem == add-author",
+          "group": "inline"
+        },
+        {
+          "command": "gitmob.reload",
+          "when": "viewItem == project-folder",
           "group": "inline"
         },
         {
