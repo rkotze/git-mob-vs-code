@@ -19,7 +19,11 @@ Helpful when **pair programming**.
 
 Open VS Code and search for **"git-mob"** in **Extensions panel**.
 
-Optional, will sync with _[git-mob cli](https://github.com/findmypast-oss/git-mob/#install)_
+OR
+
+Via the terminal `code --install-extension RichardKotze.git-mob`
+
+Optional, will sync with _[git-mob cli](https://github.com/rkotze/git-mob/#install)_
 
 ## Quick start
 
@@ -48,7 +52,7 @@ Add new co-authors from [repository contributors](#search-repository-contributor
 
 ### Notable changes:
 
-Global mob meaning switch between projects will have same co-authors selected. (`v1.17.0`)
+[Global Git Mob](https://github.com/rkotze/git-mob-vs-code/discussions/120) meaning switch between projects will have same co-authors selected. (`v1.17.0`)
 
 `prepare-commit-msg` hook support **removed** (`v1.12.0`)
 

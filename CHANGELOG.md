@@ -4,6 +4,13 @@ Follows [Semantic Versioning](https://semver.org/).
 
 ## Next version
 
+## 1.17.0
+
+### Added
+
+- Global Git Mob means that you will have the same selected co-authors when switching between projects. Read more on [migrating from local commit template](https://github.com/rkotze/git-mob-vs-code/discussions/120).
+- Reload icon added to project folder item.
+
 ## 1.16.0 -- 2020-03-03
 
 ### Added
