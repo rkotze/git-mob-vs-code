@@ -52,6 +52,10 @@ function add(key, value) {
   return silentRun(`git config --add ${key} "${value}"`);
 }
 
+function usingLocalTemplate() {
+  return has("--local commit.template");
+}
+
 // Sets the option, overwriting the existing value if one exists.
 function set(key, value) {
   const { status } = silentRun(`git config ${key} "${value}"`);
@@ -92,6 +96,7 @@ module.exports = {
   mob: {
     removeGitMobSection,
     gitAddCoAuthor,
+    usingLocalTemplate,
   },
   getRepoAuthors,
 };

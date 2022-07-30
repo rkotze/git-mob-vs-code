@@ -19,11 +19,18 @@ async function setCoAuthors(keys) {
   for (const author of selectedAuthors) {
     mob.gitAddCoAuthor(author.toString());
   }
+  await updateGitTemplate(selectedAuthors);
+  return selectedAuthors;
+}
+
+async function updateGitTemplate(selectedAuthors) {
   const gitTemplate = gitMessage(
     resolveGitMessagePath(config.get("commit.template"))
   );
-  await gitTemplate.writeCoAuthors(selectedAuthors);
-  return selectedAuthors;
+  if (selectedAuthors && selectedAuthors.length) {
+    return gitTemplate.writeCoAuthors(selectedAuthors);
+  }
+  return gitTemplate.removeCoAuthors();
 }
 
 function pickSelectedAuthors(keys, authorMap) {
@@ -41,10 +48,7 @@ function getSelectedCoAuthors(allAuthors) {
 async function solo() {
   setCommitTemplate();
   mob.removeGitMobSection();
-  const gitTemplate = gitMessage(
-    resolveGitMessagePath(config.get("commit.template"))
-  );
-  return gitTemplate.removeCoAuthors();
+  return updateGitTemplate();
 }
 
 function getPrimaryAuthor() {
@@ -72,4 +76,5 @@ module.exports = {
   setCoAuthors,
   setPrimaryAuthor,
   solo,
+  updateGitTemplate,
 };

@@ -85,7 +85,7 @@ describe("GitMob core tests", function () {
     );
     await vscode.commands.executeCommand("gitmob.addCoAuthor", coAuthor);
     await vscode.commands.executeCommand("gitmob.solo");
-    await wait(20);
+    await wait(100);
 
     const gitExt = new GitExt();
     expect(gitExt.selectedRepository.inputBox.value).to.not.contain(

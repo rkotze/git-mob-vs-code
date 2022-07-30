@@ -1,4 +1,4 @@
-const { getRepoAuthors } = require("./git/commands");
+const { getRepoAuthors, mob } = require("./git/commands");
 const {
   createRepoAuthorList,
 } = require("./co-author-tree-provider/repo-authors");
@@ -13,6 +13,7 @@ const {
   solo,
   getPrimaryAuthor,
   getSelectedCoAuthors,
+  updateGitTemplate,
 } = require("./git/git-mob-api");
 let author = null;
 let allAuthors = null;
@@ -42,6 +43,10 @@ class MobAuthors {
 
     const list = await this.listAll();
     const currentMob = getSelectedCoAuthors(list);
+
+    if (mob.usingLocalTemplate()) {
+      await updateGitTemplate(currentMob);
+    }
 
     for (const author of list) {
       if (currentMob.find((coAuthor) => coAuthor.email === author.email)) {

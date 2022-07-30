@@ -1,4 +1,4 @@
-const { setCoAuthors } = require(".");
+const { setCoAuthors, updateGitTemplate } = require(".");
 const { mob } = require("../commands");
 const { Author } = require("./author");
 const { gitAuthors } = require("./git-authors");
@@ -43,5 +43,29 @@ describe("Git Mob API", () => {
     expect(mob.gitAddCoAuthor).toBeCalledTimes(2);
     expect(mockWriteCoAuthors).toBeCalledWith(authorList);
     expect(coAuthors).toEqual(authorList);
+  });
+
+  it("update git template by adding co-authors", async () => {
+    const authorKeys = ["ab", "cd"];
+    const authorList = buildAuthors(authorKeys);
+    const mockWriteCoAuthors = jest.fn();
+    gitMessage.mockImplementation(() => ({
+      writeCoAuthors: mockWriteCoAuthors,
+    }));
+
+    await updateGitTemplate(authorList);
+
+    expect(mockWriteCoAuthors).toBeCalledWith(authorList);
+  });
+
+  it("update git template by removing all co-authors", async () => {
+    const mockRemoveCoAuthors = jest.fn();
+    gitMessage.mockImplementation(() => ({
+      removeCoAuthors: mockRemoveCoAuthors,
+    }));
+
+    await updateGitTemplate();
+
+    expect(mockRemoveCoAuthors).toBeCalledTimes(1);
   });
 });
