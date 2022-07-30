@@ -1,15 +1,11 @@
-const { getRepoAuthors, mob } = require("./git/commands");
+const { getRepoAuthors } = require("./git/commands");
 const {
   createRepoAuthorList,
 } = require("./co-author-tree-provider/repo-authors");
 const { CoAuthor } = require("./co-author-tree-provider/co-authors");
 const { Author } = require("./co-author-tree-provider/author");
 const { ErrorAuthor } = require("./co-author-tree-provider/error-author");
-const {
-  getSortDirection,
-  showLocalTemplateWarning,
-} = require("./ext-config/config");
-const { localWarning } = require("./errors/log-issue");
+const { getSortDirection } = require("./ext-config/config");
 
 const {
   getAllAuthors,
@@ -63,10 +59,6 @@ class MobAuthors {
 
   async setCurrent(authors, selected) {
     const selectedAuthorKeys = [];
-
-    if (mob.usingLocalTemplate() && showLocalTemplateWarning()) {
-      localWarning();
-    }
 
     const authorKeys = authors.map((author) => author.commandKey);
     const list = await this.listAll();
