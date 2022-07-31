@@ -5,13 +5,13 @@ const { get } = require("./github-api");
 jest.mock("./fetch");
 
 describe("requests to github api", function () {
-  it("fetch data successfully", async function () {
-    workspace.getConfiguration.mockReturnValue({
+  it("fetch data successfully with access token", async function () {
+    workspace.getConfiguration.mockReturnValueOnce({
       get() {
         return "abc";
       },
     });
-    fetch.mockResolvedValue(`{"items":[1]}`);
+    fetch.mockResolvedValue({ statusCode: 200, data: `{"items":[1]}` });
     const result = await get("search/users");
     expect(fetch).toHaveBeenCalled();
     expect(fetch.mock.calls[0][0].toString()).toEqual(
@@ -25,18 +25,26 @@ describe("requests to github api", function () {
       method: "GET",
     });
 
-    expect(result).toEqual({ data: { items: [1] } });
+    expect(result).toEqual({ statusCode: 200, data: { items: [1] } });
   });
 
-  it("no api key found", async function () {
-    workspace.getConfiguration.mockReturnValue({
-      get() {
-        return null;
+  it("fetch data successfully without access token", async function () {
+    workspace.getConfiguration.mockReturnValueOnce({
+      get() {},
+    });
+    fetch.mockResolvedValue({ statusCode: 200, data: `{"items":[1]}` });
+    const result = await get("search/users");
+    expect(fetch).toHaveBeenCalled();
+    expect(fetch.mock.calls[0][0].toString()).toEqual(
+      "https://api.github.com/search/users"
+    );
+    expect(fetch.mock.calls[0][1]).toEqual({
+      headers: {
+        Accept: "application/vnd.github.v3+json",
       },
+      method: "GET",
     });
 
-    await expect(get("search/users")).rejects.toThrow(
-      "No GitHub personal access token found"
-    );
+    expect(result).toEqual({ statusCode: 200, data: { items: [1] } });
   });
 });

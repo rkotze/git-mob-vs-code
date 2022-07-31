@@ -1,19 +1,12 @@
 const vscode = require("vscode");
 const { get } = require("../github/github-api");
-const { getGitHubPat } = require("../ext-config/config");
 const { saveNewCoAuthors } = require("../git/git-mob-api");
+const { RepoAuthor } = require("../co-author-tree-provider/repo-authors");
 
 function searchGithubAuthors() {
   return vscode.commands.registerCommand(
     "gitmob.searchGithubAuthors",
     async function () {
-      const gitHubPat = getGitHubPat();
-      if (!gitHubPat) {
-        vscode.window.showErrorMessage(
-          "Missing GitHub PAT. Update settings with valid PAT."
-        );
-        return;
-      }
       const searchText = await vscode.window.showInputBox({
         placeHolder: "Try the name of person, email or username",
         validateInput(value) {
@@ -27,9 +20,17 @@ function searchGithubAuthors() {
       if (typeof searchText === "undefined") return null;
 
       const searchUsers = await get("search/users?q=" + searchText);
-      const users = await Promise.all(
-        searchUsers.data.items.map((item) => get(item.url))
-      );
+      let users = [];
+      if (searchUsers.statusCode <= 400) {
+        users = await Promise.all(
+          searchUsers.data.items.map((item) => get(item.url))
+        );
+      } else {
+        vscode.window.showErrorMessage(
+          "Request to GitHub failed: " + searchUsers.data.message
+        );
+        return;
+      }
 
       if (searchUsers.data.total_count === 0) {
         vscode.window.showInformationMessage("No users found!");
@@ -38,8 +39,7 @@ function searchGithubAuthors() {
       const messageUnder30 = `Git Mob: Showing ${searchUsers.data.total_count} GitHub users.`;
       const messageOver30 = `Git Mob: Can only showing 30 of ${searchUsers.data.total_count} GitHub users.`;
       vscode.window.showInformationMessage(
-        (searchUsers.data.total_count > 30 ? messageOver30 : messageUnder30) +
-          " Please select users with an email."
+        searchUsers.data.total_count > 30 ? messageOver30 : messageUnder30
       );
 
       const selectedAuthor = await quickPickAuthors(users);
@@ -56,14 +56,29 @@ function searchGithubAuthors() {
 }
 
 async function quickPickAuthors(repoAuthors) {
-  const authorTextArray = repoAuthors.map(({ data }) => ({
-    label: `${data.name} ${data.login}`,
-    description: `<${data.email ? data.email : "no email"}>`,
-    repoAuthor: { ...data, key: data.login },
-  }));
+  const authorTextArray = repoAuthors.map(({ data }) => {
+    const repoAuthor = new RepoAuthor(
+      data.name,
+      composeEmail(data.email, data.id, data.login),
+      data.login
+    );
+
+    return {
+      label: `${data.name} ${data.login}`,
+      description: `<${repoAuthor.email}>`,
+      repoAuthor: { ...repoAuthor, key: repoAuthor.commandKey },
+    };
+  });
   return await vscode.window.showQuickPick(authorTextArray, {
     matchOnDescription: true,
   });
+}
+
+function composeEmail(email, id, username) {
+  if (email) {
+    return email;
+  }
+  return `${id}+${username}@users.noreply.github.com`;
 }
 
 exports.searchGithubAuthors = searchGithubAuthors;

@@ -116,7 +116,9 @@ Add a new author directly to 'Co-authoring' from 'More Authors'.
 
 ### Github -> Personal Access Token
 
-Search for co-authors on GitHub you will need to generate a PAT.
+*Optional*: if you want the users public email then you will need the PAT.
+
+Default will return the anonymous GitHub email.
 
 1.  Visit [GitHub > settings > tokens](https://github.com/settings/tokens)
 2.  Click "generate new token"

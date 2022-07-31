@@ -10,6 +10,7 @@ Follows [Semantic Versioning](https://semver.org/).
 
 - Global Git Mob means that you will have the same selected co-authors when switching between projects. Read more on [migrating from local commit template](https://github.com/rkotze/git-mob-vs-code/discussions/120).
 - Reload icon added to project folder item.
+- By default fetch anonymous email from GitHub [issue 101](https://github.com/rkotze/git-mob-vs-code/issues/101)
 
 ## 1.16.0 -- 2020-03-03
 

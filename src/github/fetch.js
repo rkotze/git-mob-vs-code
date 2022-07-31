@@ -14,7 +14,10 @@ function fetch(url, options) {
         });
 
         response.on("end", () => {
-          fulfil(data);
+          fulfil({
+            statusCode: response.statusCode,
+            data,
+          });
         });
       })
       .on("error", (error) => {

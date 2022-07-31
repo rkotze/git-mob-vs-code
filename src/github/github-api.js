@@ -5,20 +5,22 @@ const GITHUB_API = "https://api.github.com/";
 
 async function get(url) {
   const pat = getGitHubPat();
-  if (!pat) {
-    throw new Error("No GitHub personal access token found");
+  let headers = {
+    Accept: "application/vnd.github.v3+json",
+  };
+  if (pat) {
+    headers.Authorization = `token ${pat}`;
   }
+
   const gitUrl = new URL(url, GITHUB_API);
-  const result = await fetch(gitUrl, {
+  const { statusCode, data } = await fetch(gitUrl, {
     method: "GET",
-    headers: {
-      Accept: "application/vnd.github.v3+json",
-      Authorization: `token ${pat}`,
-    },
+    headers,
   });
 
   return {
-    data: JSON.parse(result),
+    statusCode,
+    data: JSON.parse(data),
   };
 }
 
