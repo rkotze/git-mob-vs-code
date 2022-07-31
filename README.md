@@ -17,10 +17,6 @@ Helpful when **pair programming**.
 
 ## Install
 
-[Open VS Code and install Git Mob](vscode:extension/RichardKotze.git-mob)
-
-OR
-
 Open VS Code and search for **"git-mob"** in **Extensions panel**.
 
 OR
