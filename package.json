@@ -300,7 +300,7 @@
     "jest-environment-node": "^29.1.2",
     "jest": "^29.1.2",
     "glob": "^8.0.3",
-    "mocha": "^10.0.0",
+    "mocha": "^10.1.0",
     "vsce": "^2.11.0"
   },
   "dependencies": {}
