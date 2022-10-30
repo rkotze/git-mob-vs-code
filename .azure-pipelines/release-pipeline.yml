@@ -14,6 +14,16 @@ steps:
 
       npm run vsix-publish -- -p $MARKET_KEY --packagePath git-mob-vs-code/git-mob-$PACKAGE_VERSION.vsix
     workingDirectory: '$(System.DefaultWorkingDirectory)/_rkotze.git-mob-vs-code'
-    displayName: Deploy
+    displayName: VS Market Deploy
     env:
       MARKET_KEY: $(vscekey)
+
+  - bash: |
+
+      PACKAGE_VERSION=$(cat git-mob-vs-code/version.txt)
+
+      npm run ovsx-publish -- git-mob-vs-code/git-mob-$PACKAGE_VERSION.vsix -p $OPEN_MARKET_KEY
+    workingDirectory: '$(System.DefaultWorkingDirectory)/_rkotze.git-mob-vs-code'
+    displayName: Open Market Deploy
+    env:
+      OPEN_MARKET_KEY: $(ovsxkey)
