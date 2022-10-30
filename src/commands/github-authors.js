@@ -1,7 +1,7 @@
 const vscode = require("vscode");
 const { get } = require("../github/github-api");
 const { saveNewCoAuthors } = require("../git/git-mob-api");
-const { RepoAuthor } = require("../co-author-tree-provider/repo-authors");
+const { composeGitHubUser } = require("../github/compose-github-user");
 
 function searchGithubAuthors() {
   return vscode.commands.registerCommand(
@@ -57,14 +57,10 @@ function searchGithubAuthors() {
 
 async function quickPickAuthors(repoAuthors) {
   const authorTextArray = repoAuthors.map(({ data }) => {
-    const repoAuthor = new RepoAuthor(
-      data.name,
-      composeEmail(data.email, data.id, data.login),
-      data.login
-    );
+    const repoAuthor = composeGitHubUser(data);
 
     return {
-      label: `${data.name} ${data.login}`,
+      label: `${repoAuthor.name} ${repoAuthor.commandKey}`,
       description: `<${repoAuthor.email}>`,
       repoAuthor: { ...repoAuthor, key: repoAuthor.commandKey },
     };
@@ -72,13 +68,6 @@ async function quickPickAuthors(repoAuthors) {
   return await vscode.window.showQuickPick(authorTextArray, {
     matchOnDescription: true,
   });
-}
-
-function composeEmail(email, id, username) {
-  if (email) {
-    return email;
-  }
-  return `${id}+${username}@users.noreply.github.com`;
 }
 
 exports.searchGithubAuthors = searchGithubAuthors;
