@@ -2,7 +2,7 @@
 
 [![](https://vsmarketplacebadge.apphb.com/version-short/RichardKotze.git-mob.svg)](https://marketplace.visualstudio.com/items?itemName=RichardKotze.git-mob) [![](https://vsmarketplacebadge.apphb.com/rating-short/RichardKotze.git-mob.svg)](https://marketplace.visualstudio.com/items?itemName=RichardKotze.git-mob) [![Build Status](https://dev.azure.com/TinkerTaylor/VS%20code%20extensions/_apis/build/status/rkotze.git-mob-vs-code?branchName=master)](https://dev.azure.com/TinkerTaylor/VS%20code%20extensions/_build/latest?definitionId=1?branchName=master) ![](https://vsmarketplacebadge.apphb.com/installs/RichardKotze.git-mob.svg)
 
-> VS Code extension to easily _co-author a commit message_ from the source control panel.
+> VS Code extension to easily _co-author a commit_ message from the source control panel.
 
 Helpful when **pair programming**.
 
@@ -23,7 +23,9 @@ OR
 
 Via the terminal `code --install-extension RichardKotze.git-mob`
 
-Optional, will sync with _[git-mob cli](https://github.com/rkotze/git-mob/#install)_
+Available in [VS Code marketplace](https://marketplace.visualstudio.com/items?itemName=RichardKotze.git-mob) and [open VSX registry](https://open-vsx.org/extension/RichardKotze/git-mob)
+
+If you also use _[git-mob cli](https://github.com/rkotze/git-mob/#install)_ they work fine together.
 
 ## Quick start
 
@@ -37,24 +39,21 @@ Add new co-authors from [repository contributors](#search-repository-contributor
 
 ## Features
 
-- Append multiple co-author metadata to commit message
+- Append _multiple co-authors_ to a commit message
 - Select multiple co-authors (`shift` or `ctrl` or `⌘`) in SCM panel view
-- [Search repository contributors co-authors](#search-repository-contributors-co-authors) from the "More Authors" list ([Add from local repository](#add-from-repository-contributors))
+- Easily add co-author data by [searching repository contributors co-authors](#search-repository-contributors-co-authors) from the "More Authors" list.
 - **After a commit** [remove all selected co-authors](#post-commit---solo) 
 - [Workspace support](#workspace-support), multiple Git repositories
-- Add co-authors from **GitHub**, see [setting options](#settings) to learn more
+- **Search and add** co-authors from **GitHub** using anonymous email
 - [Change primary author](#change-primary-author)
 - Right-click and copy co-author data.
 - Add [emojis](#git-emojis) to commits (Gitmojis)
-- Manually [add new co-authors](#add-new-co-authors) via input
-- Button to open co-author file (`.git-coauthors`) in VS Code
 - Configurable see [setting options](#settings)
 
 ### Notable changes:
 
-[Global Git Mob](https://github.com/rkotze/git-mob-vs-code/discussions/120) meaning switch between projects will have same co-authors selected. (`v1.17.0`)
-
-`prepare-commit-msg` hook support **removed** (`v1.12.0`)
+1. [Global Git Mob](https://github.com/rkotze/git-mob-vs-code/discussions/120) meaning switch between projects will have same co-authors selected. (`v1.17.0`)
+2. `prepare-commit-msg` hook support **removed** (`v1.12.0`)
 
 ### Add new co-authors
 
