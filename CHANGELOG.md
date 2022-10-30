@@ -4,6 +4,15 @@ Follows [Semantic Versioning](https://semver.org/).
 
 ## Next version
 
+### Fixed
+
+- Extension breaks if user name is empty from GitHub [issue 152](https://github.com/rkotze/git-mob-vs-code/issues/152). Replaced empty name with `username` (`login` property).
+
+### Note
+
+- CI build step in GitHub actions.
+- Published to [open VSX registry](https://open-vsx.org/extension/RichardKotze/git-mob). Addresses [issue 122](https://github.com/rkotze/git-mob-vs-code/issues/122).
+
 ## 1.17.0
 
 ### Added
