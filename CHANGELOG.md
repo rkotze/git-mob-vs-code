@@ -4,6 +4,8 @@ Follows [Semantic Versioning](https://semver.org/).
 
 ## Next version
 
+## 1.17.1
+
 ### Fixed
 
 - Extension breaks if user name is empty from GitHub [issue 152](https://github.com/rkotze/git-mob-vs-code/issues/152). Replaced empty name with `username` (`login` property).

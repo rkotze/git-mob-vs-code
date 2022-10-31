@@ -288,6 +288,8 @@
     "ui-test": "node ./test/setup/test-runner",
     "lint": "eslint . --ext .js",
     "ci": "npm run lint && npm test",
+    "preversion": "npm run ci",
+    "postversion": "git push --follow-tags",
     "package": "vsce package",
     "vsix-publish": "vsce publish",
     "ovsx-publish": "ovsx publish"
