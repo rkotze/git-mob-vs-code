@@ -13,6 +13,7 @@ Follows [Semantic Versioning](https://semver.org/).
 ### Note
 
 - CI build step in GitHub actions.
+- Add publish step for GitHub actions
 - Published to [open VSX registry](https://open-vsx.org/extension/RichardKotze/git-mob). Addresses [issue 122](https://github.com/rkotze/git-mob-vs-code/issues/122).
 
 ## 1.17.0
