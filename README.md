@@ -1,6 +1,6 @@
 # <img src="https://user-images.githubusercontent.com/10452163/79142596-a808fa00-7db3-11ea-9a02-2d020e0b29d7.png" width="80" alt="VS Code Git Mob logo" /> Co-author commits
 
-[![](https://vsmarketplacebadge.apphb.com/rating-short/RichardKotze.git-mob.svg)](https://marketplace.visualstudio.com/items?itemName=RichardKotze.git-mob) [![](https://vsmarketplacebadge.apphb.com/installs/RichardKotze.git-mob.svg)](https://marketplace.visualstudio.com/items?itemName=RichardKotze.git-mob) [![](https://img.shields.io/open-vsx/dt/RichardKotze/git-mob?color=brightgreen&label=VSX%20installs)](https://open-vsx.org/extension/RichardKotze/git-mob)
+![Visual Studio Marketplace Installs](https://img.shields.io/visual-studio-marketplace/i/RichardKotze.git-mob?color=brightgreen&label=VSCode%20installs) [![](https://img.shields.io/open-vsx/dt/RichardKotze/git-mob?color=brightgreen&label=VSX%20installs)](https://open-vsx.org/extension/RichardKotze/git-mob)
 
 > VS Code extension to easily _co-author a commit_ message from the source control panel.
 
