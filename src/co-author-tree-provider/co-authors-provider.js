@@ -24,10 +24,11 @@ class CoAuthorProvider {
       return element.fetchChildren();
     }
 
+    const current = await this.mobAuthors.listCurrent();
     return [
       new ProjectFolder(this.gitExt.selectedFolderName),
       this.mobAuthors.author,
-      new Selected(() => this.mobAuthors.listCurrent()),
+      new Selected(() => current),
       new Unselected(async () => {
         const allAuthors = await this.mobAuthors.listAll();
         return allAuthors.filter((author) => !author.selected);
