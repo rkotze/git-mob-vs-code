@@ -4,6 +4,14 @@ Follows [Semantic Versioning](https://semver.org/).
 
 ## Next version
 
+## 1.17.2
+
+### Fixed
+
+- Stop the Git Mob list from reloading and making it difficult to update the commit message text input.
+- On reload co authors in selected would duplicate in unselected lists
+- Ensure counts are correct when selecting a co author
+
 ## 1.17.1
 
 ### Fixed
