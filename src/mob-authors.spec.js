@@ -2,16 +2,16 @@ const { workspace } = require("../__mocks__/vscode");
 const commands = require("./git/commands");
 const { MobAuthors } = require("./mob-authors");
 const { Author } = require("./co-author-tree-provider/author");
+const { CoAuthor } = require("./co-author-tree-provider/co-authors");
 const {
   getAllAuthors,
   setCoAuthors,
   updateGitTemplate,
   getSelectedCoAuthors,
-} = require("./git/git-mob-api");
-const { CoAuthor } = require("./co-author-tree-provider/co-authors");
+} = require("git-mob-core");
 
 jest.mock("./git/commands");
-jest.mock("./git/git-mob-api");
+jest.mock("git-mob-core");
 
 describe("Co-author list", function () {
   const mobAuthors = new MobAuthors();
