@@ -49,7 +49,9 @@ This section is for owner/maintainers with publish access to git-mob-vs-code on 
    git push --follow-tags
    ```
 1. New releases need to be manually triggered
-   [Azure release pipeline](https://dev.azure.com/TinkerTaylor/VS%20code%20extensions/_release?view=all&_a=releases&definitionId=1)
+   [GitHub publish action](https://dev.azure.com/TinkerTaylor/VS%20code%20extensions/_release?view=all&_a=releases&definitionId=1)
+
+You might need to [regenerate PATs](https://dev.azure.com/TinkerTaylor/_usersSettings/tokens)
 
 1. **Never to be used** only for reference: Manually release the package
    ```
