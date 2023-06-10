@@ -1,6 +1,6 @@
 const vscode = require("vscode");
 const { get } = require("../github/github-api");
-const { saveNewCoAuthors } = require("../git/git-mob-api");
+const { saveNewCoAuthors } = require("git-mob-core");
 const { composeGitHubUser } = require("../github/compose-github-user");
 
 function searchGithubAuthors() {
