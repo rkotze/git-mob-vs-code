@@ -46,10 +46,6 @@ function bootGitMob(context, gitExt) {
     }
   });
 
-  gitExt.onDidChangeRepo(function () {
-    coAuthorProvider.reloadData();
-  });
-
   const disposables = [
     openSettings(),
     reloadCommand({ coAuthorProvider }),
