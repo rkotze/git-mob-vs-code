@@ -22,6 +22,8 @@ class CountDecorationProvider {
     const selected = "/selected";
     const moreAuthors = "/more-authors";
     const mobAuthors = this.coAuthorProvider.mobAuthors;
+    const listCurrent = await mobAuthors.listCurrent();
+
     if (uri.path === unselected) {
       const list = await mobAuthors.listAll();
       return {
@@ -30,7 +32,6 @@ class CountDecorationProvider {
       };
     }
     if (uri.path === selected) {
-      const listCurrent = await mobAuthors.listCurrent();
       return {
         badge: listCurrent.length.toString(),
         tooltip: "Selected co-authors",
