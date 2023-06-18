@@ -1,6 +1,6 @@
 const vscode = require("vscode");
 const { logIssue } = require("../errors/log-issue");
-const { coAuthorsFile } = require("../git-mob-coauthors-file");
+const { pathToCoAuthors } = require("git-mob-core");
 
 function openGitCoAuthor() {
   return vscode.commands.registerCommand(
@@ -10,8 +10,8 @@ function openGitCoAuthor() {
       const { showTextDocument } = vscode.window;
 
       try {
-        const pathToCoauthors = vscode.Uri.file(coAuthorsFile.path);
-        const doc = await openTextDocument(pathToCoauthors);
+        const coauthorsFile = vscode.Uri.file(pathToCoAuthors());
+        const doc = await openTextDocument(coauthorsFile);
         showTextDocument(doc);
       } catch (err) {
         logIssue("GitMob error: " + err);

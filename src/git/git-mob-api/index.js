@@ -2,7 +2,6 @@ const { mob, config } = require("../commands");
 const { Author } = require("./author");
 const { gitAuthors } = require("./git-authors");
 const { gitMessage } = require("./git-message");
-const { saveNewCoAuthors } = require("./manage-authors/add-new-coauthor");
 const {
   resolveGitMessagePath,
   setCommitTemplate,
@@ -69,7 +68,6 @@ function setPrimaryAuthor(author) {
 }
 
 module.exports = {
-  saveNewCoAuthors,
   getAllAuthors,
   getPrimaryAuthor,
   getSelectedCoAuthors,

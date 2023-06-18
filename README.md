@@ -37,6 +37,14 @@ If you also use _[git-mob cli](https://github.com/rkotze/git-mob/#install)_ they
 
 Add new co-authors from [repository contributors](#search-repository-contributors-co-authors) or add directly to your co-authors file [`.git-coauthors`](#add-new-co-authors).
 
+### Saving your co-authors
+
+To keep track of co-authors git-mob uses a JSON file called `.git-coauthors`, and will try to find it in the following directories:
+
+1. If `GITMOB_COAUTHORS_PATH` environment variable is set this will override any other settings.
+1. If the current Git repository has a `.git-coauthors` file in the root directory.
+1. The default is the users home directory at `~/.git-coauthors`.
+
 ## Features
 
 - Append _multiple co-authors_ to a commit message

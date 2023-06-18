@@ -1,5 +1,5 @@
 const vscode = require("vscode");
-const { setPrimaryAuthor } = require("../git/git-mob-api");
+const { setPrimaryAuthor } = require("git-mob-core");
 
 function changePrimaryAuthor({ coAuthorProvider }) {
   const { mobAuthors } = coAuthorProvider;

@@ -4,6 +4,13 @@ Follows [Semantic Versioning](https://semver.org/).
 
 ## Next version
 
+## 1.18.0
+
+### Added
+
+- Integrated `git-mob-core` v0.5.0 new shared library between Git Mob cli and VS Code.
+- New feature: add `.git-coauthors` file to your Git repository will be used instead of global one.
+
 ## 1.17.2
 
 ### Fixed

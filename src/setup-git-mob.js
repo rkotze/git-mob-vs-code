@@ -28,6 +28,7 @@ const { logIssue } = require("./errors/log-issue");
 const {
   CountDecorationProvider,
 } = require("./co-author-tree-provider/count-decorator-provider");
+const { updateConfig } = require("git-mob-core");
 
 function setupGitMob(context, gitExt) {
   bootGitMob(context, gitExt);
@@ -35,6 +36,7 @@ function setupGitMob(context, gitExt) {
 
 function bootGitMob(context, gitExt) {
   const coAuthorProvider = new CoAuthorProvider();
+  updateConfig("processCwd", gitExt.rootPath);
 
   coAuthorProvider.onDidChangeTreeData(async function () {
     try {
@@ -72,6 +74,7 @@ function bootGitMob(context, gitExt) {
     if (gitExt.repositories.length === 1) return;
     if (this.ui.selected) {
       gitExt.selectedRepositoryPath = this.rootUri.path;
+      updateConfig("processCwd", gitExt.rootPath);
       coAuthorProvider.mobAuthors.reset();
       coAuthorProvider.reloadData();
     }

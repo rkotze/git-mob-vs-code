@@ -6,15 +6,15 @@ const { CoAuthor } = require("./co-author-tree-provider/co-authors");
 const { Author } = require("./co-author-tree-provider/author");
 const { ErrorAuthor } = require("./co-author-tree-provider/error-author");
 const { getSortDirection } = require("./ext-config/config");
-
 const {
-  getAllAuthors,
-  setCoAuthors,
-  solo,
   getPrimaryAuthor,
+  getAllAuthors,
+  solo,
+  setCoAuthors,
   getSelectedCoAuthors,
   updateGitTemplate,
-} = require("./git/git-mob-api");
+} = require("git-mob-core");
+
 let author = null;
 let allAuthors = null;
 let allRepoAuthors = null;
@@ -28,7 +28,7 @@ class MobAuthors {
       if (mainAuthor) {
         author = new Author(mainAuthor.name, mainAuthor.email);
       } else {
-        author = new ErrorAuthor("Missing git author");
+        author = new ErrorAuthor("Missing Git author");
       }
     }
     return author;

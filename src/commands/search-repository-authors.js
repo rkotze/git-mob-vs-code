@@ -1,6 +1,6 @@
 const vscode = require("vscode");
 const { moveToCoAuthoring } = require("../ext-config/config");
-const { saveNewCoAuthors } = require("../git/git-mob-api");
+const { saveNewCoAuthors } = require("git-mob-core");
 const { GitExt } = require("../vscode-git-extension/git-ext");
 
 function searchRepositoryUsers({ coAuthorProvider }) {
