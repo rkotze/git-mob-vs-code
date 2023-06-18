@@ -1,9 +1,6 @@
 const vscode = require("vscode");
 const expect = require("chai").expect;
-const {
-  getAllAuthors,
-  getSelectedCoAuthors,
-} = require("../src/git/git-mob-api");
+const { getAllAuthors, getSelectedCoAuthors } = require("git-mob-core");
 const { CoAuthor } = require("../src/co-author-tree-provider/co-authors");
 const { RepoAuthor } = require("../src/co-author-tree-provider/repo-authors");
 const { GitExt } = require("../src/vscode-git-extension/git-ext");
@@ -15,10 +12,11 @@ function wait(timeMs) {
 }
 
 describe("GitMob core tests", function () {
-  // this.timeout(5000);
   let allAuthors = [];
   let author0, author1, author2;
+  let gitExt;
   before(async function () {
+    gitExt = new GitExt();
     allAuthors = await getAllAuthors();
     author0 = allAuthors[0];
     author1 = allAuthors[1];
@@ -42,7 +40,6 @@ describe("GitMob core tests", function () {
       author2.key
     );
     await vscode.commands.executeCommand("gitmob.addCoAuthor", coAuthor);
-    const gitExt = new GitExt();
     const selected = getSelectedCoAuthors(allAuthors);
     expect(selected[0].key).to.equal(coAuthor.commandKey);
     expect(selected).to.have.lengthOf(1);
@@ -64,6 +61,7 @@ describe("GitMob core tests", function () {
       false,
       author0.key
     );
+
     await vscode.commands.executeCommand("gitmob.addCoAuthor", removeCoAuthor);
     await vscode.commands.executeCommand("gitmob.addCoAuthor", addCoAuthor);
     await vscode.commands.executeCommand(
@@ -87,7 +85,6 @@ describe("GitMob core tests", function () {
     await vscode.commands.executeCommand("gitmob.solo");
     await wait(100);
 
-    const gitExt = new GitExt();
     expect(gitExt.selectedRepository.inputBox.value).to.not.contain(
       "Co-authored-by"
     );
@@ -106,7 +103,6 @@ describe("GitMob core tests", function () {
       coAuthor
     );
     const allAuthors = await getAllAuthors();
-    const gitExt = new GitExt();
     const selected = getSelectedCoAuthors(allAuthors);
 
     expect(allAuthors).to.have.lengthOf(4);

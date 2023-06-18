@@ -13,6 +13,7 @@ exports.run = function run() {
       beforeAll: beforeAll,
       afterAll: afterAll,
     },
+    // timeout: 5000,
   });
 
   return new Promise(async (c, e) => {
