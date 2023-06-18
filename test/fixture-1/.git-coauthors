@@ -1,0 +1,12 @@
+{
+  "coauthors": {
+    "rd": {
+      "name": "Richard random",
+      "email": "richrand@email.com"
+    },
+    "jf": {
+      "name": "Jango Fett",
+      "email": "jango@fetts.com"
+    }
+  }
+}
