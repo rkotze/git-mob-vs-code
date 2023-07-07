@@ -29,13 +29,14 @@ const {
   CountDecorationProvider,
 } = require("./co-author-tree-provider/count-decorator-provider");
 const { updateConfig } = require("git-mob-core");
+const { buildGroups } = require("./mob-authors");
 
 function setupGitMob(context, gitExt) {
   bootGitMob(context, gitExt);
 }
 
-function bootGitMob(context, gitExt) {
-  const coAuthorProvider = new CoAuthorProvider();
+async function bootGitMob(context, gitExt) {
+  const coAuthorProvider = new CoAuthorProvider(await buildGroups());
   updateConfig("processCwd", gitExt.rootPath);
 
   coAuthorProvider.onDidChangeTreeData(async function () {

@@ -15,6 +15,68 @@ const {
   updateGitTemplate,
 } = require("git-mob-core");
 
+function authorListToMap(authors, cb) {
+  const map = new Map();
+  for (const author of authors) {
+    const authorType = cb(author);
+    map.set(authorType.commandKey, authorType);
+  }
+
+  return map;
+}
+
+exports.buildGroups = async function buildGroups() {
+  let mainAuthor = getPrimaryAuthor();
+  const allAuthors = await getAllAuthors();
+
+  const unselected = authorListToMap(
+    allAuthors.filter((author) => mainAuthor.email != author.email),
+    (author) => new CoAuthor(author.name, author.email, false, author.key)
+  );
+  const selected = authorListToMap(
+    getSelectedCoAuthors(allAuthors),
+    (author) => new CoAuthor(author.name, author.email, true, author.key)
+  );
+
+  selected.forEach((_, key) => {
+    unselected.delete(key);
+  });
+
+  return {
+    getMainAuthor() {
+      if (mainAuthor) {
+        return new Author(mainAuthor.name, mainAuthor.email);
+      }
+      return new ErrorAuthor("Missing Git author");
+    },
+    getUnselected() {
+      return Array.from(unselected.values());
+    },
+    getSelected() {
+      return Array.from(selected.values());
+    },
+    select(coAuthors) {
+      for (const coAuthor of coAuthors) {
+        coAuthor.selected = true;
+        selected.set(coAuthor.commandKey, coAuthor);
+        unselected.delete(coAuthor.commandKey);
+      }
+
+      setCoAuthors(Array.from(selected.keys()));
+    },
+
+    unselect(coAuthors) {
+      for (const coAuthor of coAuthors) {
+        coAuthor.selected = false;
+        unselected.set(coAuthor.commandKey, coAuthor);
+        selected.delete(coAuthor.commandKey);
+      }
+
+      setCoAuthors([...selected.keys()]);
+    },
+  };
+};
+
 let author = null;
 let allAuthors = null;
 let allRepoAuthors = null;
@@ -22,7 +84,7 @@ let setMob = null;
 
 class MobAuthors {
   get author() {
-    if (author === null) {
+    if (author === null || author instanceof ErrorAuthor) {
       let mainAuthor = getPrimaryAuthor();
 
       if (mainAuthor) {
