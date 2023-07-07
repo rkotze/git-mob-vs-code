@@ -37,7 +37,7 @@ class CountDecorationProvider {
       };
     }
     if (uri.path === moreAuthors) {
-      const repoAuthors = await mobAuthors.repoAuthorList();
+      const repoAuthors = await coAuthors.getGitRepoAuthors();
       const authorTotal = repoAuthors.length;
       const tooltip = `Contributors to this repo (${authorTotal})`;
 

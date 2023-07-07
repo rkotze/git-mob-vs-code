@@ -41,13 +41,13 @@ function removeCoAuthor({ coAuthorProvider }) {
 }
 
 function addFromFavourite({ coAuthorProvider }) {
-  const { mobAuthors } = coAuthorProvider;
+  const { mobAuthors, coAuthorGroups } = coAuthorProvider;
   return vscode.commands.registerCommand(
     "gitmob.addFromFavourite",
     async function () {
       const [allSavedAuthors, contributors] = await Promise.all([
         mobAuthors.listAll(),
-        mobAuthors.repoAuthorList(),
+        coAuthorGroups.getGitRepoAuthors(),
       ]);
 
       const selectedAuthors = await quickPickAuthors([

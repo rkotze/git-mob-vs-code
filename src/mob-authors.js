@@ -55,6 +55,20 @@ exports.buildGroups = async function buildGroups() {
     getSelected() {
       return sortAuthors(Array.from(selected.values()));
     },
+    async getGitRepoAuthors() {
+      const authorStr = await getRepoAuthors();
+      const contributorAuthorList = createRepoAuthorList(authorStr);
+
+      return sortAuthors(
+        contributorAuthorList.filter((repoAuthor) => {
+          if (repoAuthor.email === mainAuthor.email) return false;
+
+          return ![...selected, ...unselected].some(
+            (coAuthor) => coAuthor.email === repoAuthor.email
+          );
+        })
+      );
+    },
     select(coAuthors) {
       for (const coAuthor of coAuthors) {
         coAuthor.selected = true;

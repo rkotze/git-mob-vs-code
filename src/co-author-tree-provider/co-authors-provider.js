@@ -31,7 +31,7 @@ class CoAuthorProvider {
       new Selected(() => this.coAuthorGroups.getSelected()),
       new Unselected(() => this.coAuthorGroups.getUnselected()),
       new MoreAuthors(this.config.get("expandMoreAuthors"), () =>
-        this.mobAuthors.repoAuthorList()
+        this.coAuthorGroups.getGitRepoAuthors()
       ),
     ];
   }

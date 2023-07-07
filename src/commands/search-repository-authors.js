@@ -4,11 +4,11 @@ const { saveNewCoAuthors } = require("git-mob-core");
 const { GitExt } = require("../vscode-git-extension/git-ext");
 
 function searchRepositoryUsers({ coAuthorProvider }) {
-  const { mobAuthors } = coAuthorProvider;
+  const { coAuthorGroups } = coAuthorProvider;
   return vscode.commands.registerCommand(
     "gitmob.searchRepositoryUsers",
     async function () {
-      const repoAuthors = await mobAuthors.repoAuthorList();
+      const repoAuthors = await coAuthorGroups.getGitRepoAuthors();
       const authorItem = await quickPickAuthors(repoAuthors);
       if (authorItem) {
         await saveNewCoAuthors([authorItem.repoAuthor]);
