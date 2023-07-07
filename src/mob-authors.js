@@ -50,10 +50,10 @@ exports.buildGroups = async function buildGroups() {
       return new ErrorAuthor("Missing Git author");
     },
     getUnselected() {
-      return Array.from(unselected.values());
+      return sortAuthors(Array.from(unselected.values()));
     },
     getSelected() {
-      return Array.from(selected.values());
+      return sortAuthors(Array.from(selected.values()));
     },
     select(coAuthors) {
       for (const coAuthor of coAuthors) {
@@ -76,6 +76,16 @@ exports.buildGroups = async function buildGroups() {
     },
   };
 };
+
+function sortAuthors(authors) {
+  let sorted = authors.sort((a, b) =>
+    a.name.toLowerCase().localeCompare(b.name.toLowerCase())
+  );
+  if (getSortDirection() == "descending") {
+    sorted.reverse();
+  }
+  return sorted;
+}
 
 let author = null;
 let allAuthors = null;

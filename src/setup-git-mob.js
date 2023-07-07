@@ -42,7 +42,7 @@ async function bootGitMob(context, gitExt) {
   coAuthorProvider.onDidChangeTreeData(async function () {
     try {
       gitExt.updateSelectedInput(
-        replaceCoAuthors(await coAuthorProvider.mobAuthors.listCurrent())
+        replaceCoAuthors(await coAuthorProvider.coAuthorGroups.getSelected())
       );
     } catch (err) {
       logIssue("Failed to update input: " + err.message);
@@ -76,7 +76,7 @@ async function bootGitMob(context, gitExt) {
     if (this.ui.selected) {
       gitExt.selectedRepositoryPath = this.rootUri.path;
       updateConfig("processCwd", gitExt.rootPath);
-      coAuthorProvider.mobAuthors.reset();
+      // coAuthorProvider.mobAuthors.reset();
       coAuthorProvider.reloadData();
     }
   });

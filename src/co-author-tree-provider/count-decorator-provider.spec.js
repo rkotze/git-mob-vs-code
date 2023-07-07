@@ -2,11 +2,13 @@ const { CountDecorationProvider } = require("./count-decorator-provider");
 
 describe("Count co-authors", function () {
   let decoratorOptions = {
-    mobAuthors: {
-      listAll: jest
+    coAuthorGroups: {
+      getUnselected: jest
         .fn()
-        .mockResolvedValue(new Array(5).fill({ selected: false })),
-      listCurrent: jest.fn().mockResolvedValue(new Array(2)),
+        .mockReturnValue(new Array(5).fill({ selected: false })),
+      getSelected: jest.fn().mockReturnValue(new Array(2)),
+    },
+    mobAuthors: {
       repoAuthorList: jest.fn().mockResolvedValue(new Array(30)),
     },
     onDidChangeTreeData: jest.fn(),

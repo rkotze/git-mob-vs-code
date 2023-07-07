@@ -21,19 +21,18 @@ class CountDecorationProvider {
     const unselected = "/unselected";
     const selected = "/selected";
     const moreAuthors = "/more-authors";
+    const coAuthors = this.coAuthorProvider.coAuthorGroups;
     const mobAuthors = this.coAuthorProvider.mobAuthors;
-    const listCurrent = await mobAuthors.listCurrent();
 
     if (uri.path === unselected) {
-      const list = await mobAuthors.listAll();
       return {
-        badge: list.filter((author) => !author.selected).length.toString(),
+        badge: coAuthors.getUnselected().length.toString(),
         tooltip: "Available to co-author",
       };
     }
     if (uri.path === selected) {
       return {
-        badge: listCurrent.length.toString(),
+        badge: coAuthors.getSelected().length.toString(),
         tooltip: "Selected co-authors",
       };
     }

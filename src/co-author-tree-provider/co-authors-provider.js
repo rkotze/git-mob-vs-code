@@ -18,7 +18,6 @@ class CoAuthorProvider {
     this.coAuthorGroups = coAuthorGroups;
     this.gitExt = new GitExt();
     this.config = vscode.workspace.getConfiguration("gitMob.authorList");
-    console.log("CoAuthorProvider constructor");
   }
 
   async getChildren(element = {}) {
