@@ -69,7 +69,7 @@ exports.buildGroups = async function buildGroups() {
         contributorAuthorList.filter((repoAuthor) => {
           if (repoAuthor.email === mainAuthor.email) return false;
 
-          return ![...selected, ...unselected].some(
+          return ![...selected.values(), ...unselected.values()].some(
             (coAuthor) => coAuthor.email === repoAuthor.email
           );
         })
