@@ -1,6 +1,6 @@
 const { workspace } = require("../__mocks__/vscode");
 const commands = require("./git/commands");
-const { MobAuthors, buildCoAuthorGroups } = require("./mob-authors");
+const { buildCoAuthorGroups } = require("./mob-authors");
 const { Author } = require("./co-author-tree-provider/author");
 const { CoAuthor } = require("./co-author-tree-provider/co-authors");
 const {
@@ -15,7 +15,6 @@ jest.mock("./git/commands");
 jest.mock("git-mob-core");
 
 describe("Co-author list", function () {
-  const mobAuthors = new MobAuthors();
   const author = new Author("Richard Kotze", "rkotze@email.com");
 
   beforeAll(function () {
@@ -29,7 +28,7 @@ describe("Co-author list", function () {
 
   beforeEach(function () {
     getAllAuthors.mockReset();
-    mobAuthors.reset();
+    getSelectedCoAuthors.mockReset();
   });
 
   it("Repo authors should not contain co-authors with same email", async function () {

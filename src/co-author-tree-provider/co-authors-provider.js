@@ -1,5 +1,4 @@
 const vscode = require("vscode");
-const { MobAuthors } = require("../mob-authors");
 const {
   ProjectFolder,
   Selected,
@@ -14,7 +13,6 @@ class CoAuthorProvider {
     this.multiSelected = [];
     this._onDidChangeTreeData = new vscode.EventEmitter();
     this.onDidChangeTreeData = this._onDidChangeTreeData.event;
-    this.mobAuthors = new MobAuthors();
     this.coAuthorGroups = coAuthorGroups;
     this.gitExt = new GitExt();
     this.config = vscode.workspace.getConfiguration("gitMob.authorList");
