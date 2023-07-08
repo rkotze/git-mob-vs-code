@@ -1,9 +1,8 @@
 const vscode = require("vscode");
-const { solo } = require("git-mob-core");
 
-function soloCommand() {
+function soloCommand({ coAuthorProvider }) {
   return vscode.commands.registerCommand("gitmob.solo", async function () {
-    await solo();
+    await coAuthorProvider.coAuthorGroups.solo();
     await vscode.commands.executeCommand("gitmob.reload");
   });
 }

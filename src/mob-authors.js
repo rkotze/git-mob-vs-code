@@ -86,11 +86,10 @@ exports.buildGroups = async function buildGroups() {
 
       setCoAuthors(Array.from(selected.keys()));
     },
-
     unselect(coAuthors) {
       for (const coAuthorIn of coAuthors) {
         const key = coAuthorIn.commandKey;
-        const coAuthor = unselected.get(key);
+        const coAuthor = selected.get(key);
         coAuthor.selected = false;
         unselected.set(key, coAuthor);
         selected.delete(key);
@@ -103,6 +102,13 @@ exports.buildGroups = async function buildGroups() {
         coAuthor.selected = false;
         unselected.set(coAuthor.commandKey, coAuthor);
       }
+    },
+    async solo() {
+      selected.forEach((value, key) => {
+        unselected.set(key, value);
+        selected.delete(key);
+      });
+      await solo();
     },
     async reloadData() {
       return resolveAuthorLists();

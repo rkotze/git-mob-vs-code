@@ -36,13 +36,13 @@ function setupGitMob(context, gitExt) {
 }
 
 async function bootGitMob(context, gitExt) {
-  const coAuthorProvider = new CoAuthorProvider(await buildGroups());
   updateConfig("processCwd", gitExt.rootPath);
+  const coAuthorProvider = new CoAuthorProvider(await buildGroups());
 
-  coAuthorProvider.onDidChangeTreeData(async function () {
+  coAuthorProvider.onDidChangeTreeData(function () {
     try {
       gitExt.updateSelectedInput(
-        replaceCoAuthors(await coAuthorProvider.coAuthorGroups.getSelected())
+        replaceCoAuthors(coAuthorProvider.coAuthorGroups.getSelected())
       );
     } catch (err) {
       logIssue("Failed to update input: " + err.message);
@@ -58,7 +58,7 @@ async function bootGitMob(context, gitExt) {
     addRepoAuthorToCoauthors({ coAuthorProvider }),
     searchRepositoryUsers({ coAuthorProvider }),
     openGitCoAuthor({ coAuthorProvider }),
-    soloCommand(),
+    soloCommand({ coAuthorProvider }),
     searchGitEmojis(),
     changePrimaryAuthor({ coAuthorProvider }),
     searchGithubAuthors({ coAuthorProvider }),
