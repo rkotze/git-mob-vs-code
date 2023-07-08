@@ -2,7 +2,7 @@ const { CoAuthor } = require("./co-authors");
 const { CoAuthorProvider } = require("./co-authors-provider");
 const { RepoAuthor } = require("./repo-authors");
 
-jest.mock("../mob-authors");
+jest.mock("../build-co-author-groups");
 jest.mock("../vscode-git-extension/git-ext");
 
 describe("Git author provider", function () {

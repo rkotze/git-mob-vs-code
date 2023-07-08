@@ -29,7 +29,7 @@ const {
   CountDecorationProvider,
 } = require("./co-author-tree-provider/count-decorator-provider");
 const { updateConfig } = require("git-mob-core");
-const { buildCoAuthorGroups } = require("./mob-authors");
+const { buildCoAuthorGroups } = require("./build-co-author-groups");
 
 function setupGitMob(context, gitExt) {
   bootGitMob(context, gitExt);
