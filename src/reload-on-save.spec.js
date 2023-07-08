@@ -4,8 +4,8 @@ const vscode = require("../__mocks__/vscode");
 
 const coAuthorProviderStub = {
   reloadData: jest.fn(),
-  mobAuthors: {
-    reset: jest.fn(),
+  coAuthorGroups: {
+    reloadData: jest.fn(),
   },
 };
 const coAuthorTextDocStub = {
@@ -24,7 +24,7 @@ beforeEach(() => {
 
 afterEach(() => {
   coAuthorProviderStub.reloadData.mockReset();
-  coAuthorProviderStub.mobAuthors.reset.mockReset();
+  coAuthorProviderStub.coAuthorGroups.reloadData.mockReset();
   saveTrigger = null;
 });
 
@@ -35,7 +35,9 @@ test("Reload co-author list when git-coauthors file saved", () => {
   );
   saveTrigger(coAuthorTextDocStub);
   expect(coAuthorProviderStub.reloadData).toHaveBeenCalledTimes(1);
-  expect(coAuthorProviderStub.mobAuthors.reset).toHaveBeenCalledTimes(1);
+  expect(coAuthorProviderStub.coAuthorGroups.reloadData).toHaveBeenCalledTimes(
+    1
+  );
 });
 
 test("Do NOT reload co-author list when other files are saved", () => {
@@ -45,5 +47,5 @@ test("Do NOT reload co-author list when other files are saved", () => {
   );
   saveTrigger(otherTextDocStub);
   expect(coAuthorProviderStub.reloadData).not.toHaveBeenCalled();
-  expect(coAuthorProviderStub.mobAuthors.reset).not.toHaveBeenCalled();
+  expect(coAuthorProviderStub.coAuthorGroups.reloadData).not.toHaveBeenCalled();
 });

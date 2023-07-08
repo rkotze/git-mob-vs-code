@@ -26,21 +26,27 @@ function authorListToMap(authors, cb) {
 }
 
 exports.buildGroups = async function buildGroups() {
-  let mainAuthor = getPrimaryAuthor();
-  const allAuthors = await getAllAuthors();
+  let mainAuthor = null;
+  let unselected = null;
+  let selected = null;
+  async function resolveAuthorLists() {
+    mainAuthor = getPrimaryAuthor();
+    const allAuthors = await getAllAuthors();
+    unselected = authorListToMap(
+      allAuthors.filter((author) => mainAuthor.email != author.email),
+      (author) => new CoAuthor(author.name, author.email, false, author.key)
+    );
+    selected = authorListToMap(
+      getSelectedCoAuthors(allAuthors),
+      (author) => new CoAuthor(author.name, author.email, true, author.key)
+    );
 
-  const unselected = authorListToMap(
-    allAuthors.filter((author) => mainAuthor.email != author.email),
-    (author) => new CoAuthor(author.name, author.email, false, author.key)
-  );
-  const selected = authorListToMap(
-    getSelectedCoAuthors(allAuthors),
-    (author) => new CoAuthor(author.name, author.email, true, author.key)
-  );
+    selected.forEach((_, key) => {
+      unselected.delete(key);
+    });
+  }
 
-  selected.forEach((_, key) => {
-    unselected.delete(key);
-  });
+  await resolveAuthorLists();
 
   return {
     getMainAuthor() {
@@ -70,23 +76,36 @@ exports.buildGroups = async function buildGroups() {
       );
     },
     select(coAuthors) {
-      for (const coAuthor of coAuthors) {
+      for (const coAuthorIn of coAuthors) {
+        const key = coAuthorIn.commandKey;
+        const coAuthor = unselected.get(key);
         coAuthor.selected = true;
-        selected.set(coAuthor.commandKey, coAuthor);
-        unselected.delete(coAuthor.commandKey);
+        selected.set(key, coAuthor);
+        unselected.delete(key);
       }
 
       setCoAuthors(Array.from(selected.keys()));
     },
 
     unselect(coAuthors) {
+      for (const coAuthorIn of coAuthors) {
+        const key = coAuthorIn.commandKey;
+        const coAuthor = unselected.get(key);
+        coAuthor.selected = false;
+        unselected.set(key, coAuthor);
+        selected.delete(key);
+      }
+
+      setCoAuthors(Array.from(selected.keys()));
+    },
+    addNew(coAuthors) {
       for (const coAuthor of coAuthors) {
         coAuthor.selected = false;
         unselected.set(coAuthor.commandKey, coAuthor);
-        selected.delete(coAuthor.commandKey);
       }
-
-      setCoAuthors([...selected.keys()]);
+    },
+    async reloadData() {
+      return resolveAuthorLists();
     },
   };
 };

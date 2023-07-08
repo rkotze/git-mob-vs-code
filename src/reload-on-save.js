@@ -6,7 +6,7 @@ function reloadOnSave({ coAuthorProvider }) {
 
   onDidSaveTextDocument(function (textDocument) {
     if (textDocument.fileName.includes(CONSTANTS.GIT_COAUTHORS_FILE)) {
-      coAuthorProvider.mobAuthors.reset();
+      coAuthorProvider.coAuthorGroups.reloadData();
       coAuthorProvider.reloadData();
     }
   });

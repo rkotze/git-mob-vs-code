@@ -41,17 +41,15 @@ function removeCoAuthor({ coAuthorProvider }) {
 }
 
 function addFromFavourite({ coAuthorProvider }) {
-  const { mobAuthors, coAuthorGroups } = coAuthorProvider;
+  const { coAuthorGroups } = coAuthorProvider;
   return vscode.commands.registerCommand(
     "gitmob.addFromFavourite",
     async function () {
-      const [allSavedAuthors, contributors] = await Promise.all([
-        mobAuthors.listAll(),
-        coAuthorGroups.getGitRepoAuthors(),
-      ]);
+      const contributors = await coAuthorGroups.getGitRepoAuthors();
 
       const selectedAuthors = await quickPickAuthors([
-        ...allSavedAuthors,
+        ...coAuthorGroups.getSelected(),
+        ...coAuthorGroups.getUnselected(),
         ...contributors,
       ]);
 
@@ -62,10 +60,15 @@ function addFromFavourite({ coAuthorProvider }) {
         );
         if (anyRepoAuthors.length > 0) {
           await saveNewCoAuthors(anyRepoAuthors);
-          mobAuthors.reset();
+          coAuthorGroups.addNew(
+            anyRepoAuthors.map(
+              (author) =>
+                new CoAuthor(author.name, author.email, false, author.key)
+            )
+          );
         }
-        await mobAuthors.set(authors);
-        await vscode.commands.executeCommand("gitmob.reload");
+        coAuthorGroups.select(authors);
+        coAuthorProvider.reloadData();
       }
     }
   );

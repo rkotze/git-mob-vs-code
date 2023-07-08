@@ -76,7 +76,7 @@ async function bootGitMob(context, gitExt) {
     if (this.ui.selected) {
       gitExt.selectedRepositoryPath = this.rootUri.path;
       updateConfig("processCwd", gitExt.rootPath);
-      // coAuthorProvider.mobAuthors.reset();
+      coAuthorProvider.coAuthorGroups.reloadData();
       coAuthorProvider.reloadData();
     }
   });
