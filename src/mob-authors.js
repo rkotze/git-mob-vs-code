@@ -25,7 +25,7 @@ function authorListToMap(authors, cb) {
   return map;
 }
 
-exports.buildGroups = async function buildGroups() {
+exports.buildCoAuthorGroups = async function buildCoAuthorGroups() {
   let mainAuthor = null;
   let unselected = null;
   let selected = null;
@@ -44,6 +44,10 @@ exports.buildGroups = async function buildGroups() {
     selected.forEach((_, key) => {
       unselected.delete(key);
     });
+
+    if (mob.usingLocalTemplate()) {
+      await updateGitTemplate(selected);
+    }
   }
 
   await resolveAuthorLists();
