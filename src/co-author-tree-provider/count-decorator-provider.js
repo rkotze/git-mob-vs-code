@@ -22,7 +22,6 @@ class CountDecorationProvider {
     const selected = "/selected";
     const moreAuthors = "/more-authors";
     const coAuthors = this.coAuthorProvider.coAuthorGroups;
-    const mobAuthors = this.coAuthorProvider.mobAuthors;
 
     if (uri.path === unselected) {
       return {
