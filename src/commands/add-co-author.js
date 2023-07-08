@@ -23,14 +23,14 @@ function addRepoAuthorToCoauthors({ coAuthorProvider }) {
         }
       } else {
         const newAuthor = await inputAuthorData();
-        const coAuthor = new CoAuthor(
-          newAuthor.name,
-          newAuthor.email,
-          false,
-          newAuthor.key
-        );
-        coAuthorProvider.coAuthorGroups.addNew([coAuthor]);
         if (newAuthor) {
+          const coAuthor = new CoAuthor(
+            newAuthor.name,
+            newAuthor.email,
+            false,
+            newAuthor.key
+          );
+          coAuthorProvider.coAuthorGroups.addNew([coAuthor]);
           await saveNewCoAuthors([newAuthor]);
           if (moveToSelected) {
             await coAuthorProvider.toggleCoAuthor(coAuthor, true);
