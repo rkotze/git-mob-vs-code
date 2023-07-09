@@ -29,19 +29,20 @@ const {
   CountDecorationProvider,
 } = require("./co-author-tree-provider/count-decorator-provider");
 const { updateConfig } = require("git-mob-core");
+const { buildCoAuthorGroups } = require("./build-co-author-groups");
 
 function setupGitMob(context, gitExt) {
   bootGitMob(context, gitExt);
 }
 
-function bootGitMob(context, gitExt) {
-  const coAuthorProvider = new CoAuthorProvider();
+async function bootGitMob(context, gitExt) {
   updateConfig("processCwd", gitExt.rootPath);
+  const coAuthorProvider = new CoAuthorProvider(await buildCoAuthorGroups());
 
-  coAuthorProvider.onDidChangeTreeData(async function () {
+  coAuthorProvider.onDidChangeTreeData(function () {
     try {
       gitExt.updateSelectedInput(
-        replaceCoAuthors(await coAuthorProvider.mobAuthors.listCurrent())
+        replaceCoAuthors(coAuthorProvider.coAuthorGroups.getSelected())
       );
     } catch (err) {
       logIssue("Failed to update input: " + err.message);
@@ -57,7 +58,7 @@ function bootGitMob(context, gitExt) {
     addRepoAuthorToCoauthors({ coAuthorProvider }),
     searchRepositoryUsers({ coAuthorProvider }),
     openGitCoAuthor({ coAuthorProvider }),
-    soloCommand(),
+    soloCommand({ coAuthorProvider }),
     searchGitEmojis(),
     changePrimaryAuthor({ coAuthorProvider }),
     searchGithubAuthors({ coAuthorProvider }),
@@ -75,7 +76,7 @@ function bootGitMob(context, gitExt) {
     if (this.ui.selected) {
       gitExt.selectedRepositoryPath = this.rootUri.path;
       updateConfig("processCwd", gitExt.rootPath);
-      coAuthorProvider.mobAuthors.reset();
+      coAuthorProvider.coAuthorGroups.reloadData();
       coAuthorProvider.reloadData();
     }
   });

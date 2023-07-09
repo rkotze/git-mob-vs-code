@@ -11,34 +11,38 @@ function addRepoAuthorToCoauthors({ coAuthorProvider }) {
 
       if (author) {
         await saveNewCoAuthors([{ ...author, key: author.commandKey }]);
+        const coAuthor = new CoAuthor(
+          author.name,
+          author.email,
+          false,
+          author.commandKey
+        );
+        coAuthorProvider.coAuthorGroups.addNew([coAuthor]);
         if (moveToSelected) {
-          await updateAuthorUiList(coAuthorProvider, author);
+          await coAuthorProvider.toggleCoAuthor(coAuthor, true);
         }
       } else {
         const newAuthor = await inputAuthorData();
         if (newAuthor) {
           await saveNewCoAuthors([newAuthor]);
+          const coAuthor = new CoAuthor(
+            newAuthor.name,
+            newAuthor.email,
+            false,
+            newAuthor.key
+          );
+          coAuthorProvider.coAuthorGroups.addNew([coAuthor]);
           if (moveToSelected) {
-            const { name, email, key } = newAuthor;
-            await updateAuthorUiList(
-              coAuthorProvider,
-              new CoAuthor(name, email, false, key)
-            );
+            await coAuthorProvider.toggleCoAuthor(coAuthor, true);
           }
         }
       }
 
       if (!moveToSelected) {
-        vscode.commands.executeCommand("gitmob.reload");
+        coAuthorProvider.reloadData();
       }
     }
   );
-}
-
-async function updateAuthorUiList(coAuthorProvider, author) {
-  coAuthorProvider.mobAuthors.reset();
-  await coAuthorProvider.mobAuthors.listCurrent();
-  await coAuthorProvider.toggleCoAuthor(author, true);
 }
 
 async function inputAuthorData() {

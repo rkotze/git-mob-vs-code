@@ -21,24 +21,22 @@ class CountDecorationProvider {
     const unselected = "/unselected";
     const selected = "/selected";
     const moreAuthors = "/more-authors";
-    const mobAuthors = this.coAuthorProvider.mobAuthors;
-    const listCurrent = await mobAuthors.listCurrent();
+    const coAuthors = this.coAuthorProvider.coAuthorGroups;
 
     if (uri.path === unselected) {
-      const list = await mobAuthors.listAll();
       return {
-        badge: list.filter((author) => !author.selected).length.toString(),
+        badge: coAuthors.getUnselected().length.toString(),
         tooltip: "Available to co-author",
       };
     }
     if (uri.path === selected) {
       return {
-        badge: listCurrent.length.toString(),
+        badge: coAuthors.getSelected().length.toString(),
         tooltip: "Selected co-authors",
       };
     }
     if (uri.path === moreAuthors) {
-      const repoAuthors = await mobAuthors.repoAuthorList();
+      const repoAuthors = await coAuthors.getGitRepoAuthors();
       const authorTotal = repoAuthors.length;
       const tooltip = `Contributors to this repo (${authorTotal})`;
 

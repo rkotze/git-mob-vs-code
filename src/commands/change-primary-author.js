@@ -2,11 +2,14 @@ const vscode = require("vscode");
 const { setPrimaryAuthor } = require("git-mob-core");
 
 function changePrimaryAuthor({ coAuthorProvider }) {
-  const { mobAuthors } = coAuthorProvider;
+  const { coAuthorGroups } = coAuthorProvider;
   return vscode.commands.registerCommand(
     "gitmob.changePrimaryAuthor",
     async function () {
-      const allCoAuthors = await mobAuthors.listAll();
+      const allCoAuthors = [
+        ...coAuthorGroups.getSelected(),
+        ...coAuthorGroups.getUnselected(),
+      ];
       const selectedAuthor = await quickPickFromCoAuthors(allCoAuthors);
       if (selectedAuthor) {
         setPrimaryAuthor(selectedAuthor);

@@ -40,6 +40,7 @@ describe("GitMob core tests", function () {
       author2.key
     );
     await vscode.commands.executeCommand("gitmob.addCoAuthor", coAuthor);
+    await wait(200);
     const selected = getSelectedCoAuthors(allAuthors);
     expect(selected[0].key).to.equal(coAuthor.commandKey);
     expect(selected).to.have.lengthOf(1);
@@ -85,6 +86,7 @@ describe("GitMob core tests", function () {
       author0.key
     );
     await vscode.commands.executeCommand("gitmob.addCoAuthor", coAuthor);
+    await wait(100);
     await vscode.commands.executeCommand("gitmob.solo");
     await wait(100);
 
@@ -105,6 +107,7 @@ describe("GitMob core tests", function () {
       "gitmob.addRepoAuthorToCoAuthors",
       coAuthor
     );
+    await wait(200);
     const allAuthors = await getAllAuthors();
     const selected = getSelectedCoAuthors(allAuthors);
 

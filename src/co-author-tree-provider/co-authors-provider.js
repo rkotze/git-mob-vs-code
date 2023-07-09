@@ -1,5 +1,4 @@
 const vscode = require("vscode");
-const { MobAuthors } = require("../mob-authors");
 const {
   ProjectFolder,
   Selected,
@@ -10,11 +9,11 @@ const { GitExt } = require("../vscode-git-extension/git-ext");
 const { CoAuthor } = require("./co-authors");
 
 class CoAuthorProvider {
-  constructor() {
+  constructor(coAuthorGroups) {
     this.multiSelected = [];
     this._onDidChangeTreeData = new vscode.EventEmitter();
     this.onDidChangeTreeData = this._onDidChangeTreeData.event;
-    this.mobAuthors = new MobAuthors();
+    this.coAuthorGroups = coAuthorGroups;
     this.gitExt = new GitExt();
     this.config = vscode.workspace.getConfiguration("gitMob.authorList");
   }
@@ -24,17 +23,13 @@ class CoAuthorProvider {
       return element.fetchChildren();
     }
 
-    const current = await this.mobAuthors.listCurrent();
     return [
       new ProjectFolder(this.gitExt.selectedFolderName),
-      this.mobAuthors.author,
-      new Selected(() => current),
-      new Unselected(async () => {
-        const allAuthors = await this.mobAuthors.listAll();
-        return allAuthors.filter((author) => !author.selected);
-      }),
+      this.coAuthorGroups.getMainAuthor(),
+      new Selected(() => this.coAuthorGroups.getSelected()),
+      new Unselected(() => this.coAuthorGroups.getUnselected()),
       new MoreAuthors(this.config.get("expandMoreAuthors"), () =>
-        this.mobAuthors.repoAuthorList()
+        this.coAuthorGroups.getGitRepoAuthors()
       ),
     ];
   }
@@ -47,10 +42,13 @@ class CoAuthorProvider {
     const selectedCoAuthors = this.multiSelected.filter(
       (author) => author instanceof CoAuthor
     );
+    const coAuthors = this.coAuthorGroups;
     if (selectedCoAuthors.length > 1) {
-      await this.mobAuthors.setCurrent(selectedCoAuthors, selected);
+      selected
+        ? coAuthors.select(selectedCoAuthors)
+        : coAuthors.unselect(selectedCoAuthors);
     } else {
-      await this.mobAuthors.setCurrent([author], selected);
+      selected ? coAuthors.select([author]) : coAuthors.unselect([author]);
     }
     this.reloadData();
   }
