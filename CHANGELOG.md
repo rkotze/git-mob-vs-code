@@ -4,6 +4,14 @@ Follows [Semantic Versioning](https://semver.org/).
 
 ## Next version
 
+## 1.19.0
+
+### Added
+
+- Refactor approach for managing the co-author group lists by using a memorized and facade approach. There is less logic involved and making it easier to read.
+- Performance gain to render the list UI in the SCM panel.
+- Removed most of the old `git-mob-api` which is replaced by the new `git-mob-core` API, part of the migration.
+
 ## 1.18.0
 
 ### Added
