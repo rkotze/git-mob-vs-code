@@ -24,6 +24,7 @@ function addRepoAuthorToCoauthors({ coAuthorProvider }) {
       } else {
         const newAuthor = await inputAuthorData();
         if (newAuthor) {
+          await saveNewCoAuthors([newAuthor]);
           const coAuthor = new CoAuthor(
             newAuthor.name,
             newAuthor.email,
@@ -31,7 +32,6 @@ function addRepoAuthorToCoauthors({ coAuthorProvider }) {
             newAuthor.key
           );
           coAuthorProvider.coAuthorGroups.addNew([coAuthor]);
-          await saveNewCoAuthors([newAuthor]);
           if (moveToSelected) {
             await coAuthorProvider.toggleCoAuthor(coAuthor, true);
           }
