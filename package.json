@@ -300,7 +300,7 @@
     "@vscode/test-electron": "^2.3.4",
     "@vscode/vsce": "^2.20.1",
     "chai": "^4.3.8",
-    "eslint": "^8.47.0",
+    "eslint": "^8.48.0",
     "jest": "^29.6.2",
     "glob": "^10.3.3",
     "jest-environment-node": "^29.6.4",
