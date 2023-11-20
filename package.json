@@ -308,6 +308,6 @@
     "ovsx": "^0.8.3"
   },
   "dependencies": {
-    "git-mob-core": "^0.7.0"
+    "git-mob-core": "^0.8.0"
   }
 }
