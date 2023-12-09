@@ -1,6 +1,7 @@
 const { mob } = require("./git/commands");
 const { RepoAuthor } = require("./co-author-tree-provider/repo-authors");
 const { CoAuthor } = require("./co-author-tree-provider/co-authors");
+const { PrimaryAuthor } = require("./co-author-tree-provider/author");
 const { ErrorAuthor } = require("./co-author-tree-provider/error-author");
 const { getSortDirection } = require("./ext-config/config");
 const {
@@ -11,13 +12,13 @@ const {
   getSelectedCoAuthors,
   updateGitTemplate,
   repoAuthorList,
-  Author,
 } = require("git-mob-core");
 
 exports.buildCoAuthorGroups = async function buildCoAuthorGroups() {
   let mainAuthor = null;
   let unselected = null;
   let selected = null;
+
   async function resolveAuthorLists() {
     mainAuthor = getPrimaryAuthor();
     const allAuthors = await getAllAuthors();
@@ -44,7 +45,7 @@ exports.buildCoAuthorGroups = async function buildCoAuthorGroups() {
   return {
     getMainAuthor() {
       if (mainAuthor) {
-        return new Author(mainAuthor.name, mainAuthor.email);
+        return new PrimaryAuthor(mainAuthor.name, mainAuthor.email);
       }
       return new ErrorAuthor("Missing Git author");
     },
