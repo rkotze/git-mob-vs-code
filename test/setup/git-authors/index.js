@@ -2,7 +2,7 @@ const fs = require("fs");
 const os = require("os");
 const path = require("path");
 const { promisify } = require("util");
-const { Author } = require("../author");
+const { Author } = require("git-mob-core");
 
 function gitAuthors(readFilePromise, writeFilePromise, overwriteFilePromise) {
   async function readFile(path) {

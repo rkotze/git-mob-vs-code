@@ -1,7 +1,4 @@
-const {
-  gitAuthors,
-  pathToCoAuthors,
-} = require("../../src/git/git-mob-api/git-authors");
+const { gitAuthors, pathToCoAuthors } = require("./git-authors");
 
 const testCoAuthors = {
   coauthors: {
