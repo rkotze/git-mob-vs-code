@@ -1,25 +1,5 @@
-const { exec } = require("child_process");
-const { promisify } = require("util");
 const { logIssue } = require("../errors/log-issue");
-const { GitExt } = require("../vscode-git-extension/git-ext");
 const { silentRun } = require("./silent-run");
-
-/**
- * Runs the given command in a shell.
- * @param {string} command The command to execute
- * @returns {Promise}
- */
-async function silentExec(command) {
-  const execAsync = promisify(exec);
-  try {
-    const response = await execAsync(command, cmdOptions());
-
-    return response.stdout;
-  } catch (err) {
-    logIssue(`GitMob silentExec: "${command}" ${err.message}`);
-    return "";
-  }
-}
 
 function handleResponse(query) {
   try {
@@ -69,21 +49,8 @@ function gitAddCoAuthor(coAuthor) {
   return add("--global git-mob.co-author", coAuthor);
 }
 
-async function getRepoAuthors() {
-  return silentExec(`git shortlog -sen HEAD`);
-}
-
 function removeGitMobSection() {
   return silentRun(`git config --global --remove-section git-mob`);
-}
-
-function cmdOptions(extendOptions = {}) {
-  const gitExt = new GitExt();
-  return {
-    ...extendOptions,
-    encoding: "utf8",
-    cwd: gitExt.rootPath,
-  };
 }
 
 module.exports = {
@@ -98,5 +65,4 @@ module.exports = {
     gitAddCoAuthor,
     usingLocalTemplate,
   },
-  getRepoAuthors,
 };

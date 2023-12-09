@@ -1,7 +1,5 @@
-const { getRepoAuthors, mob } = require("./git/commands");
-const {
-  createRepoAuthorList,
-} = require("./co-author-tree-provider/repo-authors");
+const { mob } = require("./git/commands");
+const { RepoAuthor } = require("./co-author-tree-provider/repo-authors");
 const { CoAuthor } = require("./co-author-tree-provider/co-authors");
 const { ErrorAuthor } = require("./co-author-tree-provider/error-author");
 const { getSortDirection } = require("./ext-config/config");
@@ -12,6 +10,7 @@ const {
   setCoAuthors,
   getSelectedCoAuthors,
   updateGitTemplate,
+  repoAuthorList,
   Author,
 } = require("git-mob-core");
 
@@ -56,8 +55,10 @@ exports.buildCoAuthorGroups = async function buildCoAuthorGroups() {
       return sortAuthors(Array.from(selected.values()));
     },
     async getGitRepoAuthors() {
-      const authorStr = await getRepoAuthors();
-      const contributorAuthorList = createRepoAuthorList(authorStr);
+      const authors = await repoAuthorList();
+      const contributorAuthorList = authors.map(
+        ({ name, email, key }) => new RepoAuthor(name, email, key)
+      );
 
       return sortAuthors(
         contributorAuthorList.filter((repoAuthor) => {
