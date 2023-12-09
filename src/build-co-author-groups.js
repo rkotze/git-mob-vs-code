@@ -3,7 +3,6 @@ const {
   createRepoAuthorList,
 } = require("./co-author-tree-provider/repo-authors");
 const { CoAuthor } = require("./co-author-tree-provider/co-authors");
-const { Author } = require("./co-author-tree-provider/author");
 const { ErrorAuthor } = require("./co-author-tree-provider/error-author");
 const { getSortDirection } = require("./ext-config/config");
 const {
@@ -13,6 +12,7 @@ const {
   setCoAuthors,
   getSelectedCoAuthors,
   updateGitTemplate,
+  Author,
 } = require("git-mob-core");
 
 exports.buildCoAuthorGroups = async function buildCoAuthorGroups() {

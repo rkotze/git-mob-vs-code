@@ -1,7 +1,6 @@
 const { workspace } = require("../__mocks__/vscode");
 const commands = require("./git/commands");
 const { buildCoAuthorGroups } = require("./build-co-author-groups");
-const { Author } = require("./co-author-tree-provider/author");
 const { CoAuthor } = require("./co-author-tree-provider/co-authors");
 const {
   getAllAuthors,
@@ -9,6 +8,7 @@ const {
   updateGitTemplate,
   getSelectedCoAuthors,
   getPrimaryAuthor,
+  Author,
 } = require("git-mob-core");
 
 jest.mock("./git/commands");
