@@ -71,12 +71,12 @@ async function bootGitMob(context, gitExt) {
   reloadOnSave({ coAuthorProvider });
   soloAfterCommit(coAuthorProvider);
 
-  gitExt.onDidChangeUiState(function () {
+  gitExt.onDidChangeUiState(async function () {
     if (gitExt.repositories.length === 1) return;
     if (this.ui.selected) {
       gitExt.selectedRepositoryPath = this.rootUri.path;
       updateConfig("processCwd", gitExt.rootPath);
-      coAuthorProvider.coAuthorGroups.reloadData();
+      await coAuthorProvider.coAuthorGroups.reloadData();
       coAuthorProvider.reloadData();
     }
   });
