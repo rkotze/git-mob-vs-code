@@ -1,7 +1,6 @@
 const vscode = require("vscode");
 const { get } = require("../github/github-api");
-const { saveNewCoAuthors } = require("git-mob-core");
-const { composeGitHubUser } = require("../github/compose-github-user");
+const { saveNewCoAuthors, fetchGitHubAuthors } = require("git-mob-core");
 
 function searchGithubAuthors() {
   return vscode.commands.registerCommand(
@@ -22,9 +21,8 @@ function searchGithubAuthors() {
       const searchUsers = await get("search/users?q=" + searchText);
       let users = [];
       if (searchUsers.statusCode <= 400) {
-        users = await Promise.all(
-          searchUsers.data.items.map((item) => get(item.url))
-        );
+        const logins = searchUsers.data.items.map((item) => item.login);
+        users = await fetchGitHubAuthors(logins, "vs-code-git-mob");
       } else {
         vscode.window.showErrorMessage(
           "Request to GitHub failed: " + searchUsers.data.message
@@ -56,13 +54,11 @@ function searchGithubAuthors() {
 }
 
 async function quickPickAuthors(repoAuthors) {
-  const authorTextArray = repoAuthors.map(({ data }) => {
-    const repoAuthor = composeGitHubUser(data);
-
+  const authorTextArray = repoAuthors.map((mobAuthor) => {
     return {
-      label: `${repoAuthor.name} ${repoAuthor.commandKey}`,
-      description: `<${repoAuthor.email}>`,
-      repoAuthor: { ...repoAuthor, key: repoAuthor.commandKey },
+      label: `${mobAuthor.name} ${mobAuthor.key}`,
+      description: `<${mobAuthor.email}>`,
+      repoAuthor: mobAuthor,
     };
   });
   return await vscode.window.showQuickPick(authorTextArray, {
