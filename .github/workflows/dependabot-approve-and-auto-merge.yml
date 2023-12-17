@@ -1,6 +1,10 @@
 name: Dependabot Pull Request Approve and Merge
 
-on: pull_request_target
+on:
+  workflow_run:
+    workflows: [CI]
+    types:
+      - completed
 
 permissions:
   pull-requests: write
