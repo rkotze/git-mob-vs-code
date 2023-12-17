@@ -28,24 +28,24 @@ afterEach(() => {
   saveTrigger = null;
 });
 
-test("Reload co-author list when git-coauthors file saved", () => {
+test("Reload co-author list when git-coauthors file saved", async () => {
   reloadOnSave({ coAuthorProvider: coAuthorProviderStub });
   expect(vscode.workspace.onDidSaveTextDocument).toHaveBeenCalledWith(
     expect.any(Function)
   );
-  saveTrigger(coAuthorTextDocStub);
+  await saveTrigger(coAuthorTextDocStub);
   expect(coAuthorProviderStub.reloadData).toHaveBeenCalledTimes(1);
   expect(coAuthorProviderStub.coAuthorGroups.reloadData).toHaveBeenCalledTimes(
     1
   );
 });
 
-test("Do NOT reload co-author list when other files are saved", () => {
+test("Do NOT reload co-author list when other files are saved", async () => {
   reloadOnSave({ coAuthorProvider: coAuthorProviderStub });
   expect(vscode.workspace.onDidSaveTextDocument).toHaveBeenCalledWith(
     expect.any(Function)
   );
-  saveTrigger(otherTextDocStub);
+  await saveTrigger(otherTextDocStub);
   expect(coAuthorProviderStub.reloadData).not.toHaveBeenCalled();
   expect(coAuthorProviderStub.coAuthorGroups.reloadData).not.toHaveBeenCalled();
 });
