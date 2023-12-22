@@ -21,6 +21,8 @@ describe("GitMob core tests", function () {
     author0 = allAuthors[0];
     author1 = allAuthors[1];
     author2 = allAuthors[2];
+    console.log("Authors: ", allAuthors);
+    console.log(await vscode.commands.getCommands());
   });
 
   this.afterEach(async function () {
@@ -28,9 +30,8 @@ describe("GitMob core tests", function () {
     await wait(20); // needed for solo to complete
   });
 
-  it("should have 3 co-authors", async function () {
+  it("should have 3 co-authors", function () {
     expect(allAuthors).to.have.lengthOf(3);
-    console.log(await vscode.commands.getCommands());
   });
 
   it("add a co-author to commit and metadata is appended to SCM input", async function () {
