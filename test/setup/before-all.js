@@ -10,5 +10,6 @@ exports.beforeAll = async function () {
   );
   installTestCoAuthorFile();
   runCmd("git init");
-  await myExtension.ready();
+  const ready = await myExtension.ready();
+  console.log("** Before all finished: ", ready);
 };
