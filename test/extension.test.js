@@ -28,8 +28,9 @@ describe("GitMob core tests", function () {
     await wait(20); // needed for solo to complete
   });
 
-  it("should have 3 co-authors", function () {
+  it("should have 3 co-authors", async function () {
     expect(allAuthors).to.have.lengthOf(3);
+    console.log(await vscode.commands.getCommands());
   });
 
   it("add a co-author to commit and metadata is appended to SCM input", async function () {
