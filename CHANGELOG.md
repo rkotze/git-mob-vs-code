@@ -4,6 +4,23 @@ Follows [Semantic Versioning](https://semver.org/).
 
 ## Next version
 
+## 1.20.0
+
+### Added
+
+- Integrate features from `git-mob-core` `v0.8.2` - see [PR 266](https://github.com/rkotze/git-mob-vs-code/pull/266) for details
+  - Install .git-coauthors file
+  - Use core `Author` class
+  - Remove usage of old `gitAuthors` function, moved into test folder as it's needed there.
+  - Get repo contributors `repoAuthorList`
+  - Fetch user from GitHub 
+  - Removed old Git commands and rev parse exec files.
+
+### Fixed
+
+- UI not updated after saving changes in `.git-coauthor` file.
+- After UI tests run clean up temporary files, git-coauthors and gitmessage.
+
 ## 1.19.0
 
 ### Added
