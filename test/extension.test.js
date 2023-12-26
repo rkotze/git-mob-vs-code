@@ -127,17 +127,32 @@ describe("GitMob core tests", function () {
   it("Use local .git-coauthors file instead of global", async function () {
     const coauthorPath = process.env.GITMOB_COAUTHORS_PATH;
     delete process.env.GITMOB_COAUTHORS_PATH;
-
-    await vscode.commands.executeCommand("gitmob.reload");
-
-    const allAuthors = await getAllAuthors();
-
-    expect(allAuthors).to.have.lengthOf(2);
-    expect(allAuthors).to.deep.contain({
+    const expectedAuthor = {
       key: "jf",
       name: "Jango Fett",
       email: "jango@fetts.com",
-    });
+    };
+    const coAuthor = new CoAuthor(
+      expectedAuthor.name,
+      expectedAuthor.email,
+      false,
+      expectedAuthor.key
+    );
+
+    await vscode.commands.executeCommand("gitmob.reload");
+
+    await vscode.commands.executeCommand("gitmob.addCoAuthor", coAuthor);
+    await wait(200);
+
+    const allAuthors = await getAllAuthors();
+    expect(allAuthors).to.have.lengthOf(2);
+    expect(allAuthors).to.deep.contain(expectedAuthor);
+    const selected = getSelectedCoAuthors(allAuthors);
+    expect(selected[0].key).to.equal(coAuthor.commandKey);
+    expect(selected).to.have.lengthOf(1);
+    expect(gitExt.selectedRepository.inputBox.value).to.contain(
+      `Co-authored-by: ${coAuthor.name} <${coAuthor.email}>`
+    );
 
     process.env.GITMOB_COAUTHORS_PATH = coauthorPath;
   });
