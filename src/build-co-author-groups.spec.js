@@ -1,15 +1,18 @@
 const { workspace } = require("../__mocks__/vscode");
+const commands = require("./git/commands");
 const { buildCoAuthorGroups } = require("./build-co-author-groups");
 const { CoAuthor } = require("./co-author-tree-provider/co-authors");
 const {
   getAllAuthors,
   setCoAuthors,
+  updateGitTemplate,
   getSelectedCoAuthors,
   getPrimaryAuthor,
   repoAuthorList,
 } = require("git-mob-core");
 const { Author } = jest.requireActual("git-mob-core");
 
+jest.mock("./git/commands");
 jest.mock("git-mob-core");
 
 describe("Co-author list", function () {
@@ -107,5 +110,43 @@ describe("Co-author list", function () {
     expect(pp.selected).toEqual(true);
     expect(ts.selected).toEqual(false);
     expect(setCoAuthors).toHaveBeenCalledWith(["pp"]);
+  });
+
+  it("Update local git template if used", async function () {
+    const coAuthorList = [
+      {
+        key: "ts",
+        name: "Tony Stark",
+        email: "tony@stark.com",
+        selected: true,
+      },
+    ];
+
+    getAllAuthors.mockResolvedValueOnce(coAuthorList);
+    getSelectedCoAuthors.mockReturnValueOnce([]);
+    commands.mob.usingLocalTemplate.mockReturnValueOnce(true);
+
+    await buildCoAuthorGroups();
+
+    expect(updateGitTemplate).toHaveBeenCalled();
+  });
+
+  it("Using global git template do not update local", async function () {
+    const coAuthorList = [
+      {
+        key: "ts",
+        name: "Tony Stark",
+        email: "tony@stark.com",
+        selected: true,
+      },
+    ];
+
+    getAllAuthors.mockReturnValueOnce(coAuthorList);
+    getSelectedCoAuthors.mockReturnValueOnce([]);
+    commands.mob.usingLocalTemplate.mockReturnValueOnce(false);
+
+    await buildCoAuthorGroups();
+
+    expect(updateGitTemplate).not.toHaveBeenCalled();
   });
 });

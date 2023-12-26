@@ -1,3 +1,4 @@
+const { mob } = require("./git/commands");
 const { RepoAuthor } = require("./co-author-tree-provider/repo-authors");
 const { CoAuthor } = require("./co-author-tree-provider/co-authors");
 const { PrimaryAuthor } = require("./co-author-tree-provider/author");
@@ -34,7 +35,9 @@ exports.buildCoAuthorGroups = async function buildCoAuthorGroups() {
       unselected.delete(key);
     });
 
-    await updateGitTemplate(selected);
+    if (mob.usingLocalTemplate()) {
+      await updateGitTemplate(selected);
+    }
   }
 
   await resolveAuthorLists();

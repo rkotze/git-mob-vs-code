@@ -21,8 +21,6 @@ describe("GitMob core tests", function () {
     author0 = allAuthors[0];
     author1 = allAuthors[1];
     author2 = allAuthors[2];
-    console.log("Authors: ", allAuthors);
-    console.log(await vscode.commands.getCommands());
   });
 
   this.afterEach(async function () {
