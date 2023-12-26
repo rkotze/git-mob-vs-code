@@ -37,58 +37,63 @@ function setupGitMob(context, gitExt) {
 
 async function bootGitMob(context, gitExt) {
   updateConfig("processCwd", gitExt.rootPath);
-  const coAuthorProvider = new CoAuthorProvider(await buildCoAuthorGroups());
+  try {
+    const coAuthorProvider = new CoAuthorProvider(await buildCoAuthorGroups());
 
-  coAuthorProvider.onDidChangeTreeData(function () {
-    try {
-      gitExt.updateSelectedInput(
-        replaceCoAuthors(coAuthorProvider.coAuthorGroups.getSelected())
-      );
-    } catch (err) {
-      logIssue("Failed to update input: " + err.message);
-    }
-  });
+    coAuthorProvider.onDidChangeTreeData(function () {
+      try {
+        gitExt.updateSelectedInput(
+          replaceCoAuthors(coAuthorProvider.coAuthorGroups.getSelected())
+        );
+      } catch (err) {
+        logIssue("Failed to update input: " + err.message);
+      }
+    });
 
-  const disposables = [
-    openSettings(),
-    reloadCommand({ coAuthorProvider }),
-    addCoAuthor({ coAuthorProvider }),
-    removeCoAuthor({ coAuthorProvider }),
-    addFromFavourite({ coAuthorProvider }),
-    addRepoAuthorToCoauthors({ coAuthorProvider }),
-    searchRepositoryUsers({ coAuthorProvider }),
-    openGitCoAuthor({ coAuthorProvider }),
-    soloCommand({ coAuthorProvider }),
-    searchGitEmojis(),
-    changePrimaryAuthor({ coAuthorProvider }),
-    searchGithubAuthors({ coAuthorProvider }),
-    new CountDecorationProvider(coAuthorProvider),
-    copyCoAuthor(),
-  ];
+    const disposables = [
+      openSettings(),
+      reloadCommand({ coAuthorProvider }),
+      addCoAuthor({ coAuthorProvider }),
+      removeCoAuthor({ coAuthorProvider }),
+      addFromFavourite({ coAuthorProvider }),
+      addRepoAuthorToCoauthors({ coAuthorProvider }),
+      searchRepositoryUsers({ coAuthorProvider }),
+      openGitCoAuthor({ coAuthorProvider }),
+      soloCommand({ coAuthorProvider }),
+      searchGitEmojis(),
+      changePrimaryAuthor({ coAuthorProvider }),
+      searchGithubAuthors({ coAuthorProvider }),
+      new CountDecorationProvider(coAuthorProvider),
+      copyCoAuthor(),
+    ];
 
-  disposables.forEach((dispose) => context.subscriptions.push(dispose));
+    disposables.forEach((dispose) => context.subscriptions.push(dispose));
 
-  reloadOnSave({ coAuthorProvider });
-  soloAfterCommit(coAuthorProvider);
+    reloadOnSave({ coAuthorProvider });
+    soloAfterCommit(coAuthorProvider);
 
-  gitExt.onDidChangeUiState(async function () {
-    if (gitExt.repositories.length === 1) return;
-    if (this.ui.selected) {
-      gitExt.selectedRepositoryPath = this.rootUri.path;
-      updateConfig("processCwd", gitExt.rootPath);
-      await coAuthorProvider.coAuthorGroups.reloadData();
-      coAuthorProvider.reloadData();
-    }
-  });
+    gitExt.onDidChangeUiState(async function () {
+      if (gitExt.repositories.length === 1) return;
+      if (this.ui.selected) {
+        gitExt.selectedRepositoryPath = this.rootUri.path;
+        updateConfig("processCwd", gitExt.rootPath);
+        await coAuthorProvider.coAuthorGroups.reloadData();
+        coAuthorProvider.reloadData();
+      }
+    });
 
-  const mobList = vscode.window.createTreeView("gitmob.CoAuthorsView", {
-    treeDataProvider: coAuthorProvider,
-    canSelectMany: true,
-  });
+    const mobList = vscode.window.createTreeView("gitmob.CoAuthorsView", {
+      treeDataProvider: coAuthorProvider,
+      canSelectMany: true,
+    });
 
-  mobList.onDidChangeSelection(function (evt) {
-    coAuthorProvider.multiSelected = evt.selection;
-  });
+    mobList.onDidChangeSelection(function (evt) {
+      coAuthorProvider.multiSelected = evt.selection;
+    });
+  } catch (error) {
+    logIssue(error.message);
+    console.log("SETUP ERROR: ", error);
+  }
 }
 
 exports.setupGitMob = setupGitMob;

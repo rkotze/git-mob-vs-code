@@ -19,26 +19,22 @@ exports.buildCoAuthorGroups = async function buildCoAuthorGroups() {
   let selected = null;
 
   async function resolveAuthorLists() {
-    try {
-      mainAuthor = getPrimaryAuthor();
-      const allAuthors = await getAllAuthors();
-      unselected = authorListToMap(
-        allAuthors.filter((author) => mainAuthor.email != author.email),
-        (author) => new CoAuthor(author.name, author.email, false, author.key)
-      );
-      selected = authorListToMap(
-        getSelectedCoAuthors(allAuthors),
-        (author) => new CoAuthor(author.name, author.email, true, author.key)
-      );
+    mainAuthor = getPrimaryAuthor();
+    const allAuthors = await getAllAuthors();
+    unselected = authorListToMap(
+      allAuthors.filter((author) => mainAuthor.email != author.email),
+      (author) => new CoAuthor(author.name, author.email, false, author.key)
+    );
+    selected = authorListToMap(
+      getSelectedCoAuthors(allAuthors),
+      (author) => new CoAuthor(author.name, author.email, true, author.key)
+    );
 
-      selected.forEach((_, key) => {
-        unselected.delete(key);
-      });
+    selected.forEach((_, key) => {
+      unselected.delete(key);
+    });
 
-      await updateGitTemplate(selected);
-    } catch (error) {
-      console.log("GIT MOB ERROR: ", error);
-    }
+    await updateGitTemplate(selected);
   }
 
   await resolveAuthorLists();
