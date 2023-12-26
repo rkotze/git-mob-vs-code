@@ -5,7 +5,6 @@ const {
   installGitCoAuthorFile,
 } = require("./src/install/install-git-coauthor-file");
 
-jest.mock("./src/git/commands");
 jest.mock("./src/setup-git-mob");
 jest.mock("./src/vscode-git-extension/git-ext");
 jest.mock("./src/wait-for-repos");
