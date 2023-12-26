@@ -1,7 +1,7 @@
 {
   "name": "git-mob",
-  "displayName": "Git Mob Co-author commits",
-  "description": "Quick way to add co-author meta data to a commit during pair/mob programming from the source control panel.",
+  "displayName": "Git Mob co-author commits",
+  "description": "Manage and add co-author meta data to commits during pair/mob programming from the source control panel.",
   "version": "1.19.0",
   "publisher": "RichardKotze",
   "engines": {

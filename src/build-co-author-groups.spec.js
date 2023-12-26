@@ -1,17 +1,15 @@
 const { workspace } = require("../__mocks__/vscode");
-const commands = require("./git/commands");
 const { buildCoAuthorGroups } = require("./build-co-author-groups");
-const { Author } = require("./co-author-tree-provider/author");
 const { CoAuthor } = require("./co-author-tree-provider/co-authors");
 const {
   getAllAuthors,
   setCoAuthors,
-  updateGitTemplate,
   getSelectedCoAuthors,
   getPrimaryAuthor,
+  repoAuthorList,
 } = require("git-mob-core");
+const { Author } = jest.requireActual("git-mob-core");
 
-jest.mock("./git/commands");
 jest.mock("git-mob-core");
 
 describe("Co-author list", function () {
@@ -29,18 +27,19 @@ describe("Co-author list", function () {
   beforeEach(function () {
     getAllAuthors.mockReset();
     getSelectedCoAuthors.mockReset();
+    repoAuthorList.mockReset();
   });
 
   it("Repo authors should not contain co-authors with same email", async function () {
+    repoAuthorList.mockResolvedValueOnce([
+      new Author("ts", "Tony Stark", "tony@stark.com"),
+      new Author("CA", "Captian America", "captain@america.com"),
+    ]);
     getAllAuthors.mockResolvedValueOnce([
       { key: "rk", name: "Richard Kotze", email: "rkotze@email.com" },
       { key: "ts", name: "Tony Stark", email: "tony@stark.com" },
     ]);
     getSelectedCoAuthors.mockReturnValueOnce([]);
-
-    commands.getRepoAuthors.mockResolvedValueOnce(
-      `   33\tRichard Kotze <rkotze@email.com>\n   53\tCaptian America <captain@america.com>`
-    );
 
     const coAuthorGroups = await buildCoAuthorGroups();
     let repoAuthors = await coAuthorGroups.getGitRepoAuthors();
@@ -53,9 +52,12 @@ describe("Co-author list", function () {
     getAllAuthors.mockResolvedValueOnce([
       { key: "ts", name: "Tony Stark", email: "tony@stark.com" },
     ]);
-    commands.getRepoAuthors.mockResolvedValueOnce(
-      `   33\tRichard Kotze <rkotze@email.com>\n   53\tBlack Panther <black@panther.com>`
-    );
+
+    repoAuthorList.mockResolvedValueOnce([
+      new Author("rk", "Richard Kotze", "rkotze@email.com"),
+      new Author("CA", "Black Panther", "black@panther.com"),
+    ]);
+
     getSelectedCoAuthors.mockReturnValueOnce([]);
 
     const coAuthorGroups = await buildCoAuthorGroups();
@@ -104,44 +106,6 @@ describe("Co-author list", function () {
     const ts = all.find((author) => author.commandKey == "ts");
     expect(pp.selected).toEqual(true);
     expect(ts.selected).toEqual(false);
-    expect(setCoAuthors).toBeCalledWith(["pp"]);
-  });
-
-  it("Update local git template if used", async function () {
-    const coAuthorList = [
-      {
-        key: "ts",
-        name: "Tony Stark",
-        email: "tony@stark.com",
-        selected: true,
-      },
-    ];
-
-    getAllAuthors.mockResolvedValueOnce(coAuthorList);
-    getSelectedCoAuthors.mockReturnValueOnce([]);
-    commands.mob.usingLocalTemplate.mockReturnValueOnce(true);
-
-    await buildCoAuthorGroups();
-
-    expect(updateGitTemplate).toHaveBeenCalled();
-  });
-
-  it("Using global git template do not update local", async function () {
-    const coAuthorList = [
-      {
-        key: "ts",
-        name: "Tony Stark",
-        email: "tony@stark.com",
-        selected: true,
-      },
-    ];
-
-    getAllAuthors.mockReturnValueOnce(coAuthorList);
-    getSelectedCoAuthors.mockReturnValueOnce([]);
-    commands.mob.usingLocalTemplate.mockReturnValueOnce(false);
-
-    await buildCoAuthorGroups();
-
-    expect(updateGitTemplate).not.toHaveBeenCalled();
+    expect(setCoAuthors).toHaveBeenCalledWith(["pp"]);
   });
 });

@@ -1,7 +1,7 @@
 const vscode = require("vscode");
 const { None } = vscode.TreeItemCollapsibleState;
 
-class Author extends vscode.TreeItem {
+class PrimaryAuthor extends vscode.TreeItem {
   constructor(name, email) {
     super(name, None);
     this.name = name;
@@ -22,4 +22,4 @@ class Author extends vscode.TreeItem {
   }
 }
 
-exports.Author = Author;
+exports.PrimaryAuthor = PrimaryAuthor;

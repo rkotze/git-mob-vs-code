@@ -8,7 +8,9 @@ exports.beforeAll = async function () {
     __dirname,
     "../git.co-authors"
   );
+  process.env.GITMOB_MESSAGE_PATH = path.resolve(__dirname, "../.gitmessage");
   installTestCoAuthorFile();
   runCmd("git init");
-  await myExtension.ready();
+  const ready = await myExtension.ready();
+  console.log("** Before all finished: ", ready);
 };

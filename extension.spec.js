@@ -5,7 +5,6 @@ const {
   installGitCoAuthorFile,
 } = require("./src/install/install-git-coauthor-file");
 
-jest.mock("./src/git/commands");
 jest.mock("./src/setup-git-mob");
 jest.mock("./src/vscode-git-extension/git-ext");
 jest.mock("./src/wait-for-repos");
@@ -26,8 +25,8 @@ describe("Activate Git Mob extension", function () {
 
     expect(first).toBeLessThan(second);
     expect(second).toBeLessThan(third);
-    expect(installGitCoAuthorFile).toBeCalledTimes(1);
-    expect(waitForRepos).toBeCalledTimes(1);
-    expect(setupGitMob).toBeCalledTimes(1);
+    expect(installGitCoAuthorFile).toHaveBeenCalledTimes(1);
+    expect(waitForRepos).toHaveBeenCalledTimes(1);
+    expect(setupGitMob).toHaveBeenCalledTimes(1);
   });
 });

@@ -4,11 +4,16 @@ const { waitForRepos } = require("./src/wait-for-repos");
 const {
   installGitCoAuthorFile,
 } = require("./src/install/install-git-coauthor-file");
+const { logIssue } = require("./src/errors/log-issue");
 
 let isReady = false;
 
 async function activate(context) {
-  await installGitCoAuthorFile();
+  try {
+    await installGitCoAuthorFile();
+  } catch (error) {
+    logIssue("Something went wrong when creating global .git-coauthor file.");
+  }
   const gitExt = new GitExt();
   waitForRepos(gitExt, () => {
     isReady = true;

@@ -1,24 +1,15 @@
-const {
-  gitAuthors,
-  pathToCoAuthors,
-} = require("../git/git-mob-api/git-authors");
-
-const SAMPLE_CONTENT = {
-  coauthors: {
-    pah: {
-      name: "Placeholder Author",
-      email: "placeholder@author.com",
-    },
-  },
-};
+const { createCoAuthorsFile } = require("git-mob-core");
 
 async function installGitCoAuthorFile() {
-  const coAuthors = gitAuthors();
-  if (!coAuthors.fileExists()) {
-    try {
-      await coAuthors.write(SAMPLE_CONTENT);
-    } catch (error) {
-      throw new Error(`Failed to add new "${pathToCoAuthors()}" file`);
+  try {
+    if (await createCoAuthorsFile()) {
+      console.log("Co-authors file created!");
+    }
+  } catch (error) {
+    if (!error.message.includes("file exists")) {
+      throw new Error(
+        "Error:Something went wrong creating new .git-coauthors file."
+      );
     }
   }
 }

@@ -1,6 +1,5 @@
 const path = require("path");
 const vscode = require("vscode");
-const { ErrorAuthor } = require("./error-author");
 const { None } = vscode.TreeItemCollapsibleState;
 
 class CoAuthor extends vscode.TreeItem {
@@ -37,14 +36,4 @@ class CoAuthor extends vscode.TreeItem {
   }
 }
 
-function createAuthor(stdoutFormat) {
-  const regexList =
-    /^([\S]+)\s(.+)\s([a-zA-Z0-9_\-\.\+]+@[a-zA-Z0-9_\-\.]+\.[a-zA-Z]{2,5})/;
-  let list = stdoutFormat.match(regexList);
-  if (list === null) return new ErrorAuthor();
-  const [, commandKey, name, email] = list;
-  return new CoAuthor(name, email, false, commandKey);
-}
-
-exports.createAuthor = createAuthor;
 exports.CoAuthor = CoAuthor;

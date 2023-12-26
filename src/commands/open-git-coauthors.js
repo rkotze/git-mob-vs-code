@@ -10,7 +10,7 @@ function openGitCoAuthor() {
       const { showTextDocument } = vscode.window;
 
       try {
-        const coauthorsFile = vscode.Uri.file(pathToCoAuthors());
+        const coauthorsFile = vscode.Uri.file(await pathToCoAuthors());
         const doc = await openTextDocument(coauthorsFile);
         showTextDocument(doc);
       } catch (err) {
