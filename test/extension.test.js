@@ -1,5 +1,4 @@
 const vscode = require("vscode");
-const expect = require("chai").expect;
 const { getAllAuthors, getSelectedCoAuthors } = require("git-mob-core");
 const { CoAuthor } = require("../src/co-author-tree-provider/co-authors");
 const { RepoAuthor } = require("../src/co-author-tree-provider/repo-authors");
@@ -15,7 +14,11 @@ describe("GitMob core tests", function () {
   let allAuthors = [];
   let author0, author1, author2;
   let gitExt;
+  let expect;
   before(async function () {
+    // chai using ESM, needs dynamic import
+    const chai = await import("chai");
+    expect = chai.expect;
     gitExt = new GitExt();
     allAuthors = await getAllAuthors();
     author0 = allAuthors[0];
