@@ -1,28 +1,20 @@
-const { gitAuthors, pathToCoAuthors } = require("./git-authors");
+const {
+  createCoAuthorsFile,
+  pathToCoAuthors,
+  Author,
+} = require("git-mob-core");
 
-const testCoAuthors = {
-  coauthors: {
-    rk: {
-      name: "Richard Kotze",
-      email: "richk@gitmob.com",
-    },
-    di: {
-      name: "Dennis",
-      email: "dennis@gitmob.com",
-    },
-    sw: {
-      name: "Scarlet Witch",
-      email: "scalet-w@gitmob.com",
-    },
-  },
-};
+const authorList = [
+  new Author("rk", "Richard Kotze", "richk@gitmob.com"),
+  new Author("di", "Dennis", "dennis@gitmob.com"),
+  new Author("sw", "Scarlet Witch", "scalet-w@gitmob.com"),
+];
 
 async function installTestCoAuthorFile() {
-  const coAuthors = gitAuthors();
   try {
-    await coAuthors.overwrite(testCoAuthors);
+    await createCoAuthorsFile(authorList);
   } catch (error) {
-    throw new Error(`Failed to install new "${pathToCoAuthors()}" file`);
+    throw new Error(`Failed to create new "${await pathToCoAuthors()}" file`);
   }
 }
 
