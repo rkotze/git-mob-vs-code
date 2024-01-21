@@ -12,7 +12,7 @@ function changePrimaryAuthor({ coAuthorProvider }) {
       ];
       const selectedAuthor = await quickPickFromCoAuthors(allCoAuthors);
       if (selectedAuthor) {
-        setPrimaryAuthor(selectedAuthor);
+        await setPrimaryAuthor(selectedAuthor);
         await vscode.commands.executeCommand("gitmob.reload");
       }
     }

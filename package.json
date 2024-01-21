@@ -301,13 +301,13 @@
     "@vscode/vsce": "^2.22.0",
     "chai": "^4.3.10",
     "eslint": "^8.56.0",
-    "jest": "^29.7.0",
     "glob": "^10.3.10",
+    "jest": "^29.7.0",
     "jest-environment-node": "^29.6.4",
     "mocha": "^10.2.0",
     "ovsx": "^0.8.3"
   },
   "dependencies": {
-    "git-mob-core": "^0.8.2"
+    "git-mob-core": "^0.9.0"
   }
 }

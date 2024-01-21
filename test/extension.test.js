@@ -41,7 +41,7 @@ describe("GitMob core tests", function () {
     );
     await vscode.commands.executeCommand("gitmob.addCoAuthor", coAuthor);
     await wait(200);
-    const selected = getSelectedCoAuthors(allAuthors);
+    const selected = await getSelectedCoAuthors(allAuthors);
     expect(selected[0].key).to.equal(coAuthor.commandKey);
     expect(selected).to.have.lengthOf(1);
     expect(gitExt.selectedRepository.inputBox.value).to.contain(
@@ -73,7 +73,7 @@ describe("GitMob core tests", function () {
     );
     await wait(300);
 
-    const selected = getSelectedCoAuthors(allAuthors);
+    const selected = await getSelectedCoAuthors(allAuthors);
     expect(selected).to.have.lengthOf(1);
     expect(selected[0].key).to.equal(addCoAuthor.commandKey);
   });
@@ -93,7 +93,7 @@ describe("GitMob core tests", function () {
     expect(gitExt.selectedRepository.inputBox.value).to.not.contain(
       "Co-authored-by"
     );
-    const selected = getSelectedCoAuthors(allAuthors);
+    const selected = await getSelectedCoAuthors(allAuthors);
     expect(selected).to.have.lengthOf(0);
   });
 
@@ -109,7 +109,7 @@ describe("GitMob core tests", function () {
     );
     await wait(200);
     const allAuthors = await getAllAuthors();
-    const selected = getSelectedCoAuthors(allAuthors);
+    const selected = await getSelectedCoAuthors(allAuthors);
 
     expect(allAuthors).to.have.lengthOf(4);
     expect(allAuthors).to.deep.contain({
@@ -147,7 +147,7 @@ describe("GitMob core tests", function () {
     const allAuthors = await getAllAuthors();
     expect(allAuthors).to.have.lengthOf(2);
     expect(allAuthors).to.deep.contain(expectedAuthor);
-    const selected = getSelectedCoAuthors(allAuthors);
+    const selected = await getSelectedCoAuthors(allAuthors);
     expect(selected[0].key).to.equal(coAuthor.commandKey);
     expect(selected).to.have.lengthOf(1);
     expect(gitExt.selectedRepository.inputBox.value).to.contain(

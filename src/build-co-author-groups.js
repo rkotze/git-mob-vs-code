@@ -19,14 +19,14 @@ exports.buildCoAuthorGroups = async function buildCoAuthorGroups() {
   let selected = null;
 
   async function resolveAuthorLists() {
-    mainAuthor = getPrimaryAuthor();
+    mainAuthor = await getPrimaryAuthor();
     const allAuthors = await getAllAuthors();
     unselected = authorListToMap(
       allAuthors.filter((author) => mainAuthor.email != author.email),
       (author) => new CoAuthor(author.name, author.email, false, author.key)
     );
     selected = authorListToMap(
-      getSelectedCoAuthors(allAuthors),
+      await getSelectedCoAuthors(allAuthors),
       (author) => new CoAuthor(author.name, author.email, true, author.key)
     );
 

@@ -15,6 +15,8 @@ Follows [Semantic Versioning](https://semver.org/).
   - Get repo contributors `repoAuthorList`
   - Fetch user from GitHub 
   - Removed old Git commands and rev parse exec files.
+- Integrate breaking changes from `git-mob-core` `v0.9.0`
+  - `getPrimaryAuthor`, `getSelectedCoAuthors`, `setPrimaryAuthor` now use promises
 
 ### Fixed
 

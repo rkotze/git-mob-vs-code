@@ -21,7 +21,7 @@ describe("Co-author list", function () {
         return "ascending";
       },
     });
-    getPrimaryAuthor.mockReturnValue(author);
+    getPrimaryAuthor.mockResolvedValue(author);
   });
 
   beforeEach(function () {
@@ -39,7 +39,7 @@ describe("Co-author list", function () {
       { key: "rk", name: "Richard Kotze", email: "rkotze@email.com" },
       { key: "ts", name: "Tony Stark", email: "tony@stark.com" },
     ]);
-    getSelectedCoAuthors.mockReturnValueOnce([]);
+    getSelectedCoAuthors.mockResolvedValueOnce([]);
 
     const coAuthorGroups = await buildCoAuthorGroups();
     let repoAuthors = await coAuthorGroups.getGitRepoAuthors();
@@ -58,7 +58,7 @@ describe("Co-author list", function () {
       new Author("CA", "Black Panther", "black@panther.com"),
     ]);
 
-    getSelectedCoAuthors.mockReturnValueOnce([]);
+    getSelectedCoAuthors.mockResolvedValueOnce([]);
 
     const coAuthorGroups = await buildCoAuthorGroups();
     const repoAuthors = await coAuthorGroups.getGitRepoAuthors();
@@ -91,7 +91,7 @@ describe("Co-author list", function () {
       },
     ]);
 
-    getSelectedCoAuthors.mockReturnValueOnce([]);
+    getSelectedCoAuthors.mockResolvedValueOnce([]);
 
     const coAuthorGroups = await buildCoAuthorGroups();
     const selected = [
