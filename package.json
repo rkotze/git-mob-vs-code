@@ -297,7 +297,7 @@
   "devDependencies": {
     "@types/jest": "^29.5.11",
     "@types/vscode": "^1.67.0",
-    "@vscode/test-electron": "^2.3.8",
+    "@vscode/test-electron": "^2.3.9",
     "@vscode/vsce": "^2.23.0",
     "chai": "^5.0.0",
     "eslint": "^8.56.0",
