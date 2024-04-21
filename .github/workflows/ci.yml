@@ -26,7 +26,6 @@ jobs:
         node-version:
           - 20
           - 18
-          - 16
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
