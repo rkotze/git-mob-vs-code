@@ -1,20 +1,19 @@
 const js = require("@eslint/js");
+const globals = require("globals");
 
 module.exports = [
-  { ignores: [".vscode-test/*", "eslint.config.js"] },
+  { ignores: [".vscode-test/*"] },
   {
     files: ["**/*.js"],
     languageOptions: {
-      parserOptions: {
-        ecmaVersion: "latest",
-        sourceType: "commonjs",
+      ecmaVersion: "latest",
+      sourceType: "commonjs",
+      globals: {
+        ...globals.node,
+        ...globals.jest,
+        ...globals.mocha,
       },
     },
     ...js.configs.recommended,
-    rules: {
-      "no-this-before-super": "warn",
-      "no-undef": "warn",
-      "constructor-super": "warn",
-    },
   },
 ];
