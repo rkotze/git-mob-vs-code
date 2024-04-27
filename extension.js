@@ -11,7 +11,7 @@ let isReady = false;
 async function activate(context) {
   try {
     await installGitCoAuthorFile();
-  } catch (error) {
+  } catch {
     logIssue("Something went wrong when creating global .git-coauthor file.");
   }
   const gitExt = new GitExt();
