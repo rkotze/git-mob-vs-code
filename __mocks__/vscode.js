@@ -51,7 +51,9 @@ const TreeItemCollapsibleState = {
 class TreeItem {}
 
 class EventEmitter {
-  get event() {}
+  get event() {
+    return EventEmitter.event;
+  }
   fire() {}
 }
 

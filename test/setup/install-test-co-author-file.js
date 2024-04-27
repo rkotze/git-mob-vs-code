@@ -21,7 +21,7 @@ async function installTestCoAuthorFile() {
   const coAuthors = gitAuthors();
   try {
     await coAuthors.overwrite(testCoAuthors);
-  } catch (error) {
+  } catch {
     throw new Error(`Failed to install new "${pathToCoAuthors()}" file`);
   }
 }
