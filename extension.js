@@ -11,8 +11,10 @@ let isReady = false;
 async function activate(context) {
   try {
     await installGitCoAuthorFile();
-  } catch {
-    logIssue("Something went wrong when creating global .git-coauthor file.");
+  } catch (error) {
+    logIssue(
+      `Extension Activate: Oops something went wrong creating co-author file. Error: ${error.message}`
+    );
   }
   const gitExt = new GitExt();
   waitForRepos(gitExt, () => {

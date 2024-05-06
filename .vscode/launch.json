@@ -23,7 +23,6 @@
       "name": "Extension",
       "type": "extensionHost",
       "request": "launch",
-      "runtimeExecutable": "${execPath}",
       "args": [
         "--extensionDevelopmentPath=${workspaceFolder}",
         "--disable-extensions"
@@ -33,7 +32,6 @@
       "name": "Extension Tests",
       "type": "extensionHost",
       "request": "launch",
-      "runtimeExecutable": "${execPath}",
       "args": [
         "${workspaceFolder}/test/fixture-1",
         "--extensionDevelopmentPath=${workspaceFolder}",
