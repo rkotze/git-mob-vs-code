@@ -9,19 +9,20 @@ Follows [Semantic Versioning](https://semver.org/).
 ### Added
 
 - Integrate features from `git-mob-core` `v0.8.2` - see [PR 266](https://github.com/rkotze/git-mob-vs-code/pull/266) for details
-  - Install .git-coauthors file
+  - Create new `.git-coauthors` file and temp one for UI tests
   - Use core `Author` class
-  - Remove usage of old `gitAuthors` function, moved into test folder as it's needed there.
+  - Remove usage of old `gitAuthors` internal function, was moved into test folder as it's needed there.
   - Get repo contributors `repoAuthorList`
-  - Fetch user from GitHub 
+  - Fetch user from GitHub
   - Removed old Git commands and rev parse exec files.
-- Integrate breaking changes from `git-mob-core` `v0.9.0`
+- Integrate breaking changes from `git-mob-core` `v0.9.x`
   - `getPrimaryAuthor`, `getSelectedCoAuthors`, `setPrimaryAuthor` now use promises
+  - Remove usage of old `gitAuthors` internal function in UI test folder replace with `git-mob-core` library
 
 ### Fixed
 
-- UI not updated after saving changes in `.git-coauthor` file.
-- After UI tests run clean up temporary files, git-coauthors and gitmessage.
+- VS code UI not updated after saved changes in `.git-coauthor` file.
+- After UI tests run clean up temporary files, `.git-coauthors` and `.gitmessage`.
 
 ## 1.19.0
 
@@ -72,7 +73,7 @@ Follows [Semantic Versioning](https://semver.org/).
 
 - Use command palette to select co-authors from unselected and repo contributors [issue 82](https://github.com/rkotze/git-mob-vs-code/issues/82) This also enables adding multiple repo contributors at once with the multi-selector command palette.
 - Right-click on co-author item and copy co-author to clipboard [issue 79](https://github.com/rkotze/git-mob-vs-code/issues/79)
-  
+
 ### Fixes
 
 - Clean up unused icons and use VS Code provided icons to match the editors UI.
@@ -87,10 +88,9 @@ Follows [Semantic Versioning](https://semver.org/).
 
 ### Fixes
 
-- Small stability fixes: 
+- Small stability fixes:
   - app is ready check for tests
   - set git template path on solo function (edge case)
-
 
 ## 1.14.1 -- 2021-11-14
 
@@ -123,7 +123,6 @@ Follows [Semantic Versioning](https://semver.org/).
 - Still keeps in sync with Git Mob CLI and can be used in conjunction.
 - Addresses the errors of missing "npx git mob" commands "could not determine executable to run NPM ERR!" [PR 49](https://github.com/rkotze/git-mob-vs-code/pull/49)
 
-
 ## 1.12.0 -- 2021-06-02
 
 ### Added
@@ -131,7 +130,6 @@ Follows [Semantic Versioning](https://semver.org/).
 - Stop support for prepare-commit-msg no longer option in `git-mob v2` [Issue 62](https://github.com/rkotze/git-mob-vs-code/issues/62)
 - Stop continuous loading of co-author list when interacting with SCM UI
 - Show error message if no GitHub PAT is set [Issue 58](https://github.com/rkotze/git-mob-vs-code/issues/58)
-
 
 ## 1.11.0 -- 2021-01-06
 
