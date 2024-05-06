@@ -1,4 +1,4 @@
-name: 'Publish'
+name: "Publish"
 
 on:
   workflow_dispatch:
@@ -13,7 +13,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: "20"
 
       - name: Install dependencies
         run: npm install
@@ -26,6 +26,7 @@ jobs:
 
       - name: Publish to VS Marketplace
         uses: HaaLeo/publish-vscode-extension@v1
+        continue-on-error: true
         with:
           pat: ${{ secrets.VS_MARKETPLACE_TOKEN }}
           registryUrl: https://marketplace.visualstudio.com
