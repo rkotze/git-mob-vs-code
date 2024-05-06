@@ -20,6 +20,7 @@ jobs:
 
       - name: Publish to Open VSX Registry
         uses: HaaLeo/publish-vscode-extension@v1
+        continue-on-error: true
         id: publishToOpenVSX
         with:
           pat: ${{ secrets.OPEN_VSX_TOKEN }}
