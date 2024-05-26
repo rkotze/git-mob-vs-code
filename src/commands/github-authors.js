@@ -33,7 +33,7 @@ function searchGithubAuthors() {
       }
 
       const messageUnder30 = `Git Mob: Found ${users.length} GitHub users.`;
-      const messageOver30 = `Git Mob: Can only showing 30 GitHub users but more were found.`;
+      const messageOver30 = `Git Mob: More GitHub users found but limited to show 30 GitHub users.`;
       vscode.window.showInformationMessage(
         users.length === 30 ? messageOver30 : messageUnder30
       );
