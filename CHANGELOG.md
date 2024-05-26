@@ -4,6 +4,10 @@ Follows [Semantic Versioning](https://semver.org/).
 
 ## Next version
 
+### Added
+
+- Use `git-mob-core` to search GitHub users replacing what is in the extension. The limitation is core API does not allow a PAT key and won't get authors selected email (will just return GH anonymous email). Less code to maintain across tools.
+
 ## 1.20.0
 
 ### Added
