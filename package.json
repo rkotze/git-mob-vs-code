@@ -299,7 +299,7 @@
     "@types/jest": "^29.5.12",
     "@types/vscode": "^1.67.0",
     "@vscode/test-electron": "^2.4.0",
-    "@vscode/vsce": "^2.27.0",
+    "@vscode/vsce": "^2.29.0",
     "chai": "^5.1.1",
     "eslint": "^9.5.0",
     "glob": "^10.4.1",
