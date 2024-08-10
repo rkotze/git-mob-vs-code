@@ -21,12 +21,13 @@ exports.buildCoAuthorGroups = async function buildCoAuthorGroups() {
   async function resolveAuthorLists() {
     mainAuthor = await getPrimaryAuthor();
     const allAuthors = await getAllAuthors();
+    const selectedCoAuthors = await getSelectedCoAuthors(allAuthors);
     unselected = authorListToMap(
       allAuthors.filter((author) => mainAuthor.email != author.email),
       (author) => new CoAuthor(author.name, author.email, false, author.key)
     );
     selected = authorListToMap(
-      await getSelectedCoAuthors(allAuthors),
+      selectedCoAuthors,
       (author) => new CoAuthor(author.name, author.email, true, author.key)
     );
 
@@ -34,7 +35,7 @@ exports.buildCoAuthorGroups = async function buildCoAuthorGroups() {
       unselected.delete(key);
     });
 
-    await updateGitTemplate(selected);
+    await updateGitTemplate(selectedCoAuthors);
   }
 
   await resolveAuthorLists();
