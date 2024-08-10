@@ -12,7 +12,8 @@ Follows [Semantic Versioning](https://semver.org/).
 
 ### Fix
 
-- When no path set for the commit template, default to the global template. [Issue 302](https://github.com/rkotze/git-mob-vs-code/issues/302)
+- On launching vs code error modal appears, when no path set for the commit template, default to the global template. [Issue 302](https://github.com/rkotze/git-mob-vs-code/issues/302)
+- Save to commit template on reload or start of vs code if any authors are selected. List object was in wrong format.
 
 ## 1.20.0
 
