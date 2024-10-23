@@ -467,6 +467,90 @@
       "code": ":wastebasket:",
       "description": "Deprecating code that needs to be cleaned up.",
       "name": "wastebasket"
+    },
+    {
+      "emoji": "🛂",
+      "entity": "&#x1f6c2;",
+      "code": ":passport_control:",
+      "description": "Work on code related to authorization, roles and permissions.",
+      "name": "passport-control"
+    },
+    {
+      "emoji": "🩹",
+      "entity": "&#x1fa79;",
+      "code": ":adhesive_bandage:",
+      "description": "Simple fix for a non-critical issue.",
+      "name": "adhesive-bandage"
+    },
+    {
+      "emoji": "🧐",
+      "entity": "&#x1f9d0;",
+      "code": ":monocle_face:",
+      "description": "Data exploration/inspection.",
+      "name": "monocle-face"
+    },
+    {
+      "emoji": "⚰️",
+      "entity": "&#x26b0;",
+      "code": ":coffin:",
+      "description": "Remove dead code.",
+      "name": "coffin"
+    },
+    {
+      "emoji": "🧪",
+      "entity": "&#x1f9ea;",
+      "code": ":test_tube:",
+      "description": "Add a failing test.",
+      "name": "test-tube"
+    },
+    {
+      "emoji": "👔",
+      "entity": "&#x1f454;",
+      "code": ":necktie:",
+      "description": "Add or update business logic.",
+      "name": "necktie"
+    },
+    {
+      "emoji": "🩺",
+      "entity": "&#x1fa7a;",
+      "code": ":stethoscope:",
+      "description": "Add or update healthcheck.",
+      "name": "stethoscope"
+    },
+    {
+      "emoji": "🧱",
+      "entity": "&#x1f9f1;",
+      "code": ":bricks:",
+      "description": "Infrastructure related changes.",
+      "name": "bricks"
+    },
+    {
+      "emoji": "🧑‍💻",
+      "entity": "&#x1f9d1;&#x200d;&#x1f4bb;",
+      "code": ":technologist:",
+      "description": "Improve developer experience.",
+      "name": "technologist"
+    },
+    {
+      "emoji": "💸",
+      "entity": "&#x1f4b8;",
+      "code": ":money_with_wings:",
+      "description": "Add sponsorships or money related infrastructure.",
+      "name": "money-with-wings"
+    },
+    {
+      "emoji": "🧵",
+      "entity": "&#x1f9f5;",
+      "code": ":thread:",
+      "description": "Add or update code related to multithreading or concurrency.",
+      "name": "thread"
+    },
+    {
+      "emoji": "🦺",
+      "entity": "&#x1f9ba;",
+      "code": ":safety_vest:",
+      "description": "Add or update code related to validation.",
+      "name": "safety-vest"
     }
   ]
 }
