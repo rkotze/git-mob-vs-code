@@ -4,6 +4,10 @@ Follows [Semantic Versioning](https://semver.org/).
 
 ## Next version
 
+### Added
+
+- Update the list Gitmoji's to latest - thanks @regisbsb
+
 ## 1.20.1
 
 ### Added
