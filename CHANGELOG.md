@@ -4,9 +4,15 @@ Follows [Semantic Versioning](https://semver.org/).
 
 ## Next version
 
+## 1.21.0
+
 ### Added
 
 - Update the list Gitmoji's to latest - thanks @regisbsb
+
+### Removed
+
+- Clean up documentation PAT config not used any more for any commands.
 
 ## 1.20.1
 
@@ -14,7 +20,7 @@ Follows [Semantic Versioning](https://semver.org/).
 
 - Use `git-mob-core` to search GitHub users replacing what is in the extension. The limitation is core API does not allow a PAT key and won't get authors selected email (will just return GH anonymous email). Less code to maintain across tools.
 
-### Fix
+### Fixed
 
 - On launching vs code error modal appears, when no path set for the commit template, default to the global template. [Issue 302](https://github.com/rkotze/git-mob-vs-code/issues/302)
 - Save to commit template on reload or start of vs code if any authors are selected. List object was in wrong format.
