@@ -117,18 +117,6 @@ Add a new author directly to 'Co-authoring' from 'More Authors'.
 
 `Default: true`
 
-### Github -> Personal Access Token
-
-*Optional*: if you want the users public email then you will need the PAT.
-
-Default will return the anonymous GitHub email.
-
-1.  Visit [GitHub > settings > tokens](https://github.com/settings/tokens)
-2.  Click "generate new token"
-3.  Select "user:read" _(This allows GitMob to fetch a users public email)_
-
-`Default: <empty>`
-
 ### Co-authors -> Sort direction
 
 Co-author list sorting direction.
