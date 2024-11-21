@@ -17,7 +17,7 @@ function soloSwitch(coAuthorProvider, afterCommitOn) {
   if (afterCommitOn) {
     watch = watchForCommit(async function () {
       await coAuthorProvider.coAuthorGroups.solo();
-      coAuthorProvider.reloadData();
+      await vscode.commands.executeCommand("gitmob.reload");
     });
   } else {
     if (watch) {

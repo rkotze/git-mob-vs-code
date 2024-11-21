@@ -4,6 +4,10 @@ Follows [Semantic Versioning](https://semver.org/).
 
 ## Next version
 
+### Fixed
+
+- When executing the solo sequence post-commit the unselected author gets the "plus" action instead a "minus" icon. [Issue 380](https://github.com/rkotze/git-mob-vs-code/issues/380)
+
 ## 1.21.0
 
 ### Added
