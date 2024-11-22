@@ -1,13 +1,12 @@
 const vscode = require("vscode");
 const { CONSTANTS } = require("./constants");
 
-function reloadOnSave({ coAuthorProvider }) {
+function reloadOnSave() {
   const { onDidSaveTextDocument } = vscode.workspace;
 
   onDidSaveTextDocument(async function (textDocument) {
     if (textDocument.fileName.includes(CONSTANTS.GIT_COAUTHORS_FILE)) {
-      await coAuthorProvider.coAuthorGroups.reloadData();
-      coAuthorProvider.reloadData();
+      await vscode.commands.executeCommand("gitmob.reload");
     }
   });
 }

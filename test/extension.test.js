@@ -143,7 +143,6 @@ describe("GitMob core tests", function () {
     );
 
     await vscode.commands.executeCommand("gitmob.reload");
-
     await vscode.commands.executeCommand("gitmob.addCoAuthor", coAuthor);
     await wait(200);
 

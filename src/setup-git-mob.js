@@ -69,7 +69,7 @@ async function bootGitMob(context, gitExt) {
 
     disposables.forEach((dispose) => context.subscriptions.push(dispose));
 
-    reloadOnSave({ coAuthorProvider });
+    reloadOnSave();
     soloAfterCommit(coAuthorProvider);
 
     gitExt.onDidChangeUiState(async function () {
@@ -77,8 +77,7 @@ async function bootGitMob(context, gitExt) {
       if (this.ui.selected) {
         gitExt.selectedRepositoryPath = this.rootUri.path;
         updateConfig("processCwd", gitExt.rootPath);
-        await coAuthorProvider.coAuthorGroups.reloadData();
-        coAuthorProvider.reloadData();
+        await vscode.commands.executeCommand("gitmob.reload");
       }
     });
 
