@@ -30,6 +30,9 @@ const {
 } = require("./co-author-tree-provider/count-decorator-provider");
 const { updateConfig } = require("git-mob-core");
 const { buildCoAuthorGroups } = require("./build-co-author-groups");
+const {
+  InputCompletionProvider,
+} = require("./co-author-tree-provider/input-completion-provider");
 
 function setupGitMob(context, gitExt) {
   bootGitMob(context, gitExt);
@@ -64,6 +67,7 @@ async function bootGitMob(context, gitExt) {
       changePrimaryAuthor({ coAuthorProvider }),
       searchGithubAuthors({ coAuthorProvider }),
       new CountDecorationProvider(coAuthorProvider),
+      new InputCompletionProvider(),
       copyCoAuthor(),
     ];
 
