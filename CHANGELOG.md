@@ -8,7 +8,7 @@ Follows [Semantic Versioning](https://semver.org/).
 
 ### Added
 
-- Integrate `git-mob-core v0.10.1` wit new message formatter function.
+- Integrate `git-mob-core v0.10.0` wit new message formatter function.
 
 ## 1.21.1
 
