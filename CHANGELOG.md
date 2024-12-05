@@ -4,6 +4,12 @@ Follows [Semantic Versioning](https://semver.org/).
 
 ## Next version
 
+## 1.22.0
+
+### Added
+
+- Integrate `git-mob-core v0.10.1` wit new message formatter function.
+
 ## 1.21.1
 
 ### Fixed
