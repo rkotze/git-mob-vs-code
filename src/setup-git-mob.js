@@ -64,7 +64,7 @@ async function bootGitMob(context, gitExt) {
       changePrimaryAuthor({ coAuthorProvider }),
       searchGithubAuthors({ coAuthorProvider }),
       new CountDecorationProvider(coAuthorProvider),
-      new InputCompletionProvider(),
+      new InputCompletionProvider(coAuthorProvider),
       copyCoAuthor(),
     ];
 
