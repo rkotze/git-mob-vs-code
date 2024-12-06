@@ -4,6 +4,14 @@ Follows [Semantic Versioning](https://semver.org/).
 
 ## Next version
 
+## 1.22.0
+
+### Added
+
+- Integrate `git-mob-core v0.10.0` wit new message formatter function.
+
+## 1.21.1
+
 ### Fixed
 
 - When executing the solo sequence post-commit the unselected author gets the "plus" action instead a "minus" icon. [Issue 380](https://github.com/rkotze/git-mob-vs-code/issues/380)

@@ -20,15 +20,12 @@ const { searchGitEmojis } = require("./commands/search-git-emojis");
 const { openSettings } = require("./commands/open-settings");
 const { searchGithubAuthors } = require("./commands/github-authors");
 const { copyCoAuthor } = require("./commands/copy-co-author");
-const {
-  replaceCoAuthors,
-} = require("./vscode-git-extension/format-scm-input-text");
 const { soloAfterCommit } = require("./ext-config/solo-after-commit");
 const { logIssue } = require("./errors/log-issue");
 const {
   CountDecorationProvider,
 } = require("./co-author-tree-provider/count-decorator-provider");
-const { updateConfig } = require("git-mob-core");
+const { updateConfig, messageFormatter } = require("git-mob-core");
 const { buildCoAuthorGroups } = require("./build-co-author-groups");
 const {
   InputCompletionProvider,
@@ -45,8 +42,8 @@ async function bootGitMob(context, gitExt) {
 
     coAuthorProvider.onDidChangeTreeData(function () {
       try {
-        gitExt.updateSelectedInput(
-          replaceCoAuthors(coAuthorProvider.coAuthorGroups.getSelected())
+        gitExt.updateSelectedInput((text) =>
+          messageFormatter(text, coAuthorProvider.coAuthorGroups.getSelected())
         );
       } catch (err) {
         logIssue("Failed to update input: " + err.message);
