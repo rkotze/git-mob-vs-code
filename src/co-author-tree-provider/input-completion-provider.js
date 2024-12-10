@@ -9,14 +9,15 @@ class InputCompletionProvider {
     this.coAuthorProvider = coAuthorProvider;
   }
 
-  provideCompletionItems() {
+  provideCompletionItems(_doc, position) {
     // (document, position, token, context) {
     // const range = document.getWordRangeAtPosition(position);
     // const word = document.getText(range);
 
     // if (!this.authors) {
     return buildCompletionItems(
-      this.coAuthorProvider.coAuthorGroups.getUnselected()
+      this.coAuthorProvider.coAuthorGroups.getUnselected(),
+      position
     );
     // }
 
@@ -34,15 +35,21 @@ class InputCompletionProvider {
   }
 }
 
-function buildCompletionItems(unselectAuthors) {
+function buildCompletionItems(unselectAuthors, position) {
   const items = unselectAuthors.map((author) => {
     const item = new vscode.CompletionItem(
       author.toString(),
       vscode.CompletionItemKind.User
     );
-    // var a = new vscode.Range();
-    // item.range.inserting = range;
-    // item.range.start.character = item.range.start.character - 1;
+
+    const removeTriggerChar = new vscode.Range(
+      position.line,
+      position.character - 1,
+      position.line,
+      position.character
+    );
+    item.additionalTextEdits = [vscode.TextEdit.delete(removeTriggerChar)];
+
     item.author = author;
     item.insertText = author.format();
     return item;
