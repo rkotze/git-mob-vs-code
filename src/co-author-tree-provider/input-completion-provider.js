@@ -1,37 +1,50 @@
 const vscode = require("vscode");
+const {
+  getInputCompletionConfig,
+  ENABLE_INPUT_AUTOCOMPLETION,
+} = require("../ext-config/config");
 
 class InputCompletionProvider {
   constructor(coAuthorProvider) {
-    this.disposables = [];
-    this.disposables.push(
-      vscode.languages.registerCompletionItemProvider("scminput", this, "+")
-    );
     this.coAuthorProvider = coAuthorProvider;
+    this.disposables = [];
+    this.registerProvider();
+
+    vscode.workspace.onDidChangeConfiguration((e) => {
+      if (e.affectsConfiguration(ENABLE_INPUT_AUTOCOMPLETION)) {
+        this.registerProvider();
+      }
+    });
+  }
+
+  registerProvider() {
+    this.dispose();
+    if (getInputCompletionConfig()) {
+      this.disposables.push(
+        vscode.languages.registerCompletionItemProvider("scminput", this, "+")
+      );
+    }
   }
 
   provideCompletionItems(_doc, position) {
-    // (document, position, token, context) {
-    // const range = document.getWordRangeAtPosition(position);
-    // const word = document.getText(range);
-
-    // if (!this.authors) {
     return buildCompletionItems(
       this.coAuthorProvider.coAuthorGroups.getUnselected(),
       position
     );
-    // }
-
-    // return this.authors;
   }
 
   resolveCompletionItem(item) {
-    // (item, _token) {
     item.command = {
       command: "gitmob.addCoAuthor",
       arguments: [item.author],
       title: "Add co-author",
     };
     return item;
+  }
+
+  dispose() {
+    this.disposables.forEach((d) => d.dispose());
+    this.disposables = [];
   }
 }
 
