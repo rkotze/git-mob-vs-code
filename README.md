@@ -48,8 +48,9 @@ To keep track of co-authors git-mob uses a JSON file called `.git-coauthors`, an
 ## Features
 
 - Append _multiple co-authors_ to a commit message
+- Type `+` in the SCM textbox to see autocomplete list of co-authors
 - Select multiple co-authors (`shift` or `ctrl` or `⌘`) in SCM panel view
-- Easily add co-author data by [searching repository contributors co-authors](#search-repository-contributors-co-authors) from the "More Authors" list.
+- Easily add co-author data by [searching repository contributors co-authors](#search-repository-contributors-co-authors) from the "More Authors" list
 - **After a commit** [remove all selected co-authors](#post-commit---solo) 
 - [Workspace support](#workspace-support), multiple Git repositories
 - **Search and add** co-authors from **GitHub** using anonymous email
@@ -122,3 +123,9 @@ Add a new author directly to 'Co-authoring' from 'More Authors'.
 Co-author list sorting direction.
 
 `Default: ascending`
+
+### SCM Textbox -> Enable input autocomplete
+
+Enable co-author autocompletion in the commit message SCM input textbox.
+
+`Default: true`
