@@ -28,8 +28,8 @@ const {
 const { updateConfig, messageFormatter } = require("git-mob-core");
 const { buildCoAuthorGroups } = require("./build-co-author-groups");
 
-function setupGitMob(context, gitExt) {
-  bootGitMob(context, gitExt);
+async function setupGitMob(context, gitExt) {
+  return bootGitMob(context, gitExt);
 }
 
 async function bootGitMob(context, gitExt) {

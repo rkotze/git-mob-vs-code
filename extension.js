@@ -16,9 +16,9 @@ async function activate(context) {
     );
   }
   const gitExt = new GitExt();
-  gitExt.gitApi.onDidOpenRepository(() => {
+  gitExt.gitApi.onDidOpenRepository(async () => {
     if (!isReady) {
-      setupGitMob(context, gitExt);
+      await setupGitMob(context, gitExt);
       isReady = true;
     }
   });
