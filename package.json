@@ -89,6 +89,11 @@
             "descending"
           ],
           "description": "Co-author list sorting direction"
+        },
+        "gitmob.scmTextbox.enableInputAutocompletion": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable co-author autocompletion in the commit message SCM input textbox."
         }
       }
     },
@@ -290,13 +295,13 @@
     "ovsx-publish": "ovsx publish"
   },
   "devDependencies": {
-    "@eslint/js": "^9.21.0",
+    "@eslint/js": "^9.22.0",
     "@types/jest": "^29.5.14",
     "@types/vscode": "^1.67.0",
     "@vscode/test-electron": "^2.4.1",
-    "@vscode/vsce": "^3.2.2",
+    "@vscode/vsce": "^3.3.0",
     "chai": "^5.2.0",
-    "eslint": "^9.21.0",
+    "eslint": "^9.23.0",
     "glob": "^11.0.1",
     "globals": "^16.0.0",
     "jest": "^29.7.0",
