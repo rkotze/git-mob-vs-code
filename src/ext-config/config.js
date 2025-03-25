@@ -16,10 +16,10 @@ function moveToCoAuthoring() {
 }
 
 const ENABLE_INPUT_AUTOCOMPLETION =
-  "gitmob.scmTextbox.enableInputAutocompletion";
+  "gitMob.scmTextbox.enableInputAutocompletion";
 
 function getInputCompletionConfig() {
-  const config = workspace.getConfiguration("gitmob.scmTextbox");
+  const config = workspace.getConfiguration("gitMob.scmTextbox");
   return config.get("enableInputAutocompletion");
 }
 
