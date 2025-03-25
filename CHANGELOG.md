@@ -10,6 +10,10 @@ Follows [Semantic Versioning](https://semver.org/).
 
 - Integrate `git-mob-core v0.10.0` wit new message formatter function.
 
+### Fixed
+
+- Fix Git Mob start up error with new project and initialising a new Git repo.
+
 ## 1.21.1
 
 ### Fixed
