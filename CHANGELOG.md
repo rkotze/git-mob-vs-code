@@ -11,6 +11,10 @@ Follows [Semantic Versioning](https://semver.org/).
 - Integrate `git-mob-core v0.10.0` wit new message formatter function.
 - Autocomplete co-author feature in SCM textbox by typing plus `+`. Can be enabled/disabled in settings. 
 
+### Fixed
+
+- Fix Git Mob start up error with new project and initialising a new Git repo.
+
 ## 1.21.1
 
 ### Fixed

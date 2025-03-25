@@ -31,8 +31,8 @@ const {
   InputCompletionProvider,
 } = require("./co-author-tree-provider/input-completion-provider");
 
-function setupGitMob(context, gitExt) {
-  bootGitMob(context, gitExt);
+async function setupGitMob(context, gitExt) {
+  return bootGitMob(context, gitExt);
 }
 
 async function bootGitMob(context, gitExt) {
