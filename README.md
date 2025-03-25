@@ -1,12 +1,15 @@
 # <img src="https://user-images.githubusercontent.com/10452163/79142596-a808fa00-7db3-11ea-9a02-2d020e0b29d7.png" width="80" alt="VS Code Git Mob logo" /> Co-author commits
 
-![Visual Studio Marketplace Installs](https://img.shields.io/visual-studio-marketplace/i/RichardKotze.git-mob?color=brightgreen&label=VSCode%20installs) [![](https://img.shields.io/open-vsx/dt/RichardKotze/git-mob?color=brightgreen&label=VSX%20installs)](https://open-vsx.org/extension/RichardKotze/git-mob)
+![Visual Studio Marketplace Installs](https://img.shields.io/visual-studio-marketplace/i/RichardKotze.git-mob?color=brightgreen&label=VSCode%20installs) [![](https://img.shields.io/open-vsx/dt/RichardKotze/git-mob?color=brightgreen&label=VSX%20installs)](https://open-vsx.org/extension/RichardKotze/git-mob) 
 
-> VS Code extension to easily _co-author a commit_ message from the source control panel.
+<a href="https://www.buymeacoffee.com/rkotze" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-green.png" alt="Buy Me A Coffee" style="height: 40px !important;width: 180px !important;" ></a>
 
-Helpful when **pair programming**.
+> VS Code extension to easily _co-author a commit_ message from the source control panel when **pair programming**.
 
 ![Git Mob in action](https://user-images.githubusercontent.com/10452163/156645932-8f5629f5-24b6-42cd-b24a-767164364353.gif)
+
+<img width="415" alt="Git Mob add using plus symbol" src="https://github.com/user-attachments/assets/4320efa0-6862-45d9-a14f-09f887c6dc4b" />
+
 
 1. [Install](#install)
 2. [Quick start](#quick-start)
