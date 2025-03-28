@@ -1,6 +1,7 @@
 const { workspace } = require("../__mocks__/vscode");
 const { buildCoAuthorGroups } = require("./build-co-author-groups");
 const { CoAuthor } = require("./co-author-tree-provider/co-authors");
+const { ErrorAuthor } = require("./co-author-tree-provider/error-author");
 const {
   getAllAuthors,
   setCoAuthors,
@@ -13,7 +14,7 @@ const { Author } = jest.requireActual("git-mob-core");
 jest.mock("git-mob-core");
 
 describe("Co-author list", function () {
-  const author = new Author("Richard Kotze", "rkotze@email.com");
+  const author = new Author("rk", "Richard Kotze", "rkotze@email.com");
 
   beforeAll(function () {
     workspace.getConfiguration.mockReturnValue({
@@ -28,6 +29,21 @@ describe("Co-author list", function () {
     getAllAuthors.mockReset();
     getSelectedCoAuthors.mockReset();
     repoAuthorList.mockReset();
+  });
+
+  it("No main author email should not throw error", async function () {
+    getPrimaryAuthor.mockResolvedValueOnce(undefined);
+    getAllAuthors.mockResolvedValueOnce([
+      { key: "rk", name: "Richard Kotze", email: "rkotze@email.com" },
+      { key: "ts", name: "Tony Stark", email: "tony@stark.com" },
+    ]);
+    getSelectedCoAuthors.mockResolvedValueOnce([]);
+
+    const coAuthorGroups = await buildCoAuthorGroups();
+
+    expect(coAuthorGroups.getMainAuthor()).toEqual(
+      new ErrorAuthor("Missing main Git author")
+    );
   });
 
   it("Repo authors should not contain co-authors with same email", async function () {
