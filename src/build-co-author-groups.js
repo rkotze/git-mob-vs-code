@@ -23,7 +23,9 @@ exports.buildCoAuthorGroups = async function buildCoAuthorGroups() {
     const allAuthors = await getAllAuthors();
     const selectedCoAuthors = await getSelectedCoAuthors(allAuthors);
     unselected = authorListToMap(
-      allAuthors.filter((author) => mainAuthor.email != author.email),
+      allAuthors.filter(
+        (author) => mainAuthor === undefined || mainAuthor.email != author.email
+      ),
       (author) => new CoAuthor(author.name, author.email, false, author.key)
     );
     selected = authorListToMap(
@@ -45,7 +47,7 @@ exports.buildCoAuthorGroups = async function buildCoAuthorGroups() {
       if (mainAuthor) {
         return new PrimaryAuthor(mainAuthor.name, mainAuthor.email);
       }
-      return new ErrorAuthor("Missing Git author");
+      return new ErrorAuthor("Error: Missing main Git author.");
     },
     getUnselected() {
       return sortAuthors(Array.from(unselected.values()));

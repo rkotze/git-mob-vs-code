@@ -2,15 +2,16 @@ const vscode = require("vscode");
 const { None } = vscode.TreeItemCollapsibleState;
 
 class ErrorAuthor extends vscode.TreeItem {
-  constructor() {
-    super("Error", None);
+  constructor(name, contextValue = "error-author") {
+    super(name || "Error: missing author!", None);
     this.email = "e@r.ror";
     this.selected = false;
     this.commandKey = "";
+    this.contextValue = contextValue;
   }
 
   get tooltip() {
-    return "Error";
+    return "Error: missing author!";
   }
 }
 
