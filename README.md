@@ -8,7 +8,7 @@
 
 ![Git Mob in action](https://user-images.githubusercontent.com/10452163/156645932-8f5629f5-24b6-42cd-b24a-767164364353.gif)
 
-<img width="415" alt="Git Mob add using plus symbol" src="https://github.com/user-attachments/assets/4320efa0-6862-45d9-a14f-09f887c6dc4b" />
+<img width="415" alt="Git Mob add using plus symbol" src="https://raw.githubusercontent.com/rkotze/git-mob-vs-code/2b713b8c00979b36db34e41ad88328e93d9f590b/resources/co-author-suggestion.png" />
 
 
 1. [Install](#install)
