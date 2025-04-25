@@ -135,7 +135,7 @@
       },
       {
         "command": "gitmob.addMainAuthor",
-        "title": "Add main author",
+        "title": "New primary author",
         "category": "Git Mob",
         "icon": "$(add)"
       },
@@ -230,7 +230,7 @@
         },
         {
           "command": "gitmob.addMainAuthor",
-          "when": "viewItem == error-author",
+          "when": "viewItem == error-author || viewItem == primary-author",
           "group": "inline"
         },
         {
