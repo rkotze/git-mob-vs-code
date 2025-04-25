@@ -4,6 +4,12 @@ Follows [Semantic Versioning](https://semver.org/).
 
 ## Next version
 
+## 1.23.0
+
+### Added
+
+- If no primary author set handle error inline and ability to set new author through vscode inputs. [Issue 27](https://github.com/rkotze/git-mob-vs-code/issues/27)
+
 ## 1.22.0
 
 ### Added

@@ -134,6 +134,12 @@
         "icon": "$(add)"
       },
       {
+        "command": "gitmob.addMainAuthor",
+        "title": "New primary author",
+        "category": "Git Mob",
+        "icon": "$(add)"
+      },
+      {
         "command": "gitmob.searchRepositoryUsers",
         "title": "Search Git repository for co-authors",
         "category": "Git Mob",
@@ -223,13 +229,18 @@
           "group": "inline"
         },
         {
+          "command": "gitmob.addMainAuthor",
+          "when": "viewItem == error-author || viewItem == primary-author",
+          "group": "inline"
+        },
+        {
           "command": "gitmob.removeCoAuthor",
           "when": "viewItem == remove-author",
           "group": "inline"
         },
         {
           "command": "gitmob.changePrimaryAuthor",
-          "when": "viewItem == primary-author",
+          "when": "viewItem == error-author || viewItem == primary-author",
           "group": "inline"
         },
         {
