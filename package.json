@@ -134,6 +134,12 @@
         "icon": "$(add)"
       },
       {
+        "command": "gitmob.addMainAuthor",
+        "title": "Add main author",
+        "category": "Git Mob",
+        "icon": "$(add)"
+      },
+      {
         "command": "gitmob.searchRepositoryUsers",
         "title": "Search Git repository for co-authors",
         "category": "Git Mob",
@@ -220,6 +226,11 @@
         {
           "command": "gitmob.addRepoAuthorToCoAuthors",
           "when": "viewItem == add-repo-author",
+          "group": "inline"
+        },
+        {
+          "command": "gitmob.addMainAuthor",
+          "when": "viewItem == error-author",
           "group": "inline"
         },
         {

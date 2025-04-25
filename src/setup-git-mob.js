@@ -30,6 +30,7 @@ const { buildCoAuthorGroups } = require("./build-co-author-groups");
 const {
   InputCompletionProvider,
 } = require("./co-author-tree-provider/input-completion-provider");
+const { addMainAuthor } = require("./commands/add-main-author");
 
 async function setupGitMob(context, gitExt) {
   return bootGitMob(context, gitExt);
@@ -66,6 +67,7 @@ async function bootGitMob(context, gitExt) {
       new CountDecorationProvider(coAuthorProvider),
       new InputCompletionProvider(coAuthorProvider),
       copyCoAuthor(),
+      addMainAuthor({ coAuthorProvider }),
     ];
 
     disposables.forEach((dispose) => context.subscriptions.push(dispose));
