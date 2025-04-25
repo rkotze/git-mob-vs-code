@@ -240,7 +240,7 @@
         },
         {
           "command": "gitmob.changePrimaryAuthor",
-          "when": "viewItem == primary-author",
+          "when": "viewItem == error-author || viewItem == primary-author",
           "group": "inline"
         },
         {
