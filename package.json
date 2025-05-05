@@ -313,11 +313,11 @@
     "@vscode/vsce": "^3.3.2",
     "chai": "^5.2.0",
     "eslint": "^9.25.0",
-    "glob": "^11.0.1",
+    "glob": "^11.0.2",
     "globals": "^16.0.0",
     "jest": "^29.7.0",
     "jest-environment-node": "^29.6.4",
-    "mocha": "^11.1.0",
+    "mocha": "^11.2.2",
     "ovsx": "^0.10.2"
   },
   "dependencies": {
