@@ -4,6 +4,12 @@ Follows [Semantic Versioning](https://semver.org/).
 
 ## Next version
 
+## 1.23.1
+
+### Fixed
+
+Error: command 'gitmob.openSettings' already exists [Issue 418](https://github.com/rkotze/git-mob-vs-code/issues/418). If you have multiple projects open then the setup command would run twice causing the error.
+
 ## 1.23.0
 
 ### Added

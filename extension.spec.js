@@ -19,6 +19,12 @@ describe("Activate Git Mob extension", function () {
       return {
         gitApi: {
           onDidOpenRepository: onDidOpenRepositoryMock,
+          repositories: [
+            {
+              rootUri: { fsPath: "/path/to/repo" },
+              inputBox: { value: "" },
+            },
+          ],
         },
       };
     });

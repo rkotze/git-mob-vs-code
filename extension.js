@@ -17,7 +17,7 @@ async function activate(context) {
   }
   const gitExt = new GitExt();
   gitExt.gitApi.onDidOpenRepository(async () => {
-    if (!isReady) {
+    if (!isReady && gitExt.gitApi.repositories.length <= 1) {
       await setupGitMob(context, gitExt);
       isReady = true;
     }
