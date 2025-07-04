@@ -22,33 +22,33 @@ describe("Git author provider", function () {
   it("Select one co-author", () => {
     const provider = new CoAuthorProvider(coAuthorGroups);
     provider.toggleCoAuthor(jyn, true);
-    expect(provider.coAuthorGroups.select).toBeCalledWith([jyn]);
+    expect(provider.coAuthorGroups.select).toHaveBeenCalledWith([jyn]);
   });
 
   it("Unselect one co-author", () => {
     const provider = new CoAuthorProvider(coAuthorGroups);
     provider.toggleCoAuthor(galen, false);
-    expect(provider.coAuthorGroups.unselect).toBeCalledWith([galen]);
+    expect(provider.coAuthorGroups.unselect).toHaveBeenCalledWith([galen]);
   });
 
   it("toggle two co-authors to selected", () => {
     const provider = new CoAuthorProvider(coAuthorGroups);
     provider.multiSelected = [jyn, galen];
     provider.toggleCoAuthor(jyn, true);
-    expect(provider.coAuthorGroups.select).toBeCalledWith([jyn, galen]);
+    expect(provider.coAuthorGroups.select).toHaveBeenCalledWith([jyn, galen]);
   });
 
   it("when one co-author selected but click add action on different author", () => {
     const provider = new CoAuthorProvider(coAuthorGroups);
     provider.multiSelected = [jyn];
     provider.toggleCoAuthor(galen, true);
-    expect(provider.coAuthorGroups.select).toBeCalledWith([galen]);
+    expect(provider.coAuthorGroups.select).toHaveBeenCalledWith([galen]);
   });
 
   it("select RepoAuthor and two CoAuthors then only the CoAuthors should pass through", () => {
     const provider = new CoAuthorProvider(coAuthorGroups);
     provider.multiSelected = [jyn, galen, cassian];
     provider.toggleCoAuthor(galen, true);
-    expect(provider.coAuthorGroups.select).toBeCalledWith([jyn, galen]);
+    expect(provider.coAuthorGroups.select).toHaveBeenCalledWith([jyn, galen]);
   });
 });
