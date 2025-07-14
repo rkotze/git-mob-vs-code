@@ -318,7 +318,7 @@
     "jest": "^30.0.4",
     "jest-environment-node": "^30.0.4",
     "mocha": "^11.7.1",
-    "ovsx": "^0.10.4"
+    "ovsx": "^0.10.5"
   },
   "dependencies": {
     "git-mob-core": "^0.10.1"
