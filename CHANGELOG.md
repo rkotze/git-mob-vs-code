@@ -4,11 +4,17 @@ Follows [Semantic Versioning](https://semver.org/).
 
 ## Next version
 
+## 1.23.2
+
+### Fixed
+
+- Handle start-up issue. Open a new VS Code with a project and the git panel is not the focus then it fails to register commands and load the UI.
+
 ## 1.23.1
 
 ### Fixed
 
-Error: command 'gitmob.openSettings' already exists [Issue 418](https://github.com/rkotze/git-mob-vs-code/issues/418). If you have multiple projects open then the setup command would run twice causing the error.
+- Error: command 'gitmob.openSettings' already exists [Issue 418](https://github.com/rkotze/git-mob-vs-code/issues/418). If you have multiple projects open then the setup command would run twice causing the error.
 
 ## 1.23.0
 
@@ -21,7 +27,7 @@ Error: command 'gitmob.openSettings' already exists [Issue 418](https://github.c
 ### Added
 
 - Integrate `git-mob-core v0.10.0` wit new message formatter function.
-- Autocomplete co-author feature in SCM textbox by typing plus `+`. Can be enabled/disabled in settings. 
+- Autocomplete co-author feature in SCM textbox by typing plus `+`. Can be enabled/disabled in settings.
 
 ### Fixed
 

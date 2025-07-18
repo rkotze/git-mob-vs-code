@@ -16,6 +16,11 @@ async function activate(context) {
     );
   }
   const gitExt = new GitExt();
+  if (gitExt.gitApi.repositories && gitExt.gitApi.repositories.length > 0) {
+    await setupGitMob(context, gitExt);
+    isReady = true;
+  }
+
   gitExt.gitApi.onDidOpenRepository(async () => {
     if (!isReady && gitExt.gitApi.repositories.length <= 1) {
       await setupGitMob(context, gitExt);
