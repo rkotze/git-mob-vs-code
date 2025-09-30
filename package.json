@@ -311,7 +311,7 @@
     "@types/vscode": "^1.67.0",
     "@vscode/test-electron": "^2.5.2",
     "@vscode/vsce": "^3.6.0",
-    "chai": "^6.0.1",
+    "chai": "^6.2.0",
     "eslint": "^9.36.0",
     "glob": "^11.0.3",
     "globals": "^16.4.0",
