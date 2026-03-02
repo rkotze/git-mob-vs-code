@@ -312,7 +312,7 @@
     "@vscode/test-electron": "^2.5.2",
     "@vscode/vsce": "^3.7.1",
     "chai": "^6.2.2",
-    "eslint": "^10.0.1",
+    "eslint": "^10.0.2",
     "glob": "^13.0.6",
     "globals": "^17.4.0",
     "jest": "^30.2.0",
