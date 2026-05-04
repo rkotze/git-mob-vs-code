@@ -314,7 +314,7 @@
     "chai": "^6.2.2",
     "eslint": "^10.3.0",
     "glob": "^13.0.6",
-    "globals": "^17.5.0",
+    "globals": "^17.6.0",
     "jest": "^30.3.0",
     "jest-environment-node": "^30.3.0",
     "mocha": "^11.7.5",
