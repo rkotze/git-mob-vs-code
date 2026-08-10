@@ -317,7 +317,7 @@
     "globals": "^17.9.0",
     "jest": "^30.4.2",
     "jest-environment-node": "^30.4.1",
-    "mocha": "^11.7.6",
+    "mocha": "^11.8.0",
     "ovsx": "^0.10.12"
   },
   "dependencies": {
