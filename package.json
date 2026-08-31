@@ -316,7 +316,7 @@
     "glob": "^13.0.6",
     "globals": "^17.11.0",
     "jest": "^30.4.2",
-    "jest-environment-node": "^30.4.1",
+    "jest-environment-node": "^30.5.0",
     "mocha": "^11.8.0",
     "ovsx": "^0.10.12"
   },
